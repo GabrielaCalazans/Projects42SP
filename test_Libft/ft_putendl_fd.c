@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 15:31:16 by coder             #+#    #+#             */
-/*   Updated: 2022/09/09 01:19:09 by coder            ###   ########.fr       */
+/*   Created: 2022/09/09 01:17:26 by coder             #+#    #+#             */
+/*   Updated: 2022/09/09 01:27:15 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	int	count;
 
@@ -21,5 +21,9 @@ void	ft_putstr_fd(char *s, int fd)
 	{
 		write(fd, &s[count], 1);
 		count++;
+	}
+	if (s[count] == '\0')
+	{
+		write(fd, "\n", 1);
 	}
 }
