@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:14:10 by coder             #+#    #+#             */
-/*   Updated: 2022/09/08 20:41:27 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/08 23:51:54 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_isprint(int argument);
 size_t	ft_strlen(const char *str);
 void	*ft_memset(void *str, int charc, size_t len);
 void	ft_bzero(void *str, size_t len);
-void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t len);
+void	*ft_memcpy(void *dest, const void *src, size_t len);
 void	*ft_memmove(void *dest, const void	*src, size_t n);
 size_t	ft_strlcpy(char	*dst, const char	*src, size_t size);
 size_t	ft_strlcat(char	*dst, const char	*src, size_t size);
