@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 20:29:51 by coder             #+#    #+#             */
-/*   Updated: 2022/09/08 20:42:20 by coder            ###   ########.fr       */
+/*   Created: 2022/09/07 23:23:07 by coder             #+#    #+#             */
+/*   Updated: 2022/09/08 20:33:31 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
-{
-	int	count;
+#include "libft.h"
 
+void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t len)
+{
+	unsigned int	count;
+	unsigned char	*strdest;
+	unsigned char	*strsrc;
+
+	strdest = (unsigned char *)dest;
+	strsrc = (unsigned char *)src;
 	count = 0;
-	while (str[count])
+	while (count < len)
 	{
-		if (str[count] == c)
-		{
-			return ((char *)str + count);
-		}		
+		strdest[count] = strsrc[count];
 		count++;
 	}
-	return (0);
+	while (count < len)
+	{
+		strdest[count] = '\0';
+		count++;
+	}
+	return (dest);
 }

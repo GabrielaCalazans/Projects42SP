@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 20:29:51 by coder             #+#    #+#             */
-/*   Updated: 2022/09/08 20:42:20 by coder            ###   ########.fr       */
+/*   Created: 2022/09/07 02:11:53 by coder             #+#    #+#             */
+/*   Updated: 2022/09/08 01:31:31 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
-{
-	int	count;
+#include "libft.h"
 
-	count = 0;
-	while (str[count])
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < size && src[i] != '\0')
 	{
-		if (str[count] == c)
-		{
-			return ((char *)str + count);
-		}		
-		count++;
+		dst[i] = src[i];
+		i++;
 	}
-	return (0);
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dst);
 }

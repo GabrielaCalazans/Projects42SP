@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 20:29:51 by coder             #+#    #+#             */
-/*   Updated: 2022/09/08 20:42:20 by coder            ###   ########.fr       */
+/*   Created: 2022/09/08 20:27:24 by coder             #+#    #+#             */
+/*   Updated: 2022/09/08 20:30:59 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *str, int c)
-{
-	int	count;
+#include "libft.h"
 
-	count = 0;
-	while (str[count])
-	{
-		if (str[count] == c)
-		{
-			return ((char *)str + count);
-		}		
-		count++;
-	}
-	return (0);
+void	ft_bzero(void	*str, size_t len)
+{
+	ft_memset(str, '\0', len);
 }

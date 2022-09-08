@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 23:33:19 by coder             #+#    #+#             */
-/*   Updated: 2022/09/06 19:42:45 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/07 20:57:14 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ int	main(void)
 	var = 'a';
 	printf("\nResult when a is passed to ft_toupper: %c\n", ft_toupper(var));*/
 	
-	printf("%s", ft_strdup("Gabriela\n"));
+	//printf("%s", ft_strdup("Gabriela\n"));
+
+	/*char	*mention = ft_strchr(text, '@');
+
+	printf("mention: %s\n", mention);*/
+
+	printf("%d\n", ft_isascii(-2));
+	printf("%d\n", ft_isascii(128));
+	
 	return (0);
 }

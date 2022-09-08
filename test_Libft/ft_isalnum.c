@@ -6,14 +6,14 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:22:42 by coder             #+#    #+#             */
-/*   Updated: 2022/09/05 22:32:04 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/08 22:28:52 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalnum(int argument)
 {
-	if (argument >= 'a' && argument <= 'z' || argument >= 'A'
-		&& argument <= 'Z' || argument >= '0' && argument <= '9')
+	if ((argument >= 'a' && argument <= 'z') || (argument >= 'A'
+		&& argument <= 'Z') || (argument >= '0' && argument <= '9'))
 		return (1);
 	else
 		return (0);
