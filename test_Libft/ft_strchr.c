@@ -6,24 +6,34 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:29:51 by coder             #+#    #+#             */
-/*   Updated: 2022/09/09 20:30:02 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/10 00:00:18 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strchr(const char *str, int c)
 {
 	int	count;
+	int	size;
 
+	size = ft_strlen(str);
 	count = 0;
-	if (0 == str[0])
-		return ((char *)str);
-	while (str[count])
+	while (count < size)
 	{
-		if (str[count] == c)
+		if (str[count] == (unsigned char)c)
 		{
 			return ((char *)str + count);
 		}		
 		count++;
 	}
-	return (0);
+	if (*str == (unsigned char)c)
+	{
+		return ((char *)str);
+	}
+	if (!ft_isprint(c))
+	{
+		return ((char *)str + count);
+	}
+	return (NULL);
 }
