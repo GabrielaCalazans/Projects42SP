@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 01:32:45 by coder             #+#    #+#             */
-/*   Updated: 2022/09/09 20:06:12 by coder            ###   ########.fr       */
+/*   Created: 2022/09/09 01:55:01 by coder             #+#    #+#             */
+/*   Updated: 2022/09/09 02:25:25 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memmove(void	*dest, const void	*src, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*strdest;
-	char	*strsrc;
-	int		count;
-	strdest = (char *)dest;
-	strsrc = (char *)src;
+	int	count;
+	size_t size_big;
+	
+	size_big = ft_strlen(big);
 	count = 0;
-	if (strdest == strsrc)
-		return (dest);
-	if (strsrc < strdest)
+	if (0 == size_big)
+		return (str); //in case of void point
+	while (big[count])
 	{
-		while (len--)
+		if (big[count] == little[count])
 		{
-			*(strdest + len) = *(strsrc + len);
-			return (dest);
-		}
+			return ((char *)big + count);
+		}		
+		count++;
 	}
-	else
-	while (count < len)
-	{
-			*(strdest + count) = *(strsrc + count);
-			count++;
-	}
-	return (dest);
+	return (0);
 }
