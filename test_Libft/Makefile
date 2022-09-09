@@ -6,14 +6,11 @@
 #    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/04 20:14:55 by coder             #+#    #+#              #
-#    Updated: 2022/09/09 01:25:48 by coder            ###   ########.fr        #
+#    Updated: 2022/09/09 20:28:36 by coder            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-
-PATH_INCLUDE = -I test_ctypeH.c
-PATH_INCLUDE += test_stringH.c
 
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c
 SRCS += ft_isprint.c ft_toupper.c ft_tolower.c ft_putchar_fd.c ft_putstr_fd.c
