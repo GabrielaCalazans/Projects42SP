@@ -6,13 +6,14 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:39:31 by coder             #+#    #+#             */
-/*   Updated: 2022/09/10 21:11:48 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/11 01:07:41 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
+#include <bsd/string.h>
 
 int	main(void)
 {
@@ -132,19 +133,39 @@ int	main(void)
 	// /* 5 */ printf("[String criada: %s]", ft_strchr(s, 't' + 256));
 	// printf("\n");
 
-	//  teste STRNSTR
+	//  //teste STRNSTR
 	// char Grande[] = "This is the way to hell";
 	// char pequeno[] = "the";
-	// printf("ORIGINAL: %d", strnstr(Grande, pequeno, 10));
+	// printf("ORIGINAL: %s", strnstr(Grande, pequeno, 20));
+	// char GrandeF[] = "This is the way to hell";
+	// char pequenoF[] = "the";
+	// printf("FAKE: %s", ft_strnstr(GrandeF, pequenoF, 20));
 
-	char	str1[] = "Teste";
-	char	str2[] = "Teste";
-	char	str3[] = "TesTE";
+	//  //teste STRNCMP
+	// char	str1[] = "Teste";
+	// char	str2[] = "Teste";
+	// char	str3[] = "TesTE";
+	// printf("Retorno de iguais: %d\n", strncmp(str1, str2, 5));
+	// printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
+	// printf((ft_strncmp("1234", "1235", 3) == 0));
+
+	//  //teste MEMCHR
+	// char	data[] = {'q', 'r', 's', 't', 'p', 'a', 'x'};
+	// char	*pos = memchr(data, 't', 7);
+	// printf("ORIGINAL pos = %s\n", pos);
+	// printf("ORIGINAL char pos[0] = [%c]\n", pos[0]);
+	// char	*fake = ft_memchr(data, 't', 7);
+	// printf("FAKE pos = %s\n", pos);
+	// printf("FAKE char pos[0] = [%c]\n", fake[0]);
+	// char s[] = {0, 1, 2, 3, 4, 5};
+	// /* 1 */ printf("ORIGINAL %s\n", ft_memchr(s, 0, 0)); // == NULL
+	// /* 2 */ printf("ORIGINAL %s\n", ft_memchr(s, 0, 1)); // == s
+	// /* 3 */ printf("ORIGINAL %s\n", ft_memchr(s, 2, 3)); // == s + 2
+	// /* 4 */ printf("ORIGINAL %s\n", ft_memchr(s, 6, 6)); // == NULL
+	// /* 5 */ printf("ORIGINAL %s\n", ft_memchr(s, 2 + 256, 3)); //Cast check  == s + 2
 	
-	printf("Retorno de iguais: %d\n", strncmp(str1, str2, 5));
-	printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
+//  //teste MEMCMP
 
-	printf((ft_strncmp("1234", "1235", 3) == 0));
 	
 	return (0);
 }

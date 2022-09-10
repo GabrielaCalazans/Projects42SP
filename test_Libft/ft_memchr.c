@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 01:55:01 by coder             #+#    #+#             */
-/*   Updated: 2022/09/10 23:33:49 by coder            ###   ########.fr       */
+/*   Created: 2022/09/10 23:34:32 by coder             #+#    #+#             */
+/*   Updated: 2022/09/11 00:50:57 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+void	*ft_memchr(const void *str, int c, size_t len)
 {
-	size_t	countbig; /// INCOMPLETAAAAAA
-	size_t	countlittle;
-	size_t	size_big;
+	size_t		count;
+	size_t		size;
+	const char	*point_str;
 
-	size_big = ft_strlen(big);
+	size = len -1;
 	count = 0;
-	if (!ft_strlen(little))
-		return (big);
-	while (count < size_big)
+	point_str = (const char *)str;
+	if (len <= 0)
 	{
-		if (big[count] == little[count])
+		return (NULL);
+	}
+	while (count < size)
+	{
+		if (point_str[count] == (char)c)
 		{
-			return ((char *)big + count);
+			return ((char *)point_str + count);
 		}		
 		count++;
+	}
+	if (point_str[count] == (const char)c)
+	{
+		return ((char *)point_str + count);
 	}
 	return (NULL);
 }

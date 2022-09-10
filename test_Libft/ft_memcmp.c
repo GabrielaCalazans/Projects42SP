@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 01:55:01 by coder             #+#    #+#             */
-/*   Updated: 2022/09/10 23:33:49 by coder            ###   ########.fr       */
+/*   Created: 2022/09/11 00:54:16 by coder             #+#    #+#             */
+/*   Updated: 2022/09/11 01:05:54 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+int	ft_memcmp(const void *str1, const void *str2, size_t len)
 {
-	size_t	countbig; /// INCOMPLETAAAAAA
-	size_t	countlittle;
-	size_t	size_big;
+	size_t	count;
+	size_t	size;
 
-	size_big = ft_strlen(big);
 	count = 0;
-	if (!ft_strlen(little))
-		return (big);
-	while (count < size_big)
+	size = len - 1;
+	if (len == 0)
 	{
-		if (big[count] == little[count])
-		{
-			return ((char *)big + count);
-		}		
+		return (0);
+	}
+	while ((str1[count] == str2[count] && str1[count]
+			!= '\0' && str2[count] != '\0') && count < size)
+	{
 		count++;
 	}
-	return (NULL);
+	return (str1[count] - str2[count]);
 }
