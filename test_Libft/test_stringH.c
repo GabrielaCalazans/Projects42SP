@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:39:31 by coder             #+#    #+#             */
-/*   Updated: 2022/09/09 23:31:29 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/10 21:11:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int	main(void)
 	// for(int i = 0; i < 10; i++)
 	// 	printf("FAKE source[%d]=%d\n", i, source[i]);
 	
-	char sResult[] = {67, 68, 67, 68, 69, 0, 45};
-	char sResult2[] = {67, 67, 68, 68, 69, 0, 45};
+	// char sResult[] = {67, 68, 67, 68, 69, 0, 45};
+	// char sResult2[] = {67, 67, 68, 68, 69, 0, 45};
 
 	// printf("[%p]pointer", sResult + 1);
 	// printf("\n");
@@ -106,34 +106,45 @@ int	main(void)
 	// ft_putstr_fd(strbzero, 1);
 	
 	
-	// teste STRCHR
-	char s[] = "tripouille";
-	/* 1 */ printf("[String criada: %s]", strchr(s, 't'));
-	printf("\n");
-	/* 2 */ printf("[String criada: %s]", strchr(s, 'l'));
-	printf("\n");
-	/* 3 */ printf("[String criada: %s]", strchr(s, 'z'));
-	printf("\n");
-	/* 4 */ printf("[String criada: %s]", strchr(s, 0));
-	printf("\n");
-	/* 5 */ printf("[String criada: %s]", strchr(s, 't' + 256));
-	printf("\n");
+	// // teste STRCHR
+	// char s[] = "tripouille";
+	// /* 1 */ printf("[String criada: %s]", strchr(s, 't'));
+	// printf("\n");
+	// /* 2 */ printf("[String criada: %s]", strchr(s, 'l'));
+	// printf("\n");
+	// /* 3 */ printf("[String criada: %s]", strchr(s, 'z'));
+	// printf("\n");
+	// /* 4 */ printf("[String criada: %s]", strchr(s, 0));
+	// printf("\n");
+	// /* 5 */ printf("[String criada: %s]", strchr(s, 't' + 256));
+	// printf("\n");
 
-	// teste MEU STRCHR 
-	printf("MEU STRCHR\n");
-	/* 1 */ printf("[String criada: %s]", ft_strchr(s, 't'));
-	printf("\n");
-	/* 2 */ printf("[String criada: %s]", ft_strchr(s, 'l'));
-	printf("\n");
-	/* 3 */ printf("[String criada: %s]", ft_strchr(s, 'z'));
-	printf("\n");
-	/* 4 */ printf("[String criada: %s]", ft_strchr(s, 0));
-	printf("\n");
-	/* 5 */ printf("[String criada: %s]", ft_strchr(s, 't' + 256));
-	printf("\n");
-	return (0);
+	// // teste MEU STRCHR 
+	// printf("MEU STRCHR\n");
+	// /* 1 */ printf("[String criada: %s]", ft_strchr(s, 't'));
+	// printf("\n");
+	// /* 2 */ printf("[String criada: %s]", ft_strchr(s, 'l'));
+	// printf("\n");
+	// /* 3 */ printf("[String criada: %s]", ft_strchr(s, 'z'));
+	// printf("\n");
+	// /* 4 */ printf("[String criada: %s]", ft_strchr(s, 0));
+	// printf("\n");
+	// /* 5 */ printf("[String criada: %s]", ft_strchr(s, 't' + 256));
+	// printf("\n");
 
+	//  teste STRNSTR
+	// char Grande[] = "This is the way to hell";
+	// char pequeno[] = "the";
+	// printf("ORIGINAL: %d", strnstr(Grande, pequeno, 10));
 
+	char	str1[] = "Teste";
+	char	str2[] = "Teste";
+	char	str3[] = "TesTE";
+	
+	printf("Retorno de iguais: %d\n", strncmp(str1, str2, 5));
+	printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
+
+	printf((ft_strncmp("1234", "1235", 3) == 0));
 	
 	return (0);
 }

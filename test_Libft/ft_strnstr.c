@@ -6,20 +6,22 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 01:55:01 by coder             #+#    #+#             */
-/*   Updated: 2022/09/09 02:25:25 by coder            ###   ########.fr       */
+/*   Updated: 2022/09/10 17:27:21 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int	count;
-	size_t size_big;
-	
+	size_t	countbig;
+	size_t	countlittle;
+
 	size_big = ft_strlen(big);
 	count = 0;
-	if (0 == size_big)
-		return (str); //in case of void point
-	while (big[count])
+	if (!ft_strlen(little))
+		return (big);
+	while (count < size_big)
 	{
 		if (big[count] == little[count])
 		{
@@ -27,5 +29,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		}		
 		count++;
 	}
-	return (0);
+	return (NULL);
 }
