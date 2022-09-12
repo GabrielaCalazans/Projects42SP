@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 20:29:44 by coder             #+#    #+#             */
-/*   Updated: 2022/09/04 23:33:05 by coder            ###   ########.fr       */
+/*   Created: 2022/09/12 19:42:34 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/12 19:42:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 int	ft_isalpha(int argument)
 {

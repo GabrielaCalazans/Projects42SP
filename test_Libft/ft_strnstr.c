@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 01:55:01 by coder             #+#    #+#             */
-/*   Updated: 2022/09/10 23:33:49 by coder            ###   ########.fr       */
+/*   Created: 2022/09/12 19:45:08 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/13 00:22:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,36 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	countbig; /// INCOMPLETAAAAAA
-	size_t	countlittle;
-	size_t	size_big;
+	size_t	count;
+	size_t	count_little;
+	size_t	count_big;
+	int		match;
+	size_t	size_little;
 
-	size_big = ft_strlen(big);
+	size_little = ft_strlen(little);
 	count = 0;
-	if (!ft_strlen(little))
-		return (big);
-	while (count < size_big)
+	match = 1;
+	if (0 == ft_strlen(little))
+		return ((char *)big);
+	while (*(big + count) && count < len)
 	{
-		if (big[count] == little[count])
+		count_little = 0;
+		if (*(big + count) == *(little + 0))
 		{
-			return ((char *)big + count);
-		}		
+			count_big = count;
+			match = 1;
+			while (*(big + count_big) && *(little + count_little) && count_big < len && count_little < len)
+			{
+				if (*(big + count_big++) != *(little + count_little++))
+				{
+					match = 0;
+				}
+				if (match == 1 && size_little == count_little)
+				{
+					return ((char *)big + count);
+				}
+			}
+		}
 		count++;
 	}
 	return (NULL);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test_stringH.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 00:39:31 by coder             #+#    #+#             */
-/*   Updated: 2022/09/11 01:07:41 by coder            ###   ########.fr       */
+/*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/13 00:16:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-//#include <string.h>
+#include <string.h>
 #include <bsd/string.h>
 
 int	main(void)
@@ -133,17 +133,23 @@ int	main(void)
 	// /* 5 */ printf("[String criada: %s]", ft_strchr(s, 't' + 256));
 	// printf("\n");
 
-	//  //teste STRNSTR
-	// char Grande[] = "This is the way to hell";
-	// char pequeno[] = "the";
-	// printf("ORIGINAL: %s", strnstr(Grande, pequeno, 20));
-	// char GrandeF[] = "This is the way to hell";
-	// char pequenoF[] = "the";
-	// printf("FAKE: %s", ft_strnstr(GrandeF, pequenoF, 20));
+	 //teste STRNSTR
+	char Grande[] = "This is the way to hell";
+	char pequeno[] = "the";
+	printf("ORIGINAL: %s\n", strnstr(Grande, pequeno, 20));
+	char GrandeF[] = "This is the way to hell";
+	char pequenoF[] = "the";
+	printf("FAKE: %s\n", ft_strnstr(GrandeF, pequenoF, 20));
+	char GrandeJ[] = "This is the way to hell";
+	char pequenoJ[] = "tohe";
+	printf("FAKE tohe: %s\n", ft_strnstr(GrandeJ, pequenoJ, 20));
+	char GrandeO[] = "This is the way to hell";
+	char pequenoO[] = "tohe";
+	printf("ORIGINAL tohe: %s\n", strnstr(GrandeO, pequenoO, 20));
 
 	//  //teste STRNCMP
 	// char	str1[] = "Teste";
-	// char	str2[] = "Teste";
+	// char	str2[] = "Teste1";
 	// char	str3[] = "TesTE";
 	// printf("Retorno de iguais: %d\n", strncmp(str1, str2, 5));
 	// printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
