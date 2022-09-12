@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:45:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/13 01:00:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:22:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,36 @@
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	count;
-	size_t	c_l;
-	size_t	c_b;
+	size_t	count_little;
+	size_t	count_big;
 	int		match;
+	size_t	size_little;
 
-	count = -1;
+	size_little = ft_strlen(little);
+	count = 0;
+	match = 1;
 	if (0 == ft_strlen(little))
 		return ((char *)big);
-	while (*(big + ++count) && count < len)
+	while (*(big + count) && count < len)
 	{
-		c_l = 0;
+		count_little = 0;
 		if (*(big + count) == *(little + 0))
 		{
-			c_b = count;
+			count_big = count;
 			match = 1;
-			while (*(big + c_b) && *(little + c_l) && c_b < len && c_l < len)
+			while (*(big + count_big) && *(little + count_little) && count_big < len && count_little < len)
 			{
-				if (*(big + c_b++) != *(little + c_l++))
+				if (*(big + count_big++) != *(little + count_little++))
+				{
 					match = 0;
-				if (match == 1 && !*(little + c_l))
+				}
+				if (match == 1 && size_little == count_little)
+				{
 					return ((char *)big + count);
+				}
 			}
 		}
+		count++;
 	}
 	return (NULL);
 }
