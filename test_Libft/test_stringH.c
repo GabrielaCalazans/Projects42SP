@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/13 00:16:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:11:55 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,19 +133,43 @@ int	main(void)
 	// /* 5 */ printf("[String criada: %s]", ft_strchr(s, 't' + 256));
 	// printf("\n");
 
-	 //teste STRNSTR
-	char Grande[] = "This is the way to hell";
-	char pequeno[] = "the";
-	printf("ORIGINAL: %s\n", strnstr(Grande, pequeno, 20));
-	char GrandeF[] = "This is the way to hell";
-	char pequenoF[] = "the";
-	printf("FAKE: %s\n", ft_strnstr(GrandeF, pequenoF, 20));
-	char GrandeJ[] = "This is the way to hell";
-	char pequenoJ[] = "tohe";
-	printf("FAKE tohe: %s\n", ft_strnstr(GrandeJ, pequenoJ, 20));
-	char GrandeO[] = "This is the way to hell";
-	char pequenoO[] = "tohe";
-	printf("ORIGINAL tohe: %s\n", strnstr(GrandeO, pequenoO, 20));
+		// STRRCHR 
+	char s[] = "tripouille";
+	/* 1 */ printf("[String criada: %s]", strrchr(s, 't'));
+	printf("\n");
+	/* 2 */ printf("[String criada: %s]", strrchr(s, 'l'));
+	printf("\n");
+	/* 3 */ printf("[String criada: %s]", strrchr(s, 'z'));
+	printf("\n");
+	/* 4 */ printf("[String criada: %s]", strrchr(s, 0));
+	printf("\n");
+	/* 5 */ printf("[String criada: %s]", strrchr(s, 't' + 256));
+	printf("\n");
+	printf("MEU STRRCHR\n");
+	/* 1 */ printf("[String criada: %s]", ft_strrchr(s, 't'));
+	printf("\n");
+	/* 2 */ printf("[String criada: %s]", ft_strrchr(s, 'l'));
+	printf("\n");
+	/* 3 */ printf("[String criada: %s]", ft_strrchr(s, 'z'));
+	printf("\n");
+	/* 4 */ printf("[String criada: %s]", ft_strrchr(s, 0));
+	printf("\n");
+	/* 5 */ printf("[String criada: %s]", ft_strrchr(s, 't' + 256));
+	printf("\n");
+
+	//  //teste STRNSTR
+	// char Grande[] = "This is the way to hell";
+	// char pequeno[] = "the";
+	// printf("ORIGINAL: %s\n", strnstr(Grande, pequeno, 20));
+	// char GrandeF[] = "This is the way to hell";
+	// char pequenoF[] = "the";
+	// printf("FAKE: %s\n", ft_strnstr(GrandeF, pequenoF, 20));
+	// char GrandeJ[] = "This is the way to hell";
+	// char pequenoJ[] = "tohe";
+	// printf("FAKE tohe: %s\n", ft_strnstr(GrandeJ, pequenoJ, 20));
+	// char GrandeO[] = "This is the way to hell";
+	// char pequenoO[] = "tohe";
+	// printf("ORIGINAL tohe: %s\n", strnstr(GrandeO, pequenoO, 20));
 
 	//  //teste STRNCMP
 	// char	str1[] = "Teste";
