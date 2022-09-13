@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 00:31:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/13 01:47:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:20:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	int			count;
-	const char	*point;
+	int	size;
 
-	count = 0;
-	while (str++)
+	size = ft_strlen(str);
+	while (*str && size >= 0)
 	{
-		if (*(str) == (unsigned char)c)
+		if (str[size] == (unsigned char)c)
 		{
-			point = (char *)str;
+			return ((char *)str + size);
 		}
+		size--;
 	}
-	return ((char *)point);
+	if (*str == (unsigned char)c)
+	{
+		return ((char *)str);
+	}
+	if (!ft_isprint(c))
+	{
+		return ((char *)str + 0);
+	}
+	return (NULL);
 }

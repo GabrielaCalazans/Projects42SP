@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:00:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:00:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:30:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 int	ft_memcmp(const void *str1, const void *str2, size_t len)
 {
-	size_t	count;
-	size_t	size;
+	size_t	i;
+	unsigned char *pstr1;
+	unsigned char *pstr2;
 
-	count = 0;
-	size = len - 1;
-	if (len == 0)
+	i = 0;
+	pstr1 = (unsigned char *)str1;
+	pstr2 = (unsigned char *)str2;
+	while (len > i)
 	{
-		return (0);
+		if ((pstr1[i] != pstr2[i]) || (i + 1) == len)
+		{
+			return (pstr1[i] - pstr2[i]);
+		}
+		i++;
 	}
-	while ((str1[count] == str2[count] && str1[count]
-			!= '\0' && str2[count] != '\0') && count < size)
-	{
-		count++;
-	}
-	return (str1[count] - str2[count]);
+	return (0);
 }

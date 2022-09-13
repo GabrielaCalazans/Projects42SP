@@ -6,10 +6,9 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:42:34 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:42:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:19:25 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int	ft_isalpha(int argument)
 {

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/13 01:11:55 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:44:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,40 @@ int	main(void)
 	// printf("FAKE sResult[%d]=%d\n", i, sResult[i]);
 	// printf("[%p]pointerFAKE", ft_memmove(sResult + 1, sResult, 2));
 	// printf("\n");
+
+		//  //teste MEMCHR
+	// char	data[] = {'q', 'r', 's', 't', 'p', 'a', 'x'};
+	// char	*pos = memchr(data, 't', 7);
+	// printf("ORIGINAL pos = %s\n", pos);
+	// printf("ORIGINAL char pos[0] = [%c]\n", pos[0]);
+	// char	*fake = ft_memchr(data, 't', 7);
+	// printf("FAKE pos = %s\n", pos);
+	// printf("FAKE char pos[0] = [%c]\n", fake[0]);
+	// char s[] = {0, 1, 2, 3, 4, 5};
+	// /* 1 */ printf("ORIGINAL %s\n", ft_memchr(s, 0, 0)); // == NULL
+	// /* 2 */ printf("ORIGINAL %s\n", ft_memchr(s, 0, 1)); // == s
+	// /* 3 */ printf("ORIGINAL %s\n", ft_memchr(s, 2, 3)); // == s + 2
+	// /* 4 */ printf("ORIGINAL %s\n", ft_memchr(s, 6, 6)); // == NULL
+	// /* 5 */ printf("ORIGINAL %s\n", ft_memchr(s, 2 + 256, 3)); //Cast check  == s + 2
+	
+	//  //teste MEMCMP
+	char s[] = {-128, 0, 127, 0};
+	char sCpy[] = {-128, 0, 127, 0};
+	char s2[] = {0, 0, 127, 0};
+	char s3[] = {0, 0, 42, 0};
+	/* 1 */ printf("ORIGINAL %d\n", memcmp(s, sCpy, 4));
+	/* 2 */ printf("ORIGINAL %d\n", memcmp(s, s2, 0));
+	/* 3 */ printf("ORIGINAL %d\n", memcmp(s, s2, 1)); //  > 0)
+	/* 4 */ printf("ORIGINAL %d\n", memcmp(s2, s, 1)); // < 0)
+	/* 5 */ printf("ORIGINAL %d\n", memcmp(s2, s3, 4)); // != 0)
+	/* 6 */ printf("ORIGINAL %d\n", memcmp(s, s3, 4)); // 
+	printf("\n");
+	/* 1 */ printf("FAKE %d\n", ft_memcmp(s, sCpy, 4));
+	/* 2 */ printf("FAKE %d\n", ft_memcmp(s, s2, 0));
+	/* 3 */ printf("FAKE %d\n", ft_memcmp(s, s2, 1)); //  > 0)
+	/* 4 */ printf("FAKE %d\n", ft_memcmp(s2, s, 1)); // < 0)
+	/* 5 */ printf("FAKE %d\n", ft_memcmp(s2, s3, 4)); // != 0)
+	/* 6 */ printf("FAKE %d\n", ft_memcmp(s, s3, 4)); // != 0)
 		
 	//teste bzero
 	// char strbzero[8];
@@ -134,28 +168,28 @@ int	main(void)
 	// printf("\n");
 
 		// STRRCHR 
-	char s[] = "tripouille";
-	/* 1 */ printf("[String criada: %s]", strrchr(s, 't'));
-	printf("\n");
-	/* 2 */ printf("[String criada: %s]", strrchr(s, 'l'));
-	printf("\n");
-	/* 3 */ printf("[String criada: %s]", strrchr(s, 'z'));
-	printf("\n");
-	/* 4 */ printf("[String criada: %s]", strrchr(s, 0));
-	printf("\n");
-	/* 5 */ printf("[String criada: %s]", strrchr(s, 't' + 256));
-	printf("\n");
-	printf("MEU STRRCHR\n");
-	/* 1 */ printf("[String criada: %s]", ft_strrchr(s, 't'));
-	printf("\n");
-	/* 2 */ printf("[String criada: %s]", ft_strrchr(s, 'l'));
-	printf("\n");
-	/* 3 */ printf("[String criada: %s]", ft_strrchr(s, 'z'));
-	printf("\n");
-	/* 4 */ printf("[String criada: %s]", ft_strrchr(s, 0));
-	printf("\n");
-	/* 5 */ printf("[String criada: %s]", ft_strrchr(s, 't' + 256));
-	printf("\n");
+	// char s[] = "tripouille";
+	// /* 1 */ printf("[String criada: %s]", strrchr(s, 't'));
+	// printf("\n");
+	// /* 2 */ printf("[String criada: %s]", strrchr(s, 'l'));
+	// printf("\n");
+	// /* 3 */ printf("[String criada: %s]", strrchr(s, 'z'));
+	// printf("\n");
+	// /* 4 */ printf("[String criada: %s]", strrchr(s, 0));
+	// printf("\n");
+	// /* 5 */ printf("[String criada: %s]", strrchr(s, 't' + 256));
+	// printf("\n");
+	// printf("MEU STRRCHR\n");
+	// /* 1 */ printf("[String criada: %s]", ft_strrchr(s, 't'));
+	// printf("\n");
+	// /* 2 */ printf("[String criada: %s]", ft_strrchr(s, 'l'));
+	// printf("\n");
+	// /* 3 */ printf("[String criada: %s]", ft_strrchr(s, 'z'));
+	// printf("\n");
+	// /* 4 */ printf("[String criada: %s]", ft_strrchr(s, 0));
+	// printf("\n");
+	// /* 5 */ printf("[String criada: %s]", ft_strrchr(s, 't' + 256));
+	// printf("\n");
 
 	//  //teste STRNSTR
 	// char Grande[] = "This is the way to hell";
@@ -179,22 +213,7 @@ int	main(void)
 	// printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
 	// printf((ft_strncmp("1234", "1235", 3) == 0));
 
-	//  //teste MEMCHR
-	// char	data[] = {'q', 'r', 's', 't', 'p', 'a', 'x'};
-	// char	*pos = memchr(data, 't', 7);
-	// printf("ORIGINAL pos = %s\n", pos);
-	// printf("ORIGINAL char pos[0] = [%c]\n", pos[0]);
-	// char	*fake = ft_memchr(data, 't', 7);
-	// printf("FAKE pos = %s\n", pos);
-	// printf("FAKE char pos[0] = [%c]\n", fake[0]);
-	// char s[] = {0, 1, 2, 3, 4, 5};
-	// /* 1 */ printf("ORIGINAL %s\n", ft_memchr(s, 0, 0)); // == NULL
-	// /* 2 */ printf("ORIGINAL %s\n", ft_memchr(s, 0, 1)); // == s
-	// /* 3 */ printf("ORIGINAL %s\n", ft_memchr(s, 2, 3)); // == s + 2
-	// /* 4 */ printf("ORIGINAL %s\n", ft_memchr(s, 6, 6)); // == NULL
-	// /* 5 */ printf("ORIGINAL %s\n", ft_memchr(s, 2 + 256, 3)); //Cast check  == s + 2
-	
-//  //teste MEMCMP
+
 
 	
 	return (0);
