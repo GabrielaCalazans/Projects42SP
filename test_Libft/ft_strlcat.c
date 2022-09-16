@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:44:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/17 01:28:06 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/15 23:18:13 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/16 20:57:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	count;
-	size_t	srclen;
+	size_t	dlen;
 
 	count = 0;
-	srclen = ft_strlen(src);
-	if (srclen + 1 < size)
+	dlen = ft_strlen(src);
+	while (*dst && size > 0 && size--)
 	{
-		ft_memcpy(dst, src, srclen + 1);
+		dst++;
+		count++;
 	}
-	else if (size > 1)
+	while (*src && size > 1 && size--)
 	{
-		ft_memcpy(dst, src, srclen - 1);
-		dst[size - 1] = '\0';
+		*dst++ = *src++;
 	}
-	else if (size == 1)
-	{
-		ft_memcpy(dst, src, srclen - 1);
-		dst[size - 1] = '\0';
-	}
-	return (srclen);
+	if (size == 1)
+		*dst = '\0';
+	return (dlen + count);
 }

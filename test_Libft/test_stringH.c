@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/13 21:44:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:11:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	main(void)
 {
 	// char	text[] = "GabCal%*+@as\\t351989	\bMeu =-seu.\n";
-	// char	*mention = ft_strchr(text, '@');
+	// //char	*mention = ft_strchr(text, '@');
 	// char	dest[38];
 	
 	// ft_putstr_fd(text, 1);
@@ -30,9 +30,11 @@ int	main(void)
 	
 	// //teste MEMSET
 	// ft_putstr_fd(text, 1);
-	// ft_memset(text, 'a', 10);
+	// ft_memset(text, 'a', 5);
+	// ft_putstr_fd("FAKE :", 1);
 	// ft_putstr_fd(text, 1);
-	// memset(text, 'a', 10);
+	// ft_putstr_fd("ORIGINAL :", 1);
+	// memset(text, 'b', 5);
 	// ft_putstr_fd(text, 1);
 	
 	// //teste MEMCPY
@@ -114,23 +116,23 @@ int	main(void)
 	// /* 5 */ printf("ORIGINAL %s\n", ft_memchr(s, 2 + 256, 3)); //Cast check  == s + 2
 	
 	//  //teste MEMCMP
-	char s[] = {-128, 0, 127, 0};
-	char sCpy[] = {-128, 0, 127, 0};
-	char s2[] = {0, 0, 127, 0};
-	char s3[] = {0, 0, 42, 0};
-	/* 1 */ printf("ORIGINAL %d\n", memcmp(s, sCpy, 4));
-	/* 2 */ printf("ORIGINAL %d\n", memcmp(s, s2, 0));
-	/* 3 */ printf("ORIGINAL %d\n", memcmp(s, s2, 1)); //  > 0)
-	/* 4 */ printf("ORIGINAL %d\n", memcmp(s2, s, 1)); // < 0)
-	/* 5 */ printf("ORIGINAL %d\n", memcmp(s2, s3, 4)); // != 0)
-	/* 6 */ printf("ORIGINAL %d\n", memcmp(s, s3, 4)); // 
-	printf("\n");
-	/* 1 */ printf("FAKE %d\n", ft_memcmp(s, sCpy, 4));
-	/* 2 */ printf("FAKE %d\n", ft_memcmp(s, s2, 0));
-	/* 3 */ printf("FAKE %d\n", ft_memcmp(s, s2, 1)); //  > 0)
-	/* 4 */ printf("FAKE %d\n", ft_memcmp(s2, s, 1)); // < 0)
-	/* 5 */ printf("FAKE %d\n", ft_memcmp(s2, s3, 4)); // != 0)
-	/* 6 */ printf("FAKE %d\n", ft_memcmp(s, s3, 4)); // != 0)
+	// char s[] = {-128, 0, 127, 0};
+	// char sCpy[] = {-128, 0, 127, 0};
+	// char s2[] = {0, 0, 127, 0};
+	// char s3[] = {0, 0, 42, 0};
+	// /* 1 */ printf("ORIGINAL %d\n", memcmp(s, sCpy, 4));
+	// /* 2 */ printf("ORIGINAL %d\n", memcmp(s, s2, 0));
+	// /* 3 */ printf("ORIGINAL %d\n", memcmp(s, s2, 1)); //  > 0)
+	// /* 4 */ printf("ORIGINAL %d\n", memcmp(s2, s, 1)); // < 0)
+	// /* 5 */ printf("ORIGINAL %d\n", memcmp(s2, s3, 4)); // != 0)
+	// /* 6 */ printf("ORIGINAL %d\n", memcmp(s, s3, 4)); // 
+	// printf("\n");
+	// /* 1 */ printf("FAKE %d\n", ft_memcmp(s, sCpy, 4));
+	// /* 2 */ printf("FAKE %d\n", ft_memcmp(s, s2, 0));
+	// /* 3 */ printf("FAKE %d\n", ft_memcmp(s, s2, 1)); //  > 0)
+	// /* 4 */ printf("FAKE %d\n", ft_memcmp(s2, s, 1)); // < 0)
+	// /* 5 */ printf("FAKE %d\n", ft_memcmp(s2, s3, 4)); // != 0)
+	// /* 6 */ printf("FAKE %d\n", ft_memcmp(s, s3, 4)); // != 0)
 		
 	//teste bzero
 	// char strbzero[8];
@@ -213,8 +215,123 @@ int	main(void)
 	// printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
 	// printf((ft_strncmp("1234", "1235", 3) == 0));
 
+			//teste STRLCPY
+	char src[] = "coucou";
+	char dest[10]; memset(dest, 'A', 10);
+	char src1[] = "coucou";
+	char dest1[10]; memset(dest1, 'A', 10);
+	/* 1 */ printf("ORIGINAL size 0: [%zu]", strlcpy(dest, src, 0));
+	/* 1 */ printf("FAKE size 0: [%zu]", ft_strlcpy(dest1, src1, 0));
+	printf("\n");
+	/* 2 */ printf("ORIGINAL size 1: [%zu]", strlcpy(dest, src, 1));
+	/* 2 */ printf("FAKE size 1: [%zu]", ft_strlcpy(dest, src, 1));
+	printf("\n");
+	/* 3 */ printf("ORIGINAL size 2: [%zu]", strlcpy(dest, src, 2));
+	/* 3 */ printf("FAKE size 2: [%zu]", ft_strlcpy(dest, src, 2));
+	printf("\n");
+	/* 4 */ printf("ORIGINAL size -1: [%zu]", strlcpy(dest, src, -1));
+	/* 4 */ printf("FAKE size -1: [%zu]", ft_strlcpy(dest, src, -1));
+	printf("\n");
+	/* 5 */ printf("ORIGINAL size 6: [%zu]", strlcpy(dest, src, 6));
+	/* 5 */ printf("FAKE size 6: [%zu]", ft_strlcpy(dest, src, 6));
+	printf("\n");
+	/* 6 */ printf("ORIGINAL size 7: [%zu]", strlcpy(dest, src, 7));
+	/* 6 */ printf("FAKE size 7: [%zu]", ft_strlcpy(dest, src, 7));
+	printf("\n");
+	/* 7 */ printf("ORIGINAL size 8: [%zu]", strlcpy(dest, src, 8));
+	/* 7 */ printf("FAKE size 8: [%zu]", ft_strlcpy(dest, src, 8));
+	printf("\n");
+	/* 8 */ printf("ORIGINAL size 42 p/nada: [%zu]", strlcpy(dest, "", 42));
+	/* 8 */ printf("FAKE size 42: [%zu]", ft_strlcpy(dest, "", 42));
+	printf("\n");
+	/* 9 */ printf("ORIGINAL size 0 p/1: [%zu]", strlcpy(dest, "1", 0));
+	/* 9 */ printf("FAKE size 0: [%zu]", ft_strlcpy(dest, "1", 0));
+	printf("\n");
 
 
-	
+		//TESTE STRLCAT
+	// char dest[30]; memset(dest, 0, 30);
+	// char * src = (char *)"AAAAAAAAA";
+	// dest[0] = 'B';
+	// printf("src tem 9, dest 1\n");
+	// /* 1 */ printf("ORIGINAL size 0: [%zu]\n", strlcat(dest, src, 0));
+	// dest[0] = 'B';
+	// /* 2 */ printf("ORIGINAL size 1: [%zu]\n", strlcat(dest, src, 1));
+	// memset(dest, 'B', 4);
+	// printf("src tem 9, dest 4\n");
+	// /* 3 */ printf("ORIGINAL size 3: [%zu]\n", strlcat(dest, src, 3));
+	// /* 4 */ printf("ORIGINAL size 6: [%zu]\n", strlcat(dest, src, 6));
+	// memset(dest, 'C', 5);
+	// 	printf("src tem 9, dest 5\n");
+	// /* 5 */ printf("ORIGINAL size -1: [%zu]\n", strlcat(dest, src, -1));
+	// memset(dest, 'C', 15);
+	// 	printf("src tem 9, dest 15\n");
+	// /* 6 */ printf("ORIGINAL size 17: [%zu]\n", strlcat(dest, src, 17));
+	// memset(dest, 0, 30);
+	// printf("src tem 9, dest 30\n");
+	// /* 7 */ printf("ORIGINAL size 1: [%zu]\n", strlcat(dest, src, 1));
+	// memset(dest, 0, 30); memset(dest, '1', 10);
+	// /* 8 */ printf("ORIGINAL size 5: [%zu]\n", strlcat(dest, src, 5));
+	// memset(dest, 0, 30); memset(dest, '1', 10);
+	// /* 9 */ printf("ORIGINAL size 5: [%zu]\n", strlcat(dest, src, 5));
+	// memset(dest, 0, 30); memset(dest, '1', 10);
+	// /* 10 */ printf("ORIGINAL size 15 nada em src e 1 em dest: [%zu]\n", strlcat(dest, "", 15));
+	// memset(dest, 0, 30);
+	// /* 11 */ printf("ORIGINAL size 42 nada em src: [%zu]\n", strlcat(dest, "", 42));
+	// memset(dest, 0, 30);
+	// /* 12 */ printf("ORIGINAL size 0 nada em src: [%zu]\n", strlcat(dest, "", 0));
+	// memset(dest, 0, 30);
+	// printf("src tem 3, dest 30\n");
+	// /* 13 */ printf("ORIGINAL size 1: [%zu]\n", strlcat(dest, "123", 1));
+	// memset(dest, 0, 30);
+	// /* 14 */ printf("ORIGINAL size 2: [%zu]\n", strlcat(dest, "123", 2));
+	// memset(dest, 0, 30);
+	// /* 15 */ printf("ORIGINAL size 3: [%zu]\n", strlcat(dest, "123", 3));
+	// memset(dest, 0, 30);
+	// /* 16 */ printf("ORIGINAL size 4: [%zu]\n", strlcat(dest, "123", 4));
+	// memset(dest, 0, 30);
+	// /* 17 */ printf("ORIGINAL size 0: [%zu]\n", strlcat(dest, "123", 0));
+
+	// char dest1[30]; memset(dest1, 0, 30);
+	// char * src1 = (char *)"AAAAAAAAA";
+	// dest1[0] = 'B';
+	// printf("src1 tem 9, dest1 1\n");
+	// /* 1 */ printf("FAKE size 0: [%zu]\n", ft_strlcat(dest1, src1, 0));
+	// dest1[0] = 'B';
+	// /* 2 */ printf("FAKE size 1: [%zu]\n", ft_strlcat(dest1, src1, 1));
+	// memset(dest1, 'B', 4);
+	// printf("src1 tem 9, dest1 4\n");
+	// /* 3 */ printf("FAKE size 3: [%zu]\n", ft_strlcat(dest1, src1, 3));
+	// /* 4 */ printf("FAKE size 6: [%zu]\n", ft_strlcat(dest1, src1, 6));
+	// memset(dest1, 'C', 5);
+	// 	printf("src1 tem 9, dest1 5\n");
+	// /* 5 */ printf("FAKE size -1: [%zu]\n", ft_strlcat(dest1, src1, -1));
+	// memset(dest1, 'C', 15);
+	// 	printf("src1 tem 9, dest1 15\n");
+	// /* 6 */ printf("FAKE size 17: [%zu]\n", ft_strlcat(dest1, src1, 17));
+	// memset(dest1, 0, 30);
+	// printf("src1 tem 9, dest1 30\n");
+	// /* 7 */ printf("FAKE size 1: [%zu]\n", ft_strlcat(dest1, src1, 1));
+	// memset(dest1, 0, 30); memset(dest1, '1', 10);
+	// /* 8 */ printf("FAKE size 5: [%zu]\n", ft_strlcat(dest1, src1, 5));
+	// memset(dest1, 0, 30); memset(dest1, '1', 10);
+	// /* 9 */ printf("FAKE size 5: [%zu]\n", ft_strlcat(dest1, src1, 5));
+	// memset(dest1, 0, 30); memset(dest1, '1', 10);
+	// /* 10 */ printf("FAKE size 15 nada em src1 e 1 em dest1: [%zu]\n", ft_strlcat(dest1, "", 15));
+	// memset(dest1, 0, 30);
+	// /* 11 */ printf("FAKE size 42 nada em src1: [%zu]\n", ft_strlcat(dest1, "", 42));
+	// memset(dest1, 0, 30);
+	// /* 12 */ printf("FAKE size 0 nada em src1: [%zu]\n", ft_strlcat(dest1, "", 0));
+	// memset(dest1, 0, 30);
+	// printf("src1 tem 3, dest1 30\n");
+	// /* 13 */ printf("FAKE size 1: [%zu]\n", ft_strlcat(dest1, "123", 1));
+	// memset(dest1, 0, 30);
+	// /* 14 */ printf("FAKE size 2: [%zu]\n", ft_strlcat(dest1, "123", 2));
+	// memset(dest1, 0, 30);
+	// /* 15 */ printf("FAKE size 3: [%zu]\n", ft_strlcat(dest1, "123", 3));
+	// memset(dest1, 0, 30);
+	// /* 16 */ printf("FAKE size 4: [%zu]\n", ft_strlcat(dest1, "123", 4));
+	// memset(dest1, 0, 30);
+	// /* 17 */ printf("FAKE size 0: [%zu]\n", ft_strlcat(dest1, "123", 0));
 	return (0);
 }
