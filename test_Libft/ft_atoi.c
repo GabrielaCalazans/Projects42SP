@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:43:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/18 00:39:56 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/17 22:31:39 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/18 02:40:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "libft.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t len)
+int	ft_atoi(const char *nptr)
 {
-	unsigned int	count;
-	unsigned char	*pdest;
-	unsigned char	*psrc;
+	size_t	result;
+	int		count;
+	int		sign;
 
-	pdest = (unsigned char *)dest;
-	psrc = (unsigned char *)src;
 	count = 0;
-	while (count < len)
+	result = 0;
+	sign = 1;
+	while (!ft_isprint(str[count]) || str[count] == 32)
 	{
-		pdest[count] = psrc[count];
 		count++;
 	}
-	while (count < len)
+	if (str[count] == '-' || str[count] == '+')
 	{
-		pdest[count] = '\0';
+		if (str[count] == '-')
+			sign = -1;
 		count++;
 	}
-	return (dest);
+	while (str[count] != '\0' && ft_isdigit(str[count]))
+	{
+		result = (result * 10) + (str[count] - '0');
+		count++;
+	}
+	return (result * sign);
 }

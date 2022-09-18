@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/17 01:11:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/17 21:52:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,20 @@ int	main(void)
 	// ft_putchar_fd('\n', 1);
 	// ft_bzero(strbzero, 7);
 	// ft_putstr_fd(strbzero, 1);
-	
+	// char tab[100];
+	// memset(tab, 'A', 100);
+	// ft_bzero(tab, 0);
+	// /* 1 */ printf("%d", (tab[0] == 'A'));
+	// ft_bzero(tab, 42);
+	// ft_putstr_fd(tab, 1);
+	// int i = 0;
+	// for (; i < 100 && tab[i] == 0; ++i)
+	// 	;
+	// memset(tab, 'A', 100); tab[0] = 0;
+	// ft_bzero(tab, 42);
+	// i = 0;
+	// for (; i < 100 && tab[i] == 0; ++i)
+	// ft_putstr_fd(tab, 1);
 	
 	// // teste STRCHR
 	// char s[] = "tripouille";
@@ -215,38 +228,42 @@ int	main(void)
 	// printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
 	// printf((ft_strncmp("1234", "1235", 3) == 0));
 
-			//teste STRLCPY
-	char src[] = "coucou";
-	char dest[10]; memset(dest, 'A', 10);
-	char src1[] = "coucou";
-	char dest1[10]; memset(dest1, 'A', 10);
-	/* 1 */ printf("ORIGINAL size 0: [%zu]", strlcpy(dest, src, 0));
-	/* 1 */ printf("FAKE size 0: [%zu]", ft_strlcpy(dest1, src1, 0));
-	printf("\n");
-	/* 2 */ printf("ORIGINAL size 1: [%zu]", strlcpy(dest, src, 1));
-	/* 2 */ printf("FAKE size 1: [%zu]", ft_strlcpy(dest, src, 1));
-	printf("\n");
-	/* 3 */ printf("ORIGINAL size 2: [%zu]", strlcpy(dest, src, 2));
-	/* 3 */ printf("FAKE size 2: [%zu]", ft_strlcpy(dest, src, 2));
-	printf("\n");
-	/* 4 */ printf("ORIGINAL size -1: [%zu]", strlcpy(dest, src, -1));
-	/* 4 */ printf("FAKE size -1: [%zu]", ft_strlcpy(dest, src, -1));
-	printf("\n");
-	/* 5 */ printf("ORIGINAL size 6: [%zu]", strlcpy(dest, src, 6));
-	/* 5 */ printf("FAKE size 6: [%zu]", ft_strlcpy(dest, src, 6));
-	printf("\n");
-	/* 6 */ printf("ORIGINAL size 7: [%zu]", strlcpy(dest, src, 7));
-	/* 6 */ printf("FAKE size 7: [%zu]", ft_strlcpy(dest, src, 7));
-	printf("\n");
-	/* 7 */ printf("ORIGINAL size 8: [%zu]", strlcpy(dest, src, 8));
-	/* 7 */ printf("FAKE size 8: [%zu]", ft_strlcpy(dest, src, 8));
-	printf("\n");
-	/* 8 */ printf("ORIGINAL size 42 p/nada: [%zu]", strlcpy(dest, "", 42));
-	/* 8 */ printf("FAKE size 42: [%zu]", ft_strlcpy(dest, "", 42));
-	printf("\n");
-	/* 9 */ printf("ORIGINAL size 0 p/1: [%zu]", strlcpy(dest, "1", 0));
-	/* 9 */ printf("FAKE size 0: [%zu]", ft_strlcpy(dest, "1", 0));
-	printf("\n");
+		//teste STRLCPY
+	// char src[] = "coucou";
+	// char dest[10]; memset(dest, 'A', 10);
+	// char src1[] = "coucou";
+	// char dest1[10]; memset(dest1, 'A', 10);
+	// /* 1 */ printf("ORIGINAL size 0: [%zu] ", strlcpy(dest, src, 0));
+	// /* 1 */ printf("FAKE size 0: [%zu]", ft_strlcpy(dest1, src1, 0));
+	// printf("\n");
+	// /* 2 */ printf("ORIGINAL size 1: [%zu] ", strlcpy(dest, src, 1));
+	// /* 2 */ printf("FAKE size 1: [%zu]", ft_strlcpy(dest, src, 1));
+	// printf("\n");
+	// /* 3 */ printf("ORIGINAL size 2: [%zu] ", strlcpy(dest, src, 2));
+	// /* 3 */ printf("FAKE size 2: [%zu]", ft_strlcpy(dest, src, 2));
+	// /* 3 */ printf("\ndest: [%s]\n src: [%s]\n", dest, src);
+	// printf("\n");
+	// /* 4 */ printf("ORIGINAL size -1: [%zu] ", strlcpy(dest, src, -1));
+	// /* 4 */ printf("FAKE size -1: [%zu]", ft_strlcpy(dest, src, -1));
+	// printf("\n");
+	// /* 5 */ printf("ORIGINAL size 6: [%zu] ", strlcpy(dest, src, 6));
+	// /* 5 */ printf("FAKE size 6: [%zu]", ft_strlcpy(dest, src, 6));
+	// printf("\n");
+	// /* 6 */ printf("ORIGINAL size 7: [%zu] ", strlcpy(dest, src, 7));
+	// /* 6 */ printf("FAKE size 7: [%zu]", ft_strlcpy(dest, src, 7));
+	// /* 6 */ printf("\ndest: [%s]\n src: [%s]\n", dest, src);
+	// printf("\n");
+	// /* 7 */ printf("ORIGINAL size 8: [%zu] ", strlcpy(dest, src, 8));
+	// /* 7 */ printf("FAKE size 8: [%zu]", ft_strlcpy(dest, src, 8));
+	// /* 7 */ printf("\ndest: [%s]\n src: [%s]\n", dest, src);
+	// printf("\n");
+	// /* 8 */ printf("ORIGINAL size 42 p/nada: [%zu] ", strlcpy(dest, "", 42));
+	// /* 8 */ printf("FAKE size 42: [%zu]", ft_strlcpy(dest, "", 42));
+	// printf("\n");
+	// /* 9 */ printf("ORIGINAL size 0 p/1: [%zu] ", strlcpy(dest, "1", 0));
+	// /* 9 */ printf("FAKE size 0: [%zu]", ft_strlcpy(dest, "1", 0));
+	// /* 9 */ printf("dest: [%s]\n", dest);
+	// printf("\n");
 
 
 		//TESTE STRLCAT
@@ -333,5 +350,8 @@ int	main(void)
 	// /* 16 */ printf("FAKE size 4: [%zu]\n", ft_strlcat(dest1, "123", 4));
 	// memset(dest1, 0, 30);
 	// /* 17 */ printf("FAKE size 0: [%zu]\n", ft_strlcat(dest1, "123", 0));
+
+
+	
 	return (0);
 }
