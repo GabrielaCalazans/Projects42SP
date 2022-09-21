@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:44:41 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:44:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/21 22:50:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static	char	*ft_strcpy(char *dest, const char *src)
 
 char	*ft_strdup(const char *s)
 {
-	int			src_size;
-	char		*str_dest;
+	int		src_size;
+	char	*str_dest;
 
 	src_size = ft_strlen(s);
 	str_dest = (char *) malloc(sizeof(char) * (src_size + 1));
