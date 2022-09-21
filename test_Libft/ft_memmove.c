@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:43:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:43:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:56:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void	*dest, const void	*src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
 	char	*strdest;
 	char	*strsrc;

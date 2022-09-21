@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:44:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/17 20:20:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:45:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	else if (size > 1)
 	{
-		ft_memcpy(dst, src, srclen - 1);
- 
+		ft_memcpy(dst, src, size - 1);
 	}
 	else if (size == 1)
 	{

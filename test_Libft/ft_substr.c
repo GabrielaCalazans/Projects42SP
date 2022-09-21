@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:43:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/19 19:44:27 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/20 20:09:40 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/21 16:43:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	count;
-	unsigned char	*pdest;
-	unsigned char	*psrc;
+	char			*substr;
+	unsigned int	size;
 
-	pdest = (unsigned char *)dest;
-	psrc = (unsigned char *)src;
-	count = 0;
+	if (!s)
+		return (NULL);
+	size_s = ft_strlen(s);
 	while (count < len)
 	{
-		pdest[count] = psrc[count];
+		if (count == start)
+		{
+			return ((char *)s + count);
+		}		
 		count++;
 	}
-	while (count < len)
+	if (*str == start)
 	{
-		pdest[count] = '\0';
-		count++;
+		return ((char *)str);
 	}
-	return (dest);
+	if (!ft_isprint(c))
+	{
+		return ((char *)str + count);
+	}
+	return (NULL);
 }

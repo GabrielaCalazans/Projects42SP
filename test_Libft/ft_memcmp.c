@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:00:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/14 00:30:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:43:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_memcmp(const void *str1, const void *str2, size_t len)
 {
-	size_t	i;
-	unsigned char *pstr1;
-	unsigned char *pstr2;
+	size_t			i;
+	unsigned char	*pstr1;
+	unsigned char	*pstr2;
 
 	i = 0;
 	pstr1 = (unsigned char *)str1;

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/17 21:52:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:38:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <bsd/string.h>
+#include <stddef.h>
 
 int	main(void)
 {
@@ -115,7 +116,7 @@ int	main(void)
 	// /* 4 */ printf("ORIGINAL %s\n", ft_memchr(s, 6, 6)); // == NULL
 	// /* 5 */ printf("ORIGINAL %s\n", ft_memchr(s, 2 + 256, 3)); //Cast check  == s + 2
 	
-	//  //teste MEMCMP
+	 //teste MEMCMP
 	// char s[] = {-128, 0, 127, 0};
 	// char sCpy[] = {-128, 0, 127, 0};
 	// char s2[] = {0, 0, 127, 0};
@@ -351,7 +352,21 @@ int	main(void)
 	// memset(dest1, 0, 30);
 	// /* 17 */ printf("FAKE size 0: [%zu]\n", ft_strlcat(dest1, "123", 0));
 
+		// TESTE CALLOC
+		// int		size = 10;
+		// int*	array = (int*) calloc(size, sizeof(int));
+		
+		// for (int i = 0; i < size; i++)
+		// {
+		// 	printf("ORIGINAL[%d]: %d\n", i, array[i]);
+		// }
+		//  int		sizef = 10;
+		//  int*	arrayf = (int*) calloc(size, sizeof(int));
 
+		//  for (int e = 0; e < sizef; e++)
+		//  {
+		//  	printf("FAKE[%d]: %d\n", e, arrayf[e]);
+		//  }
 	
 	return (0);
 }
