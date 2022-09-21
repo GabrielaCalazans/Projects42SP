@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/20 20:38:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:17:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int	main(void)
 {
+	// //TESTES ******************* PUTSTR PUTNBR PUTCHAR ******************************
 	// char	text[] = "GabCal%*+@as\\t351989	\bMeu =-seu.\n";
 	// //char	*mention = ft_strchr(text, '@');
 	// char	dest[38];
@@ -29,7 +30,7 @@ int	main(void)
 	// printf("mention: %s\n", mention); // pegar a partir da primeira menção do @
 	// printf("%zu\n", ft_strlen(text));
 	
-	// //teste MEMSET
+	// //TESTES ******************* MEMSET ******************************
 	// ft_putstr_fd(text, 1);
 	// ft_memset(text, 'a', 5);
 	// ft_putstr_fd("FAKE :", 1);
@@ -38,7 +39,7 @@ int	main(void)
 	// memset(text, 'b', 5);
 	// ft_putstr_fd(text, 1);
 	
-	// //teste MEMCPY
+	// //TESTES ******************* MEMCPY ******************************
 	// ft_putstr_fd(dest, 1);
 	// ft_putchar_fd('\n', 1);
 	// memcpy(dest, text, sizeof(char) * 25);
@@ -63,7 +64,7 @@ int	main(void)
 	// for(int i = 0; i < 10; i++)
 	// printf("ORIGINAL source1[%d]=%d\n", i, source1[i]);
 	
-	// //teste MEMMOVE
+	// //TESTES ******************* MEMMOVE ******************************
 	// int	source[11] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 	// int	destination[10];
 	// memmove(destination, source, sizeof(int) * 10);
@@ -101,7 +102,7 @@ int	main(void)
 	// printf("[%p]pointerFAKE", ft_memmove(sResult + 1, sResult, 2));
 	// printf("\n");
 
-		//  //teste MEMCHR
+		//  //TESTES ******************* MEMCHR ******************************
 	// char	data[] = {'q', 'r', 's', 't', 'p', 'a', 'x'};
 	// char	*pos = memchr(data, 't', 7);
 	// printf("ORIGINAL pos = %s\n", pos);
@@ -116,7 +117,7 @@ int	main(void)
 	// /* 4 */ printf("ORIGINAL %s\n", ft_memchr(s, 6, 6)); // == NULL
 	// /* 5 */ printf("ORIGINAL %s\n", ft_memchr(s, 2 + 256, 3)); //Cast check  == s + 2
 	
-	 //teste MEMCMP
+	 //TESTES ******************* MEMCMP ******************************
 	// char s[] = {-128, 0, 127, 0};
 	// char sCpy[] = {-128, 0, 127, 0};
 	// char s2[] = {0, 0, 127, 0};
@@ -135,7 +136,7 @@ int	main(void)
 	// /* 5 */ printf("FAKE %d\n", ft_memcmp(s2, s3, 4)); // != 0)
 	// /* 6 */ printf("FAKE %d\n", ft_memcmp(s, s3, 4)); // != 0)
 		
-	//teste bzero
+	//TESTES ******************* BZERO ******************************
 	// char strbzero[8];
 	// bzero(strbzero, 8);
 	// ft_putstr_fd(strbzero, 1);
@@ -157,7 +158,7 @@ int	main(void)
 	// for (; i < 100 && tab[i] == 0; ++i)
 	// ft_putstr_fd(tab, 1);
 	
-	// // teste STRCHR
+	// //TESTES ******************* STRCHR ******************************
 	// char s[] = "tripouille";
 	// /* 1 */ printf("[String criada: %s]", strchr(s, 't'));
 	// printf("\n");
@@ -170,7 +171,7 @@ int	main(void)
 	// /* 5 */ printf("[String criada: %s]", strchr(s, 't' + 256));
 	// printf("\n");
 
-	// // teste MEU STRCHR 
+	// //TESTES ******************* STRCHR ******************************
 	// printf("MEU STRCHR\n");
 	// /* 1 */ printf("[String criada: %s]", ft_strchr(s, 't'));
 	// printf("\n");
@@ -183,7 +184,7 @@ int	main(void)
 	// /* 5 */ printf("[String criada: %s]", ft_strchr(s, 't' + 256));
 	// printf("\n");
 
-		// STRRCHR 
+	// //TESTES ******************* STRRCHR ******************************
 	// char s[] = "tripouille";
 	// /* 1 */ printf("[String criada: %s]", strrchr(s, 't'));
 	// printf("\n");
@@ -207,7 +208,7 @@ int	main(void)
 	// /* 5 */ printf("[String criada: %s]", ft_strrchr(s, 't' + 256));
 	// printf("\n");
 
-	//  //teste STRNSTR
+	//  //TESTES ******************* STRNSTR ******************************
 	// char Grande[] = "This is the way to hell";
 	// char pequeno[] = "the";
 	// printf("ORIGINAL: %s\n", strnstr(Grande, pequeno, 20));
@@ -221,7 +222,7 @@ int	main(void)
 	// char pequenoO[] = "tohe";
 	// printf("ORIGINAL tohe: %s\n", strnstr(GrandeO, pequenoO, 20));
 
-	//  //teste STRNCMP
+	//  //TESTES ******************* STRNCMP ******************************
 	// char	str1[] = "Teste";
 	// char	str2[] = "Teste1";
 	// char	str3[] = "TesTE";
@@ -229,7 +230,7 @@ int	main(void)
 	// printf("Retorno de diferente: %d\n", strncmp(str1, str3, 5));
 	// printf((ft_strncmp("1234", "1235", 3) == 0));
 
-		//teste STRLCPY
+		//TESTES ******************* STRLCPY ******************************
 	// char src[] = "coucou";
 	// char dest[10]; memset(dest, 'A', 10);
 	// char src1[] = "coucou";
@@ -267,7 +268,7 @@ int	main(void)
 	// printf("\n");
 
 
-		//TESTE STRLCAT
+		//TESTES ******************* STRLCAT ******************************
 	// char dest[30]; memset(dest, 0, 30);
 	// char * src = (char *)"AAAAAAAAA";
 	// dest[0] = 'B';
@@ -352,21 +353,7 @@ int	main(void)
 	// memset(dest1, 0, 30);
 	// /* 17 */ printf("FAKE size 0: [%zu]\n", ft_strlcat(dest1, "123", 0));
 
-		// TESTE CALLOC
-		// int		size = 10;
-		// int*	array = (int*) calloc(size, sizeof(int));
-		
-		// for (int i = 0; i < size; i++)
-		// {
-		// 	printf("ORIGINAL[%d]: %d\n", i, array[i]);
-		// }
-		//  int		sizef = 10;
-		//  int*	arrayf = (int*) calloc(size, sizeof(int));
 
-		//  for (int e = 0; e < sizef; e++)
-		//  {
-		//  	printf("FAKE[%d]: %d\n", e, arrayf[e]);
-		//  }
 	
 	return (0);
 }
