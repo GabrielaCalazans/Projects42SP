@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   teste_Part2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:42:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 18:44:54 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/22 18:32:18 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/22 19:43:37 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-void	ft_bzero(void	*str, size_t len)
+int	main(void)
 {
-	size_t			count;
-	unsigned char	*strup;
-
-	count = 0;
-	strup = (unsigned char *)str;
-	while (count < len)
-	{
-		strup[count] = '\0';
-		count++;
-	}
+	char *s = ft_substr("tripouille", 100, 1);
+	/* 5 */ printf("%s", !strcmp(s, ""));
+	/* 6 */ printf("%s", s, 1);
+	free(s);
 }

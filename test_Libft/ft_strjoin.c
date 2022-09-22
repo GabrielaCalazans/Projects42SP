@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:42:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 18:44:54 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/22 19:55:01 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/22 23:44:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void	*str, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t			count;
-	unsigned char	*strup;
+	char	*strjoin;
+	size_t	len_s1;
+	size_t	len_s2;
 
-	count = 0;
-	strup = (unsigned char *)str;
-	while (count < len)
-	{
-		strup[count] = '\0';
-		count++;
-	}
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	
+	if (len_s1 && len_s2 == 0)
+		return (NULL);
+	strjoin = (char *) malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (!strjoin)
+		return (NULL);
+	ft_strlcat(strjoin, s1, len_s1 + len_s2);
+	ft_strlcat(strjoin, s2, len_s1 + len_s2);
+	return (strjoin);
 }

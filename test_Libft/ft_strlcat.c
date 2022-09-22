@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 23:18:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 17:31:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/22 20:49:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t	count;
 	size_t	dlen;
+	int		i;
 
 	count = 0;
+	i = 0;
 	dlen = ft_strlen(src);
 	while (*dest && size > 0 && size--)
 	{

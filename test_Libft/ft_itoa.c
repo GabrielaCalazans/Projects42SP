@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:42:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 18:44:54 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/22 23:13:05 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/09/22 23:59:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void	*str, size_t len)
+char	*ft_itoa(int n)
 {
-	size_t			count;
-	unsigned char	*strup;
+	char	*result;
 
-	count = 0;
-	strup = (unsigned char *)str;
-	while (count < len)
+	result = (char *)malloc(sizeof(char) * );
+	if (n == -2147483648)
 	{
-		strup[count] = '\0';
-		count++;
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		n = 147483648;
 	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = n * -1;
+	}
+	if (n < 10)
+	{
+		ft_putchar_fd(n + 48, fd);
+		return ;
+	}
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}		
+	ft_putnbr_fd(n % 10, fd);
 }
