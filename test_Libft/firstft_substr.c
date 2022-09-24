@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:09:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/24 01:07:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/23 00:01:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,26 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	size_t	subcount;
-	size_t	count;
-	size_t	size_s;
+	char			*substr;
+	unsigned int	size_s;
+	unsigned int	size_sps;
 
-	count = 0;
-	subcount = 0;
+	if (!s)
+		return (0);
 	size_s = ft_strlen(s);
+	size_sps = ft_strlen(s + start);
 	if (size_s < start)
-	{
-		if (!(substr = (char *)malloc(sizeof(*s))))
-			return (NULL);
-		substr[0] = '\0';
-		return (substr);
-	}
-	else if (size_s < len)
-		substr = (char *)malloc(sizeof(char) * size_s + 1);
-	else if (len == size_s)
-		substr = (char *)malloc(sizeof(char) * size_s - start + 1);
-	else
-		substr = (char *)malloc(sizeof(char) * len + 1);
-	if (!substr)
-		return (NULL);
-	while (s[count])
-	{
-		if (count >= start && subcount < len)
 		{
-			substr[subcount++] = s[count];
+			if (!(substr = (char *)malloc(sizeof(char))))
+				return (NULL);
+			substr[0] = '\0';
+			return (substr);
 		}
-		count++;
-	}
-	substr[subcount] = '\0';
+	if ((size_sps < len))
+		len = size_sps;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (0);
+	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
 }

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:32:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/22 19:43:37 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:09:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,7 @@ int	main(void)
 	/* 5 */ printf("%s", !strcmp(s, ""));
 	/* 6 */ printf("%s", s, 1);
 	free(s);
+	
+	
+	return (0);
 }
