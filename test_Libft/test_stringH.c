@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 18:59:48 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/24 02:09:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/24 20:15:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 #include <bsd/string.h>
 #include <stddef.h>
 
+void	ft_print_result(int n)
+{
+	char c;
+
+	if (n >= 10)
+		ft_print_result(n / 10);
+	c = n % 10 + '0';
+	write (1, &c, 1);
+}
 int	main(void)
 {
 	// //TESTES ******************* PUTSTR PUTNBR PUTCHAR ******************************
@@ -352,7 +361,11 @@ int	main(void)
 	// /* 16 */ printf("FAKE size 4: [%zu]\n", ft_strlcat(dest1, "123", 4));
 	// memset(dest1, 0, 30);
 	// /* 17 */ printf("FAKE size 0: [%zu]\n", ft_strlcat(dest1, "123", 0));
-
+		// char	*dest;
+		// memset(dest, 'r', 15);
+		// ft_print_result(strlcat(dest, "lorem ipsum dolor sit amet", 5));
+		// write(1, "\n", 1);
+		// write(1, dest, 15);
 
 	
 	return (0);
