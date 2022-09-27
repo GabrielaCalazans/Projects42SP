@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:13:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/27 02:08:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:46:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_ncount(long int i)
 	int	count;
 
 	count = 0;
-	if ( i == 0)
+	if (i == 0)
 		count++;
 	if (i < 0)
 	{
@@ -42,10 +42,7 @@ char	*ft_itoa(int n)
 	if (!str)
 		return (NULL);
 	if (n == 0)
-	{
-		str = ft_calloc(2, sizeof(char));
 		str[0] = '0';
-	}
 	if (n == -2147483648)
 	{
 		str[0] = '-';
@@ -66,3 +63,4 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:32:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/27 02:11:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:46:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,40 @@ int	main(void)
 	// /* 12 */ printf("TEM QUE SER 2: [%zu]\n", ft_strlen(s));
 	// free(s);
 	
-	// ****************** TESTE  ***********************
+	// ****************** TESTE STRTRIM ***********************
+	// char * s = ft_strtrim("Gabriel", "l");
+	// /* 1 */ printf("%s", s);
+	// /* 2 */ printf(s, strlen("tripouille") + 1); free(s);
 
+	// s = ft_strtrim("tripouille   xxx", " x");
+	// /* 3 */ printf(!strcmp(s, "tripouille"));
+	// /* 4 */ printf(s, strlen("tripouille") + 1); free(s);
+
+	// s = ft_strtrim("   xxxtripouille   xxx", " x");
+	// /* 5 */ printf(!strcmp(s, "tripouille"));
+	// /* 6 */ printf(s, strlen("tripouille") + 1); free(s);
+
+	// s = ft_strtrim("   xxx   xxx", " x");
+	// /* 7 */ printf(!strcmp(s, ""));
+	// /* 8 */ printf(s, 1); free(s);
+
+	// s = ft_strtrim("", "123");
+	// /* 9 */ printf(!strcmp(s, ""));
+	// /* 10 */ printf(s, 1); free(s);
+
+	// s = ft_strtrim("123", "");
+	// /* 11 */ printf(!strcmp(s, "123"));
+	// /* 12 */ printf(s, 4); free(s);
+
+	// s = ft_strtrim("", "");
+	// /* 13 */ printf(!strcmp(s, ""));
+	// /* 14 */ printf(s, 1); free(s);
+
+	// s = ft_strtrim("abcdba", "acb");
+	// /* opsec-infosec 15 */ printf(!strcmp(s, "d"));
+	// /* opsec-infosec 16 */ printf(s, 2); free(s);
+
+	
 	
 	return (0);
 }
