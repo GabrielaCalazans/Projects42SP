@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:55:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/24 20:51:17 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:06:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	if (len_s1 && len_s2 == 0)
+	if (!s1 && !s2)
 		return (NULL);
 	strjoin = (char *) malloc(sizeof(char) * (len_s1 + len_s2 + 1));
 	if (!strjoin)

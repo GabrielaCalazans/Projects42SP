@@ -6,17 +6,19 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:13:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/24 21:09:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/27 02:08:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_digit_count(long int i)
+static int	ft_ncount(long int i)
 {
 	int	count;
 
 	count = 0;
+	if ( i == 0)
+		count++;
 	if (i < 0)
 	{
 		i *= -1;
@@ -32,30 +34,35 @@ static int	ft_digit_count(long int i)
 
 char	*ft_itoa(int n)
 {
-	char		*str;
-	int			i;
-	long int	nb;
+	char	*str;
+	int		i;
 
-	nb = n;
-	i = ft_digit_count(nb);
-	str = malloc(i * sizeof(char) + 1
-	if (!(str))
-		return (0);
-	str[i--] = 0;
-	if (nb == 0)
+	i = ft_ncount(n);
+	str = malloc(i * sizeof(char) + 1);
+	if (!str)
+		return (NULL);
+	if (n == 0)
 	{
 		str = ft_calloc(2, sizeof(char));
-		str[0] = 48;
+		str[0] = '0';
 	}
-	if (nb < 0)
+	if (n == -2147483648)
 	{
 		str[0] = '-';
-		nb = nb * -1;
+		str[1] = '2';
+		n = 147483648;
 	}
-	while (nb > 0)
+	if (n < 0)
 	{
-		str[i--] = nb % 10 + '0';
-		nb = nb / 10;
+		str[0] = '-';
+		n *= -1;
+	}
+	str[i] = '\0';
+	i -= 1;
+	while (n > 0)
+	{
+		str[i--] = n % 10 + '0';
+		n = n / 10;
 	}
 	return (str);
 }

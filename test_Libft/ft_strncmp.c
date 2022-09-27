@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:00:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:00:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:46:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	ft_strncmp(const char *str1, const char *str2, size_t len)
 	{
 		return (0);
 	}
+	
 	while ((str1[count] == str2[count] && str1[count]
 			!= '\0' && str2[count] != '\0') && count < size)
 	{
 		count++;
 	}
-	return (str1[count] - str2[count]);
+	return ((unsigned char)str1[count] - (unsigned char)str2[count]);
 }
