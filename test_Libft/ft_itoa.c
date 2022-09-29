@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:13:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/27 20:46:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/28 19:16:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,8 @@ static int	ft_ncount(long int i)
 	return (count);
 }
 
-char	*ft_itoa(int n)
+static int checksign(int n, char *str)
 {
-	char	*str;
-	int		i;
-
-	i = ft_ncount(n);
-	str = malloc(i * sizeof(char) + 1);
-	if (!str)
-		return (NULL);
-	if (n == 0)
-		str[0] = '0';
 	if (n == -2147483648)
 	{
 		str[0] = '-';
@@ -54,6 +45,21 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		n *= -1;
 	}
+	return (n);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		i;
+
+	i = ft_ncount(n);
+	str = malloc(i * sizeof(char) + 1);
+	if (!str)
+		return (NULL);
+	if (n == 0)
+		str[0] = '0';
+	n = checksign(n, str);
 	str[i] = '\0';
 	i -= 1;
 	while (n > 0)

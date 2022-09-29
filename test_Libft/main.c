@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:45:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:45:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/09/29 00:52:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int	main(void)
 {
-	char	text[] = "GabCal%*+@as\\t351989	\bMeu =-seu.\n";
-	char	var;
+	// char	text[] = "GabCal%*+@as\\t351989	\bMeu =-seu.\n";
+	// char	var;
 	
 	/*var = '1';
 	printf("\nResult when 1 is passed to ft_tolower: %c", ft_tolower(var));
