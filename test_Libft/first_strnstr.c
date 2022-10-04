@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   first_strnstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:45:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/13 00:22:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:29:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		{
 			count_big = count;
 			match = 1;
-			while (*(big + count_big) && *(little + count_little) && count_big < len && count_little < len)
+			while (*(big + count_big) && *(little + count_little)
+				&& count_big < len && count_little < len)
 			{
 				if (*(big + count_big++) != *(little + count_little++))
 				{

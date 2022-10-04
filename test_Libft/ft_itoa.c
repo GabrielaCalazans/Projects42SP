@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 23:13:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/28 19:16:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:31:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_ncount(long int i)
 	return (count);
 }
 
-static int checksign(int n, char *str)
+static int	checksign(int n, char *str)
 {
 	if (n == -2147483648)
 	{
@@ -69,4 +69,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-

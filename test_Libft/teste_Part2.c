@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 18:32:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/28 22:56:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/04 22:04:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+static size_t	countletters(char const *s, char c);
+static void	checkcols(char const *s, char c, int rows, int **cols);
+static int sumofarray(int **array);
+char	**ft_split(char const *s, char c);
 
 int	main(void)
 {
@@ -87,6 +91,7 @@ int	main(void)
 	// /* opsec-infosec 15 */ printf(!strcmp(s, "d"));
 	// /* opsec-infosec 16 */ printf(s, 2); free(s);
 
+	// ****************** TESTE SPLIT ***********************
 	char const *s = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ";
 	char c = ' ';
 	char **array = ft_split(s, c);
@@ -128,5 +133,123 @@ int	main(void)
 		printf("%s\n", array4[i]);
 		++i;
 	}
+
+	// ****************** TESTE APLICAÇÕES SPLIT ***********************
+	// int		rows;
+	// // int		*cols;
+	// // int		result;
+
+	// rows = countletters(s, c);
+	// printf("%d\n", rows);
+	// checkcols(s, c, rows, &cols);
+	// for(int loop = 0; loop < 12; loop++)
+	// 	printf("%d ", cols[loop]);
+	// printf("%d", sumofarray (&cols));
+
+	
 	return (0);
 }
+
+// static int	sumofarray(int **array)
+// {
+// 	int	result;
+// 	size_t	i;
+// 	size_t	len;
+
+// 	i = 0;
+// 	len = sizeof(array) / sizeof(int);
+// 	while (i < len)
+// 	{
+// 		result += *array[i];
+// 		i++;
+// 	}
+// 	return (result);
+// }
+
+// static size_t	countletters(char const *s, char c)
+// {
+// 	size_t	letters;
+// 	int	count;
+
+// 	letters = 0;
+// 	count = 0;
+// 	while (s[count] != '\0')
+// 	{
+// 		if (s[count] != c && s[count] != '\0')
+// 			letters++;
+// 		count++;
+// 	}
+// 	return (letters);
+// }
+
+// static void	checkcols(char const *s, char c, int rows, int **cols)
+// {
+// 	int	count;
+// 	int	strlen;
+// 	int	rowpos;
+
+// 	count = 0;
+// 	rowpos = 0;
+// 	strlen = 0;
+// 	*cols = malloc(rows * sizeof(int));
+// 	if (!*cols)
+// 		return ;
+// 	while (s[count] != '\0')
+// 	{
+// 		if (s[count] != c)
+// 			strlen++;
+// 		if ((s[count] != c && s[count + 1] == c) || (s[count] != c && s[count + 1] == '\0'))
+// 		{
+// 			(*cols)[rowpos] = strlen;
+// 			rowpos++;
+// 			strlen = 0;
+// 		}
+// 		count++;
+// 	}
+// }
+
+// static size_t	countletters(char const *s, char c)
+// {
+// 	size_t	letters;
+// 	int		count;
+
+// 	letters = 0;
+// 	count = 0;
+// 	if (!*s)
+// 		return (0);
+// 	while (s[count] != '\0')
+// 	{
+// 		if (s[count] != c && s[count] != '\0')
+// 			letters++;
+// 		count++;
+// 	}
+// 	return (letters);
+// }
+
+// char	**ft_split(char const *s, char c)
+// {
+// 	char	**array;
+// 	size_t	substr_len;
+// 	int		i;
+
+// 	array = (char **)malloc(sizeof(char *) * (countletters(s, c) + 1));
+// 	if (!array || !s)
+// 		return (0);
+// 	i = 0;
+// 	while (*s)
+// 	{
+// 		while (*s == c && *s)
+// 			s++;
+// 		if (*s)
+// 		{
+// 			if (!ft_strchr(s, c))
+// 				substr_len = ft_strlen(s);
+// 			else
+// 				substr_len = ft_strchr(s, c) - s;
+// 			(array)[i++] = ft_substr(s, 0, substr_len);
+// 			s += substr_len;
+// 		}
+// 	}
+// 	array[i] = NULL;
+// 	return (array);
+// }
