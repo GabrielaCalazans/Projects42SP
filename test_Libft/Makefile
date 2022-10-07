@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 19:45:45 by gacalaza          #+#    #+#              #
-#    Updated: 2022/09/29 00:59:11 by gacalaza         ###   ########.fr        #
+#    Updated: 2022/10/07 23:40:15 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,22 +19,33 @@ SRCS += ft_strnstr.c ft_strlcpy.c ft_strlcat.c ft_calloc.c ft_strdup.c
 SRCS += ft_putnbr_fd.c ft_putendl_fd.c ft_putchar_fd.c ft_putstr_fd.c ft_itoa.c
 SRCS += ft_substr.c ft_strjoin.c ft_strmapi.c ft_striteri.c ft_strtrim.c ft_split.c
 
+BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
+BSRCS += ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+
 FLAGS = -Wall \
 		-Wextra \
 		-Werror
 
 OBJS = $(SRCS:.c=.o)
 
+BOBJS = $(BSRCS:.c=.o)
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
-	
+
 $(OBJS): $(SRCS)
 	cc $(FLAGS) -c $(SRCS)
 
+bonus: $(NAME) $(BOBJS)
+	ar rc $(NAME) $(BOBJS)
+
+$(BOBJS): $(BSRCS)
+	cc $(FLAGS) -c $(BSRCS)
+
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
 	rm -f $(NAME)
