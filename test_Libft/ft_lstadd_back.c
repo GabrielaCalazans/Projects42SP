@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:06:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/08 00:27:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/08 00:39:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (*lst)
 	{
 		temp = ft_lstlast(*lst);
-		temp->next = &*new;
+		temp->next = *new;
 	}
 	else
-		lst = new;
+		*lst = &new;
 }
