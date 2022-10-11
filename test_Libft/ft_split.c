@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:37:55 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/04 23:30:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/08 21:52:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static size_t	countwords(char const *s, char c)
 		return (0);
 	while (s[count] != '\0')
 	{
-		if ((s[count] != c && s[count + 1] == c) || (s[count] != c && s[count + 1] == '\0'))
+		if ((s[count] != c && s[count + 1] == c)
+			|| (s[count] != c && s[count + 1] == '\0'))
 			words++;
 		count++;
 	}

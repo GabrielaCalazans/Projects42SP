@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 19:45:45 by gacalaza          #+#    #+#              #
-#    Updated: 2022/10/08 21:27:36 by gacalaza         ###   ########.fr        #
+#    Updated: 2022/10/11 22:12:52 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,8 @@ BOBJS = $(BSRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
 
 $(OBJS): $(SRCS)
-	cc $(FLAGS) -c $(SRCS)
 
 bonus: $(BOBJS)
 

@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:51:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/07 23:53:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/08 21:51:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list 	*ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
 	t_list	*newnode;
 

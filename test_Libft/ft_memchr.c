@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:43:17 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/12 19:43:19 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:45:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	*ft_memchr(const void *str, int c, size_t len)
 {
-	size_t		count;
-	size_t		size;
-	const char	*point_str;
+	size_t			count;
+	size_t			size;
+	unsigned char	*point_str;
 
 	size = len -1;
 	count = 0;
-	point_str = (const char *)str;
+	point_str = (unsigned char *)str;
 	if (len <= 0)
 	{
 		return (NULL);
@@ -29,13 +29,13 @@ void	*ft_memchr(const void *str, int c, size_t len)
 	{
 		if (point_str[count] == (char)c)
 		{
-			return ((char *)point_str + count);
+			return ((unsigned char *)point_str + count);
 		}		
 		count++;
 	}
-	if (point_str[count] == (const char)c)
+	if (point_str[count] == (unsigned char)c)
 	{
-		return ((char *)point_str + count);
+		return ((unsigned char *)point_str + count);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:58:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/07 23:59:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/08 21:51:25 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstlast(t_list *lst)
 	while (lst)
 	{
 		if (lst->next == NULL)
-			return(lst);
+			return (lst);
 		lst = lst->next;
 	}
 	return (lst);

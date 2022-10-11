@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:45:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 01:56:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:29:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		return ((char *)big);
 	while (*(big + ++count) && count < len)
 	{
-		c_l = 0;
 		if (*(big + count) == *(little + 0))
 		{
 			c_b = count;
+			c_l = 0;
 			match = 1;
 			while (*(big + c_b) && *(little + c_l) && c_b < len && c_l < len)
 			{

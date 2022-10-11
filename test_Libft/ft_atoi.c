@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:31:39 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 17:23:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:44:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *nptr)
 	count = 0;
 	result = 0;
 	sign = 1;
-	while ((nptr[count] >= 8 && nptr[count] <= 13) || nptr[count] == 32)
+	while ((nptr[count] >= 9 && nptr[count] <= 13) || nptr[count] == 32)
 	{
 		count++;
 	}
