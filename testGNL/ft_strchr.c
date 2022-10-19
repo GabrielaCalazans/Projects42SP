@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 20:17:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/19 03:07:45 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/12 19:44:35 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/10/19 03:07:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# define BUFFER_SIZE 2
+char	*ft_strchr(const char *str, int c)
+{
+	int	count;
+	int	size;
 
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putendl_fd(char *s, int fd);
-char	*ft_strchr(const char *str, int c);
-
-#endif
+	size = ft_strlen(str);
+	count = 0;
+	while (count < size)
+	{
+		if (str[count] == (unsigned char)c)
+		{
+			return ((char *)str + count);
+		}		
+		count++;
+	}
+	if (*str == (unsigned char)c)
+	{
+		return ((char *)str);
+	}
+	if (!ft_isprint(c))
+	{
+		return ((char *)str + count);
+	}
+	return (NULL);
+}
