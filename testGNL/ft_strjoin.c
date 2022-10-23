@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/12 19:44:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/23 21:48:28 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/22 19:55:01 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/10/23 21:21:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	count;
-	int	size;
+	char	*strjoin;
+	size_t	len_s1;
+	size_t	len_s2;
+	int		i;
 
-	size = ft_strlen(str);
-	count = 0;
-	if (count == size)
-		return ((char *)str);
-	while (count < size)
+	if (!s2)
+		return (NULL);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	strjoin = (char *) malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (!strjoin)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		strjoin[i] = s1[i];
+	i = -1;
+	while (s2[++i])
 	{
-		if (str[count] == (unsigned char)c)
-		{
-			return ((char *)str + count);
-		}		
-		count++;
+		strjoin[len_s1] = s2[i];
+		len_s1++;
 	}
-	if (*str == (unsigned char)c)
-	{
-		return ((char *)str);
-	}
-	if (!(c > 31 && c < 127))
-	{
-		return ((char *)str + count);
-	}
-	return (NULL);
+	strjoin[len_s1] = '\0';
+	return (strjoin);
 }

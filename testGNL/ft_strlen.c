@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 20:17:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/23 19:41:40 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/12 19:44:55 by gacalaza          #+#    #+#             */
+/*   Updated: 2022/10/23 21:24:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# define BUFFER_SIZE 3
+size_t	ft_strlen(const char *str)
+{
+	int	count;
 
-char	*ft_strjoin(char const *s1, char const *s2);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putendl_fd(char *s, int fd);
-char	*ft_strchr(const char *str, int c);
-size_t	ft_strlen(const char *str);
-
-#endif
+	count = 0;
+	if(!str)
+		return (0);
+	while (str[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
+}
