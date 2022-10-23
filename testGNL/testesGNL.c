@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/23 21:55:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/23 22:11:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*read_line(char	*BUFFER, int fd, char *static_var)
 		BUFFER = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 		printf("BUFFER1: %s", BUFFER);
 		read_bytes = read(fd, BUFFER, BUFFER_SIZE);
-		printf("\nBUFFER2: %s read_bytes2:%zd\n", BUFFER, read_bytes);
+		printf("\nBUFFER2: %s read_bytes2:%zd BUFFER len:%zu\n", BUFFER, read_bytes, ft_strlen(BUFFER));
 		if (read_bytes == -1)
 			return (NULL);
 		static_var = ft_strjoin(static_var, BUFFER);
