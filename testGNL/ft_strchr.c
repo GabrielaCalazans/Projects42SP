@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:44:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/23 21:48:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/26 00:01:52 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ char	*ft_strchr(const char *str, int c)
 	{
 		return ((char *)str);
 	}
-	if (!(c > 31 && c < 127))
-	{
-		return ((char *)str + count);
-	}
+	// if (!(c > 31 && c < 127))
+	// {
+	// 	return ((char *)str + count);
+	// }
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/23 22:11:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/26 04:32:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include <fcntl.h>
 #include <string.h>
 
-char	*read_line(char	*BUFFER, int fd, char *static_var);
+char	*read_line(int fd, char *static_var);
+void	*check_line(char *static_var);
 
 int	main(void)
 {
 	int			fd;
-	char		*BUFFER;
 	static char	*static_var;
 
 	// // ******************** WRITE **************************
@@ -55,9 +55,15 @@ int	main(void)
 		return (0);
 	}
 	// printf ("fd1: %d\n", fd);
-	printf("strlen1: %zd", ft_strlen(static_var));
-	static_var = read_line(BUFFER, fd, static_var);
-	//printf ("static: %s\n", static_var);
+	//printf("strlen1: %zd", ft_strlen(static_var));
+	static_var = read_line(fd, static_var);
+	static_var = read_line(fd, static_var);
+	//static_var = read_line(BUFFER, fd, static_var);
+	//static_var = read_line(BUFFER, fd, static_var);
+	printf ("static main: %s\n", static_var);
+	check_line(static_var);
+	
+	printf ("static main pos: %s\n", static_var);
 	// read(fd, BUFFER, BUFFER_SIZE);
 	// printf("BUFFER: %s\n", BUFFER);
 	//static_var = read_line(BUFFER, fd, static_var);
@@ -98,33 +104,48 @@ int	main(void)
 	return (0);
 }
 
-char	*read_line(char	*BUFFER, int fd, char *static_var)
+char	*read_line(int fd, char *static_var)
 {
 	int		i;
 	int		line;
 	ssize_t	read_bytes;
-	
+	char	*BUFFER;
+
 	line = 0;
 	i = 0;
 	read_bytes = 1;
-	printf("strlen2: %zd static: %s\n", ft_strlen(static_var), static_var);
-	while (!ft_strchr(static_var, '\n'))
+	while (!(ft_strchr(static_var, '\n')) && read_bytes > 0)
 	{
-		printf("\nread:%zd\n", read_bytes);
 		BUFFER = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-		printf("BUFFER1: %s", BUFFER);
 		read_bytes = read(fd, BUFFER, BUFFER_SIZE);
-		printf("\nBUFFER2: %s read_bytes2:%zd BUFFER len:%zu\n", BUFFER, read_bytes, ft_strlen(BUFFER));
 		if (read_bytes == -1)
 			return (NULL);
+		BUFFER[read_bytes] = '\0';
 		static_var = ft_strjoin(static_var, BUFFER);
-		printf("static: %s", static_var);
-		printf("\nBUFFER3: %s read_bytes3:%zd", BUFFER, read_bytes);
+		//printf("static: %s", static_var);
+		printf("\nBUFFER: %s - read_bytes:%zd\n", BUFFER, read_bytes);
 		free (BUFFER);
-		i++;
+		printf("read: %zd\n", read_bytes);
 	}
-	printf("\ni:%d\n", i);
 	return (static_var);
+}
+
+void	*check_line(char *static_var)
+{
+	char	*linebreak;
+	int		quebra;
+
+	quebra = 0;
+	while (*static_var != '\0')
+	{
+		if (!(ft_strchr(static_var, '\n')))
+			printf ("line: %s\n", static_var);
+		else
+			linebreak = ft_strchr(static_var, '\n');
+			printf("quebra %d: %s\n", quebra, linebreak);
+			quebra++;
+		static_var++;
+	}
 }
 
 // void	test_static_variable(void)

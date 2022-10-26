@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:17:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/23 19:41:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:59:29 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFFER_SIZE 3
+# define BUFFER_SIZE 2
 
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putstr_fd(char *s, int fd);
