@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/27 22:36:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:47:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,9 @@
 #include <fcntl.h>
 #include <string.h>
 
-char	*read_line(int fd, char *static_var);
-char	*get_line(char *static_var);
-char	*rest_static_var(char *static_var);
-char	*get_next_line(int fd);
-
 int	main(void)
 {
 	int			fd;
-
 	// // ******************** WRITE **************************
 	
 	// fd = open("testGNL2.txt", O_CREAT | O_WRONLY, 0600);
@@ -44,17 +38,6 @@ int	main(void)
 
 	// printf("ANTES BUFFER: %s\n", BUFFER);
 	
-	fd = open("testGNL2.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Failed to open and read the file.\n");
-		return (1);
-	}
-	if (BUFFER_SIZE < 1)
-	{
-		printf("Que burro! Dá zero pra ele.");
-		return (0);
-	}
 	// printf ("fd1: %d\n", fd);
 	//printf("strlen1: %zd", ft_strlen(static_var));
 	// static_var = read_line(fd, static_var);
@@ -71,10 +54,10 @@ int	main(void)
 	// static_var = rest_static_var(static_var);
 	// printf ("MAIN static pos: %s", static_var);
 
-	printf ("GET1: %s", get_next_line (fd));
-	printf ("GET2: %s", get_next_line (fd));
-	printf ("GET3: %s", get_next_line (fd));
-	printf ("GET4: %s", get_next_line (fd));
+	// printf ("GET1: %s", get_next_line (fd));
+	// printf ("GET2: %s", get_next_line (fd));
+	// printf ("GET3: %s", get_next_line (fd));
+	// printf ("GET4: %s", get_next_line (fd));
 	// read(fd, BUFFER, BUFFER_SIZE);
 	// printf("BUFFER: %s\n", BUFFER);
 	//static_var = read_line(BUFFER, fd, static_var);
@@ -104,13 +87,33 @@ int	main(void)
 	// }
 
 	//printf("RESTO DO BUFFER: %s\n", BUFFER);
-	close(fd);
-
+	
 	// *********************** VARIAVEL STATIC **********************
 
 	// test_static_variable();
 	// test_static_variable();
 	// test_static_variable();
+	
+	// *********************** TESTES GNL *************************
+
+	fd = open("testGNL2.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Failed to open and read the file.\n");
+		return (1);
+	}
+	if (BUFFER_SIZE < 1)
+	{
+		printf("Que burro! Dá zero pra ele.");
+		return (0);
+	}
+
+	printf ("GET1: %s", get_next_line (fd));
+	printf ("GET2: %s", get_next_line (fd));
+	printf ("GET3: %s", get_next_line (fd));
+	printf ("GET4: %s", get_next_line (fd));
+
+	close(fd);
 
 	return (0);
 }
