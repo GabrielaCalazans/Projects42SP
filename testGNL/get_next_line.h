@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:17:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/25 21:59:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/27 01:35:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFFER_SIZE 2
+# define BUFFER_SIZE 10000
 
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putstr_fd(char *s, int fd);
@@ -24,5 +24,6 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen(const char *str);
+char	*get_next_line(int fd);
 
 #endif
