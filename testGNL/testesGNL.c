@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/27 01:27:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:36:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ int	main(void)
 	// static_var = rest_static_var(static_var);
 	// printf ("MAIN static pos: %s", static_var);
 
-	printf ("get1: %s", get_next_line (fd));
-	printf ("get2: %s", get_next_line (fd));
-	printf ("get3: %s", get_next_line (fd));
+	printf ("GET1: %s", get_next_line (fd));
+	printf ("GET2: %s", get_next_line (fd));
+	printf ("GET3: %s", get_next_line (fd));
+	printf ("GET4: %s", get_next_line (fd));
 	// read(fd, BUFFER, BUFFER_SIZE);
 	// printf("BUFFER: %s\n", BUFFER);
 	//static_var = read_line(BUFFER, fd, static_var);
@@ -114,109 +115,109 @@ int	main(void)
 	return (0);
 }
 
-char	*read_line(int fd, char *static_var)
-{
-	//int		i;
-	//int		line;
-	ssize_t	n_bytes;
-	char	*buff;
+// char	*read_line(int fd, char *static_var)
+// {
+// 	//int		i;
+// 	//int		line;
+// 	ssize_t	n_bytes;
+// 	char	*buff;
 
-	//line = 0;
-	//i = 0;
-	n_bytes = 1;
-	while (/*!(ft_strchr(static_var, '\n')) &&*/ n_bytes > 0)
-	{
-		buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-		n_bytes = read(fd, buff, BUFFER_SIZE);
-		if (n_bytes == -1)
-		{
-			free (buff);
-			return (NULL);
-		}
-		buff[n_bytes] = '\0';
-		static_var = ft_strjoin(static_var, buff);
-		//printf("static: %s", static_var);
-		printf("\nbuff: %s - n_bytes:%zd\n", buff, n_bytes);
-	}
-	//free (buff);
-	return (static_var);
-}
+// 	//line = 0;
+// 	//i = 0;
+// 	n_bytes = 1;
+// 	while (/*!(ft_strchr(static_var, '\n')) &&*/ n_bytes > 0)
+// 	{
+// 		buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+// 		n_bytes = read(fd, buff, BUFFER_SIZE);
+// 		if (n_bytes == -1)
+// 		{
+// 			free (buff);
+// 			return (NULL);
+// 		}
+// 		buff[n_bytes] = '\0';
+// 		static_var = ft_strjoin(static_var, buff);
+// 		//printf("static: %s", static_var);
+// 		printf("\nbuff: %s - n_bytes:%zd\n", buff, n_bytes);
+// 	}
+// 	//free (buff);
+// 	return (static_var);
+// }
 
-char	*get_line(char *static_var)
-{
-	char	*line;
-	int		i;
-	//int		quebra;
+// char	*get_line(char *static_var)
+// {
+// 	char	*line;
+// 	int		i;
+// 	//int		quebra;
 
-	//quebra = 0;
-	i = 0;
-	if (!static_var)
-		return (NULL);
-	while (static_var[i] && static_var[i] != '\n')
-		i++;
-	line = malloc(sizeof(char) * i + 2);
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (static_var[i] && static_var[i] != '\n')
-	{
-		line[i] = static_var[i];
-		i++;
-	}
-	if (static_var[i] == '\n')
-	{
-		line[i] = static_var[i];
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-	// while (*static_var != '\0')
-	// {
-	// 	if (!(ft_strchr(static_var, '\n')))
-	// 		printf ("line: %s\n", static_var);
-	// 	else
-	// 		line = ft_strchr(static_var, '\n');
-	// 		printf("quebra %d: %s\n", quebra, line);
-	// 		quebra++;
-	// 	static_var++;
-	// }
-}
+// 	//quebra = 0;
+// 	i = 0;
+// 	if (!static_var)
+// 		return (NULL);
+// 	while (static_var[i] && static_var[i] != '\n')
+// 		i++;
+// 	line = malloc(sizeof(char) * i + 2);
+// 	if (!line)
+// 		return (NULL);
+// 	i = 0;
+// 	while (static_var[i] && static_var[i] != '\n')
+// 	{
+// 		line[i] = static_var[i];
+// 		i++;
+// 	}
+// 	if (static_var[i] == '\n')
+// 	{
+// 		line[i] = static_var[i];
+// 		i++;
+// 	}
+// 	line[i] = '\0';
+// 	return (line);
+// 	// while (*static_var != '\0')
+// 	// {
+// 	// 	if (!(ft_strchr(static_var, '\n')))
+// 	// 		printf ("line: %s\n", static_var);
+// 	// 	else
+// 	// 		line = ft_strchr(static_var, '\n');
+// 	// 		printf("quebra %d: %s\n", quebra, line);
+// 	// 		quebra++;
+// 	// 	static_var++;
+// 	// }
+// }
 
-char	*rest_static_var(char *static_var)
-{
-	int i;
-	int j;
-	char *rest;
+// char	*rest_static_var(char *static_var)
+// {
+// 	int i;
+// 	int j;
+// 	char *rest;
 
-	if (!static_var)
-		return (NULL);
-	while (static_var[i] && static_var[i] != '\n')
-		i++;
-	rest = malloc(sizeof(char) * (ft_strlen(static_var) - i) + 1);
-	if (!rest)
-		return (NULL);
-	i++;
-	j = 0;
-	while (static_var[i])
-	{
-		rest[j++] = static_var[i++];
-	}
-	rest[j] = '\0';
-	return (rest);
-}
+// 	if (!static_var)
+// 		return (NULL);
+// 	while (static_var[i] && static_var[i] != '\n')
+// 		i++;
+// 	rest = malloc(sizeof(char) * (ft_strlen(static_var) - i) + 1);
+// 	if (!rest)
+// 		return (NULL);
+// 	i++;
+// 	j = 0;
+// 	while (static_var[i])
+// 	{
+// 		rest[j++] = static_var[i++];
+// 	}
+// 	rest[j] = '\0';
+// 	return (rest);
+// }
 
-char	*get_next_line(int fd)
-{
-	char		*line;
-	static char	*static_var;
+// char	*get_next_line(int fd)
+// {
+// 	char		*line;
+// 	static char	*static_var;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	static_var = read_line(fd, static_var);
-	line = get_line(static_var);
-	static_var = rest_static_var(static_var);
-	return (line);
-}
+// 	if (fd < 0 || BUFFER_SIZE <= 0)
+// 		return (NULL);
+// 	static_var = read_line(fd, static_var);
+// 	line = get_line(static_var);
+// 	static_var = rest_static_var(static_var);
+// 	return (line);
+// }
 
 // void	test_static_variable(void)
 // {
