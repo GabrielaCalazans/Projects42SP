@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/27 22:47:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/28 02:32:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,29 @@ int	main(void)
 	
 	// *********************** TESTES GNL *************************
 
-	fd = open("testGNL2.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Failed to open and read the file.\n");
-		return (1);
-	}
-	if (BUFFER_SIZE < 1)
-	{
-		printf("Que burro! Dá zero pra ele.");
-		return (0);
-	}
+	fd = open("testGNL2.txt", O_RDWR);
+	// if (fd == -1)
+	// {
+	// 	printf("Failed to open the file.\n");
+	// 	return (1);
+	// }
+	// if (BUFFER_SIZE < 1)
+	// {
+	// 	printf("Que burro! Dá zero pra ele.");
+	// 	return (0);
+	// }
 
 	printf ("GET1: %s", get_next_line (fd));
 	printf ("GET2: %s", get_next_line (fd));
 	printf ("GET3: %s", get_next_line (fd));
 	printf ("GET4: %s", get_next_line (fd));
-
+	printf ("GET5: %s", get_next_line (fd));
+	printf ("GET6: %s", get_next_line (fd));
+	printf ("GET7: %s", get_next_line (fd));
+	printf ("GET8: %s", get_next_line (fd));
+	printf ("GET9: %s", get_next_line (fd));
+	printf ("GET10: %s", get_next_line (fd));
+	printf ("GET11: %s", get_next_line (fd));
 	close(fd);
 
 	return (0);

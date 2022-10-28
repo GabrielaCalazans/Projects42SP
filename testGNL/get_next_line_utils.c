@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:17:41 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/27 22:44:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/28 01:13:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*strnew;
 	size_t	len_s1;
@@ -41,15 +41,36 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = -1;
 	if (s1)
 	{
-		while (s1[++i])
+		while (s1[++i] && s1)
 			strnew[i] = s1[i];
 	}
 	i = -1;
-	while (s2[++i])
+	while (s2[++i] && s2)
 	{
 		strnew[len_s1] = s2[i];
 		len_s1++;
 	}
 	strnew[len_s1] = '\0';
+	free (s1);
 	return (strnew);
+}
+
+char	*ft_strchr(const char *str, int c)
+{
+	int	count;
+	int	size;
+
+	size = ft_strlen(str);
+	count = 0;
+	if (count == size)
+		return ((char *)str);
+	while (count < size)
+	{
+		if (str[count] == (unsigned char)c)
+			return ((char *)str + count);
+		count++;
+	}
+	if (*str == (unsigned char)c)
+		return ((char *)str);
+	return (NULL);
 }
