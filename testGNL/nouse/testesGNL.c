@@ -6,11 +6,12 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/28 02:32:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/10/29 03:02:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -96,7 +97,7 @@ int	main(void)
 	
 	// *********************** TESTES GNL *************************
 
-	fd = open("testGNL2.txt", O_RDWR);
+	// fd = open("testGNL1.txt", O_RDWR);
 	// if (fd == -1)
 	// {
 	// 	printf("Failed to open the file.\n");
@@ -107,18 +108,44 @@ int	main(void)
 	// 	printf("Que burro! Dá zero pra ele.");
 	// 	return (0);
 	// }
+	// ******************** MANDATORY ***************************
+	// printf ("GET1: %s", get_next_line (fd));
+	// printf ("GET2: %s", get_next_line (fd));
+	// printf ("GET3: %s", get_next_line (fd));
+	// printf ("GET4: %s", get_next_line (fd));
+	// printf ("GET5: %s", get_next_line (fd));
+	// printf ("GET6: %s", get_next_line (fd));
+	// printf ("GET7: %s", get_next_line (fd));
+	// printf ("GET8: %s", get_next_line (fd));
+	// printf ("GET9: %s", get_next_line (fd));
+	// printf ("GET10: %s", get_next_line (fd));
+	// printf ("GET11: %s", get_next_line (fd));
 
-	printf ("GET1: %s", get_next_line (fd));
-	printf ("GET2: %s", get_next_line (fd));
-	printf ("GET3: %s", get_next_line (fd));
-	printf ("GET4: %s", get_next_line (fd));
-	printf ("GET5: %s", get_next_line (fd));
-	printf ("GET6: %s", get_next_line (fd));
-	printf ("GET7: %s", get_next_line (fd));
-	printf ("GET8: %s", get_next_line (fd));
-	printf ("GET9: %s", get_next_line (fd));
-	printf ("GET10: %s", get_next_line (fd));
-	printf ("GET11: %s", get_next_line (fd));
+	// ******************** BONUS ***************************
+	// printf ("GET1: %s", get_next_line (fd));
+	// printf ("GET2: %s", get_next_line (fd));
+	// printf ("GET3: %s", get_next_line (fd));
+	// printf ("GET4: %s", get_next_line (fd));
+	// printf ("GET5: %s", get_next_line (fd));
+	// printf ("GET6: %s", get_next_line (fd));
+	// printf ("GET7: %s", get_next_line (fd));
+	// printf ("GET8: %s", get_next_line (fd));
+	// printf ("GET9: %s", get_next_line (fd));
+	// printf ("GET10: %s", get_next_line (fd));
+	// printf ("GET11: %s", get_next_line (fd));
+	
+	fd = open("testGNL1.txt", O_RDWR);
+
+	char	*str;
+	while (1)
+	{
+		str = get_next_line (fd);
+		printf ("%s", str);
+		if (!str)
+			break ;
+		free (str);
+		i++;
+	}
 	close(fd);
 
 	return (0);
