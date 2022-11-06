@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/05 00:54:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/06 04:04:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,37 @@ int	max(int num_args, ...)
 	return (max);
 }
 
+int	check_percent(const char *fmt, ...)
+{
+	va_list	args;
+	int		i;
+	char	*str;
+	int		percents;
+
+	i = 0;
+	va_start(args, fmt);
+	percents = 0;
+	str = va_arg(args, char *);
+	printf("str ANTES loop: %s\n", str);
+	while (str)
+	{
+		str = va_arg(args, char *);
+		printf("str args loop: %s\n", str);
+		// if (str[i] == '%')
+		// 	percents++;
+		// else if(str[i + 1] == '\0' && str[i])
+		// {
+		// 	str = va_arg(args, char *);
+		// 	printf("str args loop: %s\n", str);
+		// }
+		// i++;
+		// printf("str depois loop: %s\n", str);
+	}
+	va_end(args);
+	return (percents);
+}
+// rodar o loop de um ptr até achar um % e contar quantos temos
+
 int	main()
 {
 	// int	total;
@@ -83,8 +114,10 @@ int	main()
 	// //printf("%d", printf("Gabi"));
 	// printstr(2, "one", "two", "tree");
 
-	printf("max: %d\n", max(2, 4, 8));
-	printf("max: %d\n", max(4, 10, 12, 14, 16));
+	// printf("max: %d\n", max(2, 4, 8));
+	// printf("max: %d\n", max(4, 10, 12, 14, 16));
+	
+	printf("percents: %d\n", check_percent("tex", "tex%to2%", "tex%%to3"));
 
 	return (0);
 }
