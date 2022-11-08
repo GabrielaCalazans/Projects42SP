@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/06 04:04:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/08 00:36:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	max(int num_args, ...)
 	return (max);
 }
 
+// rodar o loop de um ptr até achar um % e contar quantos temos
 int	check_percent(const char *fmt, ...)
 {
 	va_list	args;
@@ -86,24 +87,28 @@ int	check_percent(const char *fmt, ...)
 	percents = 0;
 	str = va_arg(args, char *);
 	printf("str ANTES loop: %s\n", str);
-	while (str)
+	while (str[i])
 	{
-		str = va_arg(args, char *);
-		printf("str args loop: %s\n", str);
-		// if (str[i] == '%')
-		// 	percents++;
+		// str = va_arg(args, char *);
+		// printf("str args loop: %s\n", str);
+		if (str[i] == '%')
+			percents++;
 		// else if(str[i + 1] == '\0' && str[i])
 		// {
 		// 	str = va_arg(args, char *);
 		// 	printf("str args loop: %s\n", str);
 		// }
-		// i++;
-		// printf("str depois loop: %s\n", str);
+		i++;
+		printf("str depois loop: %s\n", str);
 	}
 	va_end(args);
 	return (percents);
 }
-// rodar o loop de um ptr até achar um % e contar quantos temos
+
+void	check_arg(char *str)
+{
+	if ()
+}
 
 int	main()
 {
