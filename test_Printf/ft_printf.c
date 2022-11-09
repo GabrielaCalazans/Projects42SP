@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/04 01:56:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:08:54 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,20 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 	}		
 	ft_putnbr_fd(n % 10, fd);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	count;
+
+	count = 0;
+	if (!str)
+		return (0);
+	while (str[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
 }
 
 int	ft_printf(const char *, ...)
