@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:43:17 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/11 21:45:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/09 23:23:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memchr(const void *str, int c, size_t len)
 	}
 	while (count < size)
 	{
-		if (point_str[count] == (char)c)
+		if (point_str[count] == (unsigned char)c)
 		{
 			return ((unsigned char *)point_str + count);
 		}		

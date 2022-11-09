@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/09 00:08:54 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/09 23:34:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,35 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-int	ft_printf(const char *, ...)
+char	*ft_strdup(const char *s)
 {
-	int	length;
+	int		src_size;
+	char	*str_dest;
 
-	
-	return (length);	
+	src_size = ft_strlen(s);
+	str_dest = (char *) malloc(sizeof(char) * (src_size + 1));
+	ft_strlcpy(str_dest, s, src_size + 1);
+	return (str_dest);
 }
 
-char	*make_message(const char *fmt, ...)
+int	ft_printf(const char *format, ...)
+{
+	int		count_char;
+	va_list	args;
+	const char	*str;
+
+	if(!format || *format == '\0')
+		return (0);
+	str = ft_strdup(format);
+	count_char = 0;
+	va_start(args, format);
+	count_char = //alguma coisa ainda não sei ainda
+	va_end(args);
+	free((char *) str);
+	return (count_char);
+}
+
+char	*make_message(const char *format, ...)
 {
 	int n = 0;
 	size_t size = 0;
