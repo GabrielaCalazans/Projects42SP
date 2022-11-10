@@ -6,12 +6,47 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/09 03:34:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:23:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int	main()
+{
+	// int	total;
+	// char	testchar;
+	// char	*str;
+	// int		*ptr;
+
+	// total = sumnum(5, 3, 5, 7, 6, 4);
+	// printf("total = %d\n", total);
+	// //printf("%d", printf("Gabi"));
+	// printstr(2, "one", "two", "tree");
+
+	// printf("max: %d\n", max(2, 4, 8));
+	// printf("max: %d\n", max(4, 10, 12, 14, 16));
+	
+	// printf("percents: %d\n", check_percent("tex", "tex%to2%", "tex%%to3"));
+	// print("ddfd", 4, 2, 10.5, 3);
+	// print("fffd", -1.4, 2, 10.5, 3);
+	
+	// testchar = 'D';
+	// str = "Gabriela";
+	
+	// check_percent("as%d%c%asa%s", testchar, str);
+	// printf(0);
+
+	char	c;
+	
+	c = 'a';
+	ft_printf("printa carai %c\n", c);
+	//printf("%p\n", str);
+
+	return (0);
+}
+
 
 size_t	ft_strlen(const char *str)
 {
@@ -179,29 +214,41 @@ int	check_percent(const char *fmt, ...)
 // 	if ()
 // }
 
-int	main()
+char	*make_message(const char *format, ...)
 {
-	// int	total;
-	char	testchar;
-	char	*str;
+	int n = 0;
+	size_t size = 0;
+	char *p = NULL;
+	va_list ap;
 
-	// total = sumnum(5, 3, 5, 7, 6, 4);
-	// printf("total = %d\n", total);
-	// //printf("%d", printf("Gabi"));
-	// printstr(2, "one", "two", "tree");
+	/* Determine required size. */
+	va_start(ap, format);
+	n = vsnprintf(p, size, format, ap); /*read about vsnprintf*/
+	va_end(ap);
 
-	// printf("max: %d\n", max(2, 4, 8));
-	// printf("max: %d\n", max(4, 10, 12, 14, 16));
-	
-	// printf("percents: %d\n", check_percent("tex", "tex%to2%", "tex%%to3"));
-	// print("ddfd", 4, 2, 10.5, 3);
-	// print("fffd", -1.4, 2, 10.5, 3);
-	
-	testchar = 'D';
-	str = "Gabriela";
-	
-	check_percent("as%d%c%asa%s", testchar, str);
-	printf(0);
+	if (n < 0)
+		return NULL;
 
-	return (0);
+	size = (size_t) n + 1;	/* One extra byte for '\0' */
+	p = malloc(size);
+	if (p == NULL)
+		return NULL;
+
+	va_start(ap, format);
+	n = vsnprintf(p, size, format, ap);
+	va_end(ap);
+
+	if (n < 0)
+	{
+		free(p);
+		return NULL;
+	}
+	return (p);
 }
+
+int	intputchar(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+

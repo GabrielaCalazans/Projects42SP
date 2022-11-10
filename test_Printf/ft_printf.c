@@ -6,55 +6,96 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/09 23:34:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:25:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_printf(const char *format, ...)
 {
-	write(fd, &c, 1);
+	int		count_char;
+	int		i;
+	va_list	args;
+
+	if(!format)
+		return (-1);
+	va_start(args, format);
+	count_char = 0;
+	i = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+			count_char += print_message(format[i + i], args);
+		else
+			count_char = write(1, &format[i], 1);
+		i++;
+	}
+	va_end(args);
+	return (count_char);
 }
 
-void	ft_putstr_fd(char *s, int fd)
+int	print_message(char c, va_list args)
+{
+	if (c == 'c')
+	{
+		return (intputchar(va_arg(args, int)));
+		printf("aqui1");
+	}
+	if (c == 's')
+		return (intputstr(va_arg(args, char *)));
+	else
+		return ((int)write(1, "%", 1) + (int)write(1, &c, 1));
+}
+
+
+
+int	intputstr(char *s)
 {
 	int	count;
 
 	count = 0;
+	if (!s)
+		return ((int)write(1, "(null)", 6));
 	while (s[count] != '\0')
 	{
-		write(fd, &s[count], 1);
+		write(1, &s[count], 1);
 		count++;
 	}
+	return (count);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+int	intputnbr(int n)
 {
+	int	count_char;
+	
+	count_char = 0;
 	if (n == -2147483648)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
+		count_char += intputchar('-');
+		count_char += intputchar('2');
 		n = 147483648;
 	}
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		count_char += intputchar('-');
 		n = n * -1;
 	}
 	if (n < 10)
 	{
-		ft_putchar_fd(n + 48, fd);
-		return ;
+		count_char += intputchar(n + 48);
+		return (count_char);
 	}
 	else
 	{
-		ft_putnbr_fd(n / 10, fd);
+		intputnbr(n / 10);
 	}		
-	ft_putnbr_fd(n % 10, fd);
+	intputnbr(n % 10);
+	return (count_char);
 }
 
-size_t	ft_strlen(const char *str)
+int	intstrlen(const char *str)
 {
 	int	count;
 
@@ -68,62 +109,4 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-char	*ft_strdup(const char *s)
-{
-	int		src_size;
-	char	*str_dest;
 
-	src_size = ft_strlen(s);
-	str_dest = (char *) malloc(sizeof(char) * (src_size + 1));
-	ft_strlcpy(str_dest, s, src_size + 1);
-	return (str_dest);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	int		count_char;
-	va_list	args;
-	const char	*str;
-
-	if(!format || *format == '\0')
-		return (0);
-	str = ft_strdup(format);
-	count_char = 0;
-	va_start(args, format);
-	count_char = //alguma coisa ainda não sei ainda
-	va_end(args);
-	free((char *) str);
-	return (count_char);
-}
-
-char	*make_message(const char *format, ...)
-{
-	int n = 0;
-	size_t size = 0;
-	char *p = NULL;
-	va_list ap;
-
-	/* Determine required size. */
-	va_start(ap, fmt);
-	n = vsnprintf(p, size, fmt, ap); /*read about vsnprintf*/
-	va_end(ap);
-
-	if (n < 0)
-		return NULL;
-
-	size = (size_t) n + 1;	/* One extra byte for '\0' */
-	p = malloc(size);
-	if (p == NULL)
-		return NULL;
-
-	va_start(ap, fmt);
-	n = vsnprintf(p, size, fmt, ap);
-	va_end(ap);
-
-	if (n < 0)
-	{
-		free(p);
-		return NULL;
-	}
-	return (p);
-}
