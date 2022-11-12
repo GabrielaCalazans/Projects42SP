@@ -6,12 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/11 00:25:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:46:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_printf(const char *format, ...)
 {
@@ -27,9 +26,12 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-			count_char += print_message(format[i + i], args);
+		{
+			i++;
+			count_char += print_message(format[i], args);
+		}
 		else
-			count_char = write(1, &format[i], 1);
+			count_char += (int)write(1, &format[i], 1);
 		i++;
 	}
 	va_end(args);
@@ -39,38 +41,54 @@ int	ft_printf(const char *format, ...)
 int	print_message(char c, va_list args)
 {
 	if (c == 'c')
-	{
 		return (intputchar(va_arg(args, int)));
-		printf("aqui1");
-	}
-	if (c == 's')
+	else if (c == 's')
 		return (intputstr(va_arg(args, char *)));
+	else if (c == 'p')
+		return (intputnbr(va_arg(args, int)));
+	else if (c == 'd' || c == 'i')
+		return (intputnbr(va_arg(args, int)));
+	else if (c == 'u')
+		return (unsputnbr(va_arg(args, unsigned int)));
+	else if (c == 'x')
+		return (puthex(va_arg(args, unsigned int)));
+	else if (c == 'X')
+		return (intputnbr(va_arg(args, unsigned int)));
+	else if (c == '%')
+		return ((int)write(1, "%", 1));
 	else
 		return ((int)write(1, "%", 1) + (int)write(1, &c, 1));
 }
 
-
+int	intputchar(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
 int	intputstr(char *s)
 {
 	int	count;
+	int	count_char;
 
 	count = 0;
+	count_char = 0;
 	if (!s)
 		return ((int)write(1, "(null)", 6));
-	while (s[count] != '\0')
+	while (s[count])
 	{
-		write(1, &s[count], 1);
+		count_char += (int)write(1, &s[count], 1);
 		count++;
 	}
-	return (count);
+	return (count_char);
 }
+
+
 
 int	intputnbr(int n)
 {
-	int	count_char;
+	static int	count_char = 0;
 	
-	count_char = 0;
 	if (n == -2147483648)
 	{
 		count_char += intputchar('-');
@@ -80,7 +98,7 @@ int	intputnbr(int n)
 	if (n < 0)
 	{
 		count_char += intputchar('-');
-		n = n * -1;
+		n *= -1;
 	}
 	if (n < 10)
 	{
@@ -95,18 +113,37 @@ int	intputnbr(int n)
 	return (count_char);
 }
 
-int	intstrlen(const char *str)
+int	unsputnbr(unsigned int n)
 {
-	int	count;
+	static int	count_char = 0;
 
-	count = 0;
-	if (!str)
-		return (0);
-	while (str[count] != '\0')
+	if (n < 10)
 	{
-		count++;
+		count_char += intputchar(n + 48);
+		return (count_char);
 	}
-	return (count);
+	else
+	{
+		unsputnbr(n / 10);
+	}		
+	unsputnbr(n % 10);
+	return (count_char);
 }
 
-
+int	puthex(unsigned long n)
+{
+	long int	quotient;
+	static int	count_char;
+	
+	quotient = n;
+	count_char = 0;
+	if(quotient < 10)
+	{
+		count_char += intputchar(quotient + 48);
+		return (count_char);
+	}
+	else
+		puthex(quotient / 16);
+	puthex(quotient % 16);
+	return (count_char);
+}

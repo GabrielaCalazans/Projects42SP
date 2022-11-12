@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/11 00:23:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:39:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,24 @@ int	main()
 	// printf(0);
 
 	char	c;
+	int		n;
+	unsigned int un;
+	int		n2;
+	char	*str;
 	
-	c = 'a';
-	ft_printf("printa carai %c\n", c);
-	//printf("%p\n", str);
-
+	c = 'D';
+	un = -1;
+	n = 10;
+	n2 = 300;
+	str = "Gabriela.";
+	//printf("\nFAKE: %d\n", ft_printf("printa char:%c carai dec:%d. str:%s faz k int:%i un:%u parte.\n", c, n, str, n2, un));
+	// printf("\nFAKE: %d\n", ft_printf("1 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
+	// printf("\nORIGINAL: %d\n", printf("2 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
+	
+	printf("original hex:%x HEX:%X \n", n, n2);
+	ft_printf("fake hex:%x HEX:%X \n", n, n2);
 	return (0);
 }
-
 
 size_t	ft_strlen(const char *str)
 {
@@ -60,23 +70,6 @@ size_t	ft_strlen(const char *str)
 		count++;
 	}
 	return (count);
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	count;
-
-	count = 0;
-	while (s[count] != '\0')
-	{
-		write(fd, &s[count], 1);
-		count++;
-	}
 }
 
 int sumnum(int num, ...)
@@ -168,50 +161,67 @@ void	print(char *placeholders, ...)
 	va_end(args);
 }
 
+// int main() {
+// 	long int decimalNumber,remainder,quotient;
+// 	int i=1,j,temp;
+// 	char hexadecimalNumber[100];
+// 	printf("Enter any decimal number: ");
+// 	scanf("%ld",&decimalNumber);
+// 	quotient = decimalNumber;
+// 	while(quotient!=0) {
+// 		temp = quotient % 16;
+// 		//To convert integer into character
+// 		if( temp < 10)
+// 		           temp =temp + 48; else
+// 		         temp = temp + 55;
+// 		hexadecimalNumber[i++]= temp;
+// 		quotient = quotient / 16;
+// 	}
+// 	printf("Equivalent hexadecimal value of decimal number %d: ",decimalNumber);
+// 	for (j = i -1 ;j> 0;j--)
+// 	      printf("%c",hexadecimalNumber[j]);
+// 	return 0;
+// }
+
 // rodar o loop de um ptr até achar um % e contar quantos temos
-int	check_percent(const char *fmt, ...)
-{
-	va_list	args;
-	size_t	i;
-	char	c;
-	char	*s;
-	int		percents;
-	size_t	num_args;
-
-	num_args = ft_strlen(fmt);
-	va_start(args, fmt);
-	percents = 0;
-	i = 0;
-	while (i < num_args)
-	{
-		if (fmt[i] == '%')
-			percents++;
-		if (fmt[i] == '%' && fmt[i + 1] == 'c')
-		{
-			c = va_arg(args, int);
-			//write(1, &c, 1);
-			ft_putchar_fd(c, 1);
-			ft_putchar_fd('\n', 1);
-			//printf("char:%c\n", c);
-		}
-		if (fmt[i] == '%' && fmt[i + 1] == 's')
-		{
-			s = va_arg(args, char *);
-			//write(1, &c, 1);
-			ft_putstr_fd(s, 1);
-			ft_putchar_fd('\n', 1);
-			//printf("char:%c\n", c);
-		}
-		i++;
-	}
-	va_end(args);
-	printf("percents:%i\n", percents);
-	return (percents);
-}
-
-// void	check_arg(char *str)
+// int	check_percent(const char *fmt, ...)
 // {
-// 	if ()
+// 	va_list	args;
+// 	size_t	i;
+// 	char	c;
+// 	char	*s;
+// 	int		percents;
+// 	size_t	num_args;
+
+// 	num_args = ft_strlen(fmt);
+// 	va_start(args, fmt);
+// 	percents = 0;
+// 	i = 0;
+// 	while (i < num_args)
+// 	{
+// 		if (fmt[i] == '%')
+// 			percents++;
+// 		if (fmt[i] == '%' && fmt[i + 1] == 'c')
+// 		{
+// 			c = va_arg(args, int);
+// 			//write(1, &c, 1);
+// 			ft_putchar_fd(c, 1);
+// 			ft_putchar_fd('\n', 1);
+// 			//printf("char:%c\n", c);
+// 		}
+// 		if (fmt[i] == '%' && fmt[i + 1] == 's')
+// 		{
+// 			s = va_arg(args, char *);
+// 			//write(1, &c, 1);
+// 			ft_putstr_fd(s, 1);
+// 			ft_putchar_fd('\n', 1);
+// 			//printf("char:%c\n", c);
+// 		}
+// 		i++;
+// 	}
+// 	va_end(args);
+// 	printf("percents:%i\n", percents);
+// 	return (percents);
 // }
 
 char	*make_message(const char *format, ...)
@@ -245,10 +255,3 @@ char	*make_message(const char *format, ...)
 	}
 	return (p);
 }
-
-int	intputchar(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
