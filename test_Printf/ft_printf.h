@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:29 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/13 00:29:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:47:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "libft/libft.h"
 # define HEX_LOW "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define UN_LI unsigned long int
@@ -27,7 +26,9 @@ int	intputchar(int c);
 int	intputstr(char *s);
 int	intputnbr(int n);
 int	unsputnbr(unsigned int n);
-int	puthex(int n);
+int	puthex(unsigned long n);
+int	putnbr_hex(unsigned long n, char *base);
+int	put_ptr(unsigned long n, char *base);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/13 00:39:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:46:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ int	main()
 	
 	c = 'D';
 	un = -1;
-	n = 10;
+	n = 90000;
 	n2 = 300;
 	str = "Gabriela.";
-	//printf("\nFAKE: %d\n", ft_printf("printa char:%c carai dec:%d. str:%s faz k int:%i un:%u parte.\n", c, n, str, n2, un));
+	// printf("\nFAKE: %d\n", ft_printf("printa char:%c carai dec:%d. str:%s faz k int:%i un:%u parte.\n", c, n, str, n2, un));
 	// printf("\nFAKE: %d\n", ft_printf("1 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
 	// printf("\nORIGINAL: %d\n", printf("2 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
 	
-	printf("original hex:%x HEX:%X \n", n, n2);
-	ft_printf("fake hex:%x HEX:%X \n", n, n2);
+	printf("O:%d", printf("o%p\n", str));
+	// printf (" %p ", 16);
+	printf("F:%d", ft_printf("f%p\n", str));
 	return (0);
 }
 

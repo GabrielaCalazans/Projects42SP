@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/13 00:46:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:47:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ int	print_message(char c, va_list args)
 	else if (c == 's')
 		return (intputstr(va_arg(args, char *)));
 	else if (c == 'p')
-		return (intputnbr(va_arg(args, int)));
+		return (put_ptr(va_arg(args, int), HEX_LOW));
 	else if (c == 'd' || c == 'i')
 		return (intputnbr(va_arg(args, int)));
 	else if (c == 'u')
 		return (unsputnbr(va_arg(args, unsigned int)));
 	else if (c == 'x')
-		return (puthex(va_arg(args, unsigned int)));
+		return (putnbr_hex(va_arg(args, unsigned int), HEX_LOW));
 	else if (c == 'X')
-		return (intputnbr(va_arg(args, unsigned int)));
+		return (putnbr_hex(va_arg(args, unsigned int), HEX_UPPER));
 	else if (c == '%')
 		return ((int)write(1, "%", 1));
 	else
@@ -82,8 +82,6 @@ int	intputstr(char *s)
 	}
 	return (count_char);
 }
-
-
 
 int	intputnbr(int n)
 {
@@ -130,20 +128,17 @@ int	unsputnbr(unsigned int n)
 	return (count_char);
 }
 
-int	puthex(unsigned long n)
+int	putnbr_hex(unsigned long n, char *base)
 {
-	long int	quotient;
-	static int	count_char;
-	
-	quotient = n;
-	count_char = 0;
-	if(quotient < 10)
-	{
-		count_char += intputchar(quotient + 48);
-		return (count_char);
-	}
-	else
-		puthex(quotient / 16);
-	puthex(quotient % 16);
+	static int	count_char = 0;
+
+	if (n >= 16)
+		putnbr_hex(n / 16, base);
+	count_char += (int)write(1, &base[n % 16], 1);
 	return (count_char);
+}
+
+int	put_ptr(unsigned long n, char *base)
+{
+	return ((int)write(1, "0x", 2) + putnbr_hex(n, base));
 }
