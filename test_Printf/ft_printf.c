@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/18 00:47:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:54:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,10 @@ int	putnbr_hex(unsigned long n, char *base)
 
 int	put_ptr(unsigned long n, char *base)
 {
-	return ((int)write(1, "0x", 2) + putnbr_hex(n, base));
+	int	count_char;
+
+	count_char = 0;
+	count_char += (int)write(1, "0x", 2);
+	count_char += putnbr_hex(n, base);
+	return (count_char);
 }
