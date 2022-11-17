@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:29 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/18 00:47:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/18 00:55:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdarg.h>
 # define HEX_LOW "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
-# define UN_LI unsigned long int
 
 int	ft_printf(const char *format, ...);
 int	print_message(char c, va_list args);
