@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:29 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/18 00:55:44 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/19 00:31:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,19 @@
 # define HEX_LOW "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 
+# ifdef __linux__
+#  define NULLABLE "(nil)"
+# else
+#  define NULLABLE "0x0"
+# endif
+
 int	ft_printf(const char *format, ...);
 int	print_message(char c, va_list args);
 int	intputchar(int c);
 int	intputstr(char *s);
-int	intputnbr(int n);
-int	unsputnbr(unsigned int n);
-int	puthex(unsigned long n);
 int	putnbr_hex(unsigned long n, char *base);
 int	put_ptr(unsigned long n, char *base);
-
+int	intputnbr(int n);
+int	unsputnbr(unsigned int n);
 
 #endif

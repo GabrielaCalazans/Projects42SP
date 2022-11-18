@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 23:16:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/18 00:54:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/19 00:30:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_printf(const char *format, ...)
 	int		i;
 	va_list	args;
 
-	if(!format)
+	if (!format)
 		return (-1);
 	va_start(args, format);
 	count_char = 0;
@@ -45,7 +45,7 @@ int	print_message(char c, va_list args)
 	else if (c == 's')
 		return (intputstr(va_arg(args, char *)));
 	else if (c == 'p')
-		return (put_ptr(va_arg(args, int), HEX_LOW));
+		return (put_ptr(va_arg(args, unsigned long int), HEX_LOW));
 	else if (c == 'd' || c == 'i')
 		return (intputnbr(va_arg(args, int)));
 	else if (c == 'u')
@@ -80,70 +80,5 @@ int	intputstr(char *s)
 		count_char += (int)write(1, &s[count], 1);
 		count++;
 	}
-	return (count_char);
-}
-
-int	intputnbr(int n)
-{
-	static int	count_char = 0;
-	
-	if (n == -2147483648)
-	{
-		count_char += intputchar('-');
-		count_char += intputchar('2');
-		n = 147483648;
-	}
-	if (n < 0)
-	{
-		count_char += intputchar('-');
-		n *= -1;
-	}
-	if (n < 10)
-	{
-		count_char += intputchar(n + 48);
-		return (count_char);
-	}
-	else
-	{
-		intputnbr(n / 10);
-	}		
-	intputnbr(n % 10);
-	return (count_char);
-}
-
-int	unsputnbr(unsigned int n)
-{
-	static int	count_char = 0;
-
-	if (n < 10)
-	{
-		count_char += intputchar(n + 48);
-		return (count_char);
-	}
-	else
-	{
-		unsputnbr(n / 10);
-	}		
-	unsputnbr(n % 10);
-	return (count_char);
-}
-
-int	putnbr_hex(unsigned long n, char *base)
-{
-	static int	count_char = 0;
-
-	if (n >= 16)
-		putnbr_hex(n / 16, base);
-	count_char += (int)write(1, &base[n % 16], 1);
-	return (count_char);
-}
-
-int	put_ptr(unsigned long n, char *base)
-{
-	int	count_char;
-
-	count_char = 0;
-	count_char += (int)write(1, "0x", 2);
-	count_char += putnbr_hex(n, base);
 	return (count_char);
 }
