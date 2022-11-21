@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/19 00:40:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:54:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ int	main()
 	
 	c = 'D';
 	un = -1;
-	n = 90000;
+	n = -3;
 	n2 = 300;
-	str = "Gabriela.";
+	str = NULL;
 	// printf("\nFAKE: %d\n", ft_printf("printa char:%c carai dec:%d. str:%s faz k int:%i un:%u parte.\n", c, n, str, n2, un));
 	// printf("\nFAKE: %d\n", ft_printf("1 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
 	// printf("\nORIGINAL: %d\n", printf("2 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
 	
 	//printf("O:%d", printf("o%p\n", str));
-	printf("%d\n", printf ("%p\n", ptr));
-	printf("%d\n", ft_printf ("%p\n", ptr));
+	printf(" O:%d\n", printf ("ORIG: MAX_NEG:%x MAX_POS:%x", -2147483648, 2147483647));
+	printf(" F:%d\n", ft_printf ("FAKE: MAX_NEG:%x MAX_POS:%x", -2147483648, 2147483647));
 	//printf("F:%d", ft_printf("f%p\n", str));
 	return (0);
 }
