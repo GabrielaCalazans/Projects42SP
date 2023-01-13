@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:36:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/11/21 13:54:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:14:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main()
 	void	*ptr;
 	
 	c = 'D';
-	un = -1;
+	un = -300;
 	n = -3;
 	n2 = 300;
 	str = NULL;
@@ -55,8 +55,8 @@ int	main()
 	// printf("\nORIGINAL: %d\n", printf("2 printa char:%c carai dec:%d. str:%s faz k int:%i un:%u\n", c, n, str, n2, n));
 	
 	//printf("O:%d", printf("o%p\n", str));
-	printf(" O:%d\n", printf ("ORIG: MAX_NEG:%x MAX_POS:%x", -2147483648, 2147483647));
-	printf(" F:%d\n", ft_printf ("FAKE: MAX_NEG:%x MAX_POS:%x", -2147483648, 2147483647));
+	printf(" O:%d\n", printf ("ORIG: %u %u", -30, 4294967295));
+	printf(" F:%d\n", ft_printf ("FAKE: %u %u", -30, 4294967295));
 	//printf("F:%d", ft_printf("f%p\n", str));
 	return (0);
 }
