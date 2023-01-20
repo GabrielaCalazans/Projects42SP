@@ -6,26 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/20 14:54:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:04:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+#include "test.h"
 
 int	close(int keycode, t_vars *vars)
 {
@@ -56,11 +41,16 @@ int	mouse_hook(int keycode, t_vars *vars)
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-
+	//int offset = (y * line_length + x * (bits_per_pixel / 8));
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
+// int	line_drow(void *img)
+// {
+// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+// 	while ()
+// }
 
 int main(int argc, char *argv[])
 {
@@ -68,7 +58,6 @@ int main(int argc, char *argv[])
 	// t_vars	vars;
 	// t_data	img;
 
-	//int offset = (y * line_length + x * (bits_per_pixel / 8));
 	// vars.mlx = mlx_init();
 	// vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
 	// mlx_hook(vars.win, 2, 1L<<0, close, &vars);
@@ -82,8 +71,8 @@ int main(int argc, char *argv[])
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 720, 576, "Fdf!");
 	img.img = mlx_new_image(mlx, 720, 576);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	// printf("bits_per_pixel:[%p]", img.addr);
 	my_mlx_pixel_put(&img, 50, 50, 0x00FF0000);
 	my_mlx_pixel_put(&img, 600, 50, 0x00FF0000);
 	my_mlx_pixel_put(&img, 500, 500, 0x003300FF);
@@ -91,6 +80,8 @@ int main(int argc, char *argv[])
 	my_mlx_pixel_put(&img, 150, 150, 0x0033FF00);
 	my_mlx_pixel_put(&img, 600, 150, 0x0033FF00);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	
+	// mlx_loop_hook(mlx, line_drow, &img));
 
 	mlx_hook(mlx_win, 2, 1L<<0, close, &img);
 	mlx_hook(mlx_win, 17, 1L<<2, mouse_hook, &img);
