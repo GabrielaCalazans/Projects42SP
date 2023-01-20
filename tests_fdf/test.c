@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/20 17:04:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/20 23:58:37 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-// int	line_drow(void *img)
+// int	line_drow(t_data *data, int x, int y, void *img)
 // {
-// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-// 	while ()
+// 		char	*dest;
+
+		// dest = data->addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+//		while ()
 // }
 
 int main(int argc, char *argv[])
@@ -66,6 +68,10 @@ int main(int argc, char *argv[])
 
 	void	*mlx;
 	void	*mlx_win;
+	int		x;
+	int		y;
+	int		ix;
+	int		iy;
 	t_data	img;
 
 	mlx = mlx_init();
@@ -73,12 +79,27 @@ int main(int argc, char *argv[])
 	img.img = mlx_new_image(mlx, 720, 576);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	// printf("bits_per_pixel:[%p]", img.addr);
-	my_mlx_pixel_put(&img, 50, 50, 0x00FF0000);
-	my_mlx_pixel_put(&img, 600, 50, 0x00FF0000);
-	my_mlx_pixel_put(&img, 500, 500, 0x003300FF);
-	my_mlx_pixel_put(&img, 50, 500, 0x003300FF);
-	my_mlx_pixel_put(&img, 150, 150, 0x0033FF00);
-	my_mlx_pixel_put(&img, 600, 150, 0x0033FF00);
+
+	y = 50;
+	x = 700;
+	ix = 50;
+	iy = 500;
+	while (ix < x)
+	{
+		my_mlx_pixel_put(&img, ix, y, 0x0000FFFF);
+		ix++;
+	}
+		while (iy > y)
+	{
+		my_mlx_pixel_put(&img, x, iy, 0x0000FFFF);
+		iy--;
+	}
+	
+	// my_mlx_pixel_put(&img, 600, 50, 0x00FF0000);
+	// my_mlx_pixel_put(&img, 500, 500, 0x003300FF);
+	// my_mlx_pixel_put(&img, 50, 500, 0x003300FF);
+	// my_mlx_pixel_put(&img, 150, 150, 0x0033FF00);
+	// my_mlx_pixel_put(&img, 600, 150, 0x0033FF00);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	
 	// mlx_loop_hook(mlx, line_drow, &img));
