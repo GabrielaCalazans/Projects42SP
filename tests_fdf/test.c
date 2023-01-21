@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/20 23:58:37 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:44:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 	// printf("bits_per_pixel:[%p]", img.addr);
 
 	y = 50;
-	x = 700;
+	x = 670;
 	ix = 50;
 	iy = 500;
 	while (ix < x)
@@ -94,7 +94,36 @@ int main(int argc, char *argv[])
 		my_mlx_pixel_put(&img, x, iy, 0x0000FFFF);
 		iy--;
 	}
-	
+	while (ix > 50)
+	{
+		my_mlx_pixel_put(&img, ix, 500, 0x0000FFFF);
+		ix--;
+	}
+		while (iy < 500)
+	{
+		my_mlx_pixel_put(&img, 50, iy, 0x0000FFFF);
+		iy++;
+	}
+		while (iy > y && ix < x)
+	{
+		my_mlx_pixel_put(&img, x, y, 0x0000FFFF);
+		y++;
+		x--;
+		// if (iy == y || iy > y)
+		// {
+		// 	x--;
+		// 	y = 499;
+		// }
+		printf(" x:%d y:%d", x, y);
+	}
+		while (iy > 50 && ix < 670)
+	{
+		my_mlx_pixel_put(&img, ix, iy, 0x0000FFFF);
+		iy--;
+		ix++;
+		// printf(" %d ", x);
+		// printf(" %d ", y);
+	}
 	// my_mlx_pixel_put(&img, 600, 50, 0x00FF0000);
 	// my_mlx_pixel_put(&img, 500, 500, 0x003300FF);
 	// my_mlx_pixel_put(&img, 50, 500, 0x003300FF);
