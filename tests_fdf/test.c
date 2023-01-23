@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/23 22:49:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/24 00:34:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	close(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	mouse_hook(int keycode, t_vars *vars)
+int	mouse_hook(t_vars *vars)
 {
 	// if (keycode == 1)
 	// {
@@ -120,26 +120,26 @@ void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 			y0 += sy;
 		}
 	}
-		while (x02 != x1 || y02 != y1)
-	{
-		int e2;
+	// 	while (x02 != x1 || y02 != y1)
+	// {
+	// 	int e2;
 
-		e2 = err2;
-		my_mlx_pixel_put(&img, x02, y02, 0x0000FFFF);
-		if (e2 < -dx)
-		{
-			err += dy;
-			x02 += sx;
-		}
-		if (e2 < dy)
-		{
-			err2 += dx;
-			y02 += sy;
-		}
-	}
+	// 	e2 = err2;
+	// 	my_mlx_pixel_put(&img, x02, y02, 0x0000FFFF);
+	// 	if (e2 < -dx)
+	// 	{
+	// 		err += dy;
+	// 		x02 += sx;
+	// 	}
+	// 	if (e2 < dy)
+	// 	{
+	// 		err2 += dx;
+	// 		y02 += sy;
+	// 	}
+	// }
 }
 
-int	main(int argc, char *argv[])
+int	main()
 {
 	// void	*mlx_ptr;
 	// t_vars	vars;
@@ -153,10 +153,10 @@ int	main(int argc, char *argv[])
 
 	void	*mlx;
 	void	*mlx_win;
-	int		x;
-	int		y;
-	int		ix;
-	int		iy;
+	// int		x;
+	// int		y;
+	// int		ix;
+	// int		iy;
 	t_data	img;
 
 	mlx = mlx_init();
@@ -248,7 +248,6 @@ int	main(int argc, char *argv[])
 	y0 = 50;
 	y1 = 500;
 	bresenham(x0, y0, x1, y1, img);
-
 	
 	// my_mlx_pixel_put(&img, 600, 50, 0x00FF0000);
 	// my_mlx_pixel_put(&img, 500, 500, 0x003300FF);
