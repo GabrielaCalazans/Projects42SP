@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/20 15:29:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:01:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
+# define ABS(Value) ((Value < 0) ? (Value * -1) : (Value));
 
 typedef struct	s_vars {
 	void	*mlx;
