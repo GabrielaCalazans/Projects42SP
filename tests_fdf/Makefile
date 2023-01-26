@@ -1,6 +1,6 @@
 NAME = fdf_tests
 
-SRCS = test.c
+SRCS = test.c btest_algor.c
 #SRCS +=
 
 #BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
@@ -15,14 +15,12 @@ FLAGS_MLX = -lmlx -lX11 -Imlx -lXext
 
 OBJS = $(SRCS:.c=.o)
 
-BOBJS = $(BSRCS:.c=.o)
+#BOBJS = $(BSRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc $(CFLAGS) $^ $(FLAGS_MLX) -o $@
-
-$(OBJS): $(SRCS)
+	cc $(FLAGS) $(OBJS) $(FLAGS_MLX) -o $@
 
 #bonus: $(BOBJS)
 

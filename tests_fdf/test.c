@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/24 00:34:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:58:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,8 @@ void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 	int	sx;
 	int	sy;
 	int	err;
-	int	x02;
-	int	y02;
-	int	err2;
+	int	e2;
 
-	x02 = x0;
-	y02 = y0;
 	dx = ABS(x1 - x0);
 	if (x0 < x1)
 		sx = 1;
@@ -98,15 +94,12 @@ void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 		sy = 1;
 	else
 		sy = -1;
-	if (dx > dy )
+	if (dx > dy)
 		err = dx / 2;
 	else
 		err = -dy / 2;
-	err2 = err;
 	while (x0 != x1 || y0 != y1)
 	{
-		int e2;
-
 		e2 = err;
 		my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
 		if (e2 > -dx)
@@ -120,23 +113,6 @@ void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 			y0 += sy;
 		}
 	}
-	// 	while (x02 != x1 || y02 != y1)
-	// {
-	// 	int e2;
-
-	// 	e2 = err2;
-	// 	my_mlx_pixel_put(&img, x02, y02, 0x0000FFFF);
-	// 	if (e2 < -dx)
-	// 	{
-	// 		err += dy;
-	// 		x02 += sx;
-	// 	}
-	// 	if (e2 < dy)
-	// 	{
-	// 		err2 += dx;
-	// 		y02 += sy;
-	// 	}
-	// }
 }
 
 int	main()
@@ -213,41 +189,42 @@ int	main()
 	// }
 
 		//	******************########************************
-	int	x0;
-	int	x1;
-	int	y0;
-	int	y1;
+	// int	x0;
+	// int	x1;
+	// int	y0;
+	// int	y1;
 
-	x0 = 50;
-	x1 = 670;
-	y0 = 50;
-	y1 = 500;
+	// x0 = 50;
+	// x1 = 670;
+	// y0 = 50;
+	// y1 = 500;
 
-	while (x0 < x1)
-	{
-		my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
-		x0++;
-	}
-		while (y0 < y1)
-	{
-		my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
-		y0++;
-	}
-	while (x0 > 50)
-	{
-		my_mlx_pixel_put(&img, x0, y1, 0x0000FFFF);
-		x0--;
-	}
-		while (y0 > 50)
-	{
-		my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
-		y0--;
-	}
-	x0 = 50;
-	x1 = 670;
-	y0 = 50;
-	y1 = 500;
-	bresenham(x0, y0, x1, y1, img);
+	// while (x0 < x1)
+	// {
+	// 	my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
+	// 	x0++;
+	// }
+	// 	while (y0 < y1)
+	// {
+	// 	my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
+	// 	y0++;
+	// }
+	// while (x0 > 50)
+	// {
+	// 	my_mlx_pixel_put(&img, x0, y1, 0x0000FFFF);
+	// 	x0--;
+	// }
+	// 	while (y0 > 50)
+	// {
+	// 	my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
+	// 	y0--;
+	// }
+	// x0 = 50;
+	// x1 = 670;
+	// y0 = 50;
+	// y1 = 500;
+	// bresenham(x0, y0, x1, y1, img);
+	// bresenham(x0, y0, x1, y1, img);
 	
 	// my_mlx_pixel_put(&img, 600, 50, 0x00FF0000);
 	// my_mlx_pixel_put(&img, 500, 500, 0x003300FF);
@@ -255,14 +232,32 @@ int	main()
 	// my_mlx_pixel_put(&img, 150, 150, 0x0033FF00);
 	// my_mlx_pixel_put(&img, 600, 150, 0x0033FF00);
 	// mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
+
+	// //		*********************
+
+	// int	x0;
+	// int	x1;
+	// int	y0;
+	// int	y1;
+
+	// x0 = 400;
+	// x1 = 100;
+	// y0 = 500;
+	// y1 = 300;
+	// reta_bresenham(x0, x1, y0, y1, 0x0000FFFF, img);
+	reta_bresenham(400, 100, 500, 300, 0x0000FFFF, img);
+	reta_bresenham(400, 100, 600, 300, 0x0000FFFF, img);
+	reta_bresenham(600, 100, 400, 100, 0x0000FFFF, img);
+
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	
+	// //	*********	HOOKS	************
 	// mlx_loop_hook(mlx, line_drow, &img));
-
 	mlx_hook(mlx_win, 2, 1L<<0, close, &img);
 	mlx_hook(mlx_win, 17, 1L<<2, mouse_hook, &img);
 	mlx_loop(mlx);
 	mlx_destroy_image(mlx, img.img);
+	free (img.img);
 	
 	return(0);
 }
