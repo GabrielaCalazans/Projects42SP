@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/26 19:58:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:27:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,9 +245,17 @@ int	main()
 	// y0 = 500;
 	// y1 = 300;
 	// reta_bresenham(x0, x1, y0, y1, 0x0000FFFF, img);
-	reta_bresenham(400, 100, 500, 300, 0x0000FFFF, img);
-	reta_bresenham(400, 100, 600, 300, 0x0000FFFF, img);
-	reta_bresenham(600, 100, 400, 100, 0x0000FFFF, img);
+	// reta_bresenham(400, 100, 500, 300, 0x0000FFFF, img);
+	// reta_bresenham(400, 100, 600, 300, 0x0000FFFF, img);
+	// reta_bresenham(600, 100, 400, 100, 0x0000FFFF, img);
+
+	// mlx_win = mlx_new_window(mlx, 720, 576, "VAMO, PORRA!");
+	
+	// bresenham3(50, 50, 670, 520, 0x0000FFFF, img); // diagonal up left to down right
+	// bresenham3(50, 50, 670, 50, 0x0000FFFF, img); // linha up
+	// bresenham3(50, 520, 670, 50, 0x0000FFFF, img); // linha down
+	// bresenham3(50, 50, 50, 520, 0x0000FFFF, img); // coluna left
+	bresenham3(520, 520, 50, 520, 0x0000FFFF, img); // coluna right
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	

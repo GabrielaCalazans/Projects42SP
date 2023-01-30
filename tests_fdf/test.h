@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/26 19:28:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:52:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,4 @@ typedef struct	s_dw_line
 
 void	reta_bresenham(int x0, int x1, int y0, int y1, int cor, t_data img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	bresenham3(int x0, int x1, int y0, int y1, int cor, t_data img);
