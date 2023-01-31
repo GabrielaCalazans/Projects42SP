@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/30 20:27:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/01/31 20:33:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-// int	line_drow(t_data *data, int x, int y, void *img)
-// {
-// 		char	*dest;
-
-		// dest = data->addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-//		while ()
-// }
-
 // static unsigned char	img_stc[W * H * 3];
 
 // void	setpixel(int x, int y)
@@ -74,46 +66,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 // 		if (e2 <  dy) { err += dx; y0 += sy; }
 // 	}
 // }
-
-void	bresenham(int x0, int y0, int x1, int y1, t_data img)
-{
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-
-	dx = ABS(x1 - x0);
-	if (x0 < x1)
-		sx = 1;
-	else
-		sx = -1;
-	dy = ABS(y1 - y0);
-	if (x0 < x1)
-		sy = 1;
-	else
-		sy = -1;
-	if (dx > dy)
-		err = dx / 2;
-	else
-		err = -dy / 2;
-	while (x0 != x1 || y0 != y1)
-	{
-		e2 = err;
-		my_mlx_pixel_put(&img, x0, y0, 0x0000FFFF);
-		if (e2 > -dx)
-		{
-			err -= dy;
-			x0 += sx;
-		}
-		if (e2 < dy)
-		{
-			err += dx;
-			y0 += sy;
-		}
-	}
-}
 
 int	main()
 {
@@ -136,7 +88,7 @@ int	main()
 	t_data	img;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 720, 576, "VAMO, PORRA!");
+	mlx_win = mlx_new_window(mlx, 720, 576, "NÃO PIRA!");
 	img.img = mlx_new_image(mlx, 720, 576);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	// printf("bits_per_pixel:[%p]", img.addr);
@@ -252,10 +204,15 @@ int	main()
 	// mlx_win = mlx_new_window(mlx, 720, 576, "VAMO, PORRA!");
 	
 	// bresenham3(50, 50, 670, 520, 0x0000FFFF, img); // diagonal up left to down right
+	// // bresenham3(50, 520, 50, 670, 0x0000FFFF, img); // diagonal up right to down left
 	// bresenham3(50, 50, 670, 50, 0x0000FFFF, img); // linha up
 	// bresenham3(50, 520, 670, 50, 0x0000FFFF, img); // linha down
-	// bresenham3(50, 50, 50, 520, 0x0000FFFF, img); // coluna left
-	bresenham3(520, 520, 50, 520, 0x0000FFFF, img); // coluna right
+	// // bresenham3(50, 50, 50, 520, 0x0000FFFF, img); // linha vertical left
+	// bresenham3(520, 520, 50, 520, 0x0000FFFF, img); // linha vertical right
+
+	bresenham4(20, 20, 80, 100, 0x0000FFFF, img);
+	bresenham4(50, 50, 60, 520, 0x0000FFFF, img); // LINHA VERTICAL LEFT
+	// bresenham4(520, 50, 200, 670, 0x0000FFFF, img);
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	
@@ -265,6 +222,8 @@ int	main()
 	mlx_hook(mlx_win, 17, 1L<<2, mouse_hook, &img);
 	mlx_loop(mlx);
 	mlx_destroy_image(mlx, img.img);
+	mlx_destroy_display(mlx);
+	free(mlx);
 	free (img.img);
 	
 	return(0);
