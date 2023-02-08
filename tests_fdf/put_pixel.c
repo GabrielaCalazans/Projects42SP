@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:35:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/08 14:46:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/08 19:42:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,61 @@ void	my_put_pixel(t_data *data, int x, int y, int color)
 	//int offset = (y * line_length + x * (bits_per_pixel / 8));
 	dst = data->addr + (x * data->line_length + y * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+int	render(t_data *data)
+{
+	// /* if window has been destroyed, we don't want to put the pixel ! */
+	// if (data->win_ptr != NULL)
+	// 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, 
+	// 		WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0x0000FFFF);
+	render_background(data, 0x00FFFFFF);
+	render_rect(data, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100,
+				100, 100, 0x003300FF}); // DOWN RIGHT SQUARE
+	render_rect(data, (t_rect){WINDOW_WIDTH - 100, 0, 100, 100,
+				0x0099FF33}); // UP RIGHT SQUARE
+	render_rect(data, (t_rect){0, 0, 100, 100, 0x0000FFFF}); // UP LEFT SQUARE
+	render_rect(data, (t_rect){0, WINDOW_HEIGHT - 100, 100, 100, 0x009933FF}); // DOWN LEFT SQUARE
+	render_rect(data, (t_rect){WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT / 2 - 50, 100, 100, 0x00CC33FF}); // CENTER SQUARE
+	
+	return (0);
+}
+
+/* The x and y coordinates of the rect corresponds to its upper left corner. */
+
+int	render_rect(t_data *data, t_rect rect)
+{
+	int	i;
+	int j;
+
+	if (data->win_ptr == NULL)
+		return (1);
+	i = rect.y;
+	while (i < rect.y + rect.height)
+	{
+		j = rect.x;
+		while (j < rect.x + rect.width)
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, rect.color);
+		++i;
+	}
+	return (0);
+}
+
+void	render_background(t_data *data, int color)
+{
+	int	i;
+	int	j;
+
+	if (data->win_ptr == NULL)
+		return ;
+	i = 0;
+	while (i < WINDOW_HEIGHT)
+	{
+		j = 0;
+		while (j < WINDOW_WIDTH)
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, color);
+		++i;
+	}
 }
 
 // static unsigned char	img_stc[W * H * 3];
@@ -48,3 +103,4 @@ void	my_put_pixel(t_data *data, int x, int y, int color)
 // 		if (e2 <  dy) { err += dx; y0 += sy; }
 // 	}
 // }
+

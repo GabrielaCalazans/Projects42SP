@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:38:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/08 14:47:09 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/08 18:45:55 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,18 @@ int	mouse_hook(t_vars *vars)
 	// }
 	// else
 	// 	printf("%i\n", keycode);
+	return (0);
+}
+
+int	handle_keypress(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+	{
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		data->win_ptr = NULL;
+		exit (0);
+	}
+	else
+		printf("%i\n", keysym);
 	return (0);
 }

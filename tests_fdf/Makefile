@@ -1,6 +1,6 @@
 NAME = fdf_tests
 
-SRCS = main.c btest_algor.c put_pixel.c hooks.c
+SRCS = test_aureli.c btest_algor.c put_pixel.c hooks.c
 #SRCS +=
 
 #BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c

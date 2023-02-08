@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/08 14:46:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:18:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,22 +167,6 @@ int	main()
 	// bresenham4(400, 50, 400, 50, 0x0000FFFF, img); // diagonal up left to down right
 	// bresenham4(250, 250, 400, 50, 0x0000FFFF, img); // deveria ser uma linha diagonal
 
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 720, 576, "RESPIRA E NÃO PIRA!");
-	img.img = mlx_new_image(mlx, 720, 576);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-
-	bresenham4(50, 50, 50, 400, 0x0000FFFF, img); // linha vertical left
-	bresenham4(50, 50, 400, 50, 0x0000FFFF, img); // linha horizontal up
-	bresenham4(400, 400, 400, 50, 0x0000FFFF, img); // linha vertical right
-	bresenham4(400, 400, 50, 400, 0x0000FFFF, img); // linha horizontal down
-	bresenham4(400, 400, 50, 50, 0x0000FFFF, img); // diagonal up left to down right
-	bresenham4(400, 50, 50, 400, 0x0000FFFF, img); // diagonal down left to up right
-
 	// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	// my_mlx_pixel_put(&img, 50, 400, 0x0000FFFF);
@@ -192,15 +176,40 @@ int	main()
 	// int mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 	// mlx_pixel_put(mlx, mlx_win, 50, 50, 0x0000FFFF);
 
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
 
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	
+	mlx = mlx_init();
+	if (mlx == NULL)
+		return (MLX_ERROR);
+	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "RESPIRA E NÃO PIRA!");
+	if (mlx_win == NULL)
+	{
+		free(mlx_win);
+		return (MLX_ERROR);
+	}
+	img.img = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
+	// *************** BRESENHAM4 INICIO **************************************************************8
+	// bresenham4(50, 50, 50, 400, 0x0000FFFF, img); // linha vertical left
+	// bresenham4(50, 50, 400, 50, 0x0000FFFF, img); // linha horizontal up
+	// bresenham4(400, 400, 400, 50, 0x0000FFFF, img); // linha vertical right
+	// bresenham4(400, 400, 50, 400, 0x0000FFFF, img); // linha horizontal down
+	// bresenham4(400, 400, 50, 50, 0x0000FFFF, img); // diagonal up left to down right
+	// bresenham4(400, 50, 50, 400, 0x0000FFFF, img); // diagonal down left to up right
+
+	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	// *************** BRESENHAM4 FIM **************************************************************8
+
 	// //	*********	HOOKS	************
 	// mlx_loop_hook(mlx, line_drow, &img));
 	mlx_hook(mlx_win, 2, 1L<<0, close, &img);
 	mlx_hook(mlx_win, 17, 1L<<2, mouse_hook, &img);
 	mlx_loop(mlx);
 	mlx_destroy_image(mlx, img.img);
+	mlx_destroy_window(mlx, mlx_win);
 	mlx_destroy_display(mlx);
 	free(mlx);
 	free(img.img);
