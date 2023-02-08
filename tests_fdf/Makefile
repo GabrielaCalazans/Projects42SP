@@ -1,6 +1,6 @@
 NAME = fdf_tests
 
-SRCS = test.c btest_algor.c
+SRCS = main.c btest_algor.c put_pixel.c hooks.c
 #SRCS +=
 
 #BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
@@ -11,7 +11,7 @@ FLAGS = -Wall \
 		-Werror \
 		-g3
 
-FLAGS_MLX = -lmlx -lX11 -Imlx -lXext
+FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
 
 OBJS = $(SRCS:.c=.o)
 

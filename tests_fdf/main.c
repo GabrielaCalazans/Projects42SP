@@ -1,71 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:21:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/31 20:33:59 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:46:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
-
-int	close(int keycode, t_vars *vars)
-{
-	
-	if (keycode == 65307)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit (0);
-	}
-	else
-		printf("%i\n", keycode);
-	
-	return (0);
-}
-
-int	mouse_hook(t_vars *vars)
-{
-	// if (keycode == 1)
-	// {
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit (0);
-	// }
-	// else
-	// 	printf("%i\n", keycode);
-	return (0);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-	//int offset = (y * line_length + x * (bits_per_pixel / 8));
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-// static unsigned char	img_stc[W * H * 3];
-
-// void	setpixel(int x, int y)
-// {
-// 	unsigned char* p = img_stc + (y * W + x) * 3;
-// 	p[0] = p[1] = p[2] = 0;
-// }
-// void	bresenham(int x0, int y0, int x1, int y1)
-// {
-// 	int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
-// 	int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
-// 	int err = (dx > dy ? dx : -dy) / 2;
-
-// 	while (setpixel(x0, y0), x0 != x1 || y0 != y1)
-// 	{
-// 		int e2 = err;
-// 		if (e2 > -dx) { err -= dy; x0 += sx; }
-// 		if (e2 <  dy) { err += dx; y0 += sy; }
-// 	}
-// }
+#include "fdf_tests.h"
 
 int	main()
 {
@@ -79,19 +24,27 @@ int	main()
 	// mlx_hook(vars.win, 17, 1L<<2, mouse_hook, &vars);
 	// //mlx_mouse_hook(vars.win, mouse_hook, &vars);
 
-	void	*mlx;
-	void	*mlx_win;
-	// int		x;
-	// int		y;
-	// int		ix;
-	// int		iy;
-	t_data	img;
+	// void	*mlx;
+	// void	*mlx_win;
+	// // int		x;
+	// // int		y;
+	// // int		ix;
+	// // int		iy;
+	// t_data	img;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 720, 576, "NÃO PIRA!");
-	img.img = mlx_new_image(mlx, 720, 576);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	// printf("bits_per_pixel:[%p]", img.addr);
+	// mlx = mlx_init();
+	// mlx_win = mlx_new_window(mlx, 720, 576, "RESPIRA E NÃO PIRA!");
+	// // img.img = mlx_new_image(mlx, 720, 576);
+	
+	// // mlx_win = mlx_new_window(mlx, 500, 500, "NAO, PIRA2!");
+	// // img.img = mlx_new_image(mlx, 500, 500);
+
+	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	// printf("bits_per_pixel:[%s]", img.addr);
+
+	// my_mlx_pixel_put(&img, 50, 400, 0x0000FFFF);
+	// my_mlx_pixel_put(&img, 51, 400, 0x0000FFFF);
+	// my_mlx_pixel_put(&img, 400, 50, 0x0000FFFF);
 
 		//	******************########************************
 	// y = 50;
@@ -209,10 +162,36 @@ int	main()
 	// bresenham3(50, 520, 670, 50, 0x0000FFFF, img); // linha down
 	// // bresenham3(50, 50, 50, 520, 0x0000FFFF, img); // linha vertical left
 	// bresenham3(520, 520, 50, 520, 0x0000FFFF, img); // linha vertical right
+	// bresenham4(100, 50, 300, 350, 0x0000FFFF, img); // diagonal up left to down right
+	// bresenham4(400, 50, 50, 400, 0x0000FFFF, img); // diagonal up right to down left
+	// bresenham4(400, 50, 400, 50, 0x0000FFFF, img); // diagonal up left to down right
+	// bresenham4(250, 250, 400, 50, 0x0000FFFF, img); // deveria ser uma linha diagonal
 
-	bresenham4(20, 20, 80, 100, 0x0000FFFF, img);
-	bresenham4(50, 50, 60, 520, 0x0000FFFF, img); // LINHA VERTICAL LEFT
-	// bresenham4(520, 50, 200, 670, 0x0000FFFF, img);
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 720, 576, "RESPIRA E NÃO PIRA!");
+	img.img = mlx_new_image(mlx, 720, 576);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
+	bresenham4(50, 50, 50, 400, 0x0000FFFF, img); // linha vertical left
+	bresenham4(50, 50, 400, 50, 0x0000FFFF, img); // linha horizontal up
+	bresenham4(400, 400, 400, 50, 0x0000FFFF, img); // linha vertical right
+	bresenham4(400, 400, 50, 400, 0x0000FFFF, img); // linha horizontal down
+	bresenham4(400, 400, 50, 50, 0x0000FFFF, img); // diagonal up left to down right
+	bresenham4(400, 50, 50, 400, 0x0000FFFF, img); // diagonal down left to up right
+
+	// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+
+	// my_mlx_pixel_put(&img, 50, 400, 0x0000FFFF);
+	// my_mlx_pixel_put(&img, 51, 400, 0x0000FFFF);
+	// my_mlx_pixel_put(&img, 400, 50, 0x0000FFFF);
+
+	// int mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
+	// mlx_pixel_put(mlx, mlx_win, 50, 50, 0x0000FFFF);
+
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	
@@ -224,8 +203,7 @@ int	main()
 	mlx_destroy_image(mlx, img.img);
 	mlx_destroy_display(mlx);
 	free(mlx);
-	free (img.img);
+	free(img.img);
 	
 	return(0);
 }
-

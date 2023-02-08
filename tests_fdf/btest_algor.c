@@ -6,11 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:32:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/01/31 20:16:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:46:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "fdf_tests.h"
 
 void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 {
@@ -21,12 +21,12 @@ void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 	int	err;
 	int	e2;
 
-	dx = ABS(x1 - x0);
+	dx = abs(x1 - x0);
 	if (x0 < x1)
 		sx = 1;
 	else
 		sx = -1;
-	dy = ABS(y1 - y0);
+	dy = abs(y1 - y0);
 	if (x0 < x1)
 		sy = 1;
 	else
@@ -118,47 +118,88 @@ void	bresenham3(int x0, int x1, int y0, int y1, int cor, t_data img)
 
 void	bresenham4(int x0, int y0, int x1, int y1, int cor, t_data img)
 {
-	int	dy;
+	int	m;
+	int	p;
 	int	dx;
+	int	dy;
 	int	x;
 	int	y;
-	int	p;
+	int	temp;
+	int	var1;
+	int	var2;
 
-	dx = x1 - x0;
-	dy = y1 - y0;
-	x = x0;
-	y = y0;
-	p = 2*dx-dy;
-	if ((dy/dx) > 0)
+	var1 = abs(y1-y0); //350
+	var2 = abs(x1-x0); //-350
+	if ((x1-x0) == 0)
+		m = var1; // TO FIND THE SLOP
+	else
+		m = var1/var2; // TO FIND THE SLOP -- = -1
+	if (m < 1) //sim
 	{
+		if (x0 > x1)//sim
+		{
+			temp = x0;
+			x0 = x1;
+			x1 = temp;
+
+			temp = y0;
+			y0 = y1;
+			y1 = temp;
+		}
+		dx = abs(x1-x0); //350
+		dy = abs(y1-y0); //-350
+		p = 2*dy-dx; // first parameter -- 1050
+		x= x0; // 50
+		y= y0; // 400
+		while (x <= x1) //sim
+		{
+			my_mlx_pixel_put(&img, x, y, cor);
+			x += 1;
+			if (p >= 0)
+			{
+				if (m < 1)
+					y += 1;
+				else
+					y -= 1;
+				p += 2*dy-2*dx;
+			}
+			else
+				//y = y;
+				p += 2*dy;
+		}
+	}
+	if (m >= 1) //sim
+	{
+		if (y0 > y1)//não
+		{
+			temp = x0;
+			x0 = x1;
+			x1 = temp;
+
+			temp = y0;
+			y0 = y1;
+			y1 = temp;
+		}
+		dx = abs(x1-x0);
+		dy = abs(y1-y0);
+		p = 2*dx-dy; // first parameter
+		x= x0;
+		y= y0;
 		while (y <= y1)
 		{
 			my_mlx_pixel_put(&img, x, y, cor);
-			y++;
-			if (p < 0)
+			y += 1;
+			if (p >= 0)
 			{
-				p += 2 * dy;
-				x++;
+				if (m >= 1)
+					x += 1;
+				else
+					x -= 1;
+				p += 2*dx-2*dy;
 			}
 			else
-				p = 2 * (dy - dx);
+				//x = x;
+				p += 2*dx;
 		}
-	}
-	else
-	{
-			while (x <= x1)
-			{
-				my_mlx_pixel_put(&img, x, y, cor);
-				x++;
-				if (p < 0)
-				{
-					p += 2 * dy;
-				}
-				else
-				{
-					p = 2 * (dy-dx);
-					y++;
-				}
-			}
 	}
 }
