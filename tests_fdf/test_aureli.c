@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:30:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/09 19:58:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:15:52 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,15 @@ int main ()
 	// //	*******************	HOOKS	*********************
 	// mlx_loop_hook(mlx, line_drow, &img));
 
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-    mlx_hook(data.win_ptr, 2, 1L<<0, &handle_keypress, &data);
+	mlx_loop_hook(data.mlx_ptr, &render_bresenham, &data);
+	// mlx_loop_hook(data.mlx_ptr, &render, &data);
+	// img_pix_put(&data.img, 100, 100, 0x0099FF66);
+	// img_pix_put(&data.img, 400, 400, 0x0099FF66);
+	// img_pix_put(&data.img, 100, 400, 0x0099FF66);
+	// img_pix_put(&data.img, 400, 100, 0x0099FF66);
+	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
+
+	mlx_hook(data.win_ptr, 2, 1L<<0, &handle_keypress, &data);
 	mlx_hook(data.win_ptr, 17, 1L<<2, mouse_hook, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);

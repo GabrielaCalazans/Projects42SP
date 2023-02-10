@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/09 20:46:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:16:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ int		render(t_data *data);
 int		render_rect(t_img *data, t_rect rect);
 void	render_background(t_img *data, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
+void	bresenham5(t_img *img, t_rect rect);
+int		render_bresenham(t_data *data);
 
 #endif

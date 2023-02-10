@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:32:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/09 15:56:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:35:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,105 @@ void	bresenham4(int x0, int y0, int x1, int y1, int cor, t_data img)
 					x += 1;
 				else
 					x -= 1;
+				p += 2*dx-2*dy;
+			}
+			else
+				//x = x;
+				p += 2*dx;
+		}
+	}
+}
+
+int	render_bresenham(t_data *data)
+{
+	if (data->win_ptr == NULL)
+		return (1);
+	render_background(&data->img, 0x00FFFFFF);
+	bresenham5(&data->img, (t_rect){100, 100, 400, 400, 0x003300FF}); // UP RIGHT TO DOWN LEFT
+	bresenham5(&data->img, (t_rect){100, 100, 400, 100, 0x0099FF33}); // LINE UP
+	bresenham5(&data->img, (t_rect){100, 100, 100, 400, 0x0099FF33}); // LINE LEFT
+	bresenham5(&data->img, (t_rect){400, 400, 100, 400, 0x0099FF33}); // LINE DOWN
+	bresenham5(&data->img, (t_rect){400, 100, 400, 400, 0x0099FF33}); // LINE RIGHT
+	bresenham5(&data->img, (t_rect){400, 100, 100, 400, 0x0099FF33}); // DOWN RIGHT TO UP LEFT
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	return (0);
+}
+
+void	bresenham5(t_img *img, t_rect rect)
+{
+	int	i;
+	int j;
+	int	m;
+	int	p;
+	int	dx;
+	int	dy;
+	int	temp;
+
+	if ((rect.width-rect.x) == 0)
+		m = abs(rect.height-rect.y); // TO FIND THE SLOP
+	else
+		m = abs(rect.height-rect.y)/abs(rect.width-rect.x); // TO FIND THE SLOP -- = -1
+	if (m < 1)
+	{
+		if (rect.x > rect.width)
+		{
+			temp = rect.x;
+			rect.x = rect.width;
+			rect.width = temp;
+
+			temp = rect.y;
+			rect.y = rect.height;
+			rect.height = temp;
+		}
+		dx = abs(rect.width-rect.x);
+		dy = abs(rect.height-rect.y);
+		p = 2*dy-dx; // first parameter
+		i= rect.x;
+		j= rect.y;
+		while (i <= rect.width)
+		{
+			img_pix_put(img, i, j, rect.color);
+			i += 1;
+			if (p >= 0)
+			{
+				if (m < 1)
+					j += 1;
+				else
+					j -= 1;
+				p += 2*dy-2*dx;
+			}
+			else
+				//y = y;
+				p += 2*dy;
+		}
+	}
+	if (m >= 1)
+	{
+		if (rect.y > rect.height)
+		{
+			temp = rect.x;
+			rect.x = rect.width;
+			rect.width = temp;
+
+			temp = rect.y;
+			rect.y = rect.height;
+			rect.height = temp;
+		}
+		dx = abs(rect.width-rect.x);
+		dy = abs(rect.height-rect.y);
+		p = 2*dx-dy; // first parameter
+		i= rect.x;
+		j= rect.y;
+		while (j <= rect.height)
+		{
+			img_pix_put(img, i, j, rect.color);
+			j += 1;
+			if (p >= 0)
+			{
+				if (m >= 1)
+					i += 1;
+				else
+					i -= 1;
 				p += 2*dx-2*dy;
 			}
 			else

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:35:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/09 20:59:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:11:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	while (i >= 0)
 	{
-		/* big endian, MSB is the leftmost bit */
+		/* big endian, MSB (most significant bit) is the leftmost bit  
+		https://www.techtarget.com/whatis/definition/most-significant-bit-or-byte*/
 		if (img->endian != 0)
 			*pixel++ = (color >> i) & 0xFF;
-		/* little endian, LSB is the leftmost bit */
+		/* little endian, LSB is the least significant bit */
 		else
 			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
 		i -= 8;
@@ -57,12 +58,13 @@ int	render(t_data *data)
 		return (1);
 	render_background(&data->img, 0x00FFFFFF);
 	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100,
-				100, 100, 0x003300FF}); // DOWN RIGHT SQUARE
-	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, 0, 100, 100,
+				10, 10, 0x003300FF}); // DOWN RIGHT SQUARE
+	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, 0, 10, 10,
 				0x0099FF33}); // UP RIGHT SQUARE
-	render_rect(&data->img, (t_rect){0, 0, 100, 100, 0x0000FFFF}); // UP LEFT SQUARE
-	render_rect(&data->img, (t_rect){0, WINDOW_HEIGHT - 100, 100, 100, 0x009933FF}); // DOWN LEFT SQUARE
-	render_rect(&data->img, (t_rect){WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT / 2 - 50, 100, 100, 0x00CC33FF}); // CENTER SQUARE
+	render_rect(&data->img, (t_rect){0, 0, 10, 10, 0x0000FFFF}); // UP LEFT SQUARE
+	render_rect(&data->img, (t_rect){0, WINDOW_HEIGHT - 100, 10, 10, 0x009933FF}); // DOWN LEFT SQUARE
+	render_rect(&data->img, (t_rect){WINDOW_WIDTH / 2 - 40, WINDOW_HEIGHT / 2 - 40, 10, 10, 0x00CC33FF}); // CENTER SQUARE
+	render_rect(&data->img, (t_rect){WINDOW_WIDTH / 2 - 40, WINDOW_HEIGHT / 2 - 40, 10, 10, 0x00CC33FF}); // CENTER SQUARE
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
