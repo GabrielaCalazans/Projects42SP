@@ -6,11 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:32:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/08 14:46:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/09 15:56:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
+
+// https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 
 void	bresenham(int x0, int y0, int x1, int y1, t_data img)
 {

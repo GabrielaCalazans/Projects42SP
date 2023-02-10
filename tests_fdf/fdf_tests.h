@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/08 19:46:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/09 20:46:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_img
 	void	*mlx_img;
 	char	*addr;
 	int		bpp; /* bits per pixel */
-	int		line_len;
+	int		line_len; //amount of bytes taken by one row of our image. It is equivalent to image_width * (bpp / 8)
 	int		endian;
 }				t_img;
 
@@ -42,11 +42,11 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img;
+	t_img	img; // was void *img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int		bits_per_pixel; // for main.c
+	int		line_length; // for main.c
+	int		endian; // for main.c
 }				t_data;
 
 typedef struct s_next
@@ -84,7 +84,8 @@ int		mouse_hook(t_vars *vars);
 int		close(int keycode, t_vars *vars);
 int		handle_keypress(int keysym, t_data *data);
 int		render(t_data *data);
-int		render_rect(t_data *data, t_rect rect);
-void	render_background(t_data *data, int color);
+int		render_rect(t_img *data, t_rect rect);
+void	render_background(t_img *data, int color);
+void	img_pix_put(t_img *img, int x, int y, int color);
 
 #endif
