@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf_tests.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gab <gab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/10 18:16:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/14 01:34:29 by gab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include <X11/keysym.h> // PODEMOS USAR?
+# include <X11/keysym.h> // PODEMOS USAR? header in order to get the values of all the available symbol
+# include <X11/X.h> // PODEMOS USAR? macros releated to the event names/masks
 
 # define WINDOW_WIDTH 720 // LARGURA
 # define WINDOW_HEIGHT 570 // ALTURA
@@ -88,6 +89,8 @@ int		render_rect(t_img *data, t_rect rect);
 void	render_background(t_img *data, int color);
 void	img_pix_put(t_img *img, int x, int y, int color);
 void	bresenham5(t_img *img, t_rect rect);
-int		render_bresenham(t_data *data);
+int		render_bresenham5(t_data *data);
+int		render_bresenham6(t_data *data);
+void	bresenham6(t_img *img, t_rect rect);
 
 #endif

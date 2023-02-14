@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   btest_algor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gab <gab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:32:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/10 18:35:07 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/14 03:10:12 by gab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ void	bresenham4(int x0, int y0, int x1, int y1, int cor, t_data img)
 	}
 }
 
-int	render_bresenham(t_data *data)
+int	render_bresenham5(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
@@ -304,3 +304,130 @@ void	bresenham5(t_img *img, t_rect rect)
 		}
 	}
 }
+
+int	render_bresenham6(t_data *data)
+{
+	if (data->win_ptr == NULL)
+		return (1);
+	render_background(&data->img, 0x00CCFFCC);
+	bresenham6(&data->img, (t_rect){100, 100, 400, 400, 0x00990000}); // UP RIGHT TO DOWN LEFT red
+	bresenham6(&data->img, (t_rect){100, 200, 400, 300, 0x00990000}); // UP RIGHT TO DOWN LEFT red
+	bresenham6(&data->img, (t_rect){100, 400, 400, 100, 0x00990000}); // DOWN RIGHT TO UP LEFT
+	bresenham6(&data->img, (t_rect){100, 300, 400, 200, 0x00990000}); // DOWN RIGHT TO UP LEFT
+	bresenham6(&data->img, (t_rect){100, 100, 400, 100, 0x0099FF33}); // LINE UP green
+	bresenham6(&data->img, (t_rect){100, 400, 400, 400, 0x0099FF33}); // LINE DOWN
+	bresenham6(&data->img, (t_rect){100, 400, 100, 100, 0x000000CC}); // LINE LEFT
+	bresenham6(&data->img, (t_rect){400, 400, 400, 100, 0x000000CC}); // LINE RIGHT
+	bresenham6(&data->img, (t_rect){250, 400, 250, 100, 0x00000066}); // CROSS vertical
+	bresenham6(&data->img, (t_rect){170, 400, 330, 100, 0x00000066}); // CROSS vertical
+	bresenham6(&data->img, (t_rect){170, 100, 335, 400, 0x00000066}); // CROSS vertical
+	bresenham6(&data->img, (t_rect){100, 250, 400, 250, 0x00000066}); // CROOS horizontal
+	bresenham6(&data->img, (t_rect){100, 350, 400, 350, 0x00000066}); // CROOS down horizontal
+	bresenham6(&data->img, (t_rect){100, 150, 400, 150, 0x00000066}); // CROOS horizontal
+	// bresenham6(&data->img, (t_rect){400, 100, 400, 400, 0x000000CC}); // TESTE
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	return (0);
+}
+
+void	bresenham6(t_img *img, t_rect rect)
+{
+	int	i; //x
+	int j; //y
+	int	k; //iterador
+	int	p; //position
+	int	dx; //deltax
+	int	dy; //deltay
+
+	k = 0;
+	dx = (rect.width - rect.x);
+	dy = (rect.height - rect.y);
+	if (dy <= dx && dy > 0)
+	{
+		dx = abs(dx);
+		dy = abs(dy);
+		p = (2 * dy)- dx;
+		i = rect.x;
+		j = rect.y;
+		k = rect.x;
+		while (k++ <= rect.width)
+		{
+			if (p < 0)
+			{
+				img_pix_put(img, ++i, j, rect.color);
+				p += (2 * dy);
+			}
+			else
+			{
+				img_pix_put(img, ++i, ++j, rect.color);
+				p += (2 * dy) - (2 * dx);
+			}
+		}
+	}
+	else if (dy > dx && dy > 0)
+	{
+		dx = abs(dx);
+		dy = abs(dy);
+		p = (2 * dx)- dy;
+		i = rect.x;
+		j = rect.y;
+		k = rect.y;
+		while (k++ <= rect.height)
+		{
+			if (p < 0)
+			{
+				img_pix_put(img, i, ++j, rect.color);
+				p += (2 * dx); // de dy para dx
+			}
+			else
+			{
+				img_pix_put(img, ++i, ++j, rect.color);
+				p += (2 * dx) - (2 * dy);
+			}
+		}
+	}
+	else if (dy >= -dx)
+	{
+		dx = abs(dx);
+		dy = abs(dy);
+		p = (2 * dy)- dx;
+		i = rect.x;
+		j = rect.y;
+		k = rect.x;
+		while (k++ <= rect.width)
+		{
+			if (p < 0)
+			{
+				img_pix_put(img, ++i, j, rect.color);
+				p += (2 * dy);
+			}
+			else
+			{
+				img_pix_put(img, ++i, --j, rect.color);
+				p += (2 * dy) - (2 * dx);
+			}
+		}
+	}
+	else if (dy < -dx)
+	{
+		dx = abs(dx);
+		dy = abs(dy);
+		p = (2 * dy)- dx;
+		i = rect.x;
+		j = rect.y;
+		k = rect.y;
+		while (k-- >= rect.height)
+		{
+			if (p < 0)
+			{
+				img_pix_put(img, i, --j, rect.color);
+				p += (2 * dx);
+			}
+			else
+			{
+				img_pix_put(img, ++i, --j, rect.color);
+				p += (2 * dx) - (2 * dy);
+			}
+		}
+	}
+}
+

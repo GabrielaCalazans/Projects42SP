@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_aureli.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gab <gab@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:30:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/10 18:15:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:58:05 by gab              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main ()
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "RESPIRA E NÃO PIRA!");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "RESPIRA E NAO PIRA!");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
@@ -32,16 +32,16 @@ int main ()
 	// //	*******************	HOOKS	*********************
 	// mlx_loop_hook(mlx, line_drow, &img));
 
-	mlx_loop_hook(data.mlx_ptr, &render_bresenham, &data);
+	mlx_loop_hook(data.mlx_ptr, &render_bresenham6, &data);
 	// mlx_loop_hook(data.mlx_ptr, &render, &data);
 	// img_pix_put(&data.img, 100, 100, 0x0099FF66);
 	// img_pix_put(&data.img, 400, 400, 0x0099FF66);
 	// img_pix_put(&data.img, 100, 400, 0x0099FF66);
 	// img_pix_put(&data.img, 400, 100, 0x0099FF66);
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
-
-	mlx_hook(data.win_ptr, 2, 1L<<0, &handle_keypress, &data);
-	mlx_hook(data.win_ptr, 17, 1L<<2, mouse_hook, &data);
+	//mlx_key_hook(data.win_ptr, &handle_keypress, &data); // aqui eu lido com o momento de soltar a tecla
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data); // aqui eu lido com o momento de presskey, aqui é mais completo
+	mlx_hook(data.win_ptr, 17, KeyPressMask, mouse_hook, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
