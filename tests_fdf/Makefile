@@ -3,9 +3,6 @@ NAME = fdf_tests
 SRCS = test_aureli.c btest_algor.c put_pixel.c hooks.c
 #SRCS +=
 
-#BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
-#BSRCS += ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-
 FLAGS = -Wall \
 		-Wextra \
 		-Werror \
@@ -13,18 +10,21 @@ FLAGS = -Wall \
 
 FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
 
-OBJS = $(SRCS:.c=.o)
+#beginNEW:
+#FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
+#FLAGS_MLX = -lmlx -lm
+#MINLBX_DIR = /../../../usr/local/lib
+#MINLBX = $(addprefix $(MINLBX_DIR), libmlx.a)
+#endNEW
 
-#BOBJS = $(BSRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	cc $(FLAGS) $(OBJS) $(FLAGS_MLX) -o $@
-
-#bonus: $(BOBJS)
-
-#$(BOBJS): $(BSRCS)
+#NEW:
+#	cc $(FLAGS_MLX) $(OBJS) -I $(MINLBX_DIR) -o $@
 
 clean:
 	rm -f $(OBJS) $(BOBJS)
@@ -36,6 +36,8 @@ re: fclean all
 
 %.o: %.c
 	@cc $(FLAGS) -c $< -o $@
+#NEW:
+#	cc $(FLAGS_MLX) -I $(MINLBX_DIR) -c $< -o $@
 
 
 .PHONY: all clean fclean re

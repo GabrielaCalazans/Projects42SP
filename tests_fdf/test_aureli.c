@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   test_aureli.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gab <gab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:30:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/14 02:58:05 by gab              ###   ########.fr       */
+/*   Updated: 2023/02/16 17:45:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
-#include <X11/keysym.h> // PODEMOS USAR?
 
 int main ()
 {

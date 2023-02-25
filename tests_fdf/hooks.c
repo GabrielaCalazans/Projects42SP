@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gab <gab@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:38:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/14 03:00:31 by gab              ###   ########.fr       */
+/*   Updated: 2023/02/23 17:50:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 	{
+		printf("Keypress: %c %i %X\n", keysym, keysym, keysym);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 		exit (0);
 	}
 	else
-		printf("Keypress: %i\n", keysym);
+		printf("Keypress: char:%c int:%i HEX:%X\n", keysym, keysym, keysym);
 	return (0);
 }

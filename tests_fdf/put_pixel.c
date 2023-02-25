@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:35:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/10 17:11:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:49:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 	i = img->bpp - 8;
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	while (i >= 0)
+	while (i >= 0 && (x < WINDOW_WIDTH && y < WINDOW_HEIGHT))
 	{
 		/* big endian, MSB (most significant bit) is the leftmost bit  
 		https://www.techtarget.com/whatis/definition/most-significant-bit-or-byte*/
 		if (img->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
+			*pixel++ = (color >> i) & 0xFF; /* bitwise operator 
+			Right shift operator shifts all bits towards right by certain number 
+			of specified bits*/
 		/* little endian, LSB is the least significant bit */
 		else
 			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
