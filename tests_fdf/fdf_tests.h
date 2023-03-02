@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/02/16 22:30:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/02 01:30:54 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@
 # include <math.h>
 # include <X11/keysym.h> // PODEMOS USAR? header in order to get the values of all the available symbol
 # include <X11/X.h> // PODEMOS USAR? macros releated to the event names/masks
+# include "keys.h"
 
-# define WINDOW_WIDTH 720 // LARGURA
-# define WINDOW_HEIGHT 570 // ALTURA
+# define WINDOW_WIDTH 1280 // LARGURA
+# define WINDOW_HEIGHT 720 // ALTURA
+# define MAX_X			(10)
+# define MAX_ZOOM		(5)
+# define MAGIC_ZOOM		(2)
 # define MLX_ERROR 1
 
 typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
-}				t_vars;
+}			t_vars;
 
 typedef struct s_img
 {
@@ -37,7 +41,30 @@ typedef struct s_img
 	int		bpp; /* bits per pixel */
 	int		line_len; //amount of bytes taken by one row of our image. It is equivalent to image_width * (bpp / 8)
 	int		endian;
-}				t_img;
+}			t_img;
+
+typedef struct	s_color
+{
+	int		red;
+	int		green;
+	int		blue;
+}			t_color;
+
+typedef struct s_rect
+{
+	int		x0;
+	int		x1;
+	int		y0;
+	int		y1;
+	int		zoom;
+	int		width;
+	int		height;
+	double	angle_x;
+	double	angle_y;
+	int		coordinate_x;
+	int		coordinate_y;
+	int		isometric;
+}			t_rect;
 
 typedef struct s_data
 {
@@ -45,35 +72,29 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img; // was void *img;
 	char	*addr;
-	int		bits_per_pixel; // for main.c
-	int		line_length; // for main.c
-	int		endian; // for main.c
-}				t_data;
+	// int		bits_per_pixel; // for main.c
+	// int		line_length; // for main.c
+	// int		endian; // for main.c
+	t_rect	rect;
+	t_color	color;
+}			t_data;
 
-typedef struct s_next
-{
-	int	x;
-	int	y;
-	int	prev;
-}				t_next;
+// typedef struct s_next
+// {
+// 	int		x;
+// 	int		y;
+// 	int		prev;
+// }		t_next;
 
-typedef struct s_dw_line
-{
-	int	decision_x;
-	int	decision_y;
-	int	fork;
-	int	p;
-	int	validate_negative;
-}				t_dw_line;
+// typedef struct s_dw_line
+// {
+// 	int	decision_x;
+// 	int	decision_y;
+// 	int	fork;
+// 	int	p;
+// 	int	validate_negative;
+// }	t_dw_line;
 
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int width;
-	int height;
-	int color;
-}	t_rect;
 
 void	reta_bresenham(int x0, int x1, int y0, int y1, int cor, t_data img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -92,5 +113,5 @@ void	bresenham5(t_img *img, t_rect rect);
 int		render_bresenham5(t_data *data);
 int		render_bresenham6(t_data *data);
 void	bresenham6(t_img *img, t_rect rect);
-
+int		render_fdf_draw(t_data *data);
 #endif

@@ -1,6 +1,6 @@
 NAME = fdf_tests
 
-SRCS = test_aureli.c btest_algor.c put_pixel.c hooks.c
+SRCS = test_nfdf.c nfdf.c hooks.c
 #SRCS +=
 
 FLAGS = -Wall \
