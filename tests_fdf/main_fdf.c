@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_nfdf.c                                        :+:      :+:    :+:   */
+/*   main_fdf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:30:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/02 01:45:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/03 21:44:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
-
-int	close_win(t_data *data)
-{
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	free(data->mlx_ptr);
-	exit(0);
-}
-
-int	esc_close(t_data *data)
-{
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	free(data->mlx_ptr);
-	exit(0);
-	return (0);
-}
 
 // static int	zoom_change(t_data *data)
 // {
@@ -40,7 +23,7 @@ int	esc_close(t_data *data)
 // 	return (result);
 // }
 
-static void	reset_map(t_data *data)
+void	reset_map(t_data *data)
 {
 	data->rect.coordinate_y = 0;
 	data->rect.coordinate_x = 0;
@@ -55,7 +38,7 @@ static void	reset_map(t_data *data)
 	data->color.blue = 0x4F;
 }
 
-static void	isometric_change(t_data *data)
+void	isometric_change(t_data *data)
 {
 	if (data->rect.isometric++ % 2)
 		data->rect.angle_y *= 0.2;
@@ -63,7 +46,7 @@ static void	isometric_change(t_data *data)
 		data->rect.angle_y *= 5;
 }
 
-static int	fdf_keys(int keycode, t_data *data)
+int	fdf_keys(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESCAPE)
 		esc_close(data);
@@ -92,16 +75,20 @@ static int	fdf_keys(int keycode, t_data *data)
 	return (0);
 }
 
-int main ()
+int main (int argc, char *argv[])
 {
 	t_data	*data;
 
+	if (argc == 2)
+	{
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 	{
 		printf("Oh Shit!");
 		return(0);
 	}
+	fdf_read(argv[1], data);
+
 	reset_map(data);
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
@@ -115,8 +102,13 @@ int main ()
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, &data->img.line_len, &data->img.endian);
 
+		// print_values_loop(data);
+	print_values_loop(argv, data);
+	
 	// //	*******************	HOOKS	*********************
+
 	mlx_loop_hook(data->mlx_ptr, render_fdf_draw, data);
+	// mlx_loop_hook(data->mlx_ptr, print_values_loop, data);
 	mlx_hook(data->win_ptr, 2, 3, &fdf_keys, data); // aqui eu lido com o momento de presskey, aqui é mais completo
 	mlx_hook(data->win_ptr, 17, 0L, &close_win, data);
 	mlx_loop(data->mlx_ptr);
@@ -125,6 +117,13 @@ int main ()
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	free(data->img.mlx_img);
-	
+
+
+	}
+	else if (argc > 2)
+		printf("too many arguments; bro!");
+	else if (argc < 2)
+		printf("too fill argument, help me, to help you ;)");
+
 	return(0);
 }

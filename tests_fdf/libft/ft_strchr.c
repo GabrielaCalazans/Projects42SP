@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 17:43:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/04 00:53:29 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/12 19:44:35 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/02/23 17:12:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> // CLOSE READ WRITE
-#include <fcntl.h> // OPEN
-#include <stdio.h> // PERROR
-#include <math.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strchr(const char *str, int c)
 {
-	// int	x = -100;
-	// printf ("abs: %d", abs(x));
+	int	count;
+	int	size;
 
-	int fd = open(argv[1], O_RDONLY);
-	printf("fd:%d\n", fd);
-	if (fd < 0)
-			printf("Error opening file! :(");
-	else
-		printf("SENHHOOOOR!");
-	close (fd);
-	return (0);
+	size = ft_strlen(str);
+	count = 0;
+	if (count == size)
+		return ((char *)str);
+	while (count < size)
+	{
+		if (str[count] == (unsigned char)c)
+			return ((char *)str + count);
+		count++;
+	}
+	if (*str == (unsigned char)c)
+		return ((char *)str);
+	return (NULL);
 }

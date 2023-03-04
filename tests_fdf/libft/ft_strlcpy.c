@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra.c                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 17:43:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/04 00:53:29 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/12 19:44:47 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/02/23 12:20:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h> // CLOSE READ WRITE
-#include <fcntl.h> // OPEN
-#include <stdio.h> // PERROR
-#include <math.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	// int	x = -100;
-	// printf ("abs: %d", abs(x));
+	size_t	srclen;
 
-	int fd = open(argv[1], O_RDONLY);
-	printf("fd:%d\n", fd);
-	if (fd < 0)
-			printf("Error opening file! :(");
-	else
-		printf("SENHHOOOOR!");
-	close (fd);
-	return (0);
+	srclen = ft_strlen(src);
+	if (srclen + 1 < size)
+	{
+		ft_memcpy(dest, src, srclen + 1);
+	}
+	else if (size > 1)
+	{
+		ft_memcpy(dest, src, size - 1);
+		dest[size - 1] = '\0';
+	}
+	else if (size == 1)
+	{
+		dest[size - 1] = '\0';
+	}
+	return (srclen);
 }

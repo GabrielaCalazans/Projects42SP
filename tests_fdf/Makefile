@@ -1,7 +1,10 @@
 NAME = fdf_tests
 
-SRCS = test_nfdf.c nfdf.c hooks.c
+#SRCS = main_fdf.c draw-fdf.c read-fdf.c hooks.c
+SRCS = test_read-fdf.c
 #SRCS +=
+LIBFT_DIR = ./libft/
+LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
 FLAGS = -Wall \
 		-Wextra \
@@ -19,18 +22,23 @@ FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS)
-	cc $(FLAGS) $(OBJS) $(FLAGS_MLX) -o $@
+	cc $(FLAGS) $(OBJS) $(LIBFT) $(FLAGS_MLX) -o $@
 #NEW:
 #	cc $(FLAGS_MLX) $(OBJS) -I $(MINLBX_DIR) -o $@
 
 clean:
 	rm -f $(OBJS) $(BOBJS)
+	@make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 

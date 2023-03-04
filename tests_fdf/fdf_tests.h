@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/02 01:30:54 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/03 21:25:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 # define FDF_TESTS_H
 
 # include <mlx.h>
-# include <stdio.h>
-# include <stdlib.h>
+# include <unistd.h> // CLOSE READ WRITE
+# include <fcntl.h> // OPEN
+# include <stdio.h> // PERROR
+# include <string.h> // STRERROR
+# include <stdlib.h> // MALLOC FREE EXIT
 # include <math.h>
+
+// **** WARNING! DO NOT USE IN THIS PROJECT ***********
 # include <X11/keysym.h> // PODEMOS USAR? header in order to get the values of all the available symbol
 # include <X11/X.h> // PODEMOS USAR? macros releated to the event names/masks
+
+// *** MY ****
 # include "keys.h"
+# include "libft/libft.h"
 
 # define WINDOW_WIDTH 1280 // LARGURA
 # define WINDOW_HEIGHT 720 // ALTURA
@@ -52,6 +60,7 @@ typedef struct	s_color
 
 typedef struct s_rect
 {
+	int		**values;
 	int		x0;
 	int		x1;
 	int		y0;
@@ -96,22 +105,27 @@ typedef struct s_data
 // }	t_dw_line;
 
 
-void	reta_bresenham(int x0, int x1, int y0, int y1, int cor, t_data img);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	my_put_pixel(t_data *data, int x, int y, int color);
-void	bresenham3(int x0, int x1, int y0, int y1, int cor, t_data img);
-void	bresenham(int x0, int y0, int x1, int y1, t_data img);
-void	bresenham4(int x0, int y0, int x1, int y1, int cor, t_data img);
-int		mouse_hook(t_vars *vars);
-int		close(int keycode, t_vars *vars);
-int		handle_keypress(int keysym, t_data *data);
-int		render(t_data *data);
-int		render_rect(t_img *data, t_rect rect);
+// void	reta_bresenham(int x0, int x1, int y0, int y1, int cor, t_data img);
+// void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+// void	my_put_pixel(t_data *data, int x, int y, int color);
+// void	bresenham3(int x0, int x1, int y0, int y1, int cor, t_data img);
+// void	bresenham(int x0, int y0, int x1, int y1, t_data img);
+// void	bresenham4(int x0, int y0, int x1, int y1, int cor, t_data img);
+// int		mouse_hook(t_vars *vars);
+// // int		close(int keycode, t_vars *vars);
+// int		handle_keypress(int keysym, t_data *data);
+// int		render(t_data *data);
+// int		render_rect(t_img *data, t_rect rect);
 void	render_background(t_img *data, int color);
-void	img_pix_put(t_img *img, int x, int y, int color);
-void	bresenham5(t_img *img, t_rect rect);
-int		render_bresenham5(t_data *data);
-int		render_bresenham6(t_data *data);
-void	bresenham6(t_img *img, t_rect rect);
+// void	img_pix_put(t_img *img, int x, int y, int color);
+// void	bresenham5(t_img *img, t_rect rect);
+// int		render_bresenham5(t_data *data);
+// int		render_bresenham6(t_data *data);
+// void	bresenham6(t_img *img, t_rect rect);
 int		render_fdf_draw(t_data *data);
+int		close_win(t_data *data);
+int		esc_close(t_data *data);
+void	fdf_read(char *argv, t_data *data);
+int		print_values_loop(char **argv, t_data *data);
+
 #endif
