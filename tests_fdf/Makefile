@@ -1,7 +1,7 @@
 NAME = fdf_tests
 
-#SRCS = main_fdf.c draw-fdf.c read-fdf.c hooks.c
-SRCS = test_read-fdf.c
+SRCS = main_fdf.c draw-fdf.c read-fdf.c hooks.c
+#SRCS = test_read-fdf.c
 #SRCS +=
 LIBFT_DIR = ./libft/
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)

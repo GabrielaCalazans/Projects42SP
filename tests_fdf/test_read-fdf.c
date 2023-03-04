@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/04 01:52:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:16:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	count_values(char *argv)
 		printf("Error opening file! :(");
 	line = get_next_line(fd);
 	len = 0;
+	i = 0;
 	while (line[i])
 	{
 		if (ft_isdigit(line[i]))
@@ -139,6 +140,5 @@ int	main(int argc, char *argv[])
 	}
 	else
 		printf("Error: wrong number of arguments! HELP ME, TO HELP U!");
-	free(values);
 	return (0);
 }

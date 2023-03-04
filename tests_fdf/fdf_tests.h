@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/03 21:25:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:32:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 # include <math.h>
 
 // **** WARNING! DO NOT USE IN THIS PROJECT ***********
-# include <X11/keysym.h> // PODEMOS USAR? header in order to get the values of all the available symbol
-# include <X11/X.h> // PODEMOS USAR? macros releated to the event names/masks
+# include <X11/keysym.h> // BETTER NOT TO USE: header in order to get the values of all the available symbol
+# include <X11/X.h> // BETTER NOT TO USE: macros releated to the event names/masks
 
 // *** MY ****
 # include "keys.h"
 # include "libft/libft.h"
 
-# define WINDOW_WIDTH 1280 // LARGURA
-# define WINDOW_HEIGHT 720 // ALTURA
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 # define MAX_X			(10)
 # define MAX_ZOOM		(5)
 # define MAGIC_ZOOM		(2)
@@ -68,8 +68,10 @@ typedef struct s_rect
 	int		zoom;
 	int		width;
 	int		height;
+	double	z_value;
 	double	angle_x;
 	double	angle_y;
+	
 	int		coordinate_x;
 	int		coordinate_y;
 	int		isometric;
@@ -126,6 +128,6 @@ int		render_fdf_draw(t_data *data);
 int		close_win(t_data *data);
 int		esc_close(t_data *data);
 void	fdf_read(char *argv, t_data *data);
-int		print_values_loop(char **argv, t_data *data);
+// int		print_values_loop(char **argv, t_data *data);
 
 #endif

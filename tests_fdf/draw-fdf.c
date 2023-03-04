@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/03 15:30:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:21:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void	put_pixel(t_data *data, int x, int y, double uvector)
 
 static void	draw_lines(t_data *data)
 {
-	double x;
-	double y;
-	double delta_x;
-	double delta_y;
-	double uvector;
+	double	x;
+	double	y;
+	double	delta_x;
+	double	delta_y;
+	double	uvector;
 
 	x = data->rect.x0;
 	y = data->rect.y0;
@@ -54,8 +54,10 @@ static void	draw_lines(t_data *data)
 	}
 }
 
-// ** Draw the map, depending on the angles, the zoom level, the position (defined)
-// ** by the average value of the window size, and if the user has moved the map,
+// ** Draw the map, depending on the angles, the zoom level, 
+// the position (defined)
+// ** by the average value of the window size, and if the user 
+// has moved the map,
 // ** and the z_value (isometric).
 // ** Will draw horizontal lines (x axis).
 
@@ -66,12 +68,12 @@ static void	draw_horizontal(t_data *data, int x, int y)
 
 	xt = x - data->rect.width / 2;
 	yt = y - data->rect.height / 2;
-	data->rect.x0 = data->rect.angle_x * (xt - yt);
-	data->rect.y0 = data->rect.angle_y * (xt + yt);
-	// data->map.y0 -= data->map.values[y][x] * data->map.z_value;
-	data->rect.x1 = data->rect.angle_x * ((xt + 1) - yt);
-	data->rect.y1 = data->rect.angle_y * ((xt + 1) + yt);
-	// data->map.y1 -= data->map.values[y][x + 1] * data->map.z_value;
+	data->rect.x0 = data->rect.angle_x * (xt - yt) * data->rect.zoom;
+	data->rect.y0 = data->rect.angle_y * (xt + yt) * data->rect.zoom;
+	data->rect.y0 -= data->rect.values[y][x] * data->rect.z_value;
+	data->rect.x1 = data->rect.angle_x * ((xt + 1) - yt) * data->rect.zoom;
+	data->rect.y1 = data->rect.angle_y * ((xt + 1) + yt) * data->rect.zoom;
+	data->rect.y1 -= data->rect.values[y][x + 1] * data->rect.z_value;
 	data->rect.x0 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
 	data->rect.x1 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
 	data->rect.y0 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
@@ -79,8 +81,10 @@ static void	draw_horizontal(t_data *data, int x, int y)
 	draw_lines(data);
 }
 
-// ** Draw the map, depending on the angles, the zoom level, the position (defined)
-// ** by the average value of the window size, and if the user has moved the map,
+// ** Draw the map, depending on the angles, the zoom 
+// level, the position (defined)
+// ** by the average value of the window size, and if 
+// the user has moved the map,
 // ** and the z_value (isometric).
 // ** Will draw vertical lines (y axis).
 
@@ -91,12 +95,12 @@ static void	draw_vertical(t_data *data, int x, int y)
 
 	xt = x - data->rect.width / 2;
 	yt = y - data->rect.height / 2;
-	data->rect.x0 = data->rect.angle_x * (xt - yt);
-	data->rect.y0 = data->rect.angle_y * (xt + yt);
-	// data->rect.y0 -= data->rect.values[y][x] * data->rect.z_value;
-	data->rect.x1 = data->rect.angle_x * (xt - (yt + 1));
-	data->rect.y1 = data->rect.angle_y * (xt + (yt + 1));
-	//data->rect.y1 -= data->rect.values[y + 1][x] * data->rect.z_value;
+	data->rect.x0 = data->rect.angle_x * (xt - yt) * data->rect.zoom;
+	data->rect.y0 = data->rect.angle_y * (xt + yt) * data->rect.zoom;
+	data->rect.y0 -= data->rect.values[y][x] * data->rect.z_value;
+	data->rect.x1 = data->rect.angle_x * (xt - (yt + 1)) * data->rect.zoom;
+	data->rect.y1 = data->rect.angle_y * (xt + (yt + 1)) * data->rect.zoom;
+	data->rect.y1 -= data->rect.values[y + 1][x] * data->rect.z_value;
 	data->rect.x0 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
 	data->rect.x1 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
 	data->rect.y0 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
@@ -132,8 +136,9 @@ int	render_fdf_draw(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	fdf_draw(data); // UP RIGHT TO DOWN LEFT
+	fdf_draw(data);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+							data->img.mlx_img, 0, 0);
 	return (0);
 }
