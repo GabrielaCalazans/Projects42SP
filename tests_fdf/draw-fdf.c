@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/04 16:21:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/06 15:38:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	draw_lines(t_data *data)
 	y = data->rect.y0;
 	delta_x = data->rect.x1 - data->rect.x0;
 	delta_y = data->rect.y1 - data->rect.y0;
-	uvector = sqrt((pow(delta_x, 2)) + (pow(delta_x, 2)));
+	uvector = sqrt((pow(delta_x, 2)) + (pow(delta_y, 2)));
 	delta_x /= uvector;
 	delta_y /= uvector;
 	while (uvector > 0)

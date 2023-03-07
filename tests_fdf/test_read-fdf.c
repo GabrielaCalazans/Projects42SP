@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/04 14:16:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:11:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,3 +142,30 @@ int	main(int argc, char *argv[])
 		printf("Error: wrong number of arguments! HELP ME, TO HELP U!");
 	return (0);
 }
+
+// int	print_values_loop(char **argv, t_data *data)
+// {
+// 	// int	yi;
+// 	// int	xi;
+
+// 	data->rect.height = count_lines(data, argv[1]);
+// 	if (data->rect.height > 0)
+// 		printf("height%i", data->rect.height);
+// 	else
+// 	// yi = 0;
+// 	// xi = 0;
+// 	// printf("VALUES in y:%i e x%i \n", data->rect.values[yi][xi], data->rect.values[yi][xi]);
+// 	// while (data->rect.values[yi][xi] < data->rect.height)
+// 	// {
+// 	// 	while(data->rect.values[yi][xi] < data->rect.width)
+// 	// 	{
+// 	// 		printf("VALUES in y:%i e x%i \n", data->rect.values[yi][xi], data->rect.values[yi][xi]);
+// 	// 		xi++;
+// 	// 	}
+// 	// }
+// 	// 	yi++;
+// 	// 	printf("\n");
+// 	printf("THE END!\n");
+// 	printf("height%i", data->rect.height);
+// 	return (0);
+// }

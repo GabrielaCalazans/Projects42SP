@@ -6,25 +6,17 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/04 14:51:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:38:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
 
-static int	count_values(char *argv)
+static int	count_values(char *line)
 {
 	int		len;
 	int		i;
-	int		fd;
-	char	*line;
-	
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-		printf("Error opening file! :(");
-	line = get_next_line(fd);
-	if (line == NULL)
-		printf("Oh shit GNL broke");
+
 	len = 0;
 	i = 0;
 	while (line[i])
@@ -74,6 +66,7 @@ static int	count_lines(t_data *data, char *argv)
 	}
 	if (close(fd) < 0)
 		printf("Error closing file! WTF?! :)");
+	data->rect.width = cols;
 	if (!(data->rect.width == cols))
 		printf("Not a valid file! >_<");
 	return (rows);
@@ -123,7 +116,6 @@ void	fdf_read(char *argv, t_data *data)
 {
 	int	fd;
 
-	data->rect.width = count_values(argv);
 	data->rect.height = count_lines(data, argv);
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
@@ -135,30 +127,3 @@ void	fdf_read(char *argv, t_data *data)
 	if (close(fd) < 0)
 		printf("Error closing file! WTF?! :)");
 }
-
-// int	print_values_loop(char **argv, t_data *data)
-// {
-// 	// int	yi;
-// 	// int	xi;
-
-// 	data->rect.height = count_lines(data, argv[1]);
-// 	if (data->rect.height > 0)
-// 		printf("height%i", data->rect.height);
-// 	else
-// 	// yi = 0;
-// 	// xi = 0;
-// 	// printf("VALUES in y:%i e x%i \n", data->rect.values[yi][xi], data->rect.values[yi][xi]);
-// 	// while (data->rect.values[yi][xi] < data->rect.height)
-// 	// {
-// 	// 	while(data->rect.values[yi][xi] < data->rect.width)
-// 	// 	{
-// 	// 		printf("VALUES in y:%i e x%i \n", data->rect.values[yi][xi], data->rect.values[yi][xi]);
-// 	// 		xi++;
-// 	// 	}
-// 	// }
-// 	// 	yi++;
-// 	// 	printf("\n");
-// 	printf("THE END!\n");
-// 	printf("height%i", data->rect.height);
-// 	return (0);
-// }
