@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/06 17:44:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/09 01:14:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct	s_color
 typedef struct s_rect
 {
 	int		**values;
+	int		**color_map;
+	int		color;
 	int		x0;
 	int		x1;
 	int		y0;
@@ -131,5 +133,6 @@ void	fdf_read(char *argv, t_data *data);
 // int		print_values_loop(char **argv, t_data *data);
 int		key_events(int key, t_data *data);
 void	reset_map(t_data *data);
+int		ft_atoh(char *hex);
 
 #endif

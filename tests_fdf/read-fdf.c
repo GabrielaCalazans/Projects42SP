@@ -6,32 +6,61 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/06 16:38:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/10 00:03:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
 
-static int	count_values(char *line)
+int	ft_atoh(char *hex)
 {
-	int		len;
-	int		i;
+	int	len;
+	int	base;
+	int	dec;
 
-	len = 0;
-	i = 0;
-	while (line[i])
+	len = ft_strlen(hex) - 1;
+	base = 1;
+	dec = 0;
+	while (len >= 0)
 	{
-		if (ft_isdigit(line[i]))
-		{
-			len += 1;
-			while (ft_isdigit(line[i]))
-				i += 1;
-		}
-		else if (line[i] != ' ' && line[i] != '-')
-			printf("Invalid characters or read error. ^_^)");
-		i += 1;
+		if (hex[len] >= '0' && hex[len] <= '9')
+			dec += (hex[len] - 48) * base;
+		if (hex[len] >= 'A' && hex[len] <= 'F')
+			dec += (hex[len] - 55) * base;
+		if (hex[len] >= 'a' && hex[len] <= 'f')
+			dec += (hex[len] - 87) * base;
+		base *= 16;
+		len--;
 	}
-	return (len);
+	return (dec);
+}
+
+static int	count_values(char *line, int check) // still can't think in a solution to see only int and ignored hex n
+{
+	int		fd;
+	char	**split;
+	int		i;
+	int		j;
+	char	*new_line;
+
+	if (check == 1)
+	{
+		fd = open(line, O_RDONLY);
+		new_line = get_next_line(fd);
+		split = ft_split(new_line, ' ');
+	}
+	else
+		split = ft_split(line, ' ');
+	i = 0;
+	while (split[i])
+		i++;
+	j = 0;
+	while (split[j])
+		free(split[j++]);
+	free(split);
+	if (check == 1)
+		free(new_line);
+	return (i);
 }
 
 static int	count_lines(t_data *data, char *argv)
@@ -54,7 +83,7 @@ static int	count_lines(t_data *data, char *argv)
 	{
 		if (*line == '\0')
 			break ;
-		len = count_values(line);
+		len = count_values(line, 0);
 		if (len > cols)
 			cols = len;
 		if (cols == len) 
@@ -75,19 +104,30 @@ static int	count_lines(t_data *data, char *argv)
 static void	get_values(t_data *data, int x, int y, char *line)
 {
 	int		i;
+	int		j;
 	char	**split;
 
 	split = ft_split(line, ' ');
-	if (split)
+	if (!split)
+		printf("Not a valid file! >_<");
+	i = 0;
+	while (split[i] && (x != data->rect.width))
 	{
-		i = 0;
-		while (split[i] && (x != data->rect.width))
-		{
-			data->rect.values[y][x] = ft_atoi(split[i++]);
-			x += 1;
-		}
-		free(split);
+		data->rect.values[y][x] = ft_atoi(split[i]);
+		j = 0;
+		while (split[i][j] != ',' && split[i][j])
+			j++;
+		if (split[i][j++] == ',')
+			data->rect.color_map[y][x] = ft_atoh(&split[i][j]);
+		else
+			data->rect.color_map[y][x] = ft_atoi("0");
+		i++;
+		x++;
 	}
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }
 
 void	read_lines(t_data *data, int fd)
@@ -102,6 +142,7 @@ void	read_lines(t_data *data, int fd)
 	while (line != NULL && y != data->rect.height)
 	{
 		data->rect.values[y] = (int *)malloc(sizeof(int) * data->rect.width);
+		data->rect.color_map[y] = (int *)malloc(sizeof(int) * data->rect.width);
 		if (!(data->rect.values[y]))
 			printf("Memory Allocation failed! :O");
 		get_values(data, x, y, line);
@@ -121,6 +162,7 @@ void	fdf_read(char *argv, t_data *data)
 	if (fd < 0)
 		printf("Error opening file! :(");
 	data->rect.values = (int **)malloc(sizeof(int *) * data->rect.height);
+	data->rect.color_map = (int **)malloc(sizeof(int *) * data->rect.height);
 	if (!(data->rect.values))
 		printf("Memory Allocation failed! :O");
 	read_lines(data, fd);

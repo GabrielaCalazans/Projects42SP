@@ -6,11 +6,12 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/07 16:10:59 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:34:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
+
 
 static void	put_pixel(t_data *data, int x, int y, double uvector)
 {
@@ -19,10 +20,10 @@ static void	put_pixel(t_data *data, int x, int y, double uvector)
 	if ((x > 0 && y > 0) && (x < WINDOW_WIDTH && y < WINDOW_HEIGHT))
 	{
 		pos = (x * 4) + (y * WINDOW_WIDTH * 4);
-		data->img.addr[pos] = data->color.red + uvector;
-		data->img.addr[pos + 1] = data->color.green + uvector;
-		data->img.addr[pos + 2] = data->color.blue + uvector;
-		data->img.addr[pos + 3] = 0x7F + uvector;
+		data->img.addr[pos] = data->rect.color + uvector;
+		data->img.addr[pos + 1] = data->rect.color + uvector;
+		data->img.addr[pos + 2] = data->rect.color + uvector;
+		data->img.addr[pos + 3] = 0x7F;
 	}
 }
 
@@ -121,6 +122,7 @@ int	fdf_draw(t_data *data)
 		{
 			data->rect.x0 = x;
 			data->rect.y0 = y;
+			data->rect.color = data->rect.color_map[y][x];
 			if (data->rect.width > x + 1)
 				draw_horizontal(data, x, y);
 			if (data->rect.height > y + 1)
