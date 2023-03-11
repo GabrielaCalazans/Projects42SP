@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/09 01:14:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:00:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img; // was void *img;
-	char	*addr;
+	// char	*addr;
 	// int		bits_per_pixel; // for main.c
 	// int		line_length; // for main.c
 	// int		endian; // for main.c

@@ -6,24 +6,29 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/09 23:34:59 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:12:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
 
 
-static void	put_pixel(t_data *data, int x, int y, double uvector)
+static void	put_pixel(t_data *data, int x, int y)
 {
 	int		pos;
+	// char		*dest;
 
 	if ((x > 0 && y > 0) && (x < WINDOW_WIDTH && y < WINDOW_HEIGHT))
 	{
 		pos = (x * 4) + (y * WINDOW_WIDTH * 4);
-		data->img.addr[pos] = data->rect.color + uvector;
-		data->img.addr[pos + 1] = data->rect.color + uvector;
-		data->img.addr[pos + 2] = data->rect.color + uvector;
-		data->img.addr[pos + 3] = 0x7F;
+		
+		// dest = &data->img.addr[pos];
+		// *(int*)dest = data->rect.color;
+		
+		data->img.addr[pos] = data->rect.color;
+		// data->img.addr[pos + 1] = data->rect.color + uvector;
+		// data->img.addr[pos + 2] = data->rect.color + uvector;
+		data->img.addr[pos + 1] = 0x7F;
 	}
 }
 
@@ -48,7 +53,7 @@ static void	draw_lines(t_data *data)
 	delta_y /= uvector;
 	while (uvector > 0)
 	{
-		put_pixel(data, x, y, uvector);
+		put_pixel(data, x, y);
 		x += delta_x;
 		y += delta_y;
 		uvector -= 1;

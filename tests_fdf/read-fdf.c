@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/10 00:03:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:15:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	fdf_read(char *argv, t_data *data)
 		printf("Error opening file! :(");
 	data->rect.values = (int **)malloc(sizeof(int *) * data->rect.height);
 	data->rect.color_map = (int **)malloc(sizeof(int *) * data->rect.height);
-	if (!(data->rect.values))
+	if (!(data->rect.values || data->rect.color_map))
 		printf("Memory Allocation failed! :O");
 	read_lines(data, fd);
 	if (close(fd) < 0)
