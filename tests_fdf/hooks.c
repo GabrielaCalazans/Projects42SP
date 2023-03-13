@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:38:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/09 01:32:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:15:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	reset_map(t_data *data)
 	// data->rect.height = 300;
 	data->rect.isometric = 1;
 	data->rect.zoom = zoom_change(data);
-	data->rect.color = 0x00CC0000;
-	// data->color.green = 0x4F;
-	// data->color.blue = 0x4F;
+	data->color.red = 0x4F;
+	data->color.green = 0x4F;
+	data->color.blue = 0x4F;
 }
 
 void	isometric_change(t_data *data)

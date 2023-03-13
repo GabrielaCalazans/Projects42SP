@@ -6,14 +6,14 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/11 20:12:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:15:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
 
 
-static void	put_pixel(t_data *data, int x, int y)
+static void	put_pixel(t_data *data, int x, int y, double uvector)
 {
 	int		pos;
 	// char		*dest;
@@ -25,16 +25,12 @@ static void	put_pixel(t_data *data, int x, int y)
 		// dest = &data->img.addr[pos];
 		// *(int*)dest = data->rect.color;
 		
-		data->img.addr[pos] = data->rect.color;
-		// data->img.addr[pos + 1] = data->rect.color + uvector;
-		// data->img.addr[pos + 2] = data->rect.color + uvector;
-		data->img.addr[pos + 1] = 0x7F;
+		data->img.addr[pos] = data->color.red + uvector;
+		data->img.addr[pos + 1] = data->color.blue + uvector;
+		data->img.addr[pos + 2] = data->color.green + uvector;
+		data->img.addr[pos + 3] = 0x7F;
 	}
 }
-
-// ** Connect the values with lines, and draw each line pixel by pixel.
-// ** Calculates the unit vector between the difference of each point (x and y),
-// ** to get the correct length when the z_value increases or decreases.
 
 static void	draw_lines(t_data *data)
 {
@@ -53,19 +49,12 @@ static void	draw_lines(t_data *data)
 	delta_y /= uvector;
 	while (uvector > 0)
 	{
-		put_pixel(data, x, y);
+		put_pixel(data, x, y, uvector);
 		x += delta_x;
 		y += delta_y;
 		uvector -= 1;
 	}
 }
-
-// ** Draw the map, depending on the angles, the zoom level, 
-// the position (defined)
-// ** by the average value of the window size, and if the user 
-// has moved the map,
-// ** and the z_value (isometric).
-// ** Will draw horizontal lines (x axis).
 
 static void	draw_horizontal(t_data *data, int x, int y)
 {
@@ -86,13 +75,6 @@ static void	draw_horizontal(t_data *data, int x, int y)
 	data->rect.y1 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
 	draw_lines(data);
 }
-
-// ** Draw the map, depending on the angles, the zoom 
-// level, the position (defined)
-// ** by the average value of the window size, and if 
-// the user has moved the map,
-// ** and the z_value (isometric).
-// ** Will draw vertical lines (y axis).
 
 static void	draw_vertical(t_data *data, int x, int y)
 {

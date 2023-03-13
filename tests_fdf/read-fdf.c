@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/11 16:15:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:17:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,76 @@ int	ft_atoh(char *hex)
 	return (dec);
 }
 
-static int	count_values(char *line, int check) // still can't think in a solution to see only int and ignored hex n
-{
-	int		fd;
-	char	**split;
-	int		i;
-	int		j;
-	char	*new_line;
+// static int	count_values0(char *line) // still can't think in a solution to see only int and ignored hex n
+// {
+// 	int		len;
+// 	int		i;
 
-	if (check == 1)
-	{
-		fd = open(line, O_RDONLY);
-		new_line = get_next_line(fd);
-		split = ft_split(new_line, ' ');
-	}
-	else
-		split = ft_split(line, ' ');
+// 	len = 0;
+// 	i = 0;
+// 	while (line[i])
+// 	{
+// 		if (ft_isdigit(line[i]))
+// 		{
+// 			len += 1;
+// 			while (ft_isdigit(line[i]))
+// 				i += 1;
+// 		}
+// 		else if (line[i] != ' ' && line[i] != '-')
+// 			printf("Invalid characters or read error...lel ???（ ^_^)");
+// 		i += 1;
+// 	}
+// 	return (len);
+// }
+
+static int	count_values1(char *line)
+{
+	int		len;
+	int		i;
+
+	len = 1;
 	i = 0;
-	while (split[i])
+	while (line[i])
+	{
+		
+		if (ft_isdigit(line[i]) && (line[i + 1] == ' ' && line[i + 2] != '\n'))
+		{
+			len += 1;
+			// while (ft_isdigit(line[i]))
+			// 	i += 1;
+		}
 		i++;
-	j = 0;
-	while (split[j])
-		free(split[j++]);
-	free(split);
-	if (check == 1)
-		free(new_line);
-	return (i);
+	}
+	return (len);
 }
+
+// static int	count_values(char *line)
+// {
+// 	// int		fd;
+// 	char	**split;
+// 	int		i;
+// 	// int		j;
+// 	// char	*new_line;
+
+// 	// if (check == 1)
+// 	// {
+// 	// 	fd = open(line, O_RDONLY);
+// 	// 	new_line = get_next_line(fd);
+// 	// 	split = ft_split(new_line, ' ');
+// 	// }
+// 	// else
+// 		split = ft_split(line, ' ');
+// 	i = 0;
+// 	while (split[i])
+// 		i++;
+// 	// j = 0;
+// 	// while (split[j])
+// 	// 	free(split[j++]);
+// 	// free(split);
+// 	// if (check == 1)
+// 	// 	free(new_line);
+// 	return (i);
+// }
 
 static int	count_lines(t_data *data, char *argv)
 {
@@ -83,13 +126,13 @@ static int	count_lines(t_data *data, char *argv)
 	{
 		if (*line == '\0')
 			break ;
-		len = count_values(line, 0);
+		len = count_values1(line);
 		if (len > cols)
 			cols = len;
-		if (cols == len) 
+		if (cols == len)
 			rows += 1;
 		else
-			printf("Not a valid file! >_<");
+			printf("Not a valid file! 3 >_<");
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -97,7 +140,7 @@ static int	count_lines(t_data *data, char *argv)
 		printf("Error closing file! WTF?! :)");
 	data->rect.width = cols;
 	if (!(data->rect.width == cols))
-		printf("Not a valid file! >_<");
+		printf("Not a valid file! 2 >_<");
 	return (rows);
 }
 
@@ -109,7 +152,7 @@ static void	get_values(t_data *data, int x, int y, char *line)
 
 	split = ft_split(line, ' ');
 	if (!split)
-		printf("Not a valid file! >_<");
+		printf("Not a valid file! 1 0 >_<");
 	i = 0;
 	while (split[i] && (x != data->rect.width))
 	{
@@ -120,7 +163,7 @@ static void	get_values(t_data *data, int x, int y, char *line)
 		if (split[i][j++] == ',')
 			data->rect.color_map[y][x] = ft_atoh(&split[i][j]);
 		else
-			data->rect.color_map[y][x] = ft_atoi("0");
+			data->rect.color_map[y][x] = 0;
 		i++;
 		x++;
 	}
@@ -144,7 +187,7 @@ void	read_lines(t_data *data, int fd)
 		data->rect.values[y] = (int *)malloc(sizeof(int) * data->rect.width);
 		data->rect.color_map[y] = (int *)malloc(sizeof(int) * data->rect.width);
 		if (!(data->rect.values[y]))
-			printf("Memory Allocation failed! :O");
+			printf("Memory Allocation failed! 2 :O");
 		get_values(data, x, y, line);
 		x = 0;
 		y += 1;
