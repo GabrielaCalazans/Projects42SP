@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/14 11:05:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:04:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	ft_atoh(char *hex)
 	return (dec);
 }
 
-// static int	count_values0(char *line) // still can't think in a solution to see only int and ignored hex n
+// still can't think in a solution to see only int and ignored hex n
+// static int	count_values0(char *line)
 // {
 // 	int		len;
 // 	int		i;
@@ -66,7 +67,6 @@ int	ft_atoh(char *hex)
 // 	i = 0;
 // 	while (line[i])
 // 	{
-		
 // 		if (ft_isdigit(line[i]) && (line[i + 1] == ' ' && line[i + 2] != '\n'))
 // 		{
 // 			len += 1;

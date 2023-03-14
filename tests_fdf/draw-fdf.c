@@ -6,25 +6,18 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/13 16:15:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:44:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
 
-
 static void	put_pixel(t_data *data, int x, int y, double uvector)
 {
 	int		pos;
-	// char		*dest;
-
 	if ((x > 0 && y > 0) && (x < WINDOW_WIDTH && y < WINDOW_HEIGHT))
 	{
 		pos = (x * 4) + (y * WINDOW_WIDTH * 4);
-		
-		// dest = &data->img.addr[pos];
-		// *(int*)dest = data->rect.color;
-		
 		data->img.addr[pos] = data->color.red + uvector;
 		data->img.addr[pos + 1] = data->color.blue + uvector;
 		data->img.addr[pos + 2] = data->color.green + uvector;
@@ -110,6 +103,7 @@ int	fdf_draw(t_data *data)
 			data->rect.x0 = x;
 			data->rect.y0 = y;
 			data->rect.color = data->rect.color_map[y][x];
+			printf("color: [%d]", data->rect.color);
 			if (data->rect.width > x + 1)
 				draw_horizontal(data, x, y);
 			if (data->rect.height > y + 1)
