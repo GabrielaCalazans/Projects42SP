@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:40:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/13 19:17:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:05:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,28 @@ int	ft_atoh(char *hex)
 // 	return (len);
 // }
 
-static int	count_values1(char *line)
-{
-	int		len;
-	int		i;
+// static int	count_values1(char *line)
+// {
+// 	int		len;
+// 	int		i;
 
-	len = 1;
-	i = 0;
-	while (line[i])
-	{
+// 	len = 1;
+// 	i = 0;
+// 	while (line[i])
+// 	{
 		
-		if (ft_isdigit(line[i]) && (line[i + 1] == ' ' && line[i + 2] != '\n'))
-		{
-			len += 1;
-			// while (ft_isdigit(line[i]))
-			// 	i += 1;
-		}
-		i++;
-	}
-	return (len);
-}
+// 		if (ft_isdigit(line[i]) && (line[i + 1] == ' ' && line[i + 2] != '\n'))
+// 		{
+// 			len += 1;
+// 			// while (ft_isdigit(line[i]))
+// 			// 	i += 1;
+			// while (line[i] != ' ' && line[i] != '\n' && line[i])
+			// 	i++;
+// 		}
+// 		i++;
+// 	}
+// 	return (len);
+// }
 
 // static int	count_values(char *line)
 // {
@@ -106,6 +108,25 @@ static int	count_values1(char *line)
 // 	return (i);
 // }
 
+static int	count_values_mark(char *line)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+	{
+		while (line[i] == ' ')
+			i++;
+		if (line[i] != '\n' && line[i] != '\0')
+			len++;
+		while (line[i] != ' ' && line[i] != '\n' && line[i] != '\0')
+			i++;
+	}
+	return (len);
+}
+
 static int	count_lines(t_data *data, char *argv)
 {
 	int		fd;
@@ -126,7 +147,7 @@ static int	count_lines(t_data *data, char *argv)
 	{
 		if (*line == '\0')
 			break ;
-		len = count_values1(line);
+		len = count_values_mark(line);
 		if (len > cols)
 			cols = len;
 		if (cols == len)
