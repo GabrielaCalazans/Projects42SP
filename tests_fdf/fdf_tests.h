@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/11 20:00:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:59:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@
 # define MAGIC_ZOOM		(2)
 # define MLX_ERROR 1
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-}			t_vars;
+// typedef struct s_vars
+// {
+// 	void	*mlx;
+// 	void	*win;
+// }			t_vars;
 
 typedef struct s_img
 {
@@ -84,11 +84,12 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img; // was void *img;
+	t_rect	rect;
 	// char	*addr;
 	// int		bits_per_pixel; // for main.c
 	// int		line_length; // for main.c
 	// int		endian; // for main.c
-	t_rect	rect;
+
 	t_color	color;
 }			t_data;
 

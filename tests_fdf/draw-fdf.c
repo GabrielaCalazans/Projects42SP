@@ -6,15 +6,23 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/14 17:44:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:42:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_tests.h"
 
+void	set_colors(t_data *data, int x, int y)
+{
+	data->color.red = (data->rect.color_map[y][x] >> 16) & 0xFF;
+	data->color.green = (data->rect.color_map[y][x] >> 8) & 0xFF;
+	data->color.blue = data->rect.color_map[y][x] & 0xFF;
+}
+
 static void	put_pixel(t_data *data, int x, int y, double uvector)
 {
 	int		pos;
+
 	if ((x > 0 && y > 0) && (x < WINDOW_WIDTH && y < WINDOW_HEIGHT))
 	{
 		pos = (x * 4) + (y * WINDOW_WIDTH * 4);
@@ -102,8 +110,9 @@ int	fdf_draw(t_data *data)
 		{
 			data->rect.x0 = x;
 			data->rect.y0 = y;
-			data->rect.color = data->rect.color_map[y][x];
-			printf("color: [%d]", data->rect.color);
+			// data->rect.color = data->rect.color_map[y][x];
+			// printf("color_map[y:%d][x:%d] color: [%d] ", y, x, data->rect.color);
+			set_colors(data, x, y);
 			if (data->rect.width > x + 1)
 				draw_horizontal(data, x, y);
 			if (data->rect.height > y + 1)
