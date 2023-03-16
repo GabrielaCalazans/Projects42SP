@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/15 17:42:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/15 23:16:57 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	put_pixel(t_data *data, int x, int y, double uvector)
 		data->img.addr[pos] = data->color.red + uvector;
 		data->img.addr[pos + 1] = data->color.blue + uvector;
 		data->img.addr[pos + 2] = data->color.green + uvector;
-		data->img.addr[pos + 3] = 0x7F;
+		data->img.addr[pos + 3] = 0x7F + uvector;
 	}
 }
 

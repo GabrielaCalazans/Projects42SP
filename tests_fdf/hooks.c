@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:38:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/15 14:43:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/16 01:13:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	reset_map(t_data *data)
 	data->rect.isometric = 1;
 	// data->rect.color = 0x4F;
 	data->rect.zoom = zoom_change(data);
-	// data->color.red = 0x4F;
-	// data->color.green = 0x4F;
-	// data->color.blue = 0x4F;
+	data->color.red = 0x4F;
+	data->color.green = 0x4F;
+	data->color.blue = 0x4F;
 }
 
 void	isometric_change(t_data *data)
@@ -86,9 +86,9 @@ int	fdf_keys(int keycode, t_data *data)
 		data->rect.zoom += 1;
 	else if ((keycode == KEY_X) && (data->rect.zoom > MAX_ZOOM))
 		data->rect.zoom -= 1;
-	else if ((keycode == KEY_M) && (data->rect.z_value < MAX_X))
+	else if ((keycode == KEY_N) && (data->rect.z_value < MAX_X))
 		data->rect.z_value += 0.25;
-	else if ((keycode == KEY_N) && (data->rect.z_value > -MAX_X))
+	else if ((keycode == KEY_M) && (data->rect.z_value > -MAX_X))
 		data->rect.z_value -= 0.25;
 	else if (keycode == KEY_SPACE)
 		isometric_change(data);
