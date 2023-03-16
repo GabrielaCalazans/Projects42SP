@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:44:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:40:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/16 02:36:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,37 @@ static void	draw_horizontal(t_fdf *fdf, int x, int y)
 	draw_lines(fdf);
 }
 
+// static void	draw_horizontal(t_fdf *fdf, int x, int y)
+// {
+// 	int		xt;
+// 	int		yt;
+
+// 	xt = x - fdf->map.width / 2;
+// 	yt = y - fdf->map.height / 2;
+
+// 	fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom;
+// 	fdf->map.x0 += fdf->map.coordinate_x * fdf->map.zoom;
+// 	fdf->map.x0 += WIN_WIDTH / 2;
+// 	fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom;
+// 	fdf->map.y0 += fdf->map.coordinate_y * fdf->map.zoom;
+// 	fdf->map.y0 += WIN_HEIGHT / 2;
+// 	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
+// 	fdf->map.x1 = fdf->map.angle_x * ((xt + 1) - yt) * fdf->map.zoom;
+// 	fdf->map.x1 += fdf->map.coordinate_x * fdf->map.zoom;
+// 	fdf->map.x1 += WIN_WIDTH / 2;
+// 	fdf->map.y1 = fdf->map.angle_y * ((xt + 1) + yt) * fdf->map.zoom;
+// 	fdf->map.y1 += fdf->map.coordinate_y * fdf->map.zoom;
+// 	fdf->map.y1 += WIN_HEIGHT / 2;
+// 	fdf->map.y1 -= fdf->map.values[y][x + 1] * fdf->map.z_value;
+// 	draw_lines(fdf);
+// }
+
+
+	// fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom + (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	// fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom - fdf->map.values[y][x] * fdf->map.z_value + (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	// fdf->map.x1 = fdf->map.angle_x * ((xt + 1) - yt) * fdf->map.zoom + (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	// fdf->map.y1 = fdf->map.angle_y * ((xt + 1) + yt) * fdf->map.zoom - fdf->map.values[y][x + 1] * fdf->map.z_value + (WIN_HEIGHT / 2) + coordinate_y;
+
 // ** Draw the map, depending on the angles, the zoom level, the position (defined)
 // ** by the average value of the window size, and if the user has moved the map,
 // ** and the x value (isometric).
@@ -89,6 +120,26 @@ static void	draw_vertical(t_fdf *fdf, int x, int y)
 	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
 	draw_lines(fdf);
 }
+
+// static void	draw_vertical(t_fdf *fdf, int x, int y)
+// {
+// 	int	xt;
+// 	int	yt;
+
+// 	xt = x - fdf->map.width / 2;
+// 	yt = y - fdf->map.height / 2;
+// 	fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom;
+// 	fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom;
+// 	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
+// 	fdf->map.x1 = fdf->map.angle_x * (xt - (yt + 1)) * fdf->map.zoom;
+// 	fdf->map.y1 = fdf->map.angle_y * (xt + (yt + 1)) * fdf->map.zoom;
+// 	fdf->map.y1 -= fdf->map.values[y + 1][x] * fdf->map.z_value;
+// 	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coordinate_x - (fdf->map.width / 2 * fdf->map.zoom);
+// 	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coordinate_x - (fdf->map.width / 2 * fdf->map.zoom);
+// 	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y - (fdf->map.height / 2 * fdf->map.zoom);
+// 	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y - (fdf->map.height / 2 * fdf->map.zoom);
+// 	draw_lines(fdf);
+// }
 
 // ** Draw the map by image.
 // ** Creates a new one, and destroys the old one whenever an action occures.
