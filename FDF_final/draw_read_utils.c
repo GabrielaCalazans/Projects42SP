@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:29:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:29:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,23 @@ void	put_pixel(t_fdf *fdf, int x, int y, double uvector)
 		fdf->image.data[pos + 2] = fdf->color.blue + uvector;
 		fdf->image.data[pos + 3] = 0x7F + uvector;
 	}
+}
+
+int	open_closing_fd(char *argv, int check, int fd)
+{
+	if (check == 1)
+	{
+		fd = open(argv, O_RDONLY);
+		if (fd < 0)
+			ft_puterror("Error opening file! :(", 1);
+		return (fd);
+	}
+	if (check == 0)
+	{
+		(void)argv;
+		close (fd);
+		if (fd < 0)
+			printf("Error closing file! WTF?! :)");
+	}
+	return (fd);
 }

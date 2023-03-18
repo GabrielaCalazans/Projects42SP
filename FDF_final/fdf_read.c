@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:21:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:15:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	count_lines(t_fdf *fdf, char *argv)
 		len = count_values_mark(line);
 		if (len > cols)
 			cols = len;
-		if (cols == len) 
+		if (cols == len)
 			rows += 1;
 		else
 			ft_puterror("Not a valid file! 1 >_<", 4);

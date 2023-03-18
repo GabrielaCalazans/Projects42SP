@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:24:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:01:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,35 @@
 # include "keys.h"
 # include "./libft/libft.h"
 
-// ** Macros for the max value of x coordinate, the window size (width and height),
+// ** Macros for the max value of x coordinate, the window size 
+// ** (width and height),
 // ** and the title of the window (removing the .fdf extension).
 
-# define MAX_X			(10)
-# define MAX_ZOOM		(5)
-# define MAGIC_ZOOM		(2) // thinking if it makes any sense to use this, makes errors in case og big maps
-# define WIN_WIDTH		(1280)
-# define WIN_HEIGHT		(720)
-
+# define MAX_X		(10)
+# define MAX_ZOOM	(5)
+# define MAGIC_ZOOM	(1)
+# define WIN_WIDTH	(1366)
+# define WIN_HEIGHT	(768)
 
 // ** FDF Structures
 // ** @t_mlx	: required minilibx arguments.
 // ** @t_image	: variables to be used for creation of the image (map).
-// **			  data -> information about the image, allowing to be modified.
-// **			  size -> move from one line to another in the image.
-// **			  endian -> how the pixel color in the image needs to be stored.
-// **			  bpp -> filled with the number of bits to represent a pixel color.
+// **		data -> information about the image, allowing to be modified.
+// **		size -> move from one line to another in the image.
+// **		endian -> how the pixel color in the image needs to be stored.
+// **		bpp -> filled with the number of bits to represent a pixel color.
 // ** @t_map	: values used to manipulate the fdf map.
 // ** @t_color	: define the color, rgb value (24-bits).
 // ** @t_fdf	: nested structure that calls all of the other structures.
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*init;
 	void	*win;
 	void	*img;
 }				t_mlx;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	char	*data;
 	int		size;
@@ -62,7 +62,7 @@ typedef struct	s_image
 	int		bpp;
 }				t_image;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int		**values;
 	int		**color_map;
@@ -81,14 +81,14 @@ typedef struct	s_map
 	double	angle_y;
 }				t_map;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int		red;
 	int		green;
 	int		blue;
 }				t_color;
 
-typedef struct	s_fdf
+typedef struct s_fdf
 {
 	t_mlx	mlx;
 	t_map	map;
@@ -106,5 +106,6 @@ void	ft_puterror(char *msg, int ret);
 int		ft_atoh(char *hex);
 void	set_colors(t_fdf *fdf, int x, int y);
 void	put_pixel(t_fdf *fdf, int x, int y, double uvector);
+int		esc_close(t_fdf *fdf);
 
 #endif

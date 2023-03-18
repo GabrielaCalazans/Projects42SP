@@ -6,19 +6,29 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:13:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:53:07 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:33:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
 int	close_win(t_fdf *fdf)
 {
 	mlx_destroy_image(fdf->mlx.init, fdf->mlx.img);
 	mlx_destroy_window(fdf->mlx.init, fdf->mlx.img);
+	mlx_destroy_display(fdf->mlx.init);
 	free(fdf->mlx.init);
 	exit(0);
+}
+
+int	esc_close(t_fdf *fdf)
+{
+	mlx_destroy_image(fdf->mlx.init, fdf->mlx.img);
+	mlx_destroy_window(fdf->mlx.init, fdf->mlx.win);
+	mlx_destroy_display(fdf->mlx.init);
+	free(fdf->mlx.init);
+	exit(0);
+	return (0);
 }
 
 // ** Outputs the string msg to the standard output followed by an exit of the
@@ -37,12 +47,11 @@ static void	fdf_usage(char *argv0)
 	(void) argv0;
 	ft_putstr_fd("FDF Usage:\n\t", 1);
 	ft_putstr_fd("Controls:\n", 1);
-	ft_putstr_fd("\t[Esc]        -> Exit the program.\n", 1);
-	ft_putstr_fd("\t[R]          -> Reset the map.\n", 1);
-//	ft_putstr_fd("\t[M]          -> Colorize this shit!.\n", 1);
-	ft_putstr_fd("\t[Z][X]       -> Zoom in and zoom out.\n", 1);
-	ft_putstr_fd("\t[N][M]       -> Spiky time!\n", 1);
-	ft_putstr_fd("\t[Space]      -> Change the camera (isometric <-> plain).\n", 1);
+	ft_putstr_fd("\t[Esc]   -> Exit the program.\n", 1);
+	ft_putstr_fd("\t[R]     -> Reset the map.\n", 1);
+	ft_putstr_fd("\t[Z][X]  -> Zoom in and zoom out.\n", 1);
+	ft_putstr_fd("\t[N][M]  -> Spiky time!\n", 1);
+	ft_putstr_fd("\t[Space] -> Change the camera (isometric <-> plain).\n", 1);
 	ft_putstr_fd("\t[Arrow Key] or [W][A][S][D] -> Move the map.\n", 1);
 }
 
@@ -51,7 +60,7 @@ static void	fdf_usage(char *argv0)
 // ** and getting the keyboard inputs.
 // ** Didn't used mlx_key_hook, because I wanted to press and hold the keys :D
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_fdf	*fdf;
 
@@ -63,14 +72,16 @@ int		main(int argc, char *argv[])
 		fdf_read(argv[1], fdf);
 		reset_map(fdf);
 		fdf->mlx.init = mlx_init();
-		fdf->mlx.win = mlx_new_window(fdf->mlx.init, WIN_WIDTH, WIN_HEIGHT, "FDF");
+		fdf->mlx.win = mlx_new_window(fdf->mlx.init, WIN_WIDTH, \
+								WIN_HEIGHT, "FDF");
 		fdf->mlx.img = mlx_new_image(fdf->mlx.init, WIN_WIDTH, WIN_HEIGHT);
-		fdf->image.data = mlx_get_data_addr(fdf->mlx.img, &fdf->image.bpp, &fdf->image.size, &fdf->image.endian);
+		fdf->image.data = mlx_get_data_addr(fdf->mlx.img, &fdf->image.bpp, \
+								&fdf->image.size, &fdf->image.endian);
 		mlx_loop_hook(fdf->mlx.init, render_fdf_draw, fdf);
 		mlx_hook(fdf->mlx.win, 2, 3, &key_events, fdf);
 		mlx_hook(fdf->mlx.win, 17, 0L, &close_win, fdf);
 		mlx_loop(fdf->mlx.init);
-		free(fdf->mlx.init); // LEAK HERE
+		free(fdf->mlx.init);
 	}
 	else
 		fdf_usage(argv[0]);

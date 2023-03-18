@@ -6,29 +6,20 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 00:46:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:27:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:03:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	esc_close(t_fdf *fdf)
-{
-	mlx_destroy_image(fdf->mlx.init, fdf->mlx.img);
-	mlx_destroy_window(fdf->mlx.init, fdf->mlx.win);
-	free(fdf->mlx.init);
-	exit(0);
-	return (0);
-}
 
 static int	zoom_change(t_fdf *fdf)
 {
 	int	result;
 
 	if (fdf->map.width > fdf->map.height)
-		result = (WIN_WIDTH / fdf->map.width);
+		result = (WIN_WIDTH / fdf->map.width) + MAGIC_ZOOM;
 	else
-		result = (WIN_HEIGHT / fdf->map.height);
+		result = (WIN_HEIGHT / fdf->map.height) + MAGIC_ZOOM;
 	return (result);
 }
 
@@ -39,8 +30,8 @@ void	reset_map(t_fdf *fdf)
 	fdf->map.coordinate_y = 0;
 	fdf->map.coordinate_x = 0;
 	fdf->map.z_value = 1.00;
-	fdf->map.angle_x = cos(M_PI / 3); // é meio 1/2 0,5
-	fdf->map.angle_y = fdf->map.angle_x * sin(M_PI / 6); // é meio 1/2 0,5
+	fdf->map.angle_x = cos(M_PI / 3);
+	fdf->map.angle_y = fdf->map.angle_x * sin(M_PI / 6);
 	fdf->map.isometric = 1;
 	fdf->map.zoom = zoom_change(fdf);
 	fdf->color.red = 0x4F;
@@ -56,7 +47,8 @@ static void	isometric_change(t_fdf *fdf)
 		fdf->map.angle_y *= 5;
 }
 
-// ** Assign a key code (macros defined in "includes/keys.h") to a specific task,
+// ** Assign a key code (macros defined in "includes/keys.h")
+// ** to a specific task,
 // ** like changing colors, moving the map, changing the view, zoom level, etc.
 // ** There is an ugly code for changing the view (angle) of the map, because of
 // ** norm... I guess? Everytime "map.isometric" isn't even, rotate the map.
@@ -67,8 +59,6 @@ static int	fdf_keys(int keycode, t_fdf *fdf)
 		esc_close(fdf);
 	else if (keycode == KEY_R)
 		reset_map(fdf);
-//	else if (keycode == KEY_C)
-//		wishing_a_random_color_func(fdf);
 	else if (keycode == KEY_W || keycode == KEY_UPARROW)
 		fdf->map.coordinate_y -= 1;
 	else if (keycode == KEY_S || keycode == KEY_DOWNARROW)
@@ -95,7 +85,7 @@ int	key_events(int key, t_fdf *fdf)
 	fdf_keys(key, fdf);
 	mlx_clear_window(fdf->mlx.init, fdf->mlx.win);
 	mlx_destroy_image(fdf->mlx.init, fdf->mlx.img);
-	fdf->mlx.img  = mlx_new_image(fdf->mlx.init, WIN_WIDTH, WIN_HEIGHT);
+	fdf->mlx.img = mlx_new_image(fdf->mlx.init, WIN_WIDTH, WIN_HEIGHT);
 	render_fdf_draw((fdf));
 	mlx_put_image_to_window(fdf->mlx.init, fdf->mlx.win, fdf->mlx.img, 0, 0);
 	return (0);
