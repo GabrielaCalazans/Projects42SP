@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/18 16:29:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:47:35 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,20 @@ void	put_pixel(t_fdf *fdf, int x, int y, double uvector)
 	}
 }
 
-int	open_closing_fd(char *argv, int check, int fd)
-{
-	if (check == 1)
-	{
-		fd = open(argv, O_RDONLY);
-		if (fd < 0)
-			ft_puterror("Error opening file! :(", 1);
-		return (fd);
-	}
-	if (check == 0)
-	{
-		(void)argv;
-		close (fd);
-		if (fd < 0)
-			printf("Error closing file! WTF?! :)");
-	}
-	return (fd);
-}
+// void	count_lines_norm(char *line, int cols, int rows, int len)
+// {
+// 	while (line != NULL)
+// 	{
+// 		if (*line == '\0')
+// 			break ;
+// 		len = count_values_mark(line);
+// 		if (len > cols)
+// 			cols = len;
+// 		if (cols == len)
+// 			rows += 1;
+// 		else
+// 			ft_puterror("Not a valid file! 1 >_<", 4);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// }

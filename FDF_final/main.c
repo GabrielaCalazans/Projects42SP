@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:13:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/18 16:33:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:19:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	fdf_usage(char *argv0)
 {
 	(void) argv0;
 	ft_putstr_fd("FDF Usage:\n\t", 1);
+	ft_putstr_fd("FDF Select one Map at maps/test_map/...:\n\t", 1);
 	ft_putstr_fd("Controls:\n", 1);
 	ft_putstr_fd("\t[Esc]   -> Exit the program.\n", 1);
 	ft_putstr_fd("\t[R]     -> Reset the map.\n", 1);
