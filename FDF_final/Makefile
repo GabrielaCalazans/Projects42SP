@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/16 01:28:30 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/20 19:22:39 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,11 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 # Compiling OBJ
-%.o: %.c 
+%.o: %.c
 	@echo "¯\_(ツ)_/¯ MAKING OBJS, Please wait..."
 	$(CC) $(FLAGS) -c $<
 
-# Compiling FDF
+# Compiling FDF RESOLVER NO-PIE
 $(NAME): $(OBJ_FILES)
 	@echo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compiling... Wait a sec."
 	@cc -no-pie $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)

@@ -6,32 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/18 20:13:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:59:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// ** Gets the number values in each line from the fdf file.
-
-static int	count_values_mark(char *line)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-	{
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '\n' && line[i] != '\0')
-			len++;
-		while (line[i] != ' ' && line[i] != '\n' && line[i] != '\0')
-			i++;
-	}
-	return (len);
-}
 
 // ** Count and returns the number of lines (rows) that the file has.
 // ** This value is used to allocate the correct memory size
@@ -39,11 +18,13 @@ static int	count_values_mark(char *line)
 // ** If the total values from every line is not equal to the other lines,
 // ** there is an error with the fdf file... lel.
 
-void	test(char *line, int fd, int *cols, int *rows)
+static void	count_lines_cont(int fd, int *cols, int *rows)
 {
-	int	len;
+	int		len;
+	char	*line;
 
 	len = 0;
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		if (*line == '\0')
@@ -65,15 +46,13 @@ static int	count_lines(t_fdf *fdf, char *argv)
 	int		fd;
 	int		rows;
 	int		cols;
-	char	*line;
 
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 		ft_puterror("Error opening file! :(", 1);
 	rows = 0;
 	cols = 0;
-	line = get_next_line(fd);
-	test(line, fd, &cols, &rows);
+	count_lines_cont(fd, &cols, &rows);
 	if (close(fd) < 0)
 		ft_puterror("Error closing file! WTF?! :)", 2);
 	fdf->map.width = cols;

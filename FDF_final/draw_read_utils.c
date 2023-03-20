@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/18 19:47:35 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:10:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,32 @@ int	ft_atoh(char *hex)
 	return (dec);
 }
 
+// ** Gets the number values in each line from the fdf file.
+
+int	count_values_mark(char *line)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+	{
+		while (line[i] == ' ')
+			i++;
+		if (line[i] != '\n' && line[i] != '\0')
+			len++;
+		while (line[i] != ' ' && line[i] != '\n' && line[i] != '\0')
+			i++;
+	}
+	return (len);
+}
+
 void	set_colors(t_fdf *fdf, int x, int y)
 {
-	fdf->color.red = (fdf->map.color_map[y][x] >> 16) & 0xFF;
-	fdf->color.green = (fdf->map.color_map[y][x] >> 8) & 0xFF;
-	fdf->color.blue = fdf->map.color_map[y][x] & 0xFF;
+	fdf->color.red = (fdf->map.color_map[y][x] >> 16);
+	fdf->color.green = (fdf->map.color_map[y][x] >> 8);
+	fdf->color.blue = fdf->map.color_map[y][x];
 }
 
 // ** Put a pixel in a specific position defined by the draw_lines() function.
@@ -55,24 +76,6 @@ void	put_pixel(t_fdf *fdf, int x, int y, double uvector)
 		fdf->image.data[pos] = fdf->color.red + uvector;
 		fdf->image.data[pos + 1] = fdf->color.green + uvector;
 		fdf->image.data[pos + 2] = fdf->color.blue + uvector;
-		fdf->image.data[pos + 3] = 0x7F + uvector;
+		fdf->image.data[pos + 3] = 0x7F;
 	}
 }
-
-// void	count_lines_norm(char *line, int cols, int rows, int len)
-// {
-// 	while (line != NULL)
-// 	{
-// 		if (*line == '\0')
-// 			break ;
-// 		len = count_values_mark(line);
-// 		if (len > cols)
-// 			cols = len;
-// 		if (cols == len)
-// 			rows += 1;
-// 		else
-// 			ft_puterror("Not a valid file! 1 >_<", 4);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// }
