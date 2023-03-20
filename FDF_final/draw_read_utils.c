@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/20 20:10:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:36:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int	count_values_mark(char *line)
 
 void	set_colors(t_fdf *fdf, int x, int y)
 {
+	if (fdf->map.color_map[y][x] == 0)
+		{
+			fdf->color.red = 0x4F;
+			fdf->color.green = 0x4F;
+			fdf->color.blue = 0x4F;
+		}
 	fdf->color.red = (fdf->map.color_map[y][x] >> 16);
 	fdf->color.green = (fdf->map.color_map[y][x] >> 8);
 	fdf->color.blue = fdf->map.color_map[y][x];

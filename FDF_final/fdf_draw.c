@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:44:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/20 20:10:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:41:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	draw_lines(t_fdf *fdf)
 	}
 }
 
-// ** Draw the map, depending on the angles, the zoom level, 
+// ** Draw the map, depending on the angles, the zoom level,
 // ** the position (defined)
-// ** by the average value of the window size, and if the 
+// ** by the average value of the window size, and if the
 // ** user has moved the map,
 // ** and the x value (isometric).
 // ** Will draw horizontal lines (x axis).
