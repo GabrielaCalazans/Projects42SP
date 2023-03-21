@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/20 20:36:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:50:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,22 @@ int	count_values_mark(char *line)
 	return (len);
 }
 
-void	set_colors(t_fdf *fdf, int x, int y)
+void set_colors(t_fdf *fdf, int x, int y)
 {
-	if (fdf->map.color_map[y][x] == 0)
-		{
-			fdf->color.red = 0x4F;
-			fdf->color.green = 0x4F;
-			fdf->color.blue = 0x4F;
-		}
-	fdf->color.red = (fdf->map.color_map[y][x] >> 16);
-	fdf->color.green = (fdf->map.color_map[y][x] >> 8);
-	fdf->color.blue = fdf->map.color_map[y][x];
+	int color;
+	
+	color = fdf->map.color_map[y][x];
+	fdf->color.red = (color >> 16) & 0xFF;
+	fdf->color.green = (color >> 8) & 0xFF;
+	fdf->color.blue = color & 0xFF;
+	// if we add 50 to a cada canal de cor // fuunciooonaaa 
+	fdf->color.red += 50;
+	fdf->color.green += 50;
+	fdf->color.blue += 50; // FUCK foi pro céu, explodiu de cor
+	// Limita o valor máximo de cada canal de cor a 255
+	fdf->color.red = fmin(fdf->color.red, 255);
+	fdf->color.green = fmin(fdf->color.green, 255);
+	fdf->color.blue = fmin(fdf->color.blue, 255);
 }
 
 // ** Put a pixel in a specific position defined by the draw_lines() function.
