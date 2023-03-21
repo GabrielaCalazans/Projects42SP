@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:13:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/21 17:18:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:52:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,6 @@ int	close_win(t_fdf *fdf)
 	free (fdf);
 	exit(0);
 }
-
-// int	esc_close(t_fdf *fdf)
-// {
-// 	int	i;
-
-// 	mlx_destroy_image(fdf->mlx.init, fdf->mlx.img);
-// 	mlx_destroy_window(fdf->mlx.init, fdf->mlx.win);
-// 	mlx_destroy_display(fdf->mlx.init);
-// 	free (fdf->map.values);
-// 	free(fdf->mlx.init);
-// 	exit(0);
-// 	return (0);
-// }
 
 // ** Outputs the string msg to the standard output followed by an exit of the
 // ** program with a custom return value (defined by ret).

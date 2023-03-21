@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/21 16:02:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:58:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int	count_values_mark(char *line)
 	return (len);
 }
 
+// adding 50 to each color chanel to garantee a visible color
+// with fmin limit the min val of each color chanel to 255
+// to avoid int overfload
+
 void	set_colors(t_fdf *fdf, int x, int y)
 {
 	int	color;
@@ -64,11 +68,12 @@ void	set_colors(t_fdf *fdf, int x, int y)
 	fdf->color.red = (color >> 16) & 0xFF;
 	fdf->color.green = (color >> 8) & 0xFF;
 	fdf->color.blue = color & 0xFF;
-	// if we add 50 to a cada canal de cor // fuunciooonaaa
-	fdf->color.red += 50;
-	fdf->color.green += 50;
-	fdf->color.blue += 50; // FUCK foi pro céu, explodiu de cor
-	// Limita o valor máximo de cada canal de cor a 255
+	if (!fdf->color.red && !fdf->color.blue && !fdf->color.green)
+	{
+		fdf->color.red += 255;
+		fdf->color.green += 255;
+		fdf->color.blue += 255;
+	}
 	fdf->color.red = fmin(fdf->color.red, 255);
 	fdf->color.green = fmin(fdf->color.green, 255);
 	fdf->color.blue = fmin(fdf->color.blue, 255);
@@ -81,12 +86,13 @@ void	put_pixel(t_fdf *fdf, int x, int y, double uvector)
 {
 	int		pos;
 
+	(void)uvector;
 	if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
 	{
 		pos = (x * 4) + (y * WIN_WIDTH * 4);
-		fdf->image.data[pos] = fdf->color.red + uvector;
-		fdf->image.data[pos + 1] = fdf->color.green + uvector;
-		fdf->image.data[pos + 2] = fdf->color.blue + uvector;
+		fdf->image.data[pos] = fdf->color.blue;
+		fdf->image.data[pos + 1] = fdf->color.green;
+		fdf->image.data[pos + 2] = fdf->color.red;
 		fdf->image.data[pos + 3] = 0x7F;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/21 17:13:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:59:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // ** If the total values from every line is not equal to the other lines,
 // ** there is an error with the fdf file... lel.
 
-static void	count_lines_cont(int fd, int *cols, int *rows)
+static void	count_lines_davi(int fd, int *cols, int *rows)
 {
 	int		len;
 	char	*line;
@@ -35,7 +35,7 @@ static void	count_lines_cont(int fd, int *cols, int *rows)
 		if (*cols == len)
 			*rows += 1;
 		else
-			ft_puterror("Not a valid file! 1 >_<", 4);
+			ft_puterror("Not a valid file! o_o", 4);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -52,12 +52,12 @@ static int	count_lines(t_fdf *fdf, char *argv)
 		ft_puterror("Error opening file! :(", 1);
 	rows = 0;
 	cols = 0;
-	count_lines_cont(fd, &cols, &rows);
+	count_lines_davi(fd, &cols, &rows);
 	if (close(fd) < 0)
-		ft_puterror("Error closing file! WTF?! :)", 2);
+		ft_puterror("Error closing file! WTF?! ~_~", 2);
 	fdf->map.width = cols;
 	if (!(fdf->map.width == cols))
-		ft_puterror("Not a valid file! 2 >_<", 4);
+		ft_puterror("Not a valid file! o_o", 4);
 	return (rows);
 }
 
@@ -72,7 +72,7 @@ static void	get_values(t_fdf *fdf, int x, int y, char *line)
 
 	split = ft_split(line, ' ');
 	if (!split)
-		ft_puterror("Not a valid file! 1 0 >_<", 4);
+		ft_puterror("Not a valid file! o_o", 4);
 	i = 0;
 	while (split[i] && (x != fdf->map.width))
 	{
