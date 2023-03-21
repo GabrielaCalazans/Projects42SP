@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/20 20:10:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:03:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_puterror(char *msg, int ret);
 int		ft_atoh(char *hex);
 void	set_colors(t_fdf *fdf, int x, int y);
 void	put_pixel(t_fdf *fdf, int x, int y, double uvector);
-int		esc_close(t_fdf *fdf);
+int		close_win(t_fdf *fdf);
 int		count_values_mark(char *line);
 
 #endif

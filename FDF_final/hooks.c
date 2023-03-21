@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 00:46:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/20 20:31:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:53:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	reset_map(t_fdf *fdf)
 	fdf->map.angle_y = fdf->map.angle_x * sin(M_PI / 6);
 	fdf->map.isometric = 1;
 	fdf->map.zoom = zoom_change(fdf);
-	fdf->color.red = 0xFF;
-	fdf->color.green = 0xFF;
-	fdf->color.blue = 0xFF;
+	fdf->color.red = 0x4F;
+	fdf->color.green = 0x4F;
+	fdf->color.blue = 0x4F;
 }
 
 static void	isometric_change(t_fdf *fdf)
@@ -56,7 +56,7 @@ static void	isometric_change(t_fdf *fdf)
 static int	fdf_keys(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_ESCAPE)
-		esc_close(fdf);
+		close_win(fdf);
 	else if (keycode == KEY_R)
 		reset_map(fdf);
 	else if (keycode == KEY_W || keycode == KEY_UPARROW)
