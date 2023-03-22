@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/21 17:58:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:44:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void	set_colors(t_fdf *fdf, int x, int y)
 	int	color;
 
 	color = fdf->map.color_map[y][x];
-	fdf->color.red = (color >> 16) & 0xFF;
+	fdf->color.red = color & 0xFF;
 	fdf->color.green = (color >> 8) & 0xFF;
-	fdf->color.blue = color & 0xFF;
+	fdf->color.blue = (color >> 16) & 0xFF;
 	if (!fdf->color.red && !fdf->color.blue && !fdf->color.green)
 	{
-		fdf->color.red += 255;
-		fdf->color.green += 255;
-		fdf->color.blue += 255;
+		fdf->color.red += 65;
+		fdf->color.green += 65;
+		fdf->color.blue += 65;
 	}
 	fdf->color.red = fmin(fdf->color.red, 255);
 	fdf->color.green = fmin(fdf->color.green, 255);
@@ -86,13 +86,13 @@ void	put_pixel(t_fdf *fdf, int x, int y, double uvector)
 {
 	int		pos;
 
-	(void)uvector;
+	// (void)uvector;
 	if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
 	{
 		pos = (x * 4) + (y * WIN_WIDTH * 4);
-		fdf->image.data[pos] = fdf->color.blue;
-		fdf->image.data[pos + 1] = fdf->color.green;
-		fdf->image.data[pos + 2] = fdf->color.red;
+		fdf->image.data[pos] = fdf->color.red + uvector;
+		fdf->image.data[pos + 1] = fdf->color.green + uvector;
+		fdf->image.data[pos + 2] = fdf->color.blue + uvector;
 		fdf->image.data[pos + 3] = 0x7F;
 	}
 }
