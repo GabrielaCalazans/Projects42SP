@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 22:39:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:43:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@
 
 // ** User defined header files.
 
+# include "keys.h"
 # include "./libft/libft.h"
 
 // ** Macros for the max value of x coordinate, the window size 
 // ** (width and height),
 // ** and the title of the window (removing the .fdf extension).
 
-# define KEY_ESCAPE		0xff1b
+# define MAX_X		(10)
+# define MAX_ZOOM	(5)
+# define MAGIC_ZOOM	(1)
 # define WIN_WIDTH	(1366)
 # define WIN_HEIGHT	(768)
-# define MAGIC_ZOOM	(1)
 
 // ** FDF Structures
 // ** @t_mlx	: required minilibx arguments.
@@ -66,11 +68,14 @@ typedef struct s_map
 	int		**color_map;
 	int		width;
 	int		height;
+	int		coordinate_x;
+	int		coordinate_y;
 	int		x0;
 	int		x1;
 	int		y0;
 	int		y1;
 	int		zoom;
+	int		isometric;
 	double	z_value;
 	double	angle_x;
 	double	angle_y;
@@ -100,7 +105,7 @@ void	reset_map(t_fdf *fdf);
 void	ft_puterror(char *msg, int ret);
 int		ft_atoh(char *hex);
 void	set_colors(t_fdf *fdf, int x, int y);
-void	put_pixel(t_fdf *fdf, int x, int y);
+void	put_pixel(t_fdf *fdf, int x, int y, double uvector);
 int		close_win(t_fdf *fdf);
 int		count_values_mark(char *line);
 

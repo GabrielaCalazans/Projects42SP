@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/15 23:16:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:20:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,44 +57,79 @@ static void	draw_lines(t_data *data)
 	}
 }
 
-static void	draw_horizontal(t_data *data, int x, int y)
-{
-	int		xt;
-	int		yt;
+// ** Draw the map, depending on the angles, the zoom level,
+// ** the position (defined)
+// ** by the average value of the window size, and if the
+// ** user has moved the map,
+// ** and the x value (isometric).
+// ** Will draw horizontal lines (x axis).
 
-	xt = x - data->rect.width / 2;
-	yt = y - data->rect.height / 2;
-	data->rect.x0 = data->rect.angle_x * (xt - yt) * data->rect.zoom;
-	data->rect.y0 = data->rect.angle_y * (xt + yt) * data->rect.zoom;
-	data->rect.y0 -= data->rect.values[y][x] * data->rect.z_value;
-	data->rect.x1 = data->rect.angle_x * ((xt + 1) - yt) * data->rect.zoom;
-	data->rect.y1 = data->rect.angle_y * ((xt + 1) + yt) * data->rect.zoom;
-	data->rect.y1 -= data->rect.values[y][x + 1] * data->rect.z_value;
-	data->rect.x0 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
-	data->rect.x1 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
-	data->rect.y0 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
-	data->rect.y1 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
-	draw_lines(data);
+static void	draw_horizontal(t_fdf *fdf, int x, int y)
+{
+	int	xt;
+	int	yt;
+	// Define as coordenadas x e y do pixel em relação ao centro
+	xt = x - fdf->map.width / 2;
+	yt = y - fdf->map.height / 2;
+	// Calculo das coordenadas x e y do ponto inicial da linha
+	fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom;
+	fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom;
+	// Calcula a altura do ponto inicial da linha em relação ao eixo z
+	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
+	// Calcula as coordenadas x e y do ponto final da linha
+	fdf->map.x1 = fdf->map.angle_x * ((xt + 1) - yt) * fdf->map.zoom;
+	fdf->map.y1 = fdf->map.angle_y * ((xt + 1) + yt) * fdf->map.zoom;
+	// Calcula a altura do ponto final da linha em relação ao eixo z
+	fdf->map.y1 -= fdf->map.values[y][x + 1] * fdf->map.z_value;
+	// Adiciona as coordenadas x e y do ponto inicial da linha ao centro da tela e ao deslocamento x
+	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	// Adiciona as coordenadas x e y do ponto final da linha ao centro da tela e ao deslocamento x
+	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	// Adiciona as coordenadas y do ponto inicial da linha ao centro da tela e ao deslocamento y
+	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	// Adiciona as coordenadas y do ponto final da linha ao centro da tela e ao deslocamento y
+	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	draw_lines(fdf);
 }
 
-static void	draw_vertical(t_data *data, int x, int y)
+// ** Draw the map, depending on the angles, the zoom level, 
+// ** the position (defined)
+// ** by the average value of the window size, and if the user 
+// ** has moved the map,
+// ** and the x value (isometric).
+// ** Will draw vertical lines (y axis).
+
+static void	draw_vertical(t_fdf *fdf, int x, int y)
 {
 	int	xt;
 	int	yt;
 
-	xt = x - data->rect.width / 2;
-	yt = y - data->rect.height / 2;
-	data->rect.x0 = data->rect.angle_x * (xt - yt) * data->rect.zoom;
-	data->rect.y0 = data->rect.angle_y * (xt + yt) * data->rect.zoom;
-	data->rect.y0 -= data->rect.values[y][x] * data->rect.z_value;
-	data->rect.x1 = data->rect.angle_x * (xt - (yt + 1)) * data->rect.zoom;
-	data->rect.y1 = data->rect.angle_y * (xt + (yt + 1)) * data->rect.zoom;
-	data->rect.y1 -= data->rect.values[y + 1][x] * data->rect.z_value;
-	data->rect.x0 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
-	data->rect.x1 += (WINDOW_WIDTH / 2) + data->rect.coordinate_x;
-	data->rect.y0 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
-	data->rect.y1 += (WINDOW_HEIGHT / 2) + data->rect.coordinate_y;
-	draw_lines(data);
+	// Define as coordenadas x e y do pixel em relação ao centro
+	xt = x - fdf->map.width / 2;
+	yt = y - fdf->map.height / 2;
+	// Calculo coordenadas x e y do ponto inicial da linha c/base na posição em relacão ao centro da tela e angulo de rotação horizontal/vertical anglex/y, no zoom e width
+	fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom;
+	fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom;
+	// Calculo altura y do ponto inicial da linha em relação a altura eixo z
+	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
+	// Calcula as coordenadas x e y do ponto final da linha com base na posição do ponto abaixo do atual
+	fdf->map.x1 = fdf->map.angle_x * (xt - (yt + 1)) * fdf->map.zoom;
+	fdf->map.y1 = fdf->map.angle_y * (xt + (yt + 1)) * fdf->map.zoom;
+	// Calcula a altura do ponto final da linha em relação ao eixo z
+	//  subtração é feita porque, no sistema de coordenadas de um computador, a coordenada y cresce de 
+	// cima para baixo. Então, para desenhar uma linha vertical que vá do ponto (x, y) para o ponto (x, y+1), 
+	// a coordenada y do ponto final precisa ser maior do que a coordenada y do ponto inicial. No entanto, os valores de altitude da matriz fdf->map.values[y+1][x] 
+	// representam a altura do ponto mais alto, então subtraímos esse valor para descer a linha na tela.
+	fdf->map.y1 -= fdf->map.values[y + 1][x] * fdf->map.z_value;
+	// Adiciona as coordenadas x e y do ponto inicial da linha ao centro da tela e ao deslocamento x
+	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	// Adiciona as coordenadas x e y do ponto final da linha ao centro da tela e ao deslocamento x
+	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	// Adiciona as coordenadas y do ponto inicial da linha ao centro da tela e ao deslocamento y
+	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	// Adiciona as coordenadas y do ponto final da linha ao centro da tela e ao deslocamento y
+	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	draw_lines(fdf);
 }
 
 int	fdf_draw(t_data *data)

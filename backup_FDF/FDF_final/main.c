@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:13:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 22:12:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:14:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,13 @@ static void	fdf_usage(char *argv0)
 	(void) argv0;
 	ft_putstr_fd("FDF Usage:\n\t", 1);
 	ft_putstr_fd("FDF Select one Map at maps/test_map/...:\n\t", 1);
-	ft_putstr_fd("Then, run ./fdf maps/test_map/...:\n\t", 1);
 	ft_putstr_fd("Controls:\n", 1);
-	ft_putstr_fd("\t[Esc] -> Exit the program.\n", 1);
+	ft_putstr_fd("\t[Esc]   -> Exit the program.\n", 1);
+	ft_putstr_fd("\t[R]     -> Reset the map.\n", 1);
+	ft_putstr_fd("\t[Z][X]  -> Zoom in and zoom out.\n", 1);
+	ft_putstr_fd("\t[N][M]  -> Spiky time!\n", 1);
+	ft_putstr_fd("\t[Space] -> Change the camera (isometric <-> plain).\n", 1);
+	ft_putstr_fd("\t[Arrow Key] or [W][A][S][D] -> Move the map.\n", 1);
 }
 
 // ** Main function, creates the fdf structure and a network connection between

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:44:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 21:47:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:24:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	draw_lines(t_fdf *fdf)
 	delta_y /= uvector;
 	while (uvector > 0)
 	{
-		put_pixel(fdf, x, y);
+		put_pixel(fdf, x, y, uvector);
 		x += delta_x;
 		y += delta_y;
 		uvector -= 1;
@@ -59,11 +59,11 @@ static void	draw_horizontal(t_fdf *fdf, int x, int y)
 	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
 	fdf->map.x1 = fdf->map.angle_x * ((xt + 1) - yt) * fdf->map.zoom;
 	fdf->map.y1 = fdf->map.angle_y * ((xt + 1) + yt) * fdf->map.zoom;
-	fdf->map.y1 -= fdf->map.values[y][x + 1] *fdf->map.z_value;
-	fdf->map.x0 += (WIN_WIDTH / 2);
-	fdf->map.x1 += (WIN_WIDTH / 2);
-	fdf->map.y0 += (WIN_HEIGHT / 2);
-	fdf->map.y1 += (WIN_HEIGHT / 2);
+	fdf->map.y1 -= fdf->map.values[y][x + 1] * fdf->map.z_value;
+	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
 	draw_lines(fdf);
 }
 
@@ -87,10 +87,10 @@ static void	draw_vertical(t_fdf *fdf, int x, int y)
 	fdf->map.x1 = fdf->map.angle_x * (xt - (yt + 1)) * fdf->map.zoom;
 	fdf->map.y1 = fdf->map.angle_y * (xt + (yt + 1)) * fdf->map.zoom;
 	fdf->map.y1 -= fdf->map.values[y + 1][x] * fdf->map.z_value;
-	fdf->map.x0 += (WIN_WIDTH / 2);
-	fdf->map.x1 += (WIN_WIDTH / 2);
-	fdf->map.y0 += (WIN_HEIGHT / 2);
-	fdf->map.y1 += (WIN_HEIGHT / 2);
+	fdf->map.x0 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	fdf->map.x1 += (WIN_WIDTH / 2) + fdf->map.coordinate_x;
+	fdf->map.y0 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
+	fdf->map.y1 += (WIN_HEIGHT / 2) + fdf->map.coordinate_y;
 	draw_lines(fdf);
 }
 
