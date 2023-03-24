@@ -6,12 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 23:38:35 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:57:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "fdf_bonus.h"
 
 int	ft_atoh(char *hex)
 {

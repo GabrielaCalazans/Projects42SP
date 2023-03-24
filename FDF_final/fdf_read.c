@@ -6,12 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 23:38:44 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:57:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "fdf_bonus.h"
 
 // ** Count and returns the number of lines (rows) that the file has.
 // ** This value is used to allocate the correct memory size

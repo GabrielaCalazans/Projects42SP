@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/22 23:40:07 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/24 17:47:41 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BOBJ_FILES = $(B_SRC_FILES:.c=.o)
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
-INCLUDE = $(addprefix $(INCL_DIR ), fdf.h)
+INCLUDE = $(addprefix $(INCL_DIR), fdf.h)
 
 all: $(LIBFT) $(NAME)
 
@@ -38,11 +38,11 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 # Compiling OBJ
-%.o: %.c
+%.o: %.c $(INCLUDE)
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
-	$(CC) $(FLAGS) -c $<
-#	$(CC) $(FLAGS) -I $(INCLUDE) -c $<
-#		@$(cc) $(flags) $< -I $(INCL) -c
+#	$(CC) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -I $(INCLUDE) -c $<
+#		 @$(cc) $(flags) $< -I $(INCLUDE) -c
 
 # Compiling FDF RESOLVER NO-PIE
 $(NAME): $(OBJ_FILES)
