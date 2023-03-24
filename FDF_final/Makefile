@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/24 17:47:41 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/24 18:25:29 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ BOBJ_FILES = $(B_SRC_FILES:.c=.o)
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
-INCLUDE = $(addprefix $(INCL_DIR), fdf.h)
+# INCLUDE = $(addprefix $(INCL_DIR), fdf.h)
+# BONUS_INCLUDE = $(addprefix $(INCL_DIR), fdf_bonus.h)
 
 all: $(LIBFT) $(NAME)
 
@@ -38,16 +39,16 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 # Compiling OBJ
-%.o: %.c $(INCLUDE)
+%.o: %.c
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
 #	$(CC) $(FLAGS) -c $<
-	$(CC) $(FLAGS) -I $(INCLUDE) -c $<
+	$(CC) $(FLAGS) -I $(INCL_DIR) -c $<
 #		 @$(cc) $(flags) $< -I $(INCLUDE) -c
 
 # Compiling FDF RESOLVER NO-PIE
 $(NAME): $(OBJ_FILES)
 	@echo "(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec."
-	@cc $(FLAGS) $(OBJ_FILES) -I $(INCLUDE) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
+	@cc $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) generated!"
 
 bonus: $(BOBJ_FILES)

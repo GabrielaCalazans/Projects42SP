@@ -6,11 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 23:13:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 22:13:44 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:21:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 int	close_win(t_fdf *fdf)
 {

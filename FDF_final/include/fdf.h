@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 22:39:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:27:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // ** User defined header files.
 
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 // ** Macros for the max value of x coordinate, the window size 
 // ** (width and height),
