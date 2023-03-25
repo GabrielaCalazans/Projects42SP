@@ -6,12 +6,12 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 10:31:24 by jaleman           #+#    #+#             */
-/*   Updated: 2023/03/22 16:56:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:04:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#ifndef KEYS_BONUS_H
+# define KEYS_BONUS_H
 
 //  * * Source: "X11/keysymdef.h"
 //  * TTY function keys, cleverly chosen to map to ASCII, for convenience of

@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 19:45:45 by gacalaza          #+#    #+#              #
-#    Updated: 2023/02/23 17:03:25 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/25 17:27:36 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,11 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 
-$(OBJS): $(SRCS)
+# $(OBJS): $(SRCS)
 
 bonus: $(BOBJS)
 
-$(BOBJS): $(BSRCS)
+# $(BOBJS): $(BSRCS)
 
 clean:
 	rm -f $(OBJS) $(BOBJS)
@@ -49,7 +49,7 @@ fclean: clean
 re: fclean all
 
 %.o: %.c
-	@cc $(FLAGS) -c $< -o $@
-	@ar rcs $(NAME) $@
+	cc $(FLAGS) -c $< -o $@
+	ar rcs $(NAME) $@
 
 .PHONY: all clean fclean re

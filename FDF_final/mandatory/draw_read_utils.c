@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/24 17:57:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:03:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ void	put_pixel(t_fdf *fdf, int x, int y)
 {
 	int	pos;
 
-		if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
-		{
-			pos = (x * 4) + (y * WIN_WIDTH * 4);
-			fdf->image.data[pos] = fdf->color.red;
-			fdf->image.data[pos + 1] = fdf->color.green;
-			fdf->image.data[pos + 2] = fdf->color.blue;
-			fdf->image.data[pos + 3] = 0x7F;
-		}
+	if ((x > 0 && y > 0) && (x < WIN_WIDTH && y < WIN_HEIGHT))
+	{
+		pos = (x * 4) + (y * WIN_WIDTH * 4);
+		fdf->image.data[pos] = fdf->color.red;
+		fdf->image.data[pos + 1] = fdf->color.green;
+		fdf->image.data[pos + 2] = fdf->color.blue;
+		fdf->image.data[pos + 3] = 0x7F;
+	}
 }

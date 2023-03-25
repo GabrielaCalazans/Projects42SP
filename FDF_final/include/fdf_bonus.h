@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/24 18:26:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:42:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // ** User defined header files.
 
-# include "keys.h"
+# include "keys_bonus.h"
 # include "../libft/libft.h"
 
 // ** Macros for the max value of x coordinate, the window size 

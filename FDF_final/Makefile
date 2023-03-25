@@ -6,54 +6,58 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/24 18:25:29 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/25 20:23:16 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name of the program
 NAME = fdf
 
+# Folders
+LIBFT_DIR = ./libft/
+INCL_DIR = ./include/
+BONUSFDF = ./bonus/bonusfdf.a
+
+# Paths
+LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+
+# Source files and object files
+SRC_FILES = mandatory/main.c mandatory/fdf_read.c mandatory/fdf_draw.c mandatory/hooks.c mandatory/draw_read_utils.c
+B_SRC_FILES = ./bonus/main_bonus.c ./bonus/fdf_read_bonus.c ./bonus/fdf_draw_bonus.c ./bonus/hooks_bonus.c ./bonus/draw_read_utils_bonus.c
+OBJ_FILES = $(SRC_FILES:.c=.o)
+BOBJ_FILES = $(B_SRC_FILES:.c=.o)
+
 # Compiling flags
 FLAGS = -Wall -Wextra -Werror -g
 FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
 
-# Folders
-LIBFT_DIR = ./libft/
-INCL_DIR = ./include/
-INCL_BONUS = fdf_bonus.h keys_bonus.h
+all: libft $(NAME)
 
-# Source files and object files
-SRC_FILES = main.c fdf_read.c fdf_draw.c hooks.c draw_read_utils.c
-B_SRC_FILES = main_bonus.c fdf_read.c fdf_draw_bonus.c hooks_bonus.c draw_read_utils.c
-OBJ_FILES = $(SRC_FILES:.c=.o)
-BOBJ_FILES = $(B_SRC_FILES:.c=.o)
-
-# Paths
-LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
-# INCLUDE = $(addprefix $(INCL_DIR), fdf.h)
-# BONUS_INCLUDE = $(addprefix $(INCL_DIR), fdf_bonus.h)
-
-all: $(LIBFT) $(NAME)
-
-$(LIBFT):
-	@make -C $(LIBFT_DIR)
+libft:
+	make -C $(LIBFT_DIR)
 
 # Compiling OBJ
 %.o: %.c
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
-#	$(CC) $(FLAGS) -c $<
-	$(CC) $(FLAGS) -I $(INCL_DIR) -c $<
-#		 @$(cc) $(flags) $< -I $(INCLUDE) -c
+	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
-# Compiling FDF RESOLVER NO-PIE
+# Compiling FDF
 $(NAME): $(OBJ_FILES)
 	@echo "(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec."
 	@cc $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) generated!"
 
-bonus: $(BOBJ_FILES)
+# bonus: libft $(BOBJ_FILES)
+# 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
+# 	$(CC) $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
+# 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) bonus generated!"
+
+bonus: libft $(BONUSFDF)
+
+$(BONUSFDF): $(BOBJ_FILES)
+	ar rcs $(BONUSFDF) $(BOBJ_FILES)
 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
-	$(CC) $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
+	cc $(BONUSFDF) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) bonus generated!"
 
 clean:
@@ -62,11 +66,12 @@ clean:
 	@echo "¯\_(ツ)_/¯ Objects removed!"
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(BONUSFDF)
 	@make -C $(LIBFT_DIR) fclean
-	@echo "(ﾉ•̀ᴗ•́)・ﾟ✧$(NAME) removed!"
-
+	@echo "(ﾉ•̀ᴗ•́)・ﾟ✧$(NAME) and $(BONUSFDF) removed!"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+rebonus: fclean bonus
+
+.PHONY: all clean fclean re libft
