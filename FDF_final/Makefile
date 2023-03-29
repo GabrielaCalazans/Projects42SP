@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/29 15:48:24 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/29 20:27:33 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
 all: libft $(NAME)
 
 libft:
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR) --no-print-directory
 
 # Compiling OBJ
 %.o: %.c
@@ -47,18 +47,9 @@ $(NAME): $(OBJ_FILES)
 	@cc $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) generated!"
 
-# bonus:
-#	make SRC_FILES = $(BOBJ_FILES)
-
-# bonus: libft $(BOBJ_FILES)
-# 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
-# 	$(CC) $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
-# 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) bonus generated!"
-
 bonus: libft $(BONUSFDF)
 
 $(BONUSFDF): $(BOBJ_FILES)
-#	 ar rcs $(BONUSFDF) $^
 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
 	@cc $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(BONUSFDF)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) bonus generated!"

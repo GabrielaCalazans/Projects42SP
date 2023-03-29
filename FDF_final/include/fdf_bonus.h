@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/25 16:42:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:26:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define FDF_BONUS_H
 
 # include <mlx.h>
-# include <unistd.h> // CLOSE READ WRITE
-# include <fcntl.h> // OPEN
-# include <stdio.h> // PERROR
-# include <string.h> // STRERROR
-# include <stdlib.h> // MALLOC FREE EXIT
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
 # include <math.h>
 
 // ** User defined header files.
