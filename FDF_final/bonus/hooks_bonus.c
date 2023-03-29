@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 00:46:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/25 20:23:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:20:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ int	key_events(int key, t_fdf *fdf)
 	mlx_put_image_to_window(fdf->mlx.init, fdf->mlx.win, fdf->mlx.img, 0, 0);
 	return (0);
 }
-

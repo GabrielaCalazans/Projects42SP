@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/25 20:23:16 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/29 15:48:24 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = fdf
 # Folders
 LIBFT_DIR = ./libft/
 INCL_DIR = ./include/
-BONUSFDF = ./bonus/bonusfdf.a
+BONUSFDF = fdf_bonus
 
 # Paths
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
@@ -28,7 +28,7 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 BOBJ_FILES = $(B_SRC_FILES:.c=.o)
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -O3
 FLAGS_MLX = -lmlx -lX11 -Imlx -lXext -lm
 
 all: libft $(NAME)
@@ -47,6 +47,9 @@ $(NAME): $(OBJ_FILES)
 	@cc $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) generated!"
 
+# bonus:
+#	make SRC_FILES = $(BOBJ_FILES)
+
 # bonus: libft $(BOBJ_FILES)
 # 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
 # 	$(CC) $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
@@ -55,9 +58,9 @@ $(NAME): $(OBJ_FILES)
 bonus: libft $(BONUSFDF)
 
 $(BONUSFDF): $(BOBJ_FILES)
-	ar rcs $(BONUSFDF) $(BOBJ_FILES)
+#	 ar rcs $(BONUSFDF) $^
 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
-	cc $(BONUSFDF) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
+	@cc $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(BONUSFDF)
 	@echo "(ﾉ•̀ᴗ•́)و $(NAME) bonus generated!"
 
 clean:
@@ -74,4 +77,4 @@ re: fclean all
 
 rebonus: fclean bonus
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft rebonus

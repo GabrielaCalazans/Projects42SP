@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/24 17:57:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:08:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static int	count_lines(t_fdf *fdf, char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
+	{
+		free (fdf);
 		ft_puterror("Error opening file! :(", 1);
+	}
 	rows = 0;
 	cols = 0;
 	count_lines_davi(fd, &cols, &rows);
@@ -126,7 +129,10 @@ void	fdf_read(char *argv, t_fdf *fdf)
 	fdf->map.height = count_lines(fdf, argv);
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
+	{
+		free (fdf);
 		ft_puterror("Error opening file! :(", 1);
+	}
 	fdf->map.values = (int **)malloc(sizeof(int *) * fdf->map.height);
 	fdf->map.color_map = (int **)malloc(sizeof(int *) * fdf->map.height);
 	if (!(fdf->map.values || fdf->map.color_map))

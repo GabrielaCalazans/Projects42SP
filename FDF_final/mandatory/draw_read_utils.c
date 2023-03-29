@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/25 20:03:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:25:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	set_colors(t_fdf *fdf, int x, int y)
 	fdf->color.blue = (color >> 16) & 0xFF;
 	if (!fdf->color.red && !fdf->color.blue && !fdf->color.green)
 	{
-		fdf->color.red += 65;
-		fdf->color.green += 65;
-		fdf->color.blue += 65;
+		fdf->color.red += 255;
+		fdf->color.green += 255;
+		fdf->color.blue += 255;
 	}
 	if (fdf->color.red > 200 || fdf->color.blue > 200 || fdf->color.green > 200)
 	{
@@ -95,6 +95,5 @@ void	put_pixel(t_fdf *fdf, int x, int y)
 		fdf->image.data[pos] = fdf->color.red;
 		fdf->image.data[pos + 1] = fdf->color.green;
 		fdf->image.data[pos + 2] = fdf->color.blue;
-		fdf->image.data[pos + 3] = 0x7F;
 	}
 }
