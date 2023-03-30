@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 15:56:04 by jaleman           #+#    #+#              #
-#    Updated: 2023/03/29 20:27:33 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/03/30 15:34:39 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,23 +36,28 @@ all: libft $(NAME)
 libft:
 	@make -C $(LIBFT_DIR) --no-print-directory
 
+# Compiling BONUS OBJ
+./bonus/%.o: ./bonus/%.c ./include/fdf_bonus.h
+	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
+	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
+
 # Compiling OBJ
-%.o: %.c
+./mandatory/%.o: ./mandatory/%.c ./include/fdf.h
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
 # Compiling FDF
 $(NAME): $(OBJ_FILES)
 	@echo "(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec."
-	@cc $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
-	@echo "(ﾉ•̀ᴗ•́)و $(NAME) generated!"
+	@cc -no-pie $(FLAGS) $(OBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(NAME)
+	@echo "(•̀ᴗ•́)و $(NAME) generated!"
 
 bonus: libft $(BONUSFDF)
 
 $(BONUSFDF): $(BOBJ_FILES)
 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
-	@cc $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(BONUSFDF)
-	@echo "(ﾉ•̀ᴗ•́)و $(NAME) bonus generated!"
+	@cc -no-pie $(FLAGS) $(BOBJ_FILES) $(LIBFT) $(FLAGS_MLX) -o $(BONUSFDF)
+	@echo "(•̀ᴗ•́)و $(NAME) bonus generated!"
 
 clean:
 	@rm -Rf $(OBJ_FILES) $(BOBJ_FILES)
@@ -62,10 +67,10 @@ clean:
 fclean: clean
 	@rm -f $(NAME) $(BONUSFDF)
 	@make -C $(LIBFT_DIR) fclean
-	@echo "(ﾉ•̀ᴗ•́)・ﾟ✧$(NAME) and $(BONUSFDF) removed!"
+	@echo "(•̀ᴗ•́)・ﾟ✧$(NAME) and $(BONUSFDF) removed!"
 
 re: fclean all
 
 rebonus: fclean bonus
 
-.PHONY: all clean fclean re libft rebonus
+.PHONY: all clean fclean re libft bonus rebonus

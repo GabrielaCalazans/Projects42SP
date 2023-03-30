@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 21:43:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:08:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	count_lines_davi(int fd, int *cols, int *rows)
 	{
 		if (*line == '\0')
 			break ;
-		len = count_values_mark(line);
+		len = count_values_lucas_mark(line);
 		if (len > *cols)
 			*cols = len;
 		if (*cols == len)
@@ -43,21 +43,21 @@ static void	count_lines_davi(int fd, int *cols, int *rows)
 
 static int	count_lines(t_fdf *fdf, char *argv)
 {
-	int		fd;
-	int		rows;
-	int		cols;
+	int	fd;
+	int	rows;
+	int	cols;
 
 	fd = open(argv, O_RDONLY);
 	if (fd < 0)
 	{
 		free (fdf);
-		ft_puterror("Error opening file! :(", 1);
+		ft_puterror("Error opening file!", 1);
 	}
 	rows = 0;
 	cols = 0;
 	count_lines_davi(fd, &cols, &rows);
 	if (close(fd) < 0)
-		ft_puterror("Error closing file! WTF?! ~_~", 2);
+		ft_puterror("Error closing file! ~_~", 2);
 	fdf->map.width = cols;
 	if (!(fdf->map.width == cols))
 		ft_puterror("Not a valid file! o_o", 4);
@@ -84,7 +84,7 @@ static void	get_values(t_fdf *fdf, int x, int y, char *line)
 		while (split[i][j] != ',' && split[i][j])
 			j++;
 		if (split[i][j] == ',')
-			fdf->map.color_map[y][x] = ft_atoh(&split[i][j++]);
+			fdf->map.color_map[y][x] = ft_htod(&split[i][j++]);
 		else
 			fdf->map.color_map[y][x] = 0;
 		i++;
@@ -113,7 +113,7 @@ void	read_lines(t_fdf *fdf, int fd)
 		fdf->map.values[y] = (int *)malloc(sizeof(int) * fdf->map.width);
 		fdf->map.color_map[y] = (int *)malloc(sizeof(int) * fdf->map.width);
 		if (!(fdf->map.values[y] || fdf->map.color_map[y]))
-			ft_puterror("Memory Allocation failed! :O", 3);
+			ft_puterror("Memory Allocation failed!", 3);
 		get_values(fdf, x, y, line);
 		x = 0;
 		y += 1;
@@ -139,5 +139,5 @@ void	fdf_read(char *argv, t_fdf *fdf)
 		ft_puterror("Memory Allocation failed! :O", 3);
 	read_lines(fdf, fd);
 	if (close(fd) < 0)
-		ft_puterror("Error closing file! WTF?! :)", 2);
+		ft_puterror("Error closing file! :|", 2);
 }

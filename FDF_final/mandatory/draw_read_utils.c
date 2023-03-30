@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 21:47:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:09:01 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_atoh(char *hex)
+int	ft_htod(char *hex)
 {
 	int	len;
 	int	base;
@@ -38,7 +38,7 @@ int	ft_atoh(char *hex)
 
 // ** Gets the number values in each line from the fdf file.
 
-int	count_values_mark(char *line)
+int	count_values_lucas_mark(char *line)
 {
 	int	i;
 	int	len;
@@ -71,9 +71,9 @@ void	set_colors(t_fdf *fdf, int x, int y)
 	fdf->color.blue = (color >> 16) & 0xFF;
 	if (!fdf->color.red && !fdf->color.blue && !fdf->color.green)
 	{
-		fdf->color.red += 255;
-		fdf->color.green += 255;
-		fdf->color.blue += 255;
+		fdf->color.red += 100;
+		fdf->color.green += 100;
+		fdf->color.blue += 100;
 	}
 	if (fdf->color.red > 200 || fdf->color.blue > 200 || fdf->color.green > 200)
 	{

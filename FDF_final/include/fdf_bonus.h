@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:40:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 20:26:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:33:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@
 // ** (width and height),
 // ** and the title of the window (removing the .fdf extension).
 
-# define MAX_X		(10)
-# define MAX_ZOOM	(5)
-# define MAGIC_ZOOM	(1)
-# define WIN_WIDTH	(1366)
-# define WIN_HEIGHT	(768)
+# define MAX_X		10
+# define MAX_ZOOM	5
+# define MAGIC_ZOOM	1
+# define WIN_WIDTH	1280
+# define WIN_HEIGHT	720
 
 // ** FDF Structures
-// ** @t_mlx	: required minilibx arguments.
-// ** @t_image	: variables to be used for creation of the image (map).
+// ** t_mlx	: required minilibx arguments.
+// ** t_image	: variables to be used for creation of the image (map).
 // **		data -> information about the image, allowing to be modified.
 // **		size -> move from one line to another in the image.
 // **		endian -> how the pixel color in the image needs to be stored.
 // **		bpp -> filled with the number of bits to represent a pixel color.
-// ** @t_map	: values used to manipulate the fdf map.
-// ** @t_color	: define the color, rgb value (24-bits).
-// ** @t_fdf	: nested structure that calls all of the other structures.
+// ** t_map	: values used to manipulate the fdf map.
+// ** t_color	: define the color, rgb value (24-bits).
+// ** t_fdf	: nested structure that calls all of the other structures.
 
 typedef struct s_mlx
 {
@@ -101,10 +101,10 @@ int		render_fdf_draw(t_fdf *fdf);
 int		key_events(int key, t_fdf *fdf);
 void	reset_map(t_fdf *fdf);
 void	ft_puterror(char *msg, int ret);
-int		ft_atoh(char *hex);
+int		ft_htod(char *hex);
 void	set_colors(t_fdf *fdf, int x, int y);
 void	put_pixel(t_fdf *fdf, int x, int y, double uvector);
 int		close_win(t_fdf *fdf);
-int		count_values_mark(char *line);
+int		count_values_lucas_mark(char *line);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:44:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 21:09:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:52:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ static void	draw_vertical(t_fdf *fdf, int x, int y)
 // ** Draw the map by image.
 // ** Creates a new one, and destroys the old one whenever an action occures.
 // ** The characters in the draw_map() function stands for:
-// ** @x -> horizontal
-// ** @y -> vertical
+// ** x -> horizontal
+// ** y -> vertical
 
 static int	fdf_draw(t_fdf *fdf)
 {
@@ -130,7 +130,6 @@ int	render_fdf_draw(t_fdf *fdf)
 	if (fdf->mlx.win == NULL)
 		return (1);
 	fdf_draw(fdf);
-	mlx_clear_window(fdf->mlx.init, fdf->mlx.win);
 	mlx_put_image_to_window(fdf->mlx.init, fdf->mlx.win, fdf->mlx.img, 0, 0);
 	return (0);
 }

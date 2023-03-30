@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 19:17:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:30:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	count_lines_davi(int fd, int *cols, int *rows)
 	{
 		if (*line == '\0')
 			break ;
-		len = count_values_mark(line);
+		len = count_values_lucas_mark(line);
 		if (len > *cols)
 			*cols = len;
 		if (*cols == len)
@@ -84,7 +84,7 @@ static void	get_values(t_fdf *fdf, int x, int y, char *line)
 		while (split[i][j] != ',' && split[i][j])
 			j++;
 		if (split[i][j++] == ',')
-			fdf->map.color_map[y][x] = ft_atoh(&split[i][j]);
+			fdf->map.color_map[y][x] = ft_htod(&split[i][j]);
 		else
 			fdf->map.color_map[y][x] = 0;
 		i++;

@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 21:50:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:51:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-int	ft_atoh(char *hex)
+int	ft_htod(char *hex)
 {
 	int	len;
 	int	base;
@@ -38,7 +38,7 @@ int	ft_atoh(char *hex)
 
 // ** Gets the number values in each line from the fdf file.
 
-int	count_values_mark(char *line)
+int	count_values_lucas_mark(char *line)
 {
 	int	i;
 	int	len;
