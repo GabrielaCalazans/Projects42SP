@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:44:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 16:21:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:09:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void	draw_horizontal(t_fdf *fdf, int x, int y)
 	yt = y - fdf->map.height / 2;
 	fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom;
 	fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom;
-	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
+	fdf->map.y0 -= fdf->map.values[y][x] * 1;
 	fdf->map.x1 = fdf->map.angle_x * ((xt + 1) - yt) * fdf->map.zoom;
 	fdf->map.y1 = fdf->map.angle_y * ((xt + 1) + yt) * fdf->map.zoom;
-	fdf->map.y1 -= fdf->map.values[y][x + 1] * fdf->map.z_value;
+	fdf->map.y1 -= fdf->map.values[y][x + 1] * 1;
 	fdf->map.x0 += (WIN_WIDTH / 2);
 	fdf->map.x1 += (WIN_WIDTH / 2);
 	fdf->map.y0 += (WIN_HEIGHT / 2);
@@ -83,10 +83,10 @@ static void	draw_vertical(t_fdf *fdf, int x, int y)
 	yt = y - fdf->map.height / 2;
 	fdf->map.x0 = fdf->map.angle_x * (xt - yt) * fdf->map.zoom;
 	fdf->map.y0 = fdf->map.angle_y * (xt + yt) * fdf->map.zoom;
-	fdf->map.y0 -= fdf->map.values[y][x] * fdf->map.z_value;
+	fdf->map.y0 -= fdf->map.values[y][x] * 1;
 	fdf->map.x1 = fdf->map.angle_x * (xt - (yt + 1)) * fdf->map.zoom;
 	fdf->map.y1 = fdf->map.angle_y * (xt + (yt + 1)) * fdf->map.zoom;
-	fdf->map.y1 -= fdf->map.values[y + 1][x] * fdf->map.z_value;
+	fdf->map.y1 -= fdf->map.values[y + 1][x] * 1;
 	fdf->map.x0 += (WIN_WIDTH / 2);
 	fdf->map.x1 += (WIN_WIDTH / 2);
 	fdf->map.y0 += (WIN_HEIGHT / 2);

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 01:20:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 16:19:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:50:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int	ft_atoh(char *hex)
 	{
 		if (hex[len] >= '0' && hex[len] <= '9')
 			dec += (hex[len] - 48) * base;
-		if (hex[len] >= 'A' && hex[len] <= 'F')
+		else if (hex[len] >= 'A' && hex[len] <= 'F')
 			dec += (hex[len] - 55) * base;
-		if (hex[len] >= 'a' && hex[len] <= 'f')
+		else if (hex[len] >= 'a' && hex[len] <= 'f')
 			dec += (hex[len] - 87) * base;
-		base *= 16;
+		if (hex[len] != '\n')
+			base *= 16;
 		len--;
 	}
 	return (dec);

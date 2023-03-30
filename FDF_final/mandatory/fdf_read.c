@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 01:00:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 19:08:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:43:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ static void	get_values(t_fdf *fdf, int x, int y, char *line)
 		j = 0;
 		while (split[i][j] != ',' && split[i][j])
 			j++;
-		if (split[i][j++] == ',')
-			fdf->map.color_map[y][x] = ft_atoh(&split[i][j]);
+		if (split[i][j] == ',')
+			fdf->map.color_map[y][x] = ft_atoh(&split[i][j++]);
 		else
 			fdf->map.color_map[y][x] = 0;
 		i++;
