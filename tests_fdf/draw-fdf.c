@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:38:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/22 16:20:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:13:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@ void	set_colors(t_data *data, int x, int y)
 	data->color.blue = data->rect.color_map[y][x] & 0xFF;
 }
 
+// O valor 4 na fórmula representa o número de bytes por pixel na imagem (RGBA), e é por isso que é multiplicado por 4. 
+// A seguir, a função define os valores de cor do pixel no buffer de imagem, usando as informações de cor da estrutura t_fdf.
+// A função verifica se as coordenadas do pixel estão dentro dos limites da janela de exibição (WIN_WIDTH e WIN_HEIGHT). 
+// Se estiverem dentro dos limites, a função calcula a posição do pixel no buffer de imagem usando a fórmula pos = (x * 4) + (y * WIN_WIDTH * 4).
+// A imagem é armazenada em um buffer de dados em um formato específico, cuja estrutura é retornada pela função mlx_get_data_addr(). 
+// Essa função retorna um ponteiro para o buffer de dados, bem como informações sobre o número de bits por pixel, 
+// o tamanho da linha da imagem em bytes e a ordem dos bytes (endianness) na arquitetura em que o programa está sendo executado.
+
 static void	put_pixel(t_data *data, int x, int y, double uvector)
 {
 	int		pos;
 
 	if ((x > 0 && y > 0) && (x < WINDOW_WIDTH && y < WINDOW_HEIGHT))
 	{
-		pos = (x * 4) + (y * WINDOW_WIDTH * 4);
+		pos = (x * 4) + (y * WINDOW_WIDTH * 4); //essa linha é responsável por calcular a posição do pixel no buffer de imagem.
 		data->img.addr[pos] = data->color.red + uvector;
 		data->img.addr[pos + 1] = data->color.blue + uvector;
 		data->img.addr[pos + 2] = data->color.green + uvector;

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 00:46:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/29 16:20:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/01 11:51:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	reset_map(t_fdf *fdf)
 	fdf->map.coordinate_y = 0;
 	fdf->map.coordinate_x = 0;
 	fdf->map.z_value = 1.00;
-	fdf->map.angle_x = cos(M_PI / 3);
+	fdf->map.angle_x = cos(M_PI / 3); 
 	fdf->map.angle_y = fdf->map.angle_x * sin(M_PI / 6);
 	fdf->map.isometric = 1;
 	fdf->map.zoom = zoom_change(fdf);

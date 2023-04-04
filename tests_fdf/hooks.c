@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:38:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/16 01:13:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/01 11:50:29 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,22 @@ static int	zoom_change(t_data *data)
 	return (result);
 }
 
+// As operações de Angle_x e Angle_y são usadas para definir a rotação dos pontos do mapa em relação aos eixos x e y durante a renderização.
+// A função cos() retorna o cosseno de um ângulo em radianos. Nesse caso, está sendo calculado o 
+// cosseno de um ângulo de 60 graus (pi/3 radianos), que será armazenado na variável fdf->map.angle_x.
+// Em seguida, a função sin() é usada para calcular o seno de um ângulo de 30 graus (pi/6 radianos), 
+// que será armazenado na variável fdf->map.angle_y. Essa variável é definida como o produto do valor 
+// armazenado em fdf->map.angle_x pelo valor do seno de 30 graus, que é equivalente a 0.5. Isso é feito 
+// para manter a proporção dos eixos x e y, uma vez que os ângulos estão relacionados por uma relação trigonométrica.
+// Esses valores de ângulo são usados depois para calcular as coordenadas x e y de cada ponto do mapa em relação aos eixos x e y da tela.
+
 void	reset_map(t_data *data)
 {
 	data->rect.coordinate_y = 0;
 	data->rect.coordinate_x = 0;
 	data->rect.z_value = 1.00;
-	data->rect.angle_x = cos(M_PI / 3); // 1/2 0,5
-	data->rect.angle_y = data->rect.angle_x * sin(M_PI / 6); // 0,25 ==
+	data->rect.angle_x = cos(M_PI / 3); // Nesse caso, está sendo calculado o cosseno de um ângulo de 60 graus (pi/3 radianos),
+	data->rect.angle_y = data->rect.angle_x * sin(M_PI / 6); //a função sin() é usada para calcular o seno de um ângulo de 30 graus (pi/6 radianos),
 	// data->rect.width = 600;
 	// data->rect.height = 300;
 	data->rect.isometric = 1;
@@ -56,6 +65,11 @@ void	reset_map(t_data *data)
 	data->color.green = 0x4F;
 	data->color.blue = 0x4F;
 }
+
+// Se o valor de fdf->map.isometric for ímpar, o ângulo de visualização em Y (fdf->map.angle_y) 
+// é multiplicado por 0.2, o que resulta em uma imagem mais comprimida na direção vertical. 
+// Se o valor de fdf->map.isometric for par, o ângulo de visualização em Y é multiplicado por 5, 
+// o que resulta em uma imagem mais expandida na direção vertical.
 
 void	isometric_change(t_data *data)
 {
