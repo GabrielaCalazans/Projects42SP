@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:29:58 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/04 20:02:29 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/05 16:22:37 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ INCL_DIR = ./include/
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
 # Source files and object files
-SRC = mandatory/.c
+SRC = mandatory/minitalk.c
 SRC += 
-# B_SRC = 
+# B_SRC = bonus/.c
 # B_SRC += 
 
 OBJS = $(SRC:.c=.o)
@@ -46,15 +46,12 @@ FLAGS = -Wall -Wextra -Werror -O3
 
 all: libft $(NAME)
 
-libft:
-	@make -C $(LIBFT_DIR) --no-print-directory
-
-# Compiling OBJ
+# Compiling Mandatory OBJS
 ./mandatory/%.o: ./mandatory/%.c ./include/minitalk.h
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
-# Compiling BONUS OBJ
+# Compiling BONUS OBJS
 ./bonus/%.o: ./bonus/%.c ./include/minitalk_bonus.h
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
@@ -62,25 +59,28 @@ libft:
 # Compiling
 $(NAME): $(SERVER) $(CLIENT)
 	@echo "(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec."
-	@cc $(FLAGS) $(OBJ_FILES) $(LIBFT) -o $(NAME)
+	@cc $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "$(COLOUR_GREEN)Client and Server created$(COLOUR_END)"
 
-bonus: libft $(BONUSFDF)
+bonus: libft $(BONUS)
 
-$(BONUSFDF): $(BOBJ_FILES)
+$(BONUS): $(BOBJS)
 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
-	@cc $(FLAGS) $(BOBJ_FILES) $(LIBFT) -o $(BONUSFDF)
+	@cc $(FLAGS) $(BOBJS) $(LIBFT) -o $(BONUS)
 	@echo "$(COLOUR_BLUE)Client_bonus and Server_bonus created$(COLOUR_END)"
 
+libft:
+	@make -C $(LIBFT_DIR) --no-print-directory
+
 clean:
-	@rm -Rf $(OBJ_FILES) $(BOBJ_FILES)
+	@rm -Rf $(OBJS) $(BOBJS)
 	@make -C $(LIBFT_DIR) clean
 	@echo "¯\_(ツ)_/¯ Objects removed!"
 
 fclean: clean
-	@rm -f $(NAME) $(BONUSFDF)
+	@rm -f $(NAME) $(SERVER) $(CLIENT) $(BONUS) $(SERVER_BONUS) $(CLIENT_BONUS)
 	@make -C $(LIBFT_DIR) fclean
-	@echo "(•̀ᴗ•́)・ﾟ✧$(NAME) and $(BONUSFDF) removed!"
+	@echo "$(COLOUR_GREEN)All clean$(COLOUR_END)"
 
 re: fclean all
 
