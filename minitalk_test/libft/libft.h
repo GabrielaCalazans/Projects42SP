@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 19:45:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/03/30 14:09:37 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:34:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+
+# define HEX_LOW "0123456789abcdef"
+# define HEX_UPPER "0123456789ABCDEF"
 
 typedef struct s_list
 {
@@ -24,6 +28,12 @@ typedef struct s_list
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10000
+# endif
+
+# ifdef __linux__
+#  define NULLABLE "(nil)"
+# else
+#  define NULLABLE "0x0"
 # endif
 
 char	*get_next_line(int fd);
@@ -73,5 +83,13 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_printf(const char *format, ...);
+int		ft_print_message(char c, va_list args);
+int		printf_char(int c);
+int		printf_str(char *str);
+int		printf_nbr(int nbr);
+int		printf_unsnbr(unsigned int nbr);
+int		printf_nbrhex(unsigned long nbr, char *base);
+int		printf_ptr(unsigned long nbr, char *base);
 
 #endif
