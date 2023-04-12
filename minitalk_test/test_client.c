@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:52:56 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/12 01:23:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:23:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	coder(unsigned char ch, pid_t pid)
 
 static void	roger_that(int sig)
 {
-	if (sig == SIGUSR1)
+	if (sig == SIGUSR2)
 	{
 		ft_putstr_fd("Message received.\n", 1);
 	}
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 	sa.sa_handler = roger_that;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	counter = 0; // contador para os caracteres da mensagem
 	if (argc == 3)
 	{
@@ -68,7 +68,6 @@ int	main(int argc, char *argv[])
 			counter++;
 		}
 		coder('\n', server_pid);
-		coder('\0', server_pid);
 	}
 	return (0);
 }

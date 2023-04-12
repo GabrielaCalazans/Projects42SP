@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:29:58 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/05 16:22:37 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/12 15:07:18 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,36 +33,44 @@ INCL_DIR = ./include/
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
 # Source files and object files
-SRC = mandatory/minitalk.c
-SRC += 
-# B_SRC = bonus/.c
-# B_SRC += 
+SERVER_SRC = test_server.c
+CLIENT_SRC = test_client.c
+SERVER_OBJS = $(SERVER_SRC:.c=.o)
+CLIENT_OBJS = $(CLIENT_SRC:.c=.o)
 
-OBJS = $(SRC:.c=.o)
-# BOBJS = $(B_SRCS:.c=.o)
+# SERVER_BSRC = test_server.c
+# CLIENT_BSRC = test_client.c
+# SERVER_BOBJS = $(B_SRCS:.c=.o)
+# CLIENT_BOBJS = $(B_SRCS:.c=.o)
 
 # Compiling flags
 FLAGS = -Wall -Wextra -Werror -O3
 
+
 all: libft $(NAME)
 
 # Compiling Mandatory OBJS
-./mandatory/%.o: ./mandatory/%.c ./include/minitalk.h
-	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
-	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
-
-# Compiling BONUS OBJS
-./bonus/%.o: ./bonus/%.c ./include/minitalk_bonus.h
+%.o:%.c ./include/minitalk.h
 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
 # Compiling
 $(NAME): $(SERVER) $(CLIENT)
-	@echo "(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec."
-	@cc $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "$(COLOUR_GREEN)Client and Server created$(COLOUR_END)"
 
+$(SERVER): $(SERVER_OBJS) libft
+	@echo "(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec."
+	@$(CC) $(FLAGS) $(SERVER_OBJS) $(LIBFT) -o $(SERVER)
+
+$(CLIENT): $(CLIENT_OBJS) libft
+	@$(CC) $(CLIENT_OBJS) $(LIBFT) -o $(CLIENT)
+
 bonus: libft $(BONUS)
+
+# Compiling BONUS OBJS
+# ./bonus/%.o: ./bonus/%.c ./include/minitalk_bonus.h
+# 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
+# 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
 $(BONUS): $(BOBJS)
 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."

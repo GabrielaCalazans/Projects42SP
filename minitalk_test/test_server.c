@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests_server.c                                     :+:      :+:    :+:   */
+/*   test_server.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:13:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/12 01:19:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:52:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 {
 	static int	count = 0;
 	static char	c = 0;
+	int			check;
 	(void)info;
 	(void)context;
+	check = 2;
 
 	if (sig == SIGUSR2)
 		c = c | 128 >> count; // setar o MSB em c qndo client envia um sinal 
@@ -31,10 +33,15 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 	// ft_putchar_fd e as variáveis count e c são resetadas
 	if (count == 8)
 	{
-		ft_putchar_fd(c, 1);
+		if (ft_putchar_fd(c, 1))
 		c = 0;
 		count = 0;
+		check = 1;
 	}
+	// if (count == 8 && check == 1)
+	// 	kill(info->si_pid, SIGUSR2);
+	// else
+	// 	kill(info->si_pid, SIGUSR2);
 }
 
 // static void decoder(int sig, siginfo_t *info, void *context)
@@ -46,7 +53,6 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 // 	if (sig == SIGUSR2)
 // 		buffer |= (1 << (7 - count));
 // 	count++;
-
 // 	if (count == 8)
 // 	{
 // 		ft_putchar_fd(buffer, 1);
@@ -57,7 +63,7 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 // 	if (buffer == '\0')
 // 	{
 // 		// Envia sinal de confirmação ao cliente
-// 		kill(info->si_pid, SIGUSR2);
+// 		kill(info->si_pid, SIGUSR1);
 // 	}
 // }
 
