@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:29:58 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/12 15:07:18 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/13 16:02:51 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,23 +72,23 @@ bonus: libft $(BONUS)
 # 	@echo "/(◕◕)\・ﾟ✧ MAKING OBJS, Please wait..."
 # 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
-$(BONUS): $(BOBJS)
-	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
-	@cc $(FLAGS) $(BOBJS) $(LIBFT) -o $(BONUS)
-	@echo "$(COLOUR_BLUE)Client_bonus and Server_bonus created$(COLOUR_END)"
+# $(BONUS): $(BOBJS)
+# 	@echo "(◕◕)・ﾟ✧ Compiling bonus... Wait a sec."
+# 	@cc $(FLAGS) $(BOBJS) $(LIBFT) -o $(BONUS)
+# 	@echo "$(COLOUR_GREEN)Client_bonus and Server_bonus created$(COLOUR_END)"
 
 libft:
 	@make -C $(LIBFT_DIR) --no-print-directory
 
 clean:
-	@rm -Rf $(OBJS) $(BOBJS)
+	@rm -Rf $(CLIENT_OBJS) $(SERVER_OBJS)
 	@make -C $(LIBFT_DIR) clean
 	@echo "¯\_(ツ)_/¯ Objects removed!"
 
 fclean: clean
 	@rm -f $(NAME) $(SERVER) $(CLIENT) $(BONUS) $(SERVER_BONUS) $(CLIENT_BONUS)
 	@make -C $(LIBFT_DIR) fclean
-	@echo "$(COLOUR_GREEN)All clean$(COLOUR_END)"
+	@echo "$(COLOUR_BLUE)All clean$(COLOUR_END)"
 
 re: fclean all
 

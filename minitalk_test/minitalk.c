@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:55:33 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/10 16:38:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:51:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,19 @@ int	main(int argc, char* argv[])
 
 	return 0;
 }
+
+
+
+Hoje é um dia ensolarado ☀️, perfeito para sair e aproveitar o ar livre 🌳. Eu acordei cedo e fui dar uma caminhada pela praia 🚶‍♀️. A vista era incrível, com o mar azul e o sol brilhando no horizonte 🌊. Eu tirei algumas fotos para compartilhar com meus amigos depois 📷.
+
+Depois da caminhada, eu decidi ir ao mercado fazer compras 🛒. Havia muitas pessoas por lá, todas usando máscaras 😷 para se proteger do coronavírus. Eu fiz minhas compras e voltei para casa 🏠. No caminho de volta, parei em uma loja de café ☕️ e comprei uma xícara de café quente para me aquecer.
+
+Chegando em casa, eu liguei o computador 💻 e comecei a trabalhar. Eu tinha muitas tarefas para fazer, mas felizmente eu estava me sentindo muito produtiva hoje. Eu consegui terminar todas as minhas tarefas antes do meio-dia 🕛 e decidi dar uma pausa para almoçar.
+
+Eu preparei uma salada 🥗 e comi enquanto assistia um episódio da minha série favorita na Netflix 📺. Depois do almoço, eu decidi fazer uma pausa na tela do computador e ler um livro 📖. Eu escolhi um romance de época e mergulhei na história.
+
+Quando eu olhei no relógio, percebi que já era tarde 😱. Eu precisava me preparar para o jantar com meus amigos hoje à noite 🍴. Eu tomei um banho e me arrumei. Eu escolhi um vestido bonito 👗 e coloquei alguns brincos 💎.
+
+Eu encontrei meus amigos no restaurante 🍽️ e nós tivemos uma noite incrível juntos. Nós rimos muito e comemos uma comida deliciosa. Depois do jantar, nós decidimos ir a um bar 🍻 para tomar uma bebida. Eu pedi um coquetel 🍹 e nós continuamos a conversar e nos divertir.
+
+Quando finalmente chegou a hora de ir para casa, eu me senti cansada, mas feliz 😊. Eu tinha tido um dia incrível, cheio de atividades e pessoas especiais. Eu me senti grata por ter tantas coisas boas em minha vida e fui para casa dormir 💤.

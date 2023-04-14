@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 19:45:45 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/10 16:37:25 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/13 16:00:22 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,10 @@ bonus: $(BOBJS)
 # $(BOBJS): $(BSRCS)
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	rm -rf $(OBJS) $(BOBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

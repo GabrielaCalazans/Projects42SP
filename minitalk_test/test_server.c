@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:13:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/12 16:52:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 00:33:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 {
 	static int	count = 0;
 	static char	c = 0;
-	int			check;
 	(void)info;
 	(void)context;
-	check = 2;
 
 	if (sig == SIGUSR2)
 		c = c | 128 >> count; // setar o MSB em c qndo client envia um sinal 
@@ -33,15 +31,11 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 	// ft_putchar_fd e as variáveis count e c são resetadas
 	if (count == 8)
 	{
-		if (ft_putchar_fd(c, 1))
+		ft_putchar_fd(c, 1);
+		kill(info->si_pid, SIGUSR2);
 		c = 0;
 		count = 0;
-		check = 1;
 	}
-	// if (count == 8 && check == 1)
-	// 	kill(info->si_pid, SIGUSR2);
-	// else
-	// 	kill(info->si_pid, SIGUSR2);
 }
 
 // static void decoder(int sig, siginfo_t *info, void *context)
@@ -93,24 +87,34 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 // 	}
 // }
 
-int	main(void)
+static void	server_usage(void)
 {
-	struct sigaction	sa1;
-	struct sigaction	sa2;
-	pid_t				my_pid;
-	
-	my_pid = getpid();
-	ft_printf("Server PID is %d", (int)my_pid);
-	ft_putchar_fd('\n', 1);
-	sa1.sa_flags = SA_SIGINFO; //A flag SA_SIGINFO não afeta o comportamento do 
+	ft_putstr_fd("Incorrect number of arguments\n\t", 1);
+	ft_putstr_fd("Server Usage:\n\t", 1);
+	ft_putstr_fd("To run, use only -> ./Server\n", 1);
+}
+
+int	main(int argc, char *argv[])
+{
+	struct sigaction	sig;
+
+	(void)argv;
+	if (argc != 1)
+	{
+		server_usage();
+		exit(1);
+	}
+	sig.sa_flags = SA_SIGINFO; //A flag SA_SIGINFO não afeta o comportamento do 
 	// manipulador de sinal(decoder), apenas define que informações adicionais sobre o 
 	// sinal serão passadas para o manipulador. mas devo inicializar os membros da struct
-	sa1.sa_sigaction = decoder;
-	sigaction(SIGUSR1, &sa1, NULL);
-	sa2.sa_flags = SA_SIGINFO;
-	sa2.sa_sigaction = decoder;
-	sigaction(SIGUSR2, &sa2, NULL);
+	sig.sa_sigaction = &decoder;
+	ft_printf("Server PID: %d", getpid());
+	ft_putchar_fd('\n', 1);
 	while (1)
-		sleep(5);
+	{
+		sigaction(SIGUSR1, &sig, NULL);
+		sigaction(SIGUSR2, &sig, NULL);
+		pause();
+	}
 	return (0);
 }

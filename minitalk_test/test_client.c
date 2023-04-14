@@ -6,11 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:52:56 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/12 16:23:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 00:28:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minitalk.h"
+
+int	check;
 
 static void	coder(unsigned char ch, pid_t pid)
 {
@@ -40,34 +42,44 @@ static void	coder(unsigned char ch, pid_t pid)
 
 static void	roger_that(int sig)
 {
-	if (sig == SIGUSR2)
+	if (sig == SIGUSR2 && check == 1)
 	{
-		ft_putstr_fd("Message received.\n", 1);
+		ft_putstr_fd("Message received by the server.\n", 1);
+		check = 2;
 	}
+}
+
+static void	client_usage(void)
+{
+	ft_putstr_fd("Incorrect number of arguments\n\t", 1);
+	ft_putstr_fd("Client Usage:\n\t", 1);
+	ft_putstr_fd("To run -> ./Client server PID number \"string\"\n", 1);
 }
 
 int	main(int argc, char *argv[])
 {
-	int					counter;
+	int					count;
 	int					server_pid;
 	struct sigaction	sa;
 
 	// Configurar o manipulador de sinal para SIGUSR1
+	check = 1;
 	sa.sa_handler = roger_that;
-	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGUSR2, &sa, NULL);
-	counter = 0; // contador para os caracteres da mensagem
+	count = 0; // contador para os caracteres da mensagem
 	if (argc == 3)
 	{
 		server_pid = ft_atoi(argv[1]);
-		while (argv[2][counter])
+		while (argv[2][count])
 		{
-			coder(argv[2][counter], server_pid); // convertendo cada caractere em uma sequência de bits e enviando para o processo receptor
+			coder(argv[2][count], server_pid); // convertendo cada caractere em uma sequência de bits e enviando para o processo receptor
 			// ft_putchar_fd('\n', 1);
-			counter++;
+			count++;
 		}
 		coder('\n', server_pid);
 	}
+	else
+		client_usage();
 	return (0);
 }
