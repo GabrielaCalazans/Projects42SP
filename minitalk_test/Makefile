@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 19:29:58 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/13 16:02:51 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/14 17:04:38 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ CLIENT_OBJS = $(CLIENT_SRC:.c=.o)
 # CLIENT_BOBJS = $(B_SRCS:.c=.o)
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -O3
+FLAGS = -Wall -Wextra -Werror -g3
 
 
 all: libft $(NAME)
@@ -63,7 +63,7 @@ $(SERVER): $(SERVER_OBJS) libft
 	@$(CC) $(FLAGS) $(SERVER_OBJS) $(LIBFT) -o $(SERVER)
 
 $(CLIENT): $(CLIENT_OBJS) libft
-	@$(CC) $(CLIENT_OBJS) $(LIBFT) -o $(CLIENT)
+	@$(CC) $(FLAGS) $(CLIENT_OBJS) $(LIBFT) -o $(CLIENT)
 
 bonus: libft $(BONUS)
 

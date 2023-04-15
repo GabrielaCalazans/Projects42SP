@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/12 19:45:45 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/13 16:00:22 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/14 17:03:09 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ re: fclean all
 rebonus: fclean bonus
 
 %.o: %.c libft.h
-	cc $(FLAGS) -c $< -o $@
+	@cc $(FLAGS) -c $< -o $@
 	ar rcs $(NAME) $@
 
 .PHONY: all clean fclean re rebonus

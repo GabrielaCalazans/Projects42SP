@@ -1,44 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_client.c                                      :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:52:56 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 18:10:51 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/04/14 18:14:55 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/04/14 18:17:52 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minitalk.h"
 
 int	bit;
-
-// static void	coder(unsigned char ch, pid_t pid)
-// {
-// 	int				c;
-// 	unsigned int	base;
-
-// 	c = 7; // contador para os bits da mensagem
-// 	base = 128; // 1000 0000 em binário, base para calcular o valor de cada bit
-// 	while (c >= 0) // iterando pelos bits da mensagem
-// 	{
-// 		if (ch < base) // se o bit atual é zero
-// 		{
-// 			// ft_putchar_fd('0', 1); // escreve 0 no console
-// 			kill(pid, SIGUSR1); // envia sinal SIGUSR1 para o processo receptor
-// 		}
-// 		else // se o bit atual é um
-// 		{
-// 			// ft_putchar_fd('1', 1); // escreve 1 no console
-// 			kill(pid, SIGUSR2);  // envia sinal SIGUSR2 para o processo receptor
-// 			ch = ch - base; // calcula o valor do bit atual
-// 		}
-// 		base = base / 2; // divide a base por 2 para calcular o próximo bit
-// 		c--; // decrementa o contador para processar o próximo bit
-// 		usleep(9000);// espera 5000 microssegundos antes de enviar o próximo sinal
-// 	}
-// }
 
 void	coder(int server_pid, char c)
 {
@@ -61,15 +35,9 @@ void	coder(int server_pid, char c)
 static void	roger_that(int sig)
 {
 	if (sig == SIGUSR1)
-	{
 		bit++;
-		ft_putchar_fd('1', 1);
-	}
 	else if (sig == SIGUSR2)
-	{
 		bit++;
-		ft_putchar_fd('0', 1);
-	}
 	else
 	{
 		ft_printf("\tError: Signal is invalid.\n");
@@ -90,13 +58,10 @@ int	main(int argc, char *argv[])
 	size_t	count;
 	int		server_pid;
 
-	// Configurar o manipulador de sinal para SIGUSR1
 	bit = 0;
-	// sa.sa_handler = roger_that;
-	// sa.sa_flags = 0;
 	signal(SIGUSR2, roger_that);
 	sidecodergnal(SIGUSR1, roger_that);
-	count = 0; // contador para os caracteres da mensagem
+	count = 0;
 	if (argc == 3)
 	{
 		server_pid = ft_atoi(argv[1]);
@@ -104,8 +69,7 @@ int	main(int argc, char *argv[])
 		{
 			if (argv[2][count] == '\0')
 				break ;
-			coder(server_pid, argv[2][count]); // convertendo cada caractere em uma sequência de bits e enviando para o processo receptor
-			// ft_putchar_fd('\n', 1);
+			coder(server_pid, argv[2][count]);
 			count++;
 		}
 		coder(server_pid, '\n');
