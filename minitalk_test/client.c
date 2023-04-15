@@ -6,26 +6,26 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 18:14:55 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 18:17:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:50:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minitalk.h"
 
-int	bit;
+int	g_bitc;
 
 void	coder(int server_pid, char c)
 {
-	while (bit < 8)
+	while (g_bitc < 8)
 	{
-		if ((128 >> bit) & c)
+		if ((128 >> g_bitc) & c)
 			kill(server_pid, SIGUSR2);
 		else
 			kill(server_pid, SIGUSR1);
 		usleep(5000);
-		if (bit == 8)
+		if (g_bitc == 8)
 		{
-			bit = 0;
+			g_bitc = 0;
 			write(1, " ", 1);
 			return ;
 		}
@@ -35,15 +35,14 @@ void	coder(int server_pid, char c)
 static void	roger_that(int sig)
 {
 	if (sig == SIGUSR1)
-		bit++;
+		g_bitc++;
 	else if (sig == SIGUSR2)
-		bit++;
+		g_bitc++;
 	else
 	{
 		ft_printf("\tError: Signal is invalid.\n");
 		exit(1);
 	}
-
 }
 
 static void	client_usage(void)
@@ -58,7 +57,7 @@ int	main(int argc, char *argv[])
 	size_t	count;
 	int		server_pid;
 
-	bit = 0;
+	g_bitc = 0;
 	signal(SIGUSR2, roger_that);
 	sidecodergnal(SIGUSR1, roger_that);
 	count = 0;

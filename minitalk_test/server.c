@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 18:15:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 18:25:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:47:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	decoder(int sig, siginfo_t *info, void *context)
 {
 	static int	count = 0;
 	static char	c = 0;
-	(void)context;
 
+	(void)context;
 	if (sig == SIGUSR2)
 		c = c | 128 >> count;
 	count++;

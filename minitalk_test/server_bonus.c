@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:48:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 18:25:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:54:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	decoder(int sig, siginfo_t *info, void *context)
 {
 	static int	count = 0;
 	static char	c = 0;
-	(void)context;
 
+	(void)context;
 	if (sig == SIGUSR2)
 		c = c | 128 >> count;
 	count++;
@@ -56,9 +56,7 @@ int	main(int argc, char *argv[])
 	sigaddset(&sigset, SIGUSR2);
 	sig.sa_handler = NULL;
 	sig.sa_mask = sigset;
-	sig.sa_flags = SA_SIGINFO; //A flag SA_SIGINFO não afeta o comportamento do 
-	// manipulador de sinal(decoder), apenas define que informações adicionais sobre o 
-	// sinal serão passadas para o manipulador. mas devo inicializar os membros da struct
+	sig.sa_flags = SA_SIGINFO;
 	sig.sa_sigaction = decoder;
 	sigaction(SIGUSR1, &sig, NULL);
 	sigaction(SIGUSR2, &sig, NULL);

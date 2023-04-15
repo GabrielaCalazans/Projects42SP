@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:52:56 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 18:10:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:55:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minitalk.h"
 
-int	bit;
+int	g_bitc;
 
 // static void	coder(unsigned char ch, pid_t pid)
 // {
@@ -42,16 +42,16 @@ int	bit;
 
 void	coder(int server_pid, char c)
 {
-	while (bit < 8)
+	while (g_bitc < 8)
 	{
-		if ((128 >> bit) & c)
+		if ((128 >> g_bitc) & c)
 			kill(server_pid, SIGUSR2);
 		else
 			kill(server_pid, SIGUSR1);
 		usleep(5000);
-		if (bit == 8)
+		if (g_bitc == 8)
 		{
-			bit = 0;
+			g_bitc = 0;
 			write(1, " ", 1);
 			return ;
 		}
@@ -62,12 +62,12 @@ static void	roger_that(int sig)
 {
 	if (sig == SIGUSR1)
 	{
-		bit++;
+		g_bitc++;
 		ft_putchar_fd('1', 1);
 	}
 	else if (sig == SIGUSR2)
 	{
-		bit++;
+		g_bitc++;
 		ft_putchar_fd('0', 1);
 	}
 	else
@@ -91,7 +91,7 @@ int	main(int argc, char *argv[])
 	int		server_pid;
 
 	// Configurar o manipulador de sinal para SIGUSR1
-	bit = 0;
+	g_bitc = 0;
 	// sa.sa_handler = roger_that;
 	// sa.sa_flags = 0;
 	signal(SIGUSR2, roger_that);
