@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:11:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/15 21:08:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:51:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#ifndef MINITALK_H
+# define MINITALK_H
 
 # include <unistd.h> // write getpid pause sleep usleep
 # include <signal.h> // signal sigemptyset sigaction kill

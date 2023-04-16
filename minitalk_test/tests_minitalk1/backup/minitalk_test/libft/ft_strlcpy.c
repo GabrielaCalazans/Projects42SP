@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 14:11:21 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/15 21:08:05 by gacalaza         ###   ########.fr       */
+/*   Created: 2022/09/12 19:44:47 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/02/23 12:20:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "libft.h"
 
-# include <unistd.h> // write getpid pause sleep usleep
-# include <signal.h> // signal sigemptyset sigaction kill
-# include <stdlib.h> // malloc free exit
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	size_t	srclen;
 
-// ** My defined header files.
-# include "../libft/libft.h"
-
-// ** CLIENT FUNC
-void	coder(int server_pid, char c);
-
-// ** SERVER FUNC
-void	decoder(int sig, siginfo_t *info, void *context);
-
-#endif
+	srclen = ft_strlen(src);
+	if (srclen + 1 < size)
+	{
+		ft_memcpy(dest, src, srclen + 1);
+	}
+	else if (size > 1)
+	{
+		ft_memcpy(dest, src, size - 1);
+		dest[size - 1] = '\0';
+	}
+	else if (size == 1)
+	{
+		dest[size - 1] = '\0';
+	}
+	return (srclen);
+}

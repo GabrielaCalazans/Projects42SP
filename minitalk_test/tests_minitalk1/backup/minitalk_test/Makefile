@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/15 21:00:05 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/15 17:15:08 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,25 +22,23 @@ WHITE = \033[1;37m
 END_COL = \033[0m
 
 # ==== Name of the program =====
-CLIENT_NAME	=	client
 SERVER_NAME	=	server
-NAME		=	minitalk
-SERVER_BONUS = server_bonus
-CLIENT_BONUS = client_bonus
+CLIENT_NAME	=	client
+NAME		=	server
 
 # ======= Sources and objs ========
-SERVER_SRC	= ./mandatory/server.c
-CLIENT_SRC	= ./mandatory/client.c
+SERVER_SRC	= server.c
+CLIENT_SRC	= client.c
 SERVER_OBJ = $(SERVER_SRC:.c=.o)
 CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 
-SERVER_BSRC = ./bonus/server_bonus.c
-CLIENT_BSRC = ./bonus/client_bonus.c
+SERVER_BSRC = server_bonus.c
+CLIENT_BSRC = client_bonus.c
 SERVER_BOBJ = $(SERVER_BSRC:.c=.o)
 CLIENT_BOBJ = $(CLIENT_BSRC:.c=.o)
 
-HEADERM		= ./include/minitalk.h
-HEADERB		= ./include/minitalk_bonus.h
+HEADER1		= ./include/minitalk.h
+HEADER2		= ./include/minitalk_bonus.h
 
 # ====== Folders and Paths ========
 LIBFT_DIR = ./libft/
@@ -50,60 +48,49 @@ LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 # ======================= Messages =====================================
 
 COMP_LIFT	=	echo "\n🚀 $(YELLOW)Make: $(NO_COLOR)Starting the compilation...\n"
-LIBS		=	echo "\n🚀 $(GREEN)Libft$(NO_COLOR)OK!\n"
 SERV_READY	=	echo "\n📥 $(GREEN)Server ready!\n$(COLOUR_END)"
 CLI_READY	=	echo "\n📟 $(GREEN)Client ready!\n$(COLOUR_END)"
-SERVB_READY	=	echo "\n📥 $(GREEN)Server_bonus ready!\n$(COLOUR_END)"
-CLIB_READY	=	echo "\n📟 $(GREEN)Client_bonus ready!\n$(COLOUR_END)"
 CLEANED		=	echo "\n🗑️ $(YELLOW)Clean: $(NO_COLOR)Removed all the \".o\" files \n"
 FCLEANED	=	echo "\n🧹 $(YELLOW)Fclean: $(NO_COLOR)Removed the executables \n"
 ERROR		=	echo "\n🚫 $(RED)Erro: $(NO_COLOR)Arquivo de cabeçalho não encontrado"\n"
 
-# =================== Rules ==========================
+# ============= Rules =============
 
 all: $(NAME)
 
-$(NAME): comp_libft $(SERVER_NAME) $(CLIENT_NAME)
+$(NAME): comp_libft ft_server ft_client
 
 comp_libft:
 	@$(COMP_LIFT)
 	@make -C $(LIBFT_DIR) --no-print-directory
 
-$(SERVER_NAME): $(SERVER_OBJ)
-	@cc $(FLAGS) $^ $(LIBFT) -o $@
+ft_server: $(SERVER_OBJ)
+	@cc $(FLAGS) $(SERVER_OBJ) $(LIBFT) -o $(SERVER_NAME)
 	@$(SERV_READY)
 
-$(CLIENT_NAME): $(CLIENT_OBJ)
-	@cc $(FLAGS) $^ $(LIBFT) -o $@
-	@$(CLI_READY)
-
-bonus: comp_libft $(SERVER_BONUS) $(CLIENT_BONUS)
-
-$(SERVER_BONUS): $(SERVER_BOBJ)
-	@cc $(FLAGS) $^ $(LIBFT) -o $@
-	@$(SERV_READY)
-
-$(CLIENT_BONUS): $(CLIENT_BOBJ)
-	@cc $(FLAGS) $^ $(LIBFT) -o $@
+ft_client: $(CLIENT_OBJ)
+	@cc $(FLAGS) $(CLIENT_OBJ) $(LIBFT) -o $(CLIENT_NAME)
 	@$(CLI_READY)
 
 clean:
-	@rm -rf $(CLIENT_OBJ) $(SERVER_OBJ) $(CLIENT_BOBJ) $(SERVER_BOBJ)
+	@rm -rf $(CLIENT_OBJ) $(SERVER_OBJ)
 	@make -C $(LIBFT_DIR) clean
 	@$(CLEANED)
 
 fclean: clean
-	@rm -rf $(SERVER_NAME) $(CLIENT_NAME) $(SERVER_BONUS) $(CLIENT_BONUS)
+	@rm -rf $(SERVER_NAME) $(CLIENT_NAME)
 	@make -C $(LIBFT_DIR) fclean
 	@$(FCLEANED)
 
 # Compiling BONUS OR MANDATORY OBJS
-./mandatory/%.o: ./mandatory/%.c $(HEADERM)
-	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
-
-./bonus/%.o: ./bonus/%.c $(HEADERB)
-	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
+.c.o:
+	@if [ -e $(HEADER1) ] || [ -e $(HEADER2) ]; then \
+		@cc $(FLAGS) -I $(INCL_DIR) -c $< -o $@; \
+	else \
+	@$(ERROR); \
+		exit 1; \
+	fi
 
 re:	fclean all
 
-.PHONY: all ft_server ft_client clean fclean re comp_libft ft_client_bonus ft_server_bonus bonus
+.PHONY: all minitalk server client clean fclean re libft

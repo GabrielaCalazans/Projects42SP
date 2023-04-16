@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:48:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 21:54:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/15 14:57:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/minitalk_bonus.h"
 
-static void	decoder(int sig, siginfo_t *info, void *context)
+void	decoder(int sig, siginfo_t *info, void *context)
 {
 	static int	count = 0;
 	static char	c = 0;

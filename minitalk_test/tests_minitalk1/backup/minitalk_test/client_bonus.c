@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 18:14:55 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/14 21:50:49 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/04/14 17:32:59 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/04/15 14:57:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minitalk.h"
+#include "include/minitalk_bonus.h"
 
 int	g_bitc;
 
@@ -32,12 +32,18 @@ void	coder(int server_pid, char c)
 	}
 }
 
-static void	roger_that(int sig)
+void	roger_that(int sig)
 {
 	if (sig == SIGUSR1)
+	{
 		g_bitc++;
+		ft_putchar_fd('1', 1);
+	}
 	else if (sig == SIGUSR2)
+	{
 		g_bitc++;
+		ft_putchar_fd('0', 1);
+	}
 	else
 	{
 		ft_printf("\tError: Signal is invalid.\n");
@@ -59,7 +65,7 @@ int	main(int argc, char *argv[])
 
 	g_bitc = 0;
 	signal(SIGUSR2, roger_that);
-	sidecodergnal(SIGUSR1, roger_that);
+	signal(SIGUSR1, roger_that);
 	count = 0;
 	if (argc == 3)
 	{
