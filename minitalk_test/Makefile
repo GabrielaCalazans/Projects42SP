@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/15 21:00:05 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/15 21:32:42 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,13 +51,15 @@ LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
 COMP_LIFT	=	echo "\n🚀 $(YELLOW)Make: $(NO_COLOR)Starting the compilation...\n"
 LIBS		=	echo "\n🚀 $(GREEN)Libft$(NO_COLOR)OK!\n"
-SERV_READY	=	echo "\n📥 $(GREEN)Server ready!\n$(COLOUR_END)"
-CLI_READY	=	echo "\n📟 $(GREEN)Client ready!\n$(COLOUR_END)"
-SERVB_READY	=	echo "\n📥 $(GREEN)Server_bonus ready!\n$(COLOUR_END)"
-CLIB_READY	=	echo "\n📟 $(GREEN)Client_bonus ready!\n$(COLOUR_END)"
+SERV_READY	=	echo "\n🖥️ $(GREEN)Server ready!\n$(COLOUR_END)"
+CLI_READY	=	echo "\n📱 $(GREEN)Client ready!\n$(COLOUR_END)"
+SERVB_READY	=	echo "\n🖥️ $(GREEN)Server_bonus ready!\n$(COLOUR_END)"
+CLIB_READY	=	echo "\n📱 $(GREEN)Client_bonus ready!\n$(COLOUR_END)"
+RECOMP		=	echo "\n🔄 $(YELLOW)Recompilation done.\n$(COLOUR_END)"
+RECOMPB		=	echo "\n🔄 $(YELLOW)Recompilation bonus done.\n$(COLOUR_END)"
 CLEANED		=	echo "\n🗑️ $(YELLOW)Clean: $(NO_COLOR)Removed all the \".o\" files \n"
-FCLEANED	=	echo "\n🧹 $(YELLOW)Fclean: $(NO_COLOR)Removed the executables \n"
-ERROR		=	echo "\n🚫 $(RED)Erro: $(NO_COLOR)Arquivo de cabeçalho não encontrado"\n"
+FCLEANED	=	echo "\n🧹 $(YELLOW)Fclean: $(NO_COLOR)ﾟ✧Removed the executablesﾟ✧ \n"
+ERROR		=	echo "\n🚫 $(RED)Erro: $(NO_COLOR)File/Header not found ¯\_(ツ)_/¯"\n"
 
 # =================== Rules ==========================
 
@@ -87,6 +89,12 @@ $(CLIENT_BONUS): $(CLIENT_BOBJ)
 	@cc $(FLAGS) $^ $(LIBFT) -o $@
 	@$(CLI_READY)
 
+re: fclean all
+	@$(RECOMP)
+
+rebonus: fclean bonus
+	@$(RECOMPB)
+
 clean:
 	@rm -rf $(CLIENT_OBJ) $(SERVER_OBJ) $(CLIENT_BOBJ) $(SERVER_BOBJ)
 	@make -C $(LIBFT_DIR) clean
@@ -97,7 +105,7 @@ fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@$(FCLEANED)
 
-# Compiling BONUS OR MANDATORY OBJS
+# Compiling Mandatory or Bonus Objs
 ./mandatory/%.o: ./mandatory/%.c $(HEADERM)
 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
