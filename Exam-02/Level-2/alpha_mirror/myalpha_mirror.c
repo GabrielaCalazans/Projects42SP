@@ -6,10 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:05:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/04/28 17:14:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:20:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {
@@ -26,12 +27,12 @@ int	main(int argc, char *argv[])
 		str = argv[1];
 		while (str[i] != '\0')
 		{
-			if ((str[i] >= 'a' && <= 'z') || (str[i] >= 'A' && <= 'Z'))
-			{
-				
-			}
-			
-			ft_putchar('\n');
+			if (str[i] >= 'a' && str[i] <= 'z')
+				str[i] += (25 - ((str[i] - 'a') * 2));
+			else if (str[i] >= 'A' && str[i] <= 'Z')
+				str[i] += (25 - ((str[i] - 'A') * 2));
+			ft_putchar(str[i]);
+			i++;
 		}
 	}
 	ft_putchar('\n');
