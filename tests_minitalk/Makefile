@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/04/15 21:32:42 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/04/24 11:19:08 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ CLIENT_BOBJ = $(CLIENT_BSRC:.c=.o)
 
 HEADERM		= ./include/minitalk.h
 HEADERB		= ./include/minitalk_bonus.h
+
+FLAGS = -Wall -Wextra -Werror -g3
 
 # ====== Folders and Paths ========
 LIBFT_DIR = ./libft/
