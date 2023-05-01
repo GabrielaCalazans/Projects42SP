@@ -1,0 +1,106 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/04 19:29:58 by gacalaza          #+#    #+#              #
+#    Updated: 2023/04/15 19:30:38 by gacalaza         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# ======= COLORS ========
+BLACK = \033[1;30m
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+PURPLE = \033[1;35m
+CYAN = \033[1;36m
+WHITE = \033[1;37m
+END_COL = \033[0m
+
+# Name of the program
+SERVER = server
+CLIENT = client
+NAME = $(SERVER) $(CLIENT)
+
+# Bonus
+BONUS = minitalk_bonus
+SERVER_BONUS = server_bonus
+CLIENT_BONUS = client_bonus
+
+# Folders/Paths
+LIBFT_DIR = ./libft/
+INCL_DIR = ./include/
+LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+
+# Source files and object files
+SERVER_SRC = server.c
+CLIENT_SRC = client.c
+SERVER_OBJ = $(SERVER_SRC:.c=.o)
+CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
+
+SERVER_BSRC = server_bonus.c
+CLIENT_BSRC = client_bonus.c
+SERVER_BOBJ = $(SERVER_BSRC:.c=.o)
+CLIENT_BOBJ = $(CLIENT_BSRC:.c=.o)
+
+# Compiling flags
+FLAGS = -Wall -Wextra -Werror -g3
+
+all: libft $(NAME)
+
+# Compiling Mandatory OBJS
+%.o:%.c ./include/minitalk.h
+	@echo "$(YELLOW)/(◕◕)\・ﾟ✧Making Minitalk Mandatory Objs...$(END_COL)"
+	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
+
+# Compiling
+$(NAME): #$(SERVER) $(CLIENT)
+	@echo "$(GREEN)Client and Server created$(END)"
+
+$(SERVER): $(SERVER_OBJ) libft
+	@echo "$(PURPLE)(◕◕)・ﾟ✧ Compiling mandatory... Wait a sec.$(END_COL)"
+	$(CC) $(FLAGS) $(SERVER_OBJ) $(LIBFT) -o $@
+
+$(CLIENT): $(CLIENT_OBJ) libft
+	$(CC) $(FLAGS) $(CLIENT_OBJ) $(LIBFT) -o $@
+
+bonus: libft $(BONUS)
+
+# Compiling BONUS OBJS
+%.o:%.c ./include/minitalk_bonus.h
+	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
+	@echo "$(YELLOW)/(◕◕)\・ﾟ✧ Making Minitalk Bonus Objs, Please wait...$(END_COL)"
+
+$(BONUS): $(SERVER_BONUS) $(CLIENT_BONUS)
+	@echo "$(GREEN)Client_bonus and Server_bonus created$(COLOUR_END)"
+
+$(SERVER_BONUS): $(SERVER_BOBJ) libft
+	$(CC) $(FLAGS) $(SERVER_BOBJ) $(LIBFT) -o $(SERVER_BONUS)
+	@echo "$(PURPLE)(◕◕)・ﾟ✧ Compiling bonus... Wait a sec.$(END_COL)"
+
+$(CLIENT_BONUS): $(CLIENT_BOBJ) libft
+	$(CC) $(FLAGS) $(CLIENT_BOBJ) $(LIBFT) -o $(CLIENT_BONUS)
+
+libft:
+	@echo "$(YELLOW)/(◕◕)\・ﾟ✧ Making libft, Please wait...$(END_COL)"
+	@make -C $(LIBFT_DIR) --no-print-directory
+
+clean:
+	@rm -Rf $(CLIENT_OBJ) $(SERVER_OBJ) $(CLIENT_BOBJ) $(SERVER_BOBJ)
+	@make -C $(LIBFT_DIR) clean
+	@echo "$(BLUE)¯\_(ツ)_/¯ Objects removed!$(END_COL)"
+
+fclean: clean
+	@rm -f $(NAME) $(SERVER) $(CLIENT) $(BONUS) $(SERVER_BONUS) $(CLIENT_BONUS)
+	@make -C $(LIBFT_DIR) fclean
+	@echo "$(BLUE)¯\_(ツ)_/¯ All clean$(END_COL)"
+
+re: fclean all
+
+rebonus: fclean bonus
+
+.PHONY: all clean fclean re libft bonus rebonus
