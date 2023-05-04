@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 21:44:59 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/04 17:04:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:54:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ int	ft_isprime(int nbr)
 {
 	int	i = 3;
 
-	if (nbr <= 1)
-		return (0);
-	if (nbr % 2 == 0 && nbr > 2)
+	if (nbr < 2 || (nbr % 2 == 0 && nbr > 2))
 		return (0);
 	while (i < (nbr / 2))
 	{
