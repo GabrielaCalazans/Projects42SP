@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 19:59:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/05 18:18:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/08 18:16:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,15 @@ int	main(int argc, char *argv[])
 			i++;
 		while (str[i] != '\0')
 		{
-			if (checkspace(str[i]) && str[i+1] != '\0')
-			{
-				if (str[i+1] != '\0')
-					i++;
-				while (checkspace(str[i]) && str[i] != '\0')
-					i++;
-				if (str[i] != '\0')
-					ft_putchar(' ');
-			}
 			ft_putchar(str[i]);
 			i++;
+			if (checkspace(str[i]))
+			{
+				while (checkspace(str[i]) && str[i] != '\0')
+					i++;
+				if (!(checkspace(str[i])) && str[i] != '\0')
+					i--;
+			}
 		}
 	}
 	ft_putchar('\n');
