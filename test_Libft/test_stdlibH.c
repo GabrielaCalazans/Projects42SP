@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_stdlibH.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:47:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/09/21 17:17:31 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:02:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int main()
 	// /* 16 */ printf("%d", ft_atoi("1","42"));
 	// /* 17 */ printf("%d", ft_atoi("-1","42"));
 	
-
-	// //TESTES ******************* CALLOC ***************
+	//TESTES ******************* CALLOC ***************
 	// int		size = 10;
 	// int*	array = (int*) calloc(size, sizeof(int));
 	
@@ -47,11 +46,14 @@ int main()
 	// 	printf("ORIGINAL[%d]: %d\n", i, array[i]);
 	// }
 	//  int		sizef = 10;
-	//  int*	arrayf = (int*) calloc(size, sizeof(int));
+	//  int*	arrayf = (int*) ft_calloc(size, sizeof(int));
 
 	//  for (int e = 0; e < sizef; e++)
 	//  {
 	//  	printf("FAKE[%d]: %d\n", e, arrayf[e]);
 	//  }
-	return (0);
+
+	// free (array);
+	// free (arrayf);
+	// return (0);
 }

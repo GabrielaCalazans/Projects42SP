@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:01:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/15 15:39:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:11:01 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	ft_checksign(int nbr, char *result)
 		result[0] = '-';
 		nbr = -nbr;
 	}
-	if (nbr == 0)
-		result[0] = '0';
 	return (nbr);
 }
 
@@ -58,6 +56,8 @@ char	*ft_itoa(int nbr)
 		return (NULL);
 	result[len] = '\0';
 	nbr = ft_checksign(nbr, result);
+	if (nbr == 0)
+		result[len-1] = '0';
 	while (nbr)
 	{
 		result[--len] = (nbr % 10) + '0';
