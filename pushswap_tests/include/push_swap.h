@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/17 13:51:55 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:47:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft/libft.h"
+#include "../libft/libft.h"
+
+typedef struct s_stack
+{
+	long			nbr;
+	struct s_stack	*next;
+}					t_stack;
 
 
 #endif

@@ -6,9 +6,16 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/17 13:51:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:46:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "include/push_swap.h"
 
+int	main(int argc, char *argv[])
+{
+	t_stack *a;
+	
+	
+	return (0);
+}
