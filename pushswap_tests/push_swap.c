@@ -6,14 +6,14 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/19 23:21:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:21:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
 // Função para imprimir a lista encadeada
-void	printList(t_node *head)
+void	printlist(t_node *head)
 {
 	t_node	*temp;
 
@@ -28,8 +28,7 @@ void	printList(t_node *head)
 
 int	main(int argc, char *argv[])
 {
-	t_stack *a;
-
+	t_stack	*a;
 	t_stack	*newnode;
 	int		i;
 	int		n;
@@ -43,27 +42,20 @@ int	main(int argc, char *argv[])
 	i = 1;
 	a = NULL;
 	n = atoi(argv[i]);
-	a = newnode(n);
-
+	a = nodenew(n);
 	while (argv[++i] != NULL)
 	{
 		n = atoi(argv[i]);
-		newnode = createnode(n);
+		newnode = nodenew(n);
 		if (!newnode)
 			break ;
 		ft_lstadd_back(&a, newnode);
 	}
-	
 	printf("Lista original: ");
-	printList(a);
-
+	printlist(a);
 	bubblesort(a);
-
 	printf("Lista ordenada: ");
-	printList(a);
-
+	printlist(a);
 	ft_lstclear(&a);
-
-	
 	return (0);
 }
