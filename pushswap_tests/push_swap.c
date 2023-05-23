@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/22 23:56:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:49:29 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char *argv[])
 	printf("Lista original: ");
 	printlist(a);
 
-	ft_swap(&a, &b, 97);
+	ft_swap_ab(&a, 97);
 	printf("Lista a pós sa: ");
 	printlist(a);
 
@@ -73,40 +73,52 @@ int	main(int argc, char *argv[])
 	printf("Lista b pós pb2: ");
 	printlist(b);
 	
-	ft_swap(&a, &b, 98);
+	ft_swap_ab(&b, 98);
 	printf("Lista a pós sb: ");
 	printlist(a);
 	printf("Lista b pós sb: ");
 	printlist(b);
 
-	ft_rotate(&a, 97);
+	ft_rotate_ab(&a, 97);
 	printf("Lista a pós ra: ");
 	printlist(a);
 	printf("Lista b pós ra: ");
 	printlist(b);
 
-	ft_rotate(&b, 98);
+	ft_rotate_ab(&b, 98);
 	printf("Lista a pós rb: ");
 	printlist(a);
 	printf("Lista b pós rb: ");
 	printlist(b);
 
-	ft_rev_rotate(&a, 97);
+	ft_rev_rotate_ab(&a, 97);
 	printf("Lista a pós rra: ");
 	printlist(a);
 	printf("Lista b pós rra: ");
 	printlist(b);
 
-	ft_rev_rotate(&b, 98);
+	ft_rev_rotate_ab(&b, 98);
 	printf("Lista a pós rrb: ");
 	printlist(a);
 	printf("Lista b pós rrb: ");
 	printlist(b);
 
-	ft_swap(&a, &b, 195);
+	ft_swap_ss(&a, &b, 195);
 	printf("Lista a pós ss: ");
 	printlist(a);
 	printf("Lista b pós ss: ");
+	printlist(b);
+
+	ft_rotate_rr(&a, &b, 195);
+	printf("Lista a pós rr: ");
+	printlist(a);
+	printf("Lista b pós rr: ");
+	printlist(b);
+
+	ft_rev_rotate_r(&a, &b, 195);
+	printf("Lista a pós rrr: ");
+	printlist(a);
+	printf("Lista b pós rrr: ");
 	printlist(b);
 
 	ft_push(&a, &b, 97);

@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/05/22 16:19:57 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/05/23 11:55:43 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME =	push_swap
 BONUS =	push_swap_bonus
 
 # ======= Sources and objs ========
-SRCS = push_swap.c moves_a.c dealing_lst.c
+SRCS = push_swap.c push.c swap.c rotate.c rev_rotate.c dealing_lst.c
 OBJS = $(SRCS:.c=.o)
 
 BSRC = 

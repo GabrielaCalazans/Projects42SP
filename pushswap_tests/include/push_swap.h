@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/22 23:22:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:50:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ int		ft_size(t_stack *lst);
 void	ft_clear(t_stack **lst);
 
 // moves
-void	ft_swap(t_stack **a_head, t_stack **b_head, int check);
+void	ft_swap_ab(t_stack **head, int check);
+void	ft_swap_ss(t_stack **a_head, t_stack **b_head, int check);
 void	ft_push(t_stack **a_head, t_stack **b_head, int check);
-void	ft_rotate(t_stack **head, int check);
-void	ft_rev_rotate(t_stack **head, int check);
+void	ft_rotate_ab(t_stack **head, int check);
+void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check);
+void	ft_rev_rotate_ab(t_stack **head, int check);
+void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 
 
 void	printlist(t_stack *head);
