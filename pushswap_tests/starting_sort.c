@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:58:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 17:54:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:45:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,23 @@
 t_stack	*starting_a(t_stack **a, int argc, char *argv[])
 {
 	int		i;
-	int		n;
 	char	**str;
 	t_stack	*newnode;
 
-	i = 1;
-	n = ft_atoi_error(argv[i]);
 	if (argc == 2)
+	{
+		i = 0;
 		str = ft_split(argv[1], 32);
+	}
 	else
+	{
+		i = 1;
 		str = argv;
-	*a = createnode(n);
+	}
+	*a = createnode(ft_atoi_error(str[i]));
 	while (str[++i] != NULL)
 	{
-		n = ft_atoi_error(str[i]);
-		newnode = createnode(n);
+		newnode = createnode(ft_atoi_error(str[i]));
 		if (!newnode)
 			break ;
 		ft_add_back(a, newnode);

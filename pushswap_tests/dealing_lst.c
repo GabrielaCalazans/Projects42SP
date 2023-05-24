@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:45:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/22 17:52:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:40:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-// Função para criar um novo nó
+// Func to create a new node
 t_stack	*createnode(int nbr)
 {
 	t_stack	*newnode;
@@ -23,7 +23,7 @@ t_stack	*createnode(int nbr)
 	return (newnode);
 }
 
-// Função pra achar a ultima posição
+// Func to find the last node
 t_stack	*ft_last(t_stack *lst)
 {
 	if (lst == NULL)
@@ -37,7 +37,7 @@ t_stack	*ft_last(t_stack *lst)
 	return (lst);
 }
 
-// Função pra achar a penutima posição
+// Func to find almost last
 t_stack	*ft_prevlast(t_stack *lst)
 {
 	t_stack	*last;
@@ -54,6 +54,7 @@ t_stack	*ft_prevlast(t_stack *lst)
 	return (lst);
 }
 
+// Func to add node at the beging of the lst
 void	ft_add_front(t_stack **lst, t_stack *new)
 {
 	if (*lst)
@@ -63,47 +64,4 @@ void	ft_add_front(t_stack **lst, t_stack *new)
 	}
 	else
 		*lst = new;
-}
-
-// Função pra adicionar node na ultima posição
-void	ft_add_back(t_stack **lst, t_stack *new)
-{
-	t_stack	*temp;
-
-	if (*lst)
-	{
-		temp = ft_last(*lst);
-		temp->next = new;
-	}
-	else
-		*lst = new;
-}
-
-// Função para saber o tamanho da lista
-int	ft_size(t_stack *lst)
-{
-	int	len;
-
-	len = 0;
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		len++;
-	}
-	return (len);
-}
-
-void	ft_clear(t_stack **lst)
-{
-	t_stack	*temp;
-	t_stack	*next;
-
-	temp = *lst;
-	while (temp != NULL)
-	{
-		next = temp->next;
-		free (temp);
-		temp = next;
-	}
-	*lst = NULL;
 }

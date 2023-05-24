@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:45:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 13:28:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:34:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_swap_ab(t_stack **head, int check)
 
 	if (*head == NULL || (*head)->next == NULL \
 			|| ft_size(*head) < 2)
-			return ;
+		return ;
 	ptr = *head;
 	nbr = ptr->nbr;
 	ptr->nbr = ptr->next->nbr;
@@ -42,10 +42,10 @@ void	ft_swap_ss(t_stack **a_head, t_stack **b_head, int check)
 
 	if (*a_head == NULL || (*a_head)->next == NULL \
 			|| ft_size(*a_head) < 2)
-			return ;
+		return ;
 	if (*b_head == NULL || (*b_head)->next == NULL \
 			|| ft_size(*b_head) < 2)
-			return ;
+		return ;
 	ptr = *a_head;
 	nbr = ptr->nbr;
 	ptr->nbr = ptr->next->nbr;

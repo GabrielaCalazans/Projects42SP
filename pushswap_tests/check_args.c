@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:20:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 17:47:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:46:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_issign(char c)
 	if (c == '-' || c == '+')
 		return (1);
 	return (0);
-
 }
 
 int	ft_isspace(char c)
@@ -25,11 +24,9 @@ int	ft_isspace(char c)
 	if (c == ' ')
 		return (1);
 	return (0);
-
 }
 
 // ** Checks if the given arguments is valid
-
 int	check_error(char *argv[], int i, int j)
 {
 	while (argv[i])
@@ -69,7 +66,7 @@ void	check_int(char *argv[])
 		j = 0;
 		while ((argv[i][j]) != '\0')
 		{
-			if (!ft_isdigit(argv[i][j]) && 
+			if (!ft_isdigit(argv[i][j]) &&
 				!ft_isspace(argv[i][j]) && \
 				!ft_issign(argv[i][j]))
 				ft_puterror();
