@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 13:50:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:27:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,20 @@ void	ft_clear(t_stack **lst);
 // moves
 void	ft_swap_ab(t_stack **head, int check);
 void	ft_swap_ss(t_stack **a_head, t_stack **b_head, int check);
-void	ft_push(t_stack **a_head, t_stack **b_head, int check);
+void	ft_push_a(t_stack **a_head, t_stack **b_head, int check);
+void	ft_push_b(t_stack **a_head, t_stack **b_head, int check);
 void	ft_rotate_ab(t_stack **head, int check);
 void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check);
 void	ft_rev_rotate_ab(t_stack **head, int check);
 void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 
+
+t_stack	*starting_a(t_stack	**a, int argc, char *argv[]);
+int		sortingit(t_stack **a, t_stack	**b);
+int		check_args(int argc, char *argv[]);
+int		ft_atoi_error(const char *nptr);
+void	ft_puterror(void);
+void	freearray(char **array);
 
 void	printlist(t_stack *head);
 

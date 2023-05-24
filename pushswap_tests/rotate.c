@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:46:02 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 13:41:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:33:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,13 @@
 void	ft_rotate_ab(t_stack **head, int check)
 {
 	t_stack	*ptr;
-	t_stack	*newnode;
-	int		nbr;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	ptr = *head;
-	nbr = ptr->nbr;
-	newnode = createnode(nbr);
-	if (!newnode)
-		return ;
-	ft_add_back(&*head,newnode);
 	*head = ptr->next;
+	ptr->next = NULL;
+	ft_add_back(&*head, ptr);
 	if (check == 97)
 		ft_putstr_fd("ra\n", 1);
 	if (check == 98)
@@ -41,26 +36,18 @@ void	ft_rotate_ab(t_stack **head, int check)
 void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check)
 {
 	t_stack	*ptr;
-	t_stack	*newnode;
-	int		nbr;
 
 	if (*a_head == NULL || (*a_head)->next == NULL \
 		|| *b_head == NULL || (*b_head)->next == NULL)
 		return ;
 	ptr = *a_head;
-	nbr = ptr->nbr;
-	newnode = createnode(nbr);
-	if (!newnode)
-		return ;
-	ft_add_back(&*a_head,newnode);
 	*a_head = ptr->next;
+	ptr->next = NULL;
+	ft_add_back(&*a_head, ptr);
 	ptr = *b_head;
-	nbr = ptr->nbr;
-	newnode = createnode(nbr);
-	if (!newnode)
-		return ;
-	ft_add_back(&*b_head,newnode);
 	*b_head = ptr->next;
+	ptr->next = NULL;
+	ft_add_back(&*b_head, ptr);
 	if (check == 195)
 		ft_putstr_fd("rr\n", 1);
 }

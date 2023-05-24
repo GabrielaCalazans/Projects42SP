@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:37:55 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/08 21:52:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:27:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	countwords(char const *s, char c)
 	return (words);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**splits(char const *s, char c)
 {
 	char	**array;
 	size_t	substr_len;
@@ -56,5 +56,41 @@ char	**ft_split(char const *s, char c)
 		}
 	}
 	array[i] = NULL;
+	return (array);
+}
+
+static char	**freearray(char const *s, char c, char **array)
+{
+	int		i;
+	size_t	sizearray;
+	size_t	nwords;
+
+	nwords = countwords(s, c);
+	sizearray = 0;
+	while (array[sizearray] != NULL)
+	{
+		sizearray++;
+	}
+	i = 0;
+	if (nwords != sizearray)
+	{
+		while (array[i])
+		{
+			free(array[i]);
+			array[i] = NULL;
+			i++;
+		}
+	}
+	if (!array)
+		return (NULL);
+	return (array);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**array;
+
+	array = splits(s, c);
+	freearray(s, c, array);
 	return (array);
 }
