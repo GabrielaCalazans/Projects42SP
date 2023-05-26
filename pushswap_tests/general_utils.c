@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:27:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 16:35:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:11:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void	freearray(char **array)
+void	ft_freearray(char **array)
 {
 	int		i;
 

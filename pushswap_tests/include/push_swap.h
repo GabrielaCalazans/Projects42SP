@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:30:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:18:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_add_back(t_stack **lst, t_stack *new);
 int		ft_size(t_stack *lst);
 void	ft_clear(t_stack **lst);
 
-// moves
+// Instructions
 void	ft_swap_ab(t_stack **head, int check);
 void	ft_swap_ss(t_stack **a_head, t_stack **b_head, int check);
 void	ft_push_a(t_stack **a_head, t_stack **b_head, int check);
@@ -43,13 +43,17 @@ void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check);
 void	ft_rev_rotate_ab(t_stack **head, int check);
 void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 
-t_stack	*starting_a(t_stack	**a, int argc, char *argv[]);
-void	sortingit(t_stack **a, t_stack	**b);
-int		check_args(int argc, char *argv[]);
-int		ft_atoi_error(const char *nptr);
-void	ft_puterror(void);
-void	freearray(char **array);
+t_stack	*starting(t_stack	**a, int argc, char *argv[]);
+void	sorting_it(t_stack **a, t_stack	**b, int len);
+void	sort_six(t_stack **a, t_stack	**b);
 
+int		check_args(int argc, char *argv[]);
+int		checksorted(t_stack *a)
 void	printlist(t_stack *head);
 
+int		ft_max(t_stack *head);
+int		ft_min(t_stack *head);
+void	ft_freearray(char **array);
+void	ft_puterror(void);
+int		ft_atoi_error(const char *nptr);
 #endif

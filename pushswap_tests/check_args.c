@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:20:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:46:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/25 21:16:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,24 @@ int	check_args(int argc, char *argv[])
 	if (!check_error(argv, 1, 0))
 		ft_puterror();
 	return (1);
+}
+
+// Func checks if the stack includes
+// duplicate nbr.
+int	ft_checkdup(t_stack *a)
+{
+	t_stack	*tmp;
+
+	while (a)
+	{
+		tmp = a->next;
+		while (tmp)
+		{
+			if (a->nbr == tmp->nbr)
+				return (1);
+			tmp = tmp->next;
+		}
+		a = a->next;
+	}
+	return (0);
 }

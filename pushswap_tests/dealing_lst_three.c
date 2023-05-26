@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   starting_sort.c                                    :+:      :+:    :+:   */
+/*   dealing_lst_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 15:58:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:45:13 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/05/25 16:29:03 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/05/25 16:32:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-t_stack	*starting_a(t_stack **a, int argc, char *argv[])
+// ** Func finds and returns the smallest nbr int int the stack
+int	ft_min(t_stack *head)
 {
-	int		i;
-	char	**str;
-	t_stack	*newnode;
+	int		min;
 
-	if (argc == 2)
+	min = head->nbr;
+	while (head)
 	{
-		i = 0;
-		str = ft_split(argv[1], 32);
+		if (head->nbr < min)
+			min = head->nbr;
+		head = head->next;
 	}
-	else
+	return (min);
+}
+
+// ** Func finds and returns the biggest nbr int in the stack
+int	ft_max(t_stack *head)
+{
+	int		max;
+
+	max = head->nbr;
+	while (head)
 	{
-		i = 1;
-		str = argv;
+		if (head->nbr > max)
+			max = head->nbr;
+		head = head->next;
 	}
-	*a = createnode(ft_atoi_error(str[i]));
-	while (str[++i] != NULL)
-	{
-		newnode = createnode(ft_atoi_error(str[i]));
-		if (!newnode)
-			break ;
-		ft_add_back(a, newnode);
-	}
-	if (argc == 2)
-		freearray(str);
-	return (*a);
+	return (max);
 }
