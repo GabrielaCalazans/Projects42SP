@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/25 18:18:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:49:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	printlist(t_stack *head)
 {
 	t_stack	*temp;
 
+	if (!head)
+		printf("ERROR");
 	temp = head;
 	while (temp != NULL)
 	{

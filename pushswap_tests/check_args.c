@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:20:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/25 21:16:44 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/26 22:02:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,59 @@ int	check_args(int argc, char *argv[])
 
 // Func checks if the stack includes
 // duplicate nbr.
-int	ft_checkdup(t_stack *a)
+int	ft_checkdup(char **str, int i)
 {
-	t_stack	*tmp;
+	int	j;
+	int	nbr;
+	int	nbr_comp;
 
+	while (str[i] != NULL)
+	{
+		nbr = ft_atoi_error(str[i]);
+		j = i + 1;
+		while (str[j] != NULL)
+		{
+			nbr_comp = ft_atoi_error(str[j]);
+			if (nbr == nbr_comp)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+// Func checks if the stack is sorted.
+int	checksorted(t_stack *a)
+{
+	int	i;
+
+	i = a->nbr;
 	while (a)
 	{
-		tmp = a->next;
-		while (tmp)
-		{
-			if (a->nbr == tmp->nbr)
-				return (1);
-			tmp = tmp->next;
-		}
+		if (i > a->nbr)
+			return (1);
+		i = a->nbr;
 		a = a->next;
+	}
+	return (0);
+}
+
+// Func checks if the stack is sorted.
+int	checksorted_len(t_stack *a)
+{
+	int	i;
+	int	len;
+
+	i = a->nbr;
+	len = 2;
+	while (a)
+	{
+		if (i > a->nbr)
+			return (len - 1);
+		i = a->nbr;
+		a = a->next;
+		len++;
 	}
 	return (0);
 }

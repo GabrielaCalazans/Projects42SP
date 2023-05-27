@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   starting_sort.c                                    :+:      :+:    :+:   */
+/*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:58:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/25 18:10:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:56:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
+void	sub_starting(t_stack **a, char **str, int i)
+{
+	t_stack	*newnode;
+
+	*a = createnode(ft_atoi_error(str[i]));
+	while (str[++i] != NULL)
+	{
+		newnode = createnode(ft_atoi_error(str[i]));
+		if (!newnode)
+			break ;
+		ft_add_back(a, newnode);
+	}
+}
+
 t_stack	*starting(t_stack **a, int argc, char *argv[])
 {
 	int		i;
 	char	**str;
-	t_stack	*newnode;
 
 	if (argc == 2)
 	{
@@ -28,14 +41,9 @@ t_stack	*starting(t_stack **a, int argc, char *argv[])
 		i = 1;
 		str = argv;
 	}
-	*a = createnode(ft_atoi_error(str[i]));
-	while (str[++i] != NULL)
-	{
-		newnode = createnode(ft_atoi_error(str[i]));
-		if (!newnode)
-			break ;
-		ft_add_back(a, newnode);
-	}
+	if (!ft_checkdup(str, i))
+		ft_puterror();
+	sub_starting(a, str, i);
 	if (argc == 2)
 		ft_freearray(str);
 	return (*a);
