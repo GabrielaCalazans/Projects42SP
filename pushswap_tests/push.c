@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:45:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/23 17:29:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:51:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_push_a(t_stack **a_head, t_stack **b_head, int check)
 {
 	t_stack	*ptr;
 
-	if (*b_head == NULL || (*b_head)->next == NULL)
+	if (*b_head == NULL)
 		return ;
 	ptr = *b_head;
 	*b_head = ptr->next;
@@ -34,7 +34,7 @@ void	ft_push_b(t_stack **a_head, t_stack **b_head, int check)
 {
 	t_stack	*ptr;
 
-	if (*a_head == NULL || (*a_head)->next == NULL)
+	if (*a_head == NULL)
 		return ;
 	ptr = *a_head;
 	*a_head = ptr->next;

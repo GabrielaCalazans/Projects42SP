@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:20:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/26 22:02:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:30:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,11 @@ int	checksorted(t_stack *a)
 	while (a)
 	{
 		if (i > a->nbr)
-			return (1);
+			return (0);
 		i = a->nbr;
 		a = a->next;
 	}
-	return (0);
+	return (1);
 }
 
 // Func checks if the stack is sorted.

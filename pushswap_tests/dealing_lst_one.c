@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dealing_lst.c                                      :+:      :+:    :+:   */
+/*   dealing_lst_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:45:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:40:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:45:37 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,3 @@ t_stack	*ft_prevlast(t_stack *lst)
 	return (lst);
 }
 
-// Func to add node at the beging of the lst
-void	ft_add_front(t_stack **lst, t_stack *new)
-{
-	if (*lst)
-	{
-		new->next = *lst;
-		*lst = new;
-	}
-	else
-		*lst = new;
-}

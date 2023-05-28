@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dealing_lst_utils.c                                :+:      :+:    :+:   */
+/*   dealing_lst_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:35:50 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:42:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:45:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+
+// Func to add node at the beging of the lst
+void	ft_add_front(t_stack **lst, t_stack *new)
+{
+	if (*lst)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+	else
+		*lst = new;
+}
 
 // Func to add node at the end of the lst
 void	ft_add_back(t_stack **lst, t_stack *new)
