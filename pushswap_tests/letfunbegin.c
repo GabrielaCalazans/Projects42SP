@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/27 22:51:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:15:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	sorting_it(t_stack **a, t_stack **b, int len)
 {
-	(void)b;
+	if (len > 0 && len < 3)
+		sort_three(a);
 	if (len == 3)
 		sort_three(a);
 	if (len >= 4 && len <= 8)
