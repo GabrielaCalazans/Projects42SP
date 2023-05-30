@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/05/27 15:43:40 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/05/29 22:08:35 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ $(SELECT):
 	@$(SELECT_READY)
 
 clean:
-	@rm -rf $(OBJS_B) $(OBJS_S)
+	@rm -rf $(OBJS_B) $(OBJS_S) a.out
 	@$(CLEANED)
 
 fclean: clean
