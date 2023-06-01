@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:20:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/30 20:19:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/01 01:16:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,19 @@ static void	check_int(char *argv[])
 	int	j;
 
 	i = 1;
-	if (argv[1][0] == '\0')
-		ft_puterror();
+	// if (argv[1][0] == '\0' || !ft_issign(argv[i][0]) 
+	// 	|| !ft_isdigit(argv[i][0]))
+	// 	return ;
 	while (argv[i])
 	{
 		j = 0;
 		while ((argv[i][j]) != '\0')
 		{
 			if (!ft_isdigit(argv[i][j]) &&
-				!ft_isspace(argv[i][j]) && \
+				!ft_isspace(argv[i][j]) &&
 				!ft_issign(argv[i][j]))
+				ft_puterror();
+			if (ft_isalpha(argv[i][j]))
 				ft_puterror();
 			j++;
 		}
@@ -81,7 +84,7 @@ static void	check_int(char *argv[])
 int	check_args(int argc, char *argv[])
 {
 	if (argc < 2)
-		ft_puterror();
+		exit(1);
 	check_int(argv);
 	if (!check_error(argv, 1, 0))
 		ft_puterror();

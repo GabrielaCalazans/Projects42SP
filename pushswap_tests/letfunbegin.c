@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/29 22:15:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/01 01:19:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sorting_it(t_stack **a, t_stack **b, int len)
 {
-	if (len > 0 && len < 3)
+	if (len == 2)
 		sort_three(a);
 	if (len == 3)
 		sort_three(a);
@@ -97,3 +97,29 @@ void	sort_big(t_stack **a, t_stack **b, int size)
 	else
 		sort_big(a, b, size);
 }
+
+// void	sort_big(t_stack **a, t_stack **b, int size)
+// {
+// 	int	pos;
+	
+// 	if (checksorted(*a) && size == ft_size(*a))
+// 		return ;
+// 	pos = ft_min_pos(*a, ft_min(*a));
+// 	if (pos == size)
+// 		ft_rev_rotate_ab(a, 97);
+// 	else if (ft_min(*a) == (*a)->nbr)
+// 		ft_push_b(a, b, 98);
+// 	else if (pos >= size/2)
+// 		ft_rev_rotate_ab(a, 97);
+// 	else if (pos < size/2)
+// 		ft_rotate_ab(a, 97);
+// 	else
+// 		ft_rev_rotate_ab(a, 97);
+// 	if (checksorted(*a))
+// 	{
+// 		push_all_b_to_a(a, b);
+// 		return ;
+// 	}
+// 	else
+// 		sort_big(a, b, size);
+// }

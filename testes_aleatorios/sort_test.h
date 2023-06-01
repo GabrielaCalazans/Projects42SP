@@ -3,13 +3,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Definition of the node structure for the linked list
 typedef struct s_node
 {
 	int				data;
 	struct s_node	*next;
+	struct s_node	*prev;
 }					t_node;
+
+// Class Quicksort
+typedef struct s_quicksort
+{
+	t_node	*elements;
+	int		size;
+}			t_quicksort;
 
 t_node	*createnode(int data);
 t_node	*ft_lstlast(t_node *lst);
@@ -19,5 +28,6 @@ void	ft_lstclear(t_node **lst);
 void	bubblesort(t_node *head);
 int 	ft_size(t_node *lst);
 void	selectionSort(t_node *head);
+void	insertionSort(t_node *head);
 
 #endif

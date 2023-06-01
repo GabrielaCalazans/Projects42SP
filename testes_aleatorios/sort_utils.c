@@ -6,20 +6,23 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/27 14:49:54 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:42:19 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort_test.h"
 
-// Function to create a new node
-t_node	*createnode(int data)
+t_node *createnode(int data)
 {
-	t_node *newnode;
-
-	newnode = (t_node *)malloc(sizeof(t_node));
+	t_node *newnode = (t_node *)malloc(sizeof(t_node));
+	if (newnode == NULL)
+	{
+		printf("Failed to allocate memory for new node.\n");
+		return NULL;
+	}
 	newnode->data = data;
 	newnode->next = NULL;
+	newnode->prev = NULL;
 	return (newnode);
 }
 
@@ -38,14 +41,17 @@ t_node	*ft_lstlast(t_node *lst)
 }
 
 // Function to add a node at the last position
-void	ft_lstadd_back(t_node **lst, t_node *new)
+void ft_lstadd_back(t_node **lst, t_node *new)
 {
-	t_node	*temp;
+	t_node *temp;
 
 	if (*lst)
 	{
-		temp = ft_lstlast(*lst);
+		temp = *lst;
+		while (temp->next != NULL)
+			temp = temp->next;
 		temp->next = new;
+		new->prev = temp;
 	}
 	else
 		*lst = new;
