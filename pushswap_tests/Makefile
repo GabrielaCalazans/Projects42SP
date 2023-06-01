@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/05/30 20:21:21 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/06/01 16:51:02 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ BONUS =	push_swap_bonus
 
 # ======= Sources and objs ========
 SRCS = push_swap.c push.c swap.c rotate.c rev_rotate.c 
-SRCS += check_args.c start.c general_utils.c letfunbegin.c
+SRCS += check_args.c check_args_utils.c start.c general_utils.c letfunbegin.c
 SRCS += dealing_lst_one.c dealing_lst_two.c dealing_lst_one.c dealing_lst_three.c
 OBJS = $(SRCS:.c=.o)
 
@@ -51,13 +51,13 @@ FLAGS = -Wall -Wextra -Werror -g3
 
 # ======================= Messages =====================================
 
-COMP_LIFT	=	echo "\n🚀 $(YELLOW)Make:$(NO_COLOR)Starting the compilation...\n"
-LIBS		=	echo "\n📂 $(GREEN)Libft$(NO_COLOR)OK!\n"
-PS_READY	=	echo "\n📚 $(GREEN)push_swap ready!\n$(COLOUR_END)"
-BPS_READY	=	echo "\n📚 $(GREEN)push_swap_bonus ready!\n$(COLOUR_END)"
+COMP_LIFT	=	echo "\n🚀 Make: Starting the compilation...\n"
+LIBS		=	echo "\n📂 Libft OK!\n"
+PS_READY	=	echo "\n📚 push_swap ready!\n"
+BPS_READY	=	echo "\n📚 push_swap_bonus ready!\n"
 RECOMP		=	echo "\n🔄 $(YELLOW)Recompilation done.\n$(COLOUR_END)"
 RECOMPB		=	echo "\n🔄 $(YELLOW)Recompilation bonus done.\n$(COLOUR_END)"
-CLEANED		=	echo "\n🧹 $(YELLOW)Clean:$(NO_COLOR)Removed all the \".o\" files \n"
+CLEANED		=	echo "\n🧹 Clean: Removed all the \".o\" files \n"
 FCLEANED	=	echo "\n🗑️ $(YELLOW)Fclean:$(NO_COLOR)ﾟ✧Removed the executablesﾟ✧ \n"
 ERROR		=	echo "\n🚫 $(RED)Erro:$(NO_COLOR)File/Header not found ¯\_(ツ)_/¯"\n"
 

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:45:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/27 20:45:37 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:46:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ t_stack	*ft_prevlast(t_stack *lst)
 	}
 	return (lst);
 }
-

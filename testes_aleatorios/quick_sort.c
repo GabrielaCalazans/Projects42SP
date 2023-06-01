@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:29:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 00:21:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:45:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 // ** Method to perform swapping of data between 
 // ** two positions in the linked list, divide and conquer
-void swap(t_node *node1, t_node *node2)
+void	swap(t_node *node1, t_node *node2)
 {
 	int temp = node1->data;
 	node1->data = node2->data;
@@ -26,10 +26,10 @@ void swap(t_node *node1, t_node *node2)
 
 // ** Method to perform partitioning, the core of the 
 // ** Quicksort algorithm, divide and conquer
-t_node *partition(t_node *start, t_node *end)
+t_node	*partition(t_node *start, t_node *end)
 {
-	int pivot = end->data;
-	t_node *i = start->prev;
+	int		pivot = end->data;
+	t_node	*i = start->prev;
 
 	t_node *j = start;
 	while (j != end)
@@ -49,18 +49,15 @@ t_node *partition(t_node *start, t_node *end)
 	else
 		i = i->next;
 	swap(i, end);
-
-	return i;
+	return (i);
 }
-
 
 // Method to perform Quicksort recursively
 void quicksort(t_node *start, t_node *end)
 {
 	if (start == NULL || end == NULL || start == end || end->next == start)
 		return;
-
-	t_node *pivot = partition(start, end);
+	t_node	*pivot = partition(start, end);
 	quicksort(start, pivot->prev);
 	quicksort(pivot->next, end);
 }
@@ -69,7 +66,7 @@ int	main(int argc, char *argv[])
 {
 	t_node	*head;
 	t_node	*newnode;
-	int		i;
+	int		i; 
 	int		n;
 
 	if (argc < 2)
@@ -97,6 +94,5 @@ int	main(int argc, char *argv[])
 
 	printf("Sorted list: ");
 	printList(head);
-
 	return 0;
 }

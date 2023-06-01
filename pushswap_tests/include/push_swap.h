@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/27 22:05:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:47:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 
 t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
-void	sort_uptosix(t_stack **a);
+// void	sort_uptosix(t_stack **a, t_stack **b, int size);
 void	sort_three(t_stack **a);
 void	sort_big(t_stack **a, t_stack **b, int size);
+void	quick_sort(t_stack **a, t_stack **b, int size);
 
 int		check_args(int argc, char *argv[]);
+int		check_error(char *argv[], int i, int j);
+void	check_int(char *argv[]);
 int		ft_checkdup(char **str, int i);
 int		checksorted(t_stack *a);
 int		checksorted_len(t_stack *a);

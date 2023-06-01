@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:20:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 01:16:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:54:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_isspace(char c)
 }
 
 // ** Checks if the given arguments is valid
-static int	check_error(char *argv[], int i, int j)
+int	check_error(char *argv[], int i, int j)
 {
 	while (argv[i])
 	{
@@ -55,15 +55,12 @@ static int	check_error(char *argv[], int i, int j)
 	return (1);
 }
 
-static void	check_int(char *argv[])
+void	check_int(char *argv[])
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	// if (argv[1][0] == '\0' || !ft_issign(argv[i][0]) 
-	// 	|| !ft_isdigit(argv[i][0]))
-	// 	return ;
 	while (argv[i])
 	{
 		j = 0;
@@ -79,73 +76,4 @@ static void	check_int(char *argv[])
 		}
 		i++;
 	}
-}
-
-int	check_args(int argc, char *argv[])
-{
-	if (argc < 2)
-		exit(1);
-	check_int(argv);
-	if (!check_error(argv, 1, 0))
-		ft_puterror();
-	return (1);
-}
-
-// Func checks if the stack includes
-// duplicate nbr.
-int	ft_checkdup(char **str, int i)
-{
-	int	j;
-	int	nbr;
-	int	nbr_comp;
-
-	while (str[i] != NULL)
-	{
-		nbr = ft_atoi_error(str[i]);
-		j = i + 1;
-		while (str[j] != NULL)
-		{
-			nbr_comp = ft_atoi_error(str[j]);
-			if (nbr == nbr_comp)
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-// Func checks if the stack is sorted.
-int	checksorted(t_stack *a)
-{
-	int	i;
-
-	i = a->nbr;
-	while (a)
-	{
-		if (i > a->nbr)
-			return (0);
-		i = a->nbr;
-		a = a->next;
-	}
-	return (1);
-}
-
-// Func checks if the stack is sorted.
-int	checksorted_len(t_stack *a)
-{
-	int	i;
-	int	len;
-
-	i = a->nbr;
-	len = 2;
-	while (a)
-	{
-		if (i > a->nbr)
-			return (len - 1);
-		i = a->nbr;
-		a = a->next;
-		len++;
-	}
-	return (0);
 }
