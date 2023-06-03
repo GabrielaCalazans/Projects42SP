@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 19:16:09 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:34:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	printlist(t_stack *head)
 	temp = head;
 	while (temp != NULL)
 	{
-		printf("%d ", temp->nbr);
+		printf("nbr: %d index: %d ", temp->nbr, temp->index);
 		temp = temp->next;
 	}
 	printf("\n");

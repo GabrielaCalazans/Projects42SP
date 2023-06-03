@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 17:47:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:30:19 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 typedef struct s_stack
 {
 	int				nbr;
+	int				index;
 	struct s_stack	*next;
+	// struct s_stack	*prev;
 }					t_stack;
 
 // dealing list
-t_stack	*createnode(int data);
+t_stack	*createnode(int nbr, int index);
 t_stack	*ft_last(t_stack *lst);
 t_stack	*ft_prevlast(t_stack *lst);
 void	ft_add_front(t_stack **lst, t_stack *new);
@@ -64,4 +66,5 @@ int		ft_min_pos(t_stack *head, int pos);
 void	ft_freearray(char **array);
 void	ft_puterror(void);
 int		ft_atoi_error(const char *nptr);
+
 #endif

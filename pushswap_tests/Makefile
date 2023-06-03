@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/06/01 16:51:02 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/06/02 18:51:53 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +55,10 @@ COMP_LIFT	=	echo "\n🚀 Make: Starting the compilation...\n"
 LIBS		=	echo "\n📂 Libft OK!\n"
 PS_READY	=	echo "\n📚 push_swap ready!\n"
 BPS_READY	=	echo "\n📚 push_swap_bonus ready!\n"
-RECOMP		=	echo "\n🔄 $(YELLOW)Recompilation done.\n$(COLOUR_END)"
-RECOMPB		=	echo "\n🔄 $(YELLOW)Recompilation bonus done.\n$(COLOUR_END)"
+RECOMP		=	echo "\n🔄 Recompilation done.\n"
+RECOMPB		=	echo "\n🔄 Recompilation bonus done.\n"
 CLEANED		=	echo "\n🧹 Clean: Removed all the \".o\" files \n"
-FCLEANED	=	echo "\n🗑️ $(YELLOW)Fclean:$(NO_COLOR)ﾟ✧Removed the executablesﾟ✧ \n"
+FCLEANED	=	echo "\n🗑️ Fclean: ﾟ✧Removed the executablesﾟ✧ \n"
 ERROR		=	echo "\n🚫 $(RED)Erro:$(NO_COLOR)File/Header not found ¯\_(ツ)_/¯"\n"
 
 # =================== Rules ==========================

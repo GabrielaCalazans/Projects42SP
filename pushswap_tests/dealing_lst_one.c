@@ -6,19 +6,22 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:45:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 16:46:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:33:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
 // Func to create a new node
-t_stack	*createnode(int nbr)
+t_stack	*createnode(int nbr, int index)
 {
 	t_stack	*newnode;
 
 	newnode = (t_stack *)malloc(sizeof(t_stack));
+	if (!newnode)
+		ft_puterror();
 	newnode->nbr = nbr;
+	newnode->index = index;
 	newnode->next = NULL;
 	return (newnode);
 }
