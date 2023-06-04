@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:45:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:34:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:37:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,43 @@
 // (swap): Swap the first 2 elements at the top of stack.
 // Do nothing if there is only one or no elements.
 
+// void	ft_swap_ab(t_stack **head, int check)
+// {
+// 	t_stack	*ptr;
+// 	int		nbr;
+
+// 	if (*head == NULL || (*head)->next == NULL \
+// 			|| ft_size(*head) < 2)
+// 		return ;
+// 	ptr = *head;
+// 	nbr = ptr->nbr;
+// 	ptr->nbr = ptr->next->nbr;
+// 	ptr->next->nbr = nbr;
+// 	if (check == 97)
+// 		ft_putstr_fd("sa\n", 1);
+// 	if (check == 98)
+// 		ft_putstr_fd("sb\n", 1);
+// }
+
 void	ft_swap_ab(t_stack **head, int check)
 {
-	t_stack	*ptr;
-	int		nbr;
+	t_stack	*first;
+	t_stack	*second;
+	// t_stack	*temp;
 
 	if (*head == NULL || (*head)->next == NULL \
 			|| ft_size(*head) < 2)
 		return ;
-	ptr = *head;
-	nbr = ptr->nbr;
-	ptr->nbr = ptr->next->nbr;
-	ptr->next->nbr = nbr;
+	first = *head;
+	second = first->next;
+	// temp = second->next;
+	first->next = second->next;
+	first->prev = second;
+	second->next = first;
+	second->prev = NULL;
+	if (first->next != NULL)
+		first->next->prev = first;
+	*head = second;
 	if (check == 97)
 		ft_putstr_fd("sa\n", 1);
 	if (check == 98)

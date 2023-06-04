@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:35:50 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/27 20:45:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:00:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_add_front(t_stack **lst, t_stack *new)
 	if (*lst)
 	{
 		new->next = *lst;
+		new->prev = NULL;
 		*lst = new;
 	}
 	else
@@ -33,6 +34,7 @@ void	ft_add_back(t_stack **lst, t_stack *new)
 	{
 		temp = ft_last(*lst);
 		temp->next = new;
+		new->prev = temp;
 	}
 	else
 		*lst = new;

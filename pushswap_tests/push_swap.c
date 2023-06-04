@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/03 17:39:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:33:37 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 	// printf("Sorted List a: ");
 	// printlist(a);
 	// printf("Sorted List b: ");
-	printlist(b);
+	// printlist(b);
 	ft_clear(&a);
 	ft_clear(&b);
 	return (0);

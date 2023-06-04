@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 20:02:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:55:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	sorting_it(t_stack **a, t_stack **b, int len)
 {
 	if (len == 2)
 		sort_three(a);
-	if (len == 3)
+	if (len >= 3 && len <= 4)
 		sort_three(a);
-	if (len >= 4 && len <= 8)
-		quick_sort(a, b, len);
-	if (len > 8)
+	if (len == 5)
+		sort_five(a, b, len);
+	if (len > 7)
 		sort_big(a, b, len);
 }
 
@@ -30,8 +30,8 @@ void	sort_three(t_stack **a)
 		return ;
 	if (ft_min(*a) == (*a)->nbr)
 	{
-		ft_rev_rotate_ab(a, 97);
 		ft_swap_ab(a, 97);
+		ft_rotate_ab(a, 97);
 	}
 	else if (ft_max(*a) == (*a)->nbr)
 	{
@@ -44,6 +44,25 @@ void	sort_three(t_stack **a)
 		ft_swap_ab(a, 97);
 		sort_three(a);
 	}
+}
+
+void	sort_five(t_stack **a, t_stack **b, int size)
+{
+	int	pos;
+
+	if (checksorted(*a) && size == ft_size(*a))
+		return ;
+	else if (ft_min(*a) == (*a)->nbr)
+	{
+		ft_push_b(a, b, 98);
+		ft_push_b(a, b, 98);
+	}
+	else if (!checksorted(*a) && ft_size(*a) == 3)
+		sort_three(a);
+	if (checksorted(*a))
+		push_all_b_to_a(a, b);
+	else
+		sort_big(a, b, size);
 }
 
 // void	sort_uptosix(t_stack **a, t_stack **b, int size)
@@ -95,6 +114,7 @@ void	sort_big(t_stack **a, t_stack **b, int size)
 	else
 		sort_big(a, b, size);
 }
+
 
 // void	sort_big(t_stack **a, t_stack **b, int size)
 // {

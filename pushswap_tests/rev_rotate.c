@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:46:18 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/24 16:49:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:34:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_rev_rotate_ab(t_stack **head, int check)
 	}
 	prev->next = NULL;
 	last->next = *head;
+	last->prev = NULL;
 	*head = last;
 	if (check == 97)
 		ft_putstr_fd("rra\n", 1);
@@ -51,11 +52,13 @@ void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check)
 	last = ft_last(*a_head);
 	prev = ft_prevlast(*a_head);
 	prev->next = NULL;
+	last->prev = NULL;
 	last->next = *a_head;
 	*a_head = last;
 	last = ft_last(*b_head);
 	prev = ft_prevlast(*b_head);
 	prev->next = NULL;
+	last->prev = NULL;
 	last->next = *b_head;
 	*b_head = last;
 	if (check == 195)

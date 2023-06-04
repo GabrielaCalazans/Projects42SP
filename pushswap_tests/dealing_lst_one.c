@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 23:45:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/03 16:33:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:44:57 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,15 @@ t_stack	*ft_prevlast(t_stack *lst)
 		lst = lst->next;
 	}
 	return (lst);
+}
+
+// Func to find almost last
+t_stack	*ft_second(t_stack *lst)
+{
+	t_stack	*second;
+
+	if (lst == NULL)
+		return (0);
+	second = lst->next;
+	return (second);
 }
