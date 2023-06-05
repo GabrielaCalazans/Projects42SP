@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/03 21:55:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:32:01 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	sorting_it(t_stack **a, t_stack **b, int len)
 	if (len >= 3 && len <= 4)
 		sort_three(a);
 	if (len == 5)
-		sort_five(a, b, len);
-	if (len > 7)
+		sort_big(a, b, len);
+	if (len > 5)
 		sort_big(a, b, len);
 }
 
 void	sort_three(t_stack **a)
 {
-	if (checksorted(*a))
+	if (checksorted(a))
 		return ;
 	if (ft_min(*a) == (*a)->nbr)
 	{
@@ -36,7 +36,7 @@ void	sort_three(t_stack **a)
 	else if (ft_max(*a) == (*a)->nbr)
 	{
 		ft_rotate_ab(a, 97);
-		if (!checksorted(*a))
+		if (!checksorted(a))
 			ft_swap_ab(a, 97);
 	}
 	else
@@ -46,23 +46,17 @@ void	sort_three(t_stack **a)
 	}
 }
 
-void	sort_five(t_stack **a, t_stack **b, int size)
+void	sort_five(t_stack **a, t_stack **b)
 {
-	int	pos;
-
-	if (checksorted(*a) && size == ft_size(*a))
+	if (checksorted(a))
 		return ;
-	else if (ft_min(*a) == (*a)->nbr)
-	{
-		ft_push_b(a, b, 98);
-		ft_push_b(a, b, 98);
-	}
-	else if (!checksorted(*a) && ft_size(*a) == 3)
-		sort_three(a);
-	if (checksorted(*a))
-		push_all_b_to_a(a, b);
+	if ((*a)->nbr > (*a)->next->nbr)
+		ft_swap_ab(a, 97);
 	else
-		sort_big(a, b, size);
+	{
+		ft_rotate_ab(a, 97);
+		sort_five(a, b);
+	}
 }
 
 // void	sort_uptosix(t_stack **a, t_stack **b, int size)
@@ -93,7 +87,7 @@ void	sort_big(t_stack **a, t_stack **b, int size)
 {
 	int	pos;
 
-	if (checksorted(*a) && size == ft_size(*a))
+	if (checksorted(a) && size == ft_size(*a))
 		return ;
 	pos = ft_min_pos(*a, ft_min(*a));
 	if (pos == size)
@@ -106,7 +100,7 @@ void	sort_big(t_stack **a, t_stack **b, int size)
 		ft_rotate_ab(a, 97);
 	else
 		ft_rev_rotate_ab(a, 97);
-	if (checksorted(*a))
+	if (checksorted(a))
 	{
 		push_all_b_to_a(a, b);
 		return ;
@@ -114,7 +108,6 @@ void	sort_big(t_stack **a, t_stack **b, int size)
 	else
 		sort_big(a, b, size);
 }
-
 
 // void	sort_big(t_stack **a, t_stack **b, int size)
 // {
@@ -154,7 +147,7 @@ void	quick_sort(t_stack **a, t_stack **b, int size)
 		}
 		else
 			ft_push_b(a, b, 98);
-		if (checksorted(*a))
+		if (checksorted(a))
 		{
 			push_all_b_to_a(a, b);
 			return ;
@@ -163,7 +156,7 @@ void	quick_sort(t_stack **a, t_stack **b, int size)
 	}
 	quick_sort(a, b, count - 1);
 	quick_sort(b, a, size - count);
-	if (checksorted(*a))
+	if (checksorted(a))
 	{
 		push_all_b_to_a(a, b);
 		return ;

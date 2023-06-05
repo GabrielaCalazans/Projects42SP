@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:45:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/03 19:37:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:17:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ void	ft_swap_ab(t_stack **head, int check)
 {
 	t_stack	*first;
 	t_stack	*second;
-	// t_stack	*temp;
 
 	if (*head == NULL || (*head)->next == NULL \
 			|| ft_size(*head) < 2)
 		return ;
 	first = *head;
 	second = first->next;
-	// temp = second->next;
 	first->next = second->next;
 	first->prev = second;
 	second->next = first;
