@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/05 16:04:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/07 01:00:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
 // void	sort_uptosix(t_stack **a, t_stack **b, int size);
 void	sort_three(t_stack **a);
+void	sort_five(t_stack **a, t_stack **b, int size);
 void	sort_big(t_stack **a, t_stack **b, int size);
-void	sort_five(t_stack **a, t_stack **b);
 void	quick_sort(t_stack **a, t_stack **b, int size);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 
@@ -60,7 +60,8 @@ int		check_error(char *argv[], int i, int j);
 void	check_int(char *argv[]);
 int		ft_checkdup(char **str, int i);
 int		checksorted(t_stack **head);
-int		checksorted_len(t_stack **a);
+int		check_its_sorted_b(t_stack **b);
+int		checksorted_len(t_stack **head);
 void	printlist(t_stack *head);
 
 int		ft_max(t_stack *head);

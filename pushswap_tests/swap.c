@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 11:45:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/05 16:17:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:55:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // 	t_stack	*ptr;
 // 	int		nbr;
 
-// 	if (*head == NULL || (*head)->next == NULL \
+// 	if (*head == NULL || (*head)->next == NULL
 // 			|| ft_size(*head) < 2)
 // 		return ;
 // 	ptr = *head;
