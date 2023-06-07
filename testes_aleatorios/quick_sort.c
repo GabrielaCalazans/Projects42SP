@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:29:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/07 01:37:17 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:25:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,9 +186,12 @@ int	main(int argc, char *argv[])
 // 	if (head == NULL || head->next == NULL)
 // 		return (head);
 // 	// Choose the rightmost node as the pivot
-// 	t_stack *tail = ft_last(head);
-// 	int right = tail->index;
+// 	t_stack	*end;
+// 	int		end_idx;
+	
+// 	end = ft_last(head);
+// 	end_idx = end->index;
 // 	// Call the partition function to partition the list
-// 	head = partition(head, 0, right);
+// 	head = partition(head, 0, end_idx);
 // 	return (head);
 // }
