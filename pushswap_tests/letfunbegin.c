@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/07 18:24:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/08 19:22:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	sort_big_a(t_stack **a, t_stack **b, int size, int check)
 		ft_rotate_ab(a, 97);
 	else
 		ft_rev_rotate_ab(a, 97);
-	if (checksorted(a))
+	if (checksorted(a)) 
 	{
 		push_all_b_to_a(a, b);
 		return ;

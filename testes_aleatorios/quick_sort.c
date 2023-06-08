@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:29:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/07 19:25:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:16:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-// ** Method to perform swapping of data between 
-// ** two positions in the linked list, divide and conquer
-void	swap(t_node *node1, t_node *node2)
-{
-	int temp = node1->data;
-	node1->data = node2->data;
-	node2->data = temp;
-}
 
 // ** Method to perform partitioning, the core of the 
 // ** Quicksort algorithm, divide and conquer
@@ -195,3 +186,33 @@ int	main(int argc, char *argv[])
 // 	head = partition(head, 0, end_idx);
 // 	return (head);
 // }
+
+void heapSort(t_node *head, int n)
+{
+	t_node *current = head;
+
+	for (int i = n / 2 - 1; i >= 0; i--)
+	{
+		int j = 0;
+		current = head;
+		while (j < i)
+		{
+			current = current->next;
+			j++;
+		}
+		heapify(current, n, i);
+	}
+
+	for (int i = n - 1; i > 0; i--)
+	{
+		t_node *last = head;
+		int j = 0;
+		while (j < i)
+		{
+			last = last->next;
+			j++;
+		}
+		swap(&head->data, &last->data);
+		heapify(head, i, 0);
+	}
+}

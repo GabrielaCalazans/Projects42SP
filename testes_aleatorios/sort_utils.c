@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/31 17:42:19 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/08 19:06:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,84 @@ int	ft_size(t_node *lst)
 	}
 	return (len);
 }
+
+// ** Method to perform swapping of data between 
+// ** two positions in the linked list, divide and conquer
+void	swap(t_node *node1, t_node *node2)
+{
+	int temp;
+	
+	temp = node1->data;
+	node1->data = node2->data;
+	node2->data = temp;
+}
+
+
+// void heapify(t_node *head, int size, int i)
+// {
+// 	int largest = i;
+// 	int left = 2 * i + 1;
+// 	int right = 2 * i + 2;
+
+// 	t_node *largest_node = head;
+// 	t_node *left_node = head;
+// 	t_node *right_node = head;
+
+// 	int j = 0;
+// 	while (j < left)
+// 	{
+// 		left_node = left_node->next;
+// 		j++;
+// 	}
+// 	if (left < size && left_node->data > largest_node->data)
+// 		largest = left;
+
+// 	j = 0;
+// 	while (j < right)
+// 	{
+// 		right_node = right_node->next;
+// 		j++;
+// 	}
+// 	if (right < size && right_node->data > largest_node->data)
+// 		largest = right;
+
+// 	if (largest != i)
+// 	{
+// 		j = 0;
+// 		t_node *target = head;
+// 		while (j < largest)
+// 		{
+// 			target = target->next;
+// 			j++;
+// 		}
+// 		swap(largest_node, target);
+// 		heapify(target, size, largest);
+// 	}
+// }
+
+// void heapSort(t_node *head, int size)
+// {
+// 	for (int i = size / 2 - 1; i >= 0; i--)
+// 	{
+// 		t_node *current = head;
+// 		int j = 0;
+// 		while (j < i)
+// 		{
+// 			current = current->next;
+// 			j++;
+// 		}
+// 		heapify(current, size, i);
+// 	}
+// 	for (int i = size - 1; i > 0; i--)
+// 	{
+// 		t_node *last = head;
+// 		int j = 0;
+// 		while (j < i)
+// 		{
+// 			last = last->next;
+// 			j++;
+// 		}
+// 		swap(head, last);
+// 		heapify(head, i, 0);
+// 	}
+// }

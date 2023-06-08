@@ -29,5 +29,6 @@ void	bubblesort(t_node *head);
 int 	ft_size(t_node *lst);
 void	selectionSort(t_node *head);
 void	insertionSort(t_node *head);
+void	swap(t_node *node1, t_node *node2);
 
 #endif
