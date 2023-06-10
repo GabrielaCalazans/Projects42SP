@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 23:30:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/09 19:12:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/10 14:41:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 	t_node	*newnode;
 	int		i;
 	int		n;
+	int		size;
 
 	if (argc < 2)
 	{
@@ -70,11 +71,12 @@ int main(int argc, char *argv[])
 			break ;
 		ft_lstadd_back(&head, newnode);
 	}
-	// n = ft_size(head);
+	size = ft_size(head);
+	printf("size: %d\n", size);
 	printf("Given list: ");
 	printList(head);
 
-	printf("min: %d, sec_min: %d\n", ft_min(head), ft_sec_min(head));
+	printf("min t: %d, min b: %d\n", ft_min_size(head, size / 2, 't'), ft_min_size(head, size / 2, 'b'));
 
 	selectionSort(head);
 	printf("Sorted List: \n");

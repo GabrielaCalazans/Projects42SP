@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/09 19:15:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:20:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,20 @@ int	ft_min_pos(t_node *head, int min)
 	return (pos);
 }
 
+// Func to find the last node
+t_node	*ft_last(t_node *lst)
+{
+	if (lst == NULL)
+		return NULL;
+	while (lst)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+
 // ** Func finds and returns the second smallest nbr int int the stack
 int	ft_sec_min(t_node *head)
 {
@@ -157,6 +171,38 @@ int	ft_sec_min(t_node *head)
 		head = head->next;
 	}
 	return (sec_min);
+}
+
+// ** Func finds and returns the smallest nbr int int the stack until size
+int	ft_min_size(t_node *head, int size, char check)
+{
+	int		min;
+	t_node	*last;
+
+	last = ft_last(head);
+	if (check == 't')
+	{
+		min = head->data;
+		while (size > 0)
+		{
+			if (head->data < min)
+				min = head->data;
+			head = head->next;
+			size--;
+		}
+	}
+	if (check == 'b' && last)
+	{
+		min = last->data;
+		while (size > 0)
+		{
+			if (last->data < min)
+				min = last->data;
+			last = last->prev;
+			size--;
+		}
+	}
+	return (min);
 }
 
 // void heapify(t_node *head, int size, int i)

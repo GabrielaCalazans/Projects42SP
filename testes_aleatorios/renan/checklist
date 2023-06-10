@@ -1,0 +1,9 @@
+
+[OK] Ler argumento do usuário
+[Parcial] Verificar se os números foram devidamente informados (Falta verificação de números repetidos e maiores que o INT_MIN e INT_MAX)
+[OK] Alocar espaço devido para os números
+[OK] Fazer os movimentos
+[	] Imprimir os movimentos na tela
+
+[OK] Makefile 
+[OK] Teste visual LINDÃO

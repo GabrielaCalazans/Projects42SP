@@ -2,6 +2,7 @@
 # define SORT_TEST_H
 
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
 
@@ -31,6 +32,7 @@ void	selectionSort(t_node *head);
 void	insertionSort(t_node *head);
 void	swap(t_node *node1, t_node *node2);
 int		ft_min(t_node *head);
+int		ft_min_size(t_node *head, int size, char check);
 int		ft_min_pos(t_node *head, int min);
 int		ft_sec_min(t_node *head);
 
