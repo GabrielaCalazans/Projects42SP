@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 16:50:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/07 00:41:55 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:47:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_checkdup(char **str, int i)
 }
 
 // Func checks if the stack is sorted.
-int	checksorted(t_stack **head)
+int	check_its_sorted_a(t_stack **head)
 {
 	int		i;
 	t_stack	*temp;
@@ -65,7 +65,7 @@ int	checksorted(t_stack **head)
 }
 
 // Func checks if the stack is sorted.
-int	checksorted_len(t_stack **head)
+int	check_its_sorted_a_len(t_stack **head)
 {
 	int		i;
 	int		len;

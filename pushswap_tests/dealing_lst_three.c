@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:29:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/09 20:15:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:24:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,38 @@ int	ft_min(t_stack *head)
 		if (head->nbr < min)
 			min = head->nbr;
 		head = head->next;
+	}
+	return (min);
+}
+
+// ** Func finds and returns the smallest nbr int int the stack until size
+int	ft_min_size(t_stack *head, int size, char check)
+{
+	int		min;
+	t_stack	*last;
+
+	last = ft_last(head);
+	if (check == 't')
+	{
+		min = head->nbr;
+		while (size > 0)
+		{
+			if (head->nbr < min)
+				min = head->nbr;
+			head = head->next;
+			size--;
+		}
+	}
+	if (check == 'b' && last)
+	{
+		min = last->nbr;
+		while (size > 0)
+		{
+			if (last->nbr < min)
+				min = last->nbr;
+			last = last->prev;
+			size--;
+		}
 	}
 	return (min);
 }
