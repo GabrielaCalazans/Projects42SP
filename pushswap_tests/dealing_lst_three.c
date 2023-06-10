@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:29:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/01 16:47:09 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:15:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_min(t_stack *head)
 }
 
 // ** Func finds and returns the position of the smallest nbr int int the stack
-int	ft_min_pos(t_stack *head, int min)
+int	ft_int_pos(t_stack *head, int min)
 {
 	int	pos;
 
@@ -41,6 +41,23 @@ int	ft_min_pos(t_stack *head, int min)
 		pos++;
 	}
 	return (pos);
+}
+
+// ** Func finds and returns the second smallest nbr int int the stack
+int	ft_sec_min(t_stack *head)
+{
+	int		sec_min;
+	int		min;
+	
+	min = ft_min(head);
+	sec_min = head->nbr;
+	while (head)
+	{
+		if (head->nbr < sec_min && head->nbr > min)
+			sec_min = head->nbr;
+		head = head->next;
+	}
+	return (sec_min);
 }
 
 // ** Func finds and returns the biggest nbr int in the stack

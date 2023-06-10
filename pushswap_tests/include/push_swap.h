@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/07 18:25:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/09 20:21:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
 // void	sort_uptosix(t_stack **a, t_stack **b, int size);
-void	sort_three(t_stack **a);
+void	sort_three(t_stack **head, int check);
 void	sort_five(t_stack **a, t_stack **b, int size);
-void	sort_big(t_stack **a, t_stack **b, int size, int check);
+void	sort_five2(t_stack **a, t_stack **b, int size);
+void	sort_big_a(t_stack **a, t_stack **b, int size);
 void	quick_sort(t_stack **a, t_stack **b, int size);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 
@@ -66,7 +67,8 @@ void	printlist(t_stack *head);
 
 int		ft_max(t_stack *head);
 int		ft_min(t_stack *head);
-int		ft_min_pos(t_stack *head, int pos);
+int		ft_sec_min(t_stack *head);
+int		ft_int_pos(t_stack *head, int pos);
 void	ft_freearray(char **array);
 void	ft_puterror(void);
 int		ft_atoi_error(const char *nptr);
