@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 23:30:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/27 15:42:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:12:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // C program for implementation of selection sort
 
-void	swap(struct s_node *x, struct s_node *y)
+void	swap_struct(struct s_node *x, struct s_node *y)
 {
 	int	temp;
 
@@ -40,7 +40,7 @@ void	selectionSort(t_node *head)
 		}
 		// Swap the found minimum element with the first element
 		if (min != i)
-			swap(i, min);
+			swap_struct(i, min);
 	}
 }
 
@@ -73,6 +73,8 @@ int main(int argc, char *argv[])
 	// n = ft_size(head);
 	printf("Given list: ");
 	printList(head);
+
+	printf("min: %d, sec_min: %d\n", ft_min(head), ft_sec_min(head));
 
 	selectionSort(head);
 	printf("Sorted List: \n");

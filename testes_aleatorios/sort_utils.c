@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/08 19:06:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:15:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,53 @@ void	swap(t_node *node1, t_node *node2)
 	node2->data = temp;
 }
 
+// ** Func finds and returns the smallest nbr int int the stack
+int	ft_min(t_node *head)
+{
+	int		min;
+
+	min = head->data;
+	while (head)
+	{
+		if (head->data < min)
+			min = head->data;
+		head = head->next;
+	}
+	return (min);
+}
+
+// ** Func finds and returns the position of the smallest nbr int int the stack
+int	ft_min_pos(t_node *head, int min)
+{
+	int	pos;
+
+	pos = 0;
+	while (head)
+	{
+		if (head->data == min)
+			return (pos);
+		head = head->next;
+		pos++;
+	}
+	return (pos);
+}
+
+// ** Func finds and returns the second smallest nbr int int the stack
+int	ft_sec_min(t_node *head)
+{
+	int		sec_min;
+	int		min;
+	
+	min = ft_min(head);
+	sec_min = head->data;
+	while (head)
+	{
+		if (head->data < sec_min && head->data > min)
+			sec_min = head->data;
+		head = head->next;
+	}
+	return (sec_min);
+}
 
 // void heapify(t_node *head, int size, int i)
 // {
