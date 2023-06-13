@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/10 20:22:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/12 23:04:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	sorting_it(t_stack **a, t_stack **b, int len)
 	if (len >= 3 && len <= 4)
 		sort_three(a, 97);
 	if (len == 5)
+		sort_five2(a, b, len);
+	if (len < 11)
 		sort_five(a, b, len);
-	if (len > 5)
+	if (len > 10 && len < 101)
 		ft_sort_hundred(a, b, len);
 }
 
@@ -131,9 +133,9 @@ void	ft_checkandpush(t_stack **a, t_stack **b)
 	size_b = ft_size(*b);
 	while (size_b > 0)
 	{
-		ft_push_a(a, b, 97);
 		if (size_a == 3)
 			sort_three(a, 97);
+		ft_push_a(a, b, 97);
 		if (size_b > 1)
 			ft_sort_b(b, size_b);
 		ft_sort_a(a, size_a);
@@ -167,6 +169,8 @@ void	ft_sort_b(t_stack **b, int size)
 {
 	int			pos;
 	
+	if (*b == NULL)
+		return ;
 	if (check_its_sorted_b(b))
 		return ;
 	pos = ft_int_pos(*b, ft_max(*b));
@@ -185,41 +189,46 @@ void	ft_sort_b(t_stack **b, int size)
 
 void	ft_sort_hundred(t_stack **a, t_stack **b, int size)
 {
-	int	first;
-	int	second;
-	int	pos_first;
-	int	pos_second;
-	int	size_a;
+	int			key;
+	int			size_a;
+	static int	count = 0;
 
 	size_a = ft_size(*a);
-	first = ft_min_size(*a, size_a / 2, 't');
-	second = ft_min_size(*a, size_a / 2, 'b');
-	pos_first = ft_int_pos(*a, first);
-	pos_second = ft_int_pos(*a, second);
 	if (check_its_sorted_a(a) && size == size_a)
 		return ;
-	if (size_a < 2)
+	if (count == 1)
+		key = size / 2;
+	else if (count == 2)
+		key = size - (size / 4);
+	else
+		key = size / 4;
+	while (size_a > 0)
 	{
-		ft_checkandpush(a, b);
-		// ft_sort_hundred(a, b, size);
-		return ;
-	}
-	if (pos_first > (size_a + 1) - pos_second)
-	{
-		while ((size_a + 1) - pos_second-- > 0)
+		if ((*a)->index < key)
+			ft_push_b(a, b, 98);
+		if ((*a)->next->index < key)
+		{
+			ft_swap_ab(a, 97);
+			ft_sort_b(b, ft_size(*b));
+			ft_push_b(a, b, 98);
+		}
+		if (ft_last(*a)->index < key)
+		{
 			ft_rev_rotate_ab(a, 97);
-		ft_push_b(a, b, 98);
-		ft_sort_b(b, ft_size(*b));
-		ft_sort_hundred(a, b, size);
-	}
-	if (pos_first < (size_a + 1) - pos_second)
-	{
-		while (pos_first-- > 0)
+			ft_sort_b(b, ft_size(*b));
+			ft_push_b(a, b, 98);
+		}
+		else
 			ft_rotate_ab(a, 97);
-		ft_push_b(a, b, 98);
-		ft_sort_b(b, ft_size(*b));
-		ft_sort_hundred(a, b, size);
+		size_a--;
+		if (size_a == 0)
+			count++;
 	}
+	if (ft_size(*b) == size - (size / 4))
+		ft_checkandpush(a, b);
+	ft_sort_a(a, ft_size(*a));
+	if (!check_its_sorted_a(a) && size != size_a && count < 3)
+		ft_sort_hundred(a, b, size);
 }
 
 void	quick_sort(t_stack **a, t_stack **b, int size)
@@ -250,6 +259,45 @@ void	quick_sort(t_stack **a, t_stack **b, int size)
 	}
 }
 
+
+// void	ft_sort_hundred(t_stack **a, t_stack **b, int size)
+// {
+// 	int	first;
+// 	int	second;
+// 	int	pos_first;
+// 	int	pos_second;
+// 	int	size_a;
+
+// 	size_a = ft_size(*a);
+// 	first = ft_min_size(*a, size_a / 2, 't');
+// 	second = ft_min_size(*a, size_a / 2, 'b');
+// 	pos_first = ft_int_pos(*a, first);
+// 	pos_second = ft_int_pos(*a, second);
+// 	if (check_its_sorted_a(a) && size == size_a)
+// 		return ;
+// 	if (size_a < 2)
+// 	{
+// 		ft_checkandpush(a, b);
+// 		// ft_sort_hundred(a, b, size);
+// 		return ;
+// 	}
+// 	if (pos_first > (size_a + 1) - pos_second)
+// 	{
+// 		while ((size_a + 1) - pos_second-- > 0)
+// 			ft_rev_rotate_ab(a, 97);
+// 		ft_push_b(a, b, 98);
+// 		ft_sort_b(b, ft_size(*b));
+// 		ft_sort_hundred(a, b, size);
+// 	}
+// 	if (pos_first < (size_a + 1) - pos_second)
+// 	{
+// 		while (pos_first-- > 0)
+// 			ft_rotate_ab(a, 97);
+// 		ft_push_b(a, b, 98);
+// 		ft_sort_b(b, ft_size(*b));
+// 		ft_sort_hundred(a, b, size);
+// 	}
+// }
 
 // void	sort_big_a(t_stack **a, t_stack **b, int size)
 // {

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/10 20:07:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:46:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	printlist(t_stack *head)
 	t_stack	*temp;
 
 	if (!head)
-		printf("ERROR");
+		printf("EMPTY");
 	temp = head;
 	while (temp != NULL)
 	{
-		printf("NBR: %d idx: %d, ", temp->nbr, temp->index);
+		printf("NBR: %d idx: %d\n", temp->nbr, temp->index);
 		temp = temp->next;
 	}
 	printf("\n");
@@ -38,15 +38,15 @@ int	main(int argc, char *argv[])
 	b = NULL;
 	if (check_args(argc, argv))
 		a = starting(&a, argc, argv);
-	// printf("Original List a: ");
-	// printlist(a);
+	printf("Original List a: ");
+	printlist(a);
 	len = ft_size(a);
 	if (len > 1)
 		sorting_it(&a, &b, len);
-	// printf("Sorted List a: ");
-	// printlist(a);
-	// printf("Sorted List b: ");
-	// printlist(b);
+	printf("Sorted List a: \n");
+	printlist(a);
+	printf("Sorted List b: \n");
+	printlist(b);
 	ft_clear(&a);
 	ft_clear(&b);
 	return (0);
