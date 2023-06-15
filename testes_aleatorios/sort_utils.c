@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/10 15:20:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:57:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,61 @@ int	ft_min_size(t_node *head, int size, char check)
 		}
 	}
 	return (min);
+}
+
+// ** Func finds and returns the biggest nbr int int the stack until size
+int	ft_max_size(t_node *head, int size, char check)
+{
+	int		max;
+	t_node	*last;
+	t_node	*beg;
+
+	last = ft_last(head);
+	beg = head;
+	if (check == 't')
+	{
+		max = beg->data;
+		while (size > 0)
+		{
+			if (beg->data > max)
+				max = beg->data;
+			beg = beg->next;
+			size--;
+		}
+	}
+	if (check == 'b' && last)
+	{
+		max = last->data;
+		while (size > 0)
+		{
+			if (last->data > max)
+				max = last->data;
+			last = last->prev;
+			size--;
+		}
+	}
+	return (max);
+}
+
+// Func checks if the stack a is sorted.
+int	check_its_sorted_a_len(t_node **a)
+{
+	int		i;
+	int		len;
+	t_node	*temp;
+
+	temp = *a;
+	i = temp->data;
+	len = 0;
+	while (temp)
+	{
+		len++;
+		if (i > temp->data)
+			return (len);
+		i = temp->data;
+		temp = temp->next;
+	}
+	return (0);
 }
 
 // void heapify(t_node *head, int size, int i)
