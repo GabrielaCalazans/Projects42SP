@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/10 18:58:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:54:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_swap_ab(t_stack **head, int check);
 void	ft_swap_ss(t_stack **a_head, t_stack **b_head, int check);
 void	ft_push_a(t_stack **a_head, t_stack **b_head, int check);
 void	ft_push_b(t_stack **a_head, t_stack **b_head, int check);
-void	ft_rotate_ab(t_stack **head, int check);
+void	ft_rotate_ab(t_stack **head, int ch97eck);
 void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check);
 void	ft_rev_rotate_ab(t_stack **head, int check);
 void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
@@ -58,7 +58,9 @@ void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_half_to_b(t_stack **a, t_stack **b, int size);
 void	ft_sort_hundred(t_stack **a, t_stack **b, int size);
-void	ft_sort_b(t_stack **b, int size);
+void	ft_sort_hundred2(t_stack **a, t_stack **b);
+void	ft_sort_hundred3(t_stack **a, t_stack **b);
+void	ft_sort_b(t_stack **b);
 void	ft_sort_a(t_stack **a, int size);
 void	ft_checkandpush(t_stack **a, t_stack **b);
 
@@ -68,12 +70,14 @@ void	check_int(char *argv[]);
 int		ft_checkdup(char **str, int i);
 int		check_its_sorted_a(t_stack **a);
 int		check_its_sorted_b(t_stack **b);
-int		check_its_sorted_a_len(t_stack **head);
+int		check_its_sorted_a_len(t_stack **a);
+int		check_its_sorted_b_len(t_stack **b);
 void	printlist(t_stack *head);
 
 int		ft_max(t_stack *head);
 int		ft_min(t_stack *head);
 int		ft_min_size(t_stack *head, int size, char check);
+int		ft_max_size(t_stack *head, int size, char check);
 int		ft_sec_min(t_stack *head);
 int		ft_int_pos(t_stack *head, int pos);
 void	ft_freearray(char **array);

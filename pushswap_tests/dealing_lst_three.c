@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:29:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/10 15:24:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:56:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,40 @@ int	ft_min_size(t_stack *head, int size, char check)
 		}
 	}
 	return (min);
+}
+
+// ** Func finds and returns the biggest nbr int int the stack until size
+int	ft_max_size(t_stack *head, int size, char check)
+{
+	int		max;
+	t_stack	*last;
+	t_stack	*beg;
+
+	last = ft_last(head);
+	beg = head;
+	if (check == 't')
+	{
+		max = beg->nbr;
+		while (size > 0)
+		{
+			if (beg->nbr > max)
+				max = beg->nbr;
+			beg = beg->next;
+			size--;
+		}
+	}
+	if (check == 'b' && last)
+	{
+		max = last->nbr;
+		while (size > 0)
+		{
+			if (last->nbr > max)
+				max = last->nbr;
+			last = last->prev;
+			size--;
+		}
+	}
+	return (max);
 }
 
 // ** Func finds and returns the position of the smallest nbr int int the stack
