@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 16:50:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/15 20:23:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:50:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	check_its_sorted_a_len2(t_stack **a)
 		len++;
 		if (len == 1 && i > temp->nbr)
 			return (len);
-		if (len > 1 && (i > temp->nbr || i < temp->prev))
+		if (len > 1 && (i > temp->nbr || i < temp->prev->nbr))
 			return (len);
 		i = temp->nbr;
 		temp = temp->next;

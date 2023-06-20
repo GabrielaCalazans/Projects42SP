@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/15 15:54:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:24:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	sorting_it(t_stack **a, t_stack **b, int len);
 void	sort_three(t_stack **head, int check);
 void	sort_five(t_stack **a, t_stack **b, int size);
 void	sort_five2(t_stack **a, t_stack **b, int size);
+void	sort_five_push_count(t_stack **a, t_stack **b, int size_a);
 void	quick_sort(t_stack **a, t_stack **b, int size);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
@@ -83,5 +84,6 @@ int		ft_int_pos(t_stack *head, int pos);
 void	ft_freearray(char **array);
 void	ft_puterror(void);
 int		ft_atoi_error(const char *nptr);
+void	push_size_of_b_to_a(t_stack **a, t_stack **b, int size);
 
 #endif

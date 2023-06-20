@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/15 20:06:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:27:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	sort_five(t_stack **a, t_stack **b, int size)
 		ft_push_b(a, b, 98);
 	else if ((*a)->nbr > (*a)->next->nbr && pos > size / 2)
 		ft_swap_ab(a, 97);
-	else if (pos < size / 2)
+	else if (pos <= size / 2)
 		ft_rotate_ab(a, 97);
 	else
 		ft_rev_rotate_ab(a, 97);
@@ -72,6 +72,37 @@ void	sort_five(t_stack **a, t_stack **b, int size)
 	}
 	else
 		sort_five(a, b, size);
+}
+
+void	sort_five_push_count(t_stack **a, t_stack **b, int size_a)
+{
+	int	pos;
+	int	count;
+
+	count = 0;
+	if (check_its_sorted_a(a) && size_a == ft_size(*a))
+		return ;
+	pos = ft_int_pos(*a, ft_min(*a));
+	if (pos == size_a)
+		ft_rev_rotate_ab(a, 97);
+	else if (ft_min(*a) == (*a)->nbr)
+	{
+		count++;
+		ft_push_b(a, b, 98);
+	}
+	else if ((*a)->nbr > (*a)->next->nbr && pos > size_a / 2)
+		ft_swap_ab(a, 97);
+	else if (pos <= size_a / 2)
+		ft_rotate_ab(a, 97);
+	else
+		ft_rev_rotate_ab(a, 97);
+	if (check_its_sorted_a(a))
+	{
+		push_size_of_b_to_a(a, b, count);
+		return ;
+	}
+	else
+		sort_five(a, b, size_a);
 }
 
 void	sort_five2(t_stack **a, t_stack **b, int size)
@@ -155,7 +186,7 @@ void	ft_sort_a(t_stack **a, int size)
 		return ;
 	}
 	check = check_its_sorted_a_len(a);
-	while (check && check < size / 2)
+	while (check && check <= size / 2)
 	{
 		printf("check: %d size:%d\n", check, size);
 		// printf("Sorting List a: \n");
@@ -168,7 +199,7 @@ void	ft_sort_a(t_stack **a, int size)
 		if (check >= size / 2)
 			break ;
 	}
-	while (check && check >= size / 2)
+	while (check && check > size / 2)
 	{
 		i = (size + 1) - check;
 		printf("check: %d size:%d i:%d\n", check, size, i);
@@ -288,7 +319,7 @@ void	ft_sort_hundred2(t_stack **a, t_stack **b)
 		ft_sort_hundred3(a, b);
 		return ;
 	}
-	if (pos_top >= pos_bottom)
+	if (pos_top > pos_bottom)
 	{
 		while ((size_a + 1) - pos_bottom-- > 0)
 			ft_rev_rotate_ab(a, 97);
@@ -296,7 +327,7 @@ void	ft_sort_hundred2(t_stack **a, t_stack **b)
 		ft_push_b(a, b, 98);
 		ft_sort_hundred2(a, b);
 	}
-	if (pos_top < pos_bottom)
+	if (pos_top <= pos_bottom)
 	{
 		while (pos_top-- > 0)
 			ft_rotate_ab(a, 97);
@@ -327,16 +358,20 @@ void	ft_sort_hundred3(t_stack **a, t_stack **b)
 				ft_sort_a(a, ft_size(*a));
 		return ;
 	}
-	if (pos_top >= pos_bottom)
+	if (pos_top > pos_bottom)
 	{
 		while ((size_b + 1) - pos_bottom-- > 0)
 			ft_rev_rotate_ab(b, 98);
+		if (ft_size(*a) == 3)
+			sort_three(a, 97);
+		if (ft_size(*a) == 5)
+			sort_five_push_count(a, b, ft_size(*a));
 		if (ft_size(*a) > 5)
 			ft_sort_a(a, ft_size(*a));
 		ft_push_a(a, b, 97);
 		ft_sort_hundred3(a, b);
 	}
-	if (pos_top < pos_bottom)
+	if (pos_top <= pos_bottom)
 	{
 		while (pos_top-- > 0)
 			ft_rotate_ab(a, 97);
