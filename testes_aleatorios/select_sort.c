@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 23:30:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/15 18:56:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:58:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,12 @@ int main(int argc, char *argv[])
 	int	sort_len = check_its_sorted_a_len(&head);
 	printf("sort_len:%d\n", sort_len);
 	printf("max t: %d, max b: %d\n", ft_max_size(head, size / 2, 't'), ft_max_size(head, size / 2, 'b'));
+	printf("sort_len2: %d", check_its_sorted_a_len2(&head));
 
 	selectionSort(head);
 	printf("Sorted List: \n");
 	printList(head);
+	printf("sort_len2: %d", check_its_sorted_a_len2(&head));
+
 	return 0;
 }

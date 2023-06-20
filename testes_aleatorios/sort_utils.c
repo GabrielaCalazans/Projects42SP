@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/15 18:57:07 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:56:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,29 @@ int	check_its_sorted_a_len(t_node **a)
 	{
 		len++;
 		if (i > temp->data)
+			return (len);
+		i = temp->data;
+		temp = temp->next;
+	}
+	return (0);
+}
+
+// Func checks if the stack a is sorted.
+int	check_its_sorted_a_len2(t_node **a)
+{
+	int		i;
+	int		len;
+	t_node	*temp;
+
+	temp = *a;
+	i = temp->data;
+	len = 0;
+	while (temp)
+	{
+		len++;
+		if (len == 1 && i > temp->data)
+			return (len);
+		if (len > 1 && (i > temp->data || i < temp->prev->data))
 			return (len);
 		i = temp->data;
 		temp = temp->next;

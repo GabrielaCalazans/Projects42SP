@@ -37,5 +37,6 @@ int		ft_min_pos(t_node *head, int min);
 int		ft_sec_min(t_node *head);
 int		ft_max_size(t_node *head, int size, char check);
 int		check_its_sorted_a_len(t_node **a);
+int		check_its_sorted_a_len2(t_node **a);
 
 #endif
