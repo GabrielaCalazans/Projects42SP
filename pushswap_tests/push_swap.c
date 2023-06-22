@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/15 15:20:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:04:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-// Função para imprimir a lista encadeada
+// Function to print the linked list
 void	printlist(t_stack *head)
 {
 	t_stack	*temp;

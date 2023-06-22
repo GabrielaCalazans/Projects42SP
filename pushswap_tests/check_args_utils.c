@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 16:50:00 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/19 15:50:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:52:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,63 @@ int	check_its_sorted_a_len(t_stack **a)
 	t_stack	*temp;
 
 	temp = *a;
-	i = temp->nbr;
+	i = temp->index;
+	temp = temp->next;
 	len = 0;
 	while (temp)
 	{
 		len++;
-		if (i > temp->nbr)
+		if (i > temp->index)
 			return (len);
-		i = temp->nbr;
+		i = temp->index;
+		temp = temp->next;
+	}
+	return (0);
+}
+
+// Func checks if the stack a is sorted.
+int	check_its_sorted_a_idx(t_stack **a)
+{
+	int		i;
+	int		len;
+	t_stack	*temp;
+
+	temp = *a;
+	i = temp->index;
+	temp = temp->next;
+	len = 0;
+	while (temp)
+	{
+		len++;
+		if (len > 2 && (i + 1) != temp->index)
+			return (len);
+		if ((len > 0 && len < 3) && i > temp->index)
+			return (len);
+		i = temp->index;
+		temp = temp->next;
+	}
+	return (0);
+}
+
+// Func checks if the stack a is sorted.
+int	check_its_sorted_b_idx(t_stack **b)
+{
+	int		i;
+	int		len;
+	t_stack	*temp;
+
+	temp = *b;
+	i = temp->index;
+	temp = temp->next;
+	len = 0;
+	while (temp)
+	{
+		len++;
+		if (len > 2 && (i - 1) != temp->index)
+			return (len);
+		if ((len > 0 && len < 3) && i < temp->index)
+			return (len);
+		i = temp->index;
 		temp = temp->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/19 12:24:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:52:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	sort_three(t_stack **head, int check);
 void	sort_five(t_stack **a, t_stack **b, int size);
 void	sort_five2(t_stack **a, t_stack **b, int size);
 void	sort_five_push_count(t_stack **a, t_stack **b, int size_a);
-void	quick_sort(t_stack **a, t_stack **b, int size);
+// void	quick_sort(t_stack **a, t_stack **b, int size);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_half_to_b(t_stack **a, t_stack **b, int size);
-void	ft_sort_hundred(t_stack **a, t_stack **b, int size);
-void	ft_sort_hundred2(t_stack **a, t_stack **b);
-void	ft_sort_hundred3(t_stack **a, t_stack **b);
+// void	ft_sort_hundred(t_stack **a, t_stack **b, int size);
+void	ft_sort_hundre_first(t_stack **a, t_stack **b, int size_init);
+void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init);
 void	ft_sort_b(t_stack **b);
 void	ft_sort_a(t_stack **a, int size);
 void	ft_checkandpush(t_stack **a, t_stack **b);
@@ -72,7 +72,10 @@ int		ft_checkdup(char **str, int i);
 int		check_its_sorted_a(t_stack **a);
 int		check_its_sorted_b(t_stack **b);
 int		check_its_sorted_a_len(t_stack **a);
+int		check_its_sorted_a_idx(t_stack **a);
+int		check_its_sorted_b_idx(t_stack **b);
 int		check_its_sorted_b_len(t_stack **b);
+
 void	printlist(t_stack *head);
 
 int		ft_max(t_stack *head);
