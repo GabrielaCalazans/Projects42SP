@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 23:30:15 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/19 15:58:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:23:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
 {
 	t_node	*head;
 	t_node	*newnode;
+	int		index;
 	int		i;
 	int		n;
 	int		size;
@@ -62,29 +63,38 @@ int main(int argc, char *argv[])
 	i = 1;
 	head = NULL;
 	n = atoi(argv[i]);
-	head = createnode(n);
+	index = find_index(argv, n, 1);
+	head = createnode(n, index);
 	while (argv[++i] != NULL)
 	{
 		n = atoi(argv[i]);
-		newnode = createnode(n);
+		index = find_index(argv, n, 1);
+		newnode = createnode(n, index);
 		if (!newnode)
 			break ;
 		ft_lstadd_back(&head, newnode);
 	}
 	size = ft_size(head);
 	printf("size: %d\n", size);
-	printf("Given list: ");
+	printf("Given list: \n");
 	printList(head);
 	
-	int	sort_len = check_its_sorted_a_len(&head);
-	printf("sort_len:%d\n", sort_len);
-	printf("max t: %d, max b: %d\n", ft_max_size(head, size / 2, 't'), ft_max_size(head, size / 2, 'b'));
-	printf("sort_len2: %d", check_its_sorted_a_len2(&head));
+	// int	sort_len = check_its_sorted_a_len(&head);
+	// printf("sort_len:%d\n", sort_len);
+	// printf("max t: %d, max b: %d\n", ft_max_size(head, size / 2, 't'), ft_max_size(head, size / 2, 'b'));
+	// printf("sort_len2: %d", check_its_sorted_a_len2(&head));
+
+
+	int	sort_len = check_its_sorted_a_idx(&head);
+	printf("sort_len:%d\n\n", sort_len);
+	// printf("max t: %d, max b: %d\n", ft_max_size(head, size / 2, 't'), ft_max_size(head, size / 2, 'b'));
+	// printf("sort_len2: %d", check_its_sorted_a_len2(&head));
+	
 
 	selectionSort(head);
 	printf("Sorted List: \n");
 	printList(head);
-	printf("sort_len2: %d", check_its_sorted_a_len2(&head));
+	// printf("sort_len2: %d", check_its_sorted_a_len2(&head));
 
 	return 0;
 }

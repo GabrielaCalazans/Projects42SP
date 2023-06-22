@@ -10,6 +10,7 @@
 typedef struct s_node
 {
 	int				data;
+	int				index;
 	struct s_node	*next;
 	struct s_node	*prev;
 }					t_node;
@@ -21,7 +22,8 @@ typedef struct s_quicksort
 	int		size;
 }			t_quicksort;
 
-t_node	*createnode(int data);
+// t_node	*createnode(int data);
+t_node	*createnode(int nbr, int index);
 t_node	*ft_lstlast(t_node *lst);
 void	ft_lstadd_back(t_node **lst, t_node *new);
 void	printList(t_node *head);
@@ -38,5 +40,7 @@ int		ft_sec_min(t_node *head);
 int		ft_max_size(t_node *head, int size, char check);
 int		check_its_sorted_a_len(t_node **a);
 int		check_its_sorted_a_len2(t_node **a);
+int		find_index(char **str, int nbr, int j);
+int		check_its_sorted_a_idx(t_node **a);
 
 #endif

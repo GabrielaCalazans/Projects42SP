@@ -6,23 +6,41 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 13:57:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/19 15:56:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:24:57 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort_test.h"
 
-t_node *createnode(int data)
+// t_node *createnode(int data)
+// {
+// 	t_node *newnode = (t_node *)malloc(sizeof(t_node));
+// 	if (newnode == NULL)
+// 	{
+// 		printf("Failed to allocate memory for new node.\n");
+// 		return NULL;
+// 	}
+// 	newnode->data = data;
+// 	newnode->next = NULL;
+// 	newnode->prev = NULL;
+// 	return (newnode);
+// }
+
+
+// Func to create a new node
+t_node	*createnode(int nbr, int index)
 {
-	t_node *newnode = (t_node *)malloc(sizeof(t_node));
-	if (newnode == NULL)
+	t_node	*newnode;
+
+	newnode = (t_node *)malloc(sizeof(t_node));
+	if (!newnode)
 	{
 		printf("Failed to allocate memory for new node.\n");
 		return NULL;
 	}
-	newnode->data = data;
+	newnode->data = nbr;
+	newnode->index = index;
 	newnode->next = NULL;
-	newnode->prev = NULL;
 	return (newnode);
 }
 
@@ -57,15 +75,31 @@ void ft_lstadd_back(t_node **lst, t_node *new)
 		*lst = new;
 }
 
-// Function to print the linked list
+// // Function to print the linked list
+// void	printList(t_node *head)
+// {
+// 	t_node	*temp;
+
+// 	temp = head;
+// 	while (temp != NULL)
+// 	{
+// 		printf("%d ", temp->data);
+// 		temp = temp->next;
+// 	}
+// 	printf("\n");
+// }
+
+// Função para imprimir a lista encadeada
 void	printList(t_node *head)
 {
 	t_node	*temp;
 
+	if (!head)
+		printf("EMPTY");
 	temp = head;
 	while (temp != NULL)
 	{
-		printf("%d ", temp->data);
+		printf("NBR: %d idx: %d\n", temp->data, temp->index);
 		temp = temp->next;
 	}
 	printf("\n");
@@ -282,6 +316,51 @@ int	check_its_sorted_a_len2(t_node **a)
 	}
 	return (0);
 }
+
+// Func checks if the stack a is sorted.
+int	check_its_sorted_a_idx(t_node **a)
+{
+	int		i;
+	int		len;
+	t_node	*temp;
+
+	temp = *a;
+	i = temp->index;
+	temp = temp->next;
+	len = 0;
+	while (temp)
+	{
+		len++;
+		if (len > 2 && (i + 1) != temp->index)
+			return (len);
+		if ((len > 0 && len < 3) && i > temp->index)
+			return (len);
+		i = temp->index;
+		temp = temp->next;
+	}
+	return (0);
+}
+
+int	find_index(char **str, int nbr, int j)
+{
+	int	index;
+	int	comp;
+	int	i;
+
+	index = 0;
+	i = j;
+	if (!str)
+		return (0);
+	while (str[i] != NULL)
+	{
+		comp = atoi(str[i]);
+		if (comp < nbr)
+			index++;
+		i++;
+	}
+	return (index);
+}
+
 
 // void heapify(t_node *head, int size, int i)
 // {
