@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/24 15:51:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/24 17:46:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,7 @@ void	do_rot_a(t_stack **a, int rot_nbr, int size_a)
 {
 	int	i;
 
-	while (rot_nbr && rot_nbr <= size_a / 2)
+	if (rot_nbr && rot_nbr <= size_a / 2)
 	{
 		while (rot_nbr-- > 1)
 			ft_rotate_ab(a, 97);
@@ -290,7 +290,7 @@ void	do_rot_a(t_stack **a, int rot_nbr, int size_a)
 		if (rot_nbr > size_a / 2)
 			return ;
 	}
-	while (rot_nbr && rot_nbr > size_a / 2)
+	if (rot_nbr && rot_nbr > size_a / 2)
 	{
 		i = (size_a + 1) - rot_nbr;
 		while(i-- > 0)
@@ -307,7 +307,7 @@ void	do_rot_b(t_stack **b, int rot_nbr, int size_b)
 {
 	int	i;
 
-	while (rot_nbr && rot_nbr <= size_b / 2)
+	if (rot_nbr && rot_nbr <= size_b / 2)
 	{
 		while (rot_nbr-- > 1)
 			ft_rotate_ab(b, 98);
@@ -317,7 +317,7 @@ void	do_rot_b(t_stack **b, int rot_nbr, int size_b)
 		if (rot_nbr > size_b / 2)
 			return ;
 	}
-	while (rot_nbr && rot_nbr > size_b / 2)
+	if (rot_nbr && rot_nbr > size_b / 2)
 	{
 		i = (size_b + 1) - rot_nbr;
 		while(i-- > 0)
