@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/23 23:22:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:51:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,19 +224,156 @@ void	ft_sort_a(t_stack **a, int size)
 	ft_sort_a(a, size);
 }
 
-void	ft_sort_b(t_stack **b)
+void	ft_sort_b(t_stack **b, int size)
 {
-	if (*b == NULL)
-		return ;
+	int	check;
+	int	i;
+	
 	if (check_its_sorted_b(b))
 		return ;
-	if ((*b)->nbr < (*b)->next->nbr)
-		ft_swap_ab(b, 98);
-	else if ((*b)->nbr < ft_last(*b)->nbr)
-		ft_rotate_ab(b, 98);
-	else if ((*b)->nbr < (*b)->next->nbr)
-		ft_swap_ab(b, 98);
+	// if (size > 2 && size < 5)
+	// {
+	// 	sort_three(a, 97);
+	// 	return ;
+	// }
+	check = check_its_sorted_b_idx(b);
+	while (check && check <= size / 2)
+	{
+		while (check-- > 1)
+			ft_rotate_ab(b, 98);
+		if((*b)->index > (*b)->next->index)
+			ft_swap_ab(b, 98);
+		check = check_its_sorted_b_idx(b);
+		if (check > size / 2)
+			break ;
+	}
+	while (check && check > size / 2)
+	{
+		i = (size + 1) - check;
+		while(i-- > 0)
+			ft_rev_rotate_ab(b, 98);
+		if((*b)->index > (*b)->next->index)
+			ft_swap_ab(b, 98);
+		check = check_its_sorted_a_idx(b);
+		if (check <= size / 2)
+			break ;
+	}
+	ft_sort_b(b, size);
 }
+
+int	check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b)
+{
+	int	size_a;
+	int	size_b;
+
+	size_a = ft_size(*a);
+	size_b = ft_size(*b);
+	if (check_a && check_a > size_a / 2 && check_b && check_b > size_b / 2)
+		return (1);
+	if (check_a && check_a <= size_a / 2 && check_b && check_b <= size_b / 2)
+		return (2);
+	else
+		return (0);
+}
+
+void	do_rot_a(t_stack **a, int rot_nbr, int size_a)
+{
+	int	i;
+
+	while (rot_nbr && rot_nbr <= size_a / 2)
+	{
+		while (rot_nbr-- > 1)
+			ft_rotate_ab(a, 97);
+		if((*a)->index > (*a)->next->index)
+			ft_swap_ab(a, 97);
+		rot_nbr = check_its_sorted_a_idx(a);
+		if (rot_nbr > size_a / 2)
+			return ;
+	}
+	while (rot_nbr && rot_nbr > size_a / 2)
+	{
+		i = (size_a + 1) - rot_nbr;
+		while(i-- > 0)
+			ft_rev_rotate_ab(a, 97);
+		if((*a)->index > (*a)->next->index)
+			ft_swap_ab(a, 97);
+		rot_nbr = check_its_sorted_a_idx(a);
+		if (rot_nbr <= size_a / 2)
+			return ;
+	}
+}
+
+void	do_rot_b(t_stack **b, int rot_nbr, int size_b)
+{
+	int	i;
+
+	while (rot_nbr && rot_nbr <= size_b / 2)
+	{
+		while (rot_nbr-- > 1)
+			ft_rotate_ab(b, 98);
+		if((*b)->index > (*b)->next->index)
+			ft_swap_ab(b, 98);
+		rot_nbr = check_its_sorted_b_idx(b);
+		if (rot_nbr > size_b / 2)
+			return ;
+	}
+	while (rot_nbr && rot_nbr > size_b / 2)
+	{
+		i = (size_b + 1) - rot_nbr;
+		while(i-- > 0)
+			ft_rev_rotate_ab(b, 98);
+		if((*b)->index > (*b)->next->index)
+			ft_swap_ab(b, 98);
+		rot_nbr = check_its_sorted_a_idx(b);
+		if (rot_nbr <= size_b / 2)
+			return ;
+	}
+}
+
+void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int size_a, int size_b)
+{
+	int	i;
+
+	if (rot_nbr && rot_nbr <= size_b / 2 && rot_nbr <= size_a / 2)
+	{
+		while (rot_nbr-- > 1)
+			ft_rotate_rr(a, b, 195);
+		if((*a)->index > (*a)->next->index && (*b)->index < (*b)->next->index)
+			ft_swap_ss(a, b, 195);
+		if((*a)->index > (*a)->next->index)
+			ft_swap_ab(a, 97);
+		if((*b)->index < (*b)->next->index)
+			ft_swap_ab(b, 98);
+		rot_nbr = check_its_sorted_b_idx(b);
+		if (rot_nbr > size_b / 2)
+			return ;
+	}
+	if (rot_nbr && rot_nbr > size_b / 2)
+	{
+		i = (size_b + 1) - rot_nbr;
+		while(i-- > 0)
+			ft_rev_rotate_r(a, b, 195);
+		if((*b)->index > (*b)->next->index)
+			ft_swap_ab(b, 98);
+		rot_nbr = check_its_sorted_a_idx(b);
+		if (rot_nbr <= size_b / 2)
+			return ;
+	}
+}
+
+// void	ft_sort_b(t_stack **b)
+// {
+// 	if (*b == NULL)
+// 		return ;
+// 	if (check_its_sorted_b(b))
+// 		return ;
+// 	if ((*b)->nbr < (*b)->next->nbr)
+// 		ft_swap_ab(b, 98);
+// 	else if ((*b)->nbr < ft_last(*b)->nbr)
+// 		ft_rotate_ab(b, 98);
+// 	else if ((*b)->nbr < (*b)->next->nbr)
+// 		ft_swap_ab(b, 98);
+// }
 
 
 void	ft_sort_hundre_first(t_stack **a, t_stack **b, int size_init)

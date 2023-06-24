@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/21 17:52:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:59:29 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	push_half_to_b(t_stack **a, t_stack **b, int size);
 // void	ft_sort_hundred(t_stack **a, t_stack **b, int size);
 void	ft_sort_hundre_first(t_stack **a, t_stack **b, int size_init);
 void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init);
-void	ft_sort_b(t_stack **b);
+// void	ft_sort_b(t_stack **b);
+void	ft_sort_b(t_stack **b, int size);
 void	ft_sort_a(t_stack **a, int size);
 void	ft_checkandpush(t_stack **a, t_stack **b);
 
