@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/23 20:13:19 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:22:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void	ft_sort_a(t_stack **a, int size)
 	{
 		printf("check: %d size:%d\n", check, size);
 		printf("Sorting List a: \n");
-		printlist(*a);
+		printlist(*a); 
 		while (check-- > 1)
 			ft_rotate_ab(a, 97);
 		if((*a)->index > (*a)->next->index)
