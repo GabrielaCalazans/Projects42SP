@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:46:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/26 17:17:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:58:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ int	main(int argc, char *argv[])
 	b = NULL;
 	if (check_args(argc, argv))
 		a = starting(&a, argc, argv);
-	// printf("Original List a: \n");
-	// printlist(a);
+	printf("Original List a: \n");
+	printlist(a);
 	len = ft_size(a);
 	if (len > 1)
 		sorting_it(&a, &b, len);
-	// printf("Sorted List a: \n");
-	// printlist(a);
-	// printf("Sorted List b: \n");
-	// printlist(b);
+	printf("Sorted List a: \n");
+	printlist(a);
+	printf("Sorted List b: \n");
+	printlist(b);
 	ft_clear(&a);
 	ft_clear(&b);
 	return (0);
