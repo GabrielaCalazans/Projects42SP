@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/28 21:13:07 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/28 21:22:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,10 @@ void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init)
 	{
 		ft_push_a(a, b, 97);
 		if (!check_its_sorted_a(a))
+		{
+			printf("here am i 0.");
 			ft_sort_a(a, ft_size(*a));
+		}
 		return ;
 	}
 	if (ft_size(*a) == 3)
@@ -228,7 +231,7 @@ void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init)
 			ft_rev_rotate_ab(b, 98);
 		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
 		{
-			printf("here am i.");
+			printf("here am i 1.");
 			ft_sort_a(a, ft_size(*a));
 		}
 		else if (max == (*b)->nbr)
