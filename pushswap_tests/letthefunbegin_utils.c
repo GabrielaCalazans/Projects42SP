@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:52:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/28 16:34:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:58:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,11 @@ void	ft_sort_b(t_stack **b, int size)
 	if (check && check <= size / 2)
 	{
 		while (check-- > 0)
-		{
 			ft_rotate_ab(b, 98);
-			// printf("Sort_b: \n");
-			// printlist(*b);
-		}
+
 		if((*b)->index < (*b)->next->index)
 			ft_swap_ab(b, 98);
-		check = check_its_sorted_b_idx(b);
 		// printf("check: %d size:%d \n", check, size);
-		if (check > size / 2)
-			return ;
 	}
 	else if (check && check > size / 2)
 	{
@@ -125,9 +119,19 @@ void	ft_sort_b(t_stack **b, int size)
 			ft_rev_rotate_ab(b, 98);
 		if((*b)->index < (*b)->next->index)
 			ft_swap_ab(b, 98);
-		check = check_its_sorted_a_idx(b);
-		if (check <= size / 2)
-			return ;
 	}
 	ft_sort_b(b, size);
+}
+
+void	ft_sort_all(t_stack **a, t_stack **b)
+{
+	int	check_a;
+	int	check_b;
+
+	check_a = check_its_sorted_a_idx(a);
+	check_b = check_its_sorted_b_idx(b);
+	if (check_its_sorted_a(a) && check_its_sorted_b(b))
+		return ;
+	
+
 }
