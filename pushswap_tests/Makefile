@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/06/10 18:53:47 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/06/28 16:27:48 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRCS = push_swap.c push.c swap.c rotate.c rev_rotate.c
 SRCS += check_args.c check_args_utils.c start.c general_utils.c letfunbegin.c
 SRCS += letthefunbegin_utils.c
 SRCS += dealing_lst_one.c dealing_lst_two.c dealing_lst_one.c dealing_lst_three.c
+SRCS += check_stacks.c do_moves.c
+
 OBJS = $(SRCS:.c=.o)
 
 BSRC = 
@@ -105,7 +107,9 @@ fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@$(FCLEANED)
 
+limpo: all clean
+	clear
 
 re:	fclean all
 
-.PHONY: all clean fclean re comp_libft bonus rebonus
+.PHONY: all clean fclean re comp_libft bonus rebonus limpo

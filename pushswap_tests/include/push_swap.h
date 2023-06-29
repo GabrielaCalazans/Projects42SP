@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/24 13:59:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:19:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check);
 void	ft_rev_rotate_ab(t_stack **head, int check);
 void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 
+// Moves
+void	do_rot_a(t_stack **a, int rot_nbr, int check_rot);
+void	do_rot_b(t_stack **b, int rot_nbr, int check_rot);
+void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int check_rot);
+
 t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
 // void	sort_uptosix(t_stack **a, t_stack **b, int size);
@@ -73,9 +78,12 @@ int		ft_checkdup(char **str, int i);
 int		check_its_sorted_a(t_stack **a);
 int		check_its_sorted_b(t_stack **b);
 int		check_its_sorted_a_len(t_stack **a);
+int		check_its_sorted_b_len(t_stack **b);
 int		check_its_sorted_a_idx(t_stack **a);
 int		check_its_sorted_b_idx(t_stack **b);
-int		check_its_sorted_b_len(t_stack **b);
+int		check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b);
+int		check_rot_a(t_stack **a, int check_a);
+int		check_rot_b(t_stack **b, int check_b);
 
 void	printlist(t_stack *head);
 

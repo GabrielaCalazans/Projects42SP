@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:52:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/19 12:13:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:34:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,92 @@ void	push_half_to_b(t_stack **a, t_stack **b, int size)
 	}
 }
 
+void	ft_sort_a(t_stack **a, int size)
+{
+	int	check;
+	int	i;
+	
+	if (check_its_sorted_a(a))
+	{
+		printf("here sorted.");
+		return ;
+	}
+	if (size > 2 && size < 5)
+	{
+		sort_three(a, 97);
+		return ;
+	}
+	check = check_its_sorted_a_idx(a);
+	while (check && check <= size / 2)
+	{
+		// printf("check: %d size:%d\n", check, size);
+		// printf("Sort_a: \n");
+		// printlist(*a); 
+		while (check-- > 1)
+			ft_rotate_ab(a, 97);
+		if((*a)->index > (*a)->next->index)
+			ft_swap_ab(a, 97);
+		check = check_its_sorted_a_idx(a);
+		if (check > size / 2)
+			break ;
+	}
+	while (check && check > size / 2)
+	{
+		i = (size + 1) - check;
+		// printf("check: %d size:%d i:%d\n", check, size, i);
+		// printf("Sort_a: \n");
+		// printlist(*a);
+		while(i-- > 0)
+			ft_rev_rotate_ab(a, 97);
+		if((*a)->index > (*a)->next->index)
+			ft_swap_ab(a, 97);
+		// printf("i:%d\n", i);
+		check = check_its_sorted_a_idx(a);
+		// printf("i:%d\n", i);
+		if (check <= size / 2)
+			break ;
+	}
+	ft_sort_a(a, size);
+}
 
+void	ft_sort_b(t_stack **b, int size)
+{
+	int	check;
+	int	i;
+	
+	if (check_its_sorted_b(b))
+		return ;
+	// if (size > 2 && size < 5)
+	// {
+	// 	sort_three(a, 97);
+	// 	return ;
+	// }
+	check = check_its_sorted_b_idx(b);
+	if (check && check <= size / 2)
+	{
+		while (check-- > 0)
+		{
+			ft_rotate_ab(b, 98);
+			// printf("Sort_b: \n");
+			// printlist(*b);
+		}
+		if((*b)->index < (*b)->next->index)
+			ft_swap_ab(b, 98);
+		check = check_its_sorted_b_idx(b);
+		// printf("check: %d size:%d \n", check, size);
+		if (check > size / 2)
+			return ;
+	}
+	else if (check && check > size / 2)
+	{
+		i = (size + 1) - check;
+		while(i-- > 0)
+			ft_rev_rotate_ab(b, 98);
+		if((*b)->index < (*b)->next->index)
+			ft_swap_ab(b, 98);
+		check = check_its_sorted_a_idx(b);
+		if (check <= size / 2)
+			return ;
+	}
+	ft_sort_b(b, size);
+}
