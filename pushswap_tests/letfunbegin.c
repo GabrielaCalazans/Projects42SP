@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/29 13:45:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:23:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,10 +214,8 @@ void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init)
 	{
 		ft_push_a(a, b, 97);
 		if (!check_its_sorted_a(a))
-		{
-			printf("here am i 0.");
 			ft_sort_a(a, ft_size(*a));
-		}
+			// printf("here am i 0.");
 		return ;
 	}
 	if (ft_size(*a) == 3)
@@ -230,10 +228,8 @@ void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init)
 		while (count-- > 0)
 			ft_rev_rotate_ab(b, 98);
 		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
-		{
-			printf("here am i 1.");
 			ft_sort_a(a, ft_size(*a));
-		}
+			// printf("here am i 1.");
 		else if (max == (*b)->nbr)
 			ft_push_a(a, b, 97);
 		ft_sort_hundred_second(a, b, size_init);
@@ -244,10 +240,8 @@ void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init)
 			ft_rotate_ab(b, 98);
 		// printf("pos_max:%d size_b:%d size_init:%d, size_a:%d\n", pos_max, size_b, size_init, ft_size(*a));
 		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
-		{
-			printf("here am i 2.");
 			ft_sort_a(a, ft_size(*a));
-		}
+			// printf("here am i 2.");
 		else if (max == (*b)->nbr)
 			ft_push_a(a, b, 97);
 		ft_sort_hundred_second(a, b, size_init);
