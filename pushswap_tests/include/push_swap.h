@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/28 17:19:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:41:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
 // void	sort_uptosix(t_stack **a, t_stack **b, int size);
 // void	sort_big_a(t_stack **a, t_stack **b, int size);
-void	sort_three(t_stack **head, int check);
+void	sort_three(t_stack **a, int check);
+void	sort_three_b(t_stack **b, int check);
 void	sort_five(t_stack **a, t_stack **b, int size);
 void	sort_five2(t_stack **a, t_stack **b, int size);
 void	sort_five_push_count(t_stack **a, t_stack **b, int size_a);
@@ -64,8 +65,8 @@ void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_all_b_to_a(t_stack **a, t_stack **b);
 void	push_half_to_b(t_stack **a, t_stack **b, int size);
 // void	ft_sort_hundred(t_stack **a, t_stack **b, int size);
-void	ft_sort_hundre_first(t_stack **a, t_stack **b, int size_init);
-void	ft_sort_hundred_second(t_stack **a, t_stack **b, int size_init);
+void	sort_hundre_first(t_stack **a, t_stack **b, int size_init);
+void	sort_hundred_second(t_stack **a, t_stack **b, int size_init);
 // void	ft_sort_b(t_stack **b);
 void	ft_sort_b(t_stack **b, int size);
 void	ft_sort_a(t_stack **a, int size);
@@ -84,6 +85,8 @@ int		check_its_sorted_b_idx(t_stack **b);
 int		check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b);
 int		check_rot_a(t_stack **a, int check_a);
 int		check_rot_b(t_stack **b, int check_b);
+int		check_pos_a(t_stack **a, int check);
+int		check_pos_b(t_stack **b, int check);
 
 void	printlist(t_stack *head);
 

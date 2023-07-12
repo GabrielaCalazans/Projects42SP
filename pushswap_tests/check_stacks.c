@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/28 16:29:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:18:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,4 +219,42 @@ int	check_rot_b(t_stack **b, int check_b)
 		return (2);
 	else
 		return (0);
+}
+
+int	check_pos_a(t_stack **a, int check)
+{
+	t_stack	*temp;
+	int		pos;
+
+	temp = *a;
+	pos = 0;
+	while (temp)
+	{
+		if (temp->index < check)
+			pos++;
+		temp = temp->next;
+	}
+	return (pos);
+}
+
+int	check_pos_b(t_stack **b, int check)
+{
+	t_stack	*temp;
+	int		pos;
+
+	temp = *b;
+	pos = 0;
+	while (temp)
+	{
+		if (temp->index > check)
+			pos++;
+		temp = temp->next;
+	}
+	return (pos);
+}
+
+int	check_operation(t_stack **a, t_stack **b)
+{
+	int	i;
+	
 }
