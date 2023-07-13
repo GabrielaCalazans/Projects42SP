@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/12 20:18:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:28:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,24 +237,36 @@ int	check_pos_a(t_stack **a, int check)
 	return (pos);
 }
 
-int	check_pos_b(t_stack **b, int check)
+int	check_pos_b(t_stack *b, int check)
 {
 	t_stack	*temp;
 	int		pos;
 
-	temp = *b;
-	pos = 0;
-	while (temp)
+	pos = 1;
+	if (check > b->index && check < ft_last(b)->index)
+		pos = 0;
+	else if (check > ft_max(b) || check < ft_min(b))
+		pos = ft_int_pos(b, ft_max(b));
+	else
 	{
-		if (temp->index > check)
-			pos++;
-		temp = temp->next;
+		temp = b->next;
+		while (temp)
+		{
+			if (temp->index > check || b->index < check)
+				pos++;
+			else
+				break ;
+			temp = temp->next;
+			b = b->next;
+		}
 	}
 	return (pos);
 }
 
-int	check_operation(t_stack **a, t_stack **b)
+int	check_op_a_to_b(t_stack **a, t_stack **b)
 {
 	int	i;
+
+	i = check_pos_b(b, (*a)->index);
 	
 }

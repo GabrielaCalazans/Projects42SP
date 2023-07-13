@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/12 17:44:17 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:10:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,7 @@ void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
 		ft_push_b(a, b, 98);
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		ft_push_b(a, b, 98);
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+	// if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 
 }
 
