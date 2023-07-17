@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:29:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/19 16:16:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:03:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	ft_min(t_stack *head)
 {
 	int		min;
 
-	min = head->nbr;
+	min = head->index;
 	while (head)
 	{
-		if (head->nbr < min)
-			min = head->nbr;
+		if (head->index < min)
+			min = head->index;
 		head = head->next;
 	}
 	return (min);
@@ -36,22 +36,22 @@ int	ft_min_size(t_stack *head, int size, char check)
 	last = ft_last(head);
 	if (check == 't')
 	{
-		min = head->nbr;
+		min = head->index;
 		while (size > 0)
 		{
-			if (head->nbr < min)
-				min = head->nbr;
+			if (head->index < min)
+				min = head->index;
 			head = head->next;
 			size--;
 		}
 	}
 	if (check == 'b' && last)
 	{
-		min = last->nbr;
+		min = last->index;
 		while (size > 0)
 		{
-			if (last->nbr < min)
-				min = last->nbr;
+			if (last->index < min)
+				min = last->index;
 			last = last->prev;
 			size--;
 		}
@@ -70,22 +70,22 @@ int	ft_max_size(t_stack *head, int size, char check)
 	beg = head;
 	if (check == 't')
 	{
-		max = beg->nbr;
+		max = beg->index;
 		while (size > 0)
 		{
-			if (beg->nbr > max)
-				max = beg->nbr;
+			if (beg->index > max)
+				max = beg->index;
 			beg = beg->next;
 			size--;
 		}
 	}
 	if (check == 'b' && last)
 	{
-		max = last->nbr;
+		max = last->index;
 		while (size > 0)
 		{
-			if (last->nbr > max)
-				max = last->nbr;
+			if (last->index > max)
+				max = last->index;
 			last = last->prev;
 			size--;
 		}
@@ -101,7 +101,7 @@ int	ft_int_pos(t_stack *head, int find)
 	pos = 0;
 	while (head)
 	{
-		if (head->nbr == find)
+		if (head->index == find)
 			return (pos);
 		head = head->next;
 		pos++;
@@ -116,11 +116,11 @@ int	ft_sec_min(t_stack *head)
 	int		min;
 	
 	min = ft_min(head);
-	sec_min = head->nbr;
+	sec_min = head->index;
 	while (head)
 	{
-		if (head->nbr < sec_min && head->nbr > min)
-			sec_min = head->nbr;
+		if (head->index < sec_min && head->index > min)
+			sec_min = head->index;
 		head = head->next;
 	}
 	return (sec_min);
@@ -131,11 +131,11 @@ int	ft_max(t_stack *head)
 {
 	int		max;
 
-	max = head->nbr;
+	max = head->index;
 	while (head)
 	{
-		if (head->nbr > max)
-			max = head->nbr;
+		if (head->index > max)
+			max = head->index;
 		head = head->next;
 	}
 	return (max);

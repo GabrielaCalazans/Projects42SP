@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/14 20:00:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:50:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,53 +180,98 @@ void	ft_checkandpush(t_stack **a, t_stack **b)
 	}
 }
 
-int	check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b)
-{
-	int	size_a;
-	int	size_b;
+// int	check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b)
+// {
+// 	int	size_a;
+// 	int	size_b;
 
-	size_a = ft_size(*a);
-	size_b = ft_size(*b);
-	if (check_a && check_a > size_a / 2 && check_b && check_b > size_b / 2)
-		return (1);
-	if (check_a && check_a <= size_a / 2 && check_b && check_b <= size_b / 2)
-		return (2);
-	else
-		return (0);
+// 	size_a = ft_size(*a);
+// 	size_b = ft_size(*b);
+// 	if (check_a && check_a > size_a / 2 && check_b && check_b > size_b / 2)
+// 		return (1);
+// 	if (check_a && check_a <= size_a / 2 && check_b && check_b <= size_b / 2)
+// 		return (2);
+// 	else
+// 		return (0);
+// }
+
+// int	check_rot_a(t_stack **a, int check_a)
+// {
+// 	int	size_a;
+
+// 	size_a = ft_size(*a);
+// 	if (check_a && check_a > size_a / 2)
+// 		return (1);
+// 	if (check_a && check_a <= size_a / 2)
+// 		return (2);
+// 	else
+// 		return (0);
+// }
+
+// int	check_rot_b(t_stack **b, int check_b)
+// {
+// 	int	size_b;
+
+// 	size_b = ft_size(*b);
+// 	if (check_b && check_b > size_b / 2)
+// 		return (1);
+// 	if (check_b && check_b <= size_b / 2)
+// 		return (2);
+// 	else
+// 		return (0);
+// }
+
+int	check_single_rot_atob(t_stack *a, t_stack *b, int check)
+{
+	int	result;
+
+	result = check_pos_b(b, check);
+	if (result < ft_int_pos(a, check))
+		result = ft_int_pos(a, check);
+	return (result);
 }
 
-int	check_rot_a(t_stack **a, int check_a)
+int	check_double_revrot_atob(t_stack *a, t_stack *b, int check)
 {
-	int	size_a;
+	int	result;
 
-	size_a = ft_size(*a);
-	if (check_a && check_a > size_a / 2)
-		return (1);
-	if (check_a && check_a <= size_a / 2)
-		return (2);
-	else
-		return (0);
+	result = 0;
+	if (check_pos_b(b, check))
+		result = ft_size(b) - check_pos_b(b, check);
+	if (result < (ft_size(a) - ft_int_pos(a, check)))
+		result = ft_size(a) - ft_int_pos(a, check);
+	return (result);
 }
 
-int	check_rot_b(t_stack **b, int check_b)
-{
-	int	size_b;
 
-	size_b = ft_size(*b);
-	if (check_b && check_b > size_b / 2)
-		return (1);
-	if (check_b && check_b <= size_b / 2)
-		return (2);
-	else
-		return (0);
+int	check_rota_revrotb(t_stack *a, t_stack *b, int check)
+{
+	int	result;
+
+	result = 0;
+	if (check_pos_b(b, check))
+		result = ft_size(b) - ft_int_pos(b, check);
+	result += ft_int_pos(a, check);
+	return (result);
 }
 
-int	check_pos_a(t_stack **a, int check)
+int	check_rotb_revrota(t_stack *a, t_stack *b, int check)
+{
+	int	result;
+
+	result = 0;
+	if (ft_int_pos(a, check))
+		result = ft_size(a) - ft_int_pos(a, check);
+	result += ft_int_pos(b, check);
+	return (result);
+}
+
+int	check_pos_a(t_stack *a, int check)
 {
 	t_stack	*temp;
 	int		pos;
     
-	temp = *a;
+	temp = a;
 	pos = 0;
 	while (temp)
 	{
@@ -269,13 +314,18 @@ int	check_op_a_to_b(t_stack *a, t_stack *b)
 	t_stack	*temp;
 
 	temp = a;
-	i = check_double_rot(a, b, a->index, b->index);
-
-	i = check_pos_b(b, a->index);
+	i = check_double_revrot_atob(a, b, a->index);
 	while (temp)
 	{
-		if (i > check_rot_a(a, a->index))
-			i = 
+		if (i > check_single_rot_atob(a, b, temp->index))
+			i = check_single_rot_atob(a, b, temp->index);
+		if (i > check_double_revrot_atob(a, b, temp->index))
+			i = check_double_revrot_atob(a, b, temp->index);
+		if (i > check_rota_revrotb(a, b, temp->index))
+			i = check_rota_revrotb(a, b, temp->index);
+		if (i > check_rotb_revrota(a, b, temp->index))
+			i = check_rotb_revrota(a, b, temp->index);
+		temp = temp->next;
 	}
 	return (i);	
 }

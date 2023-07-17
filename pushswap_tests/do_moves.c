@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:05:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/28 17:15:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:40:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,24 @@ void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int check_rot)
 		else if((*b)->index < (*b)->next->index)
 			ft_swap_ab(b, 98);
 	}
+}
+
+void	do_single_rot_atob(t_stack **a, t_stack **b, int check)
+{
+
+}
+
+void	do_double_revrot_atob(t_stack **a, t_stack **b, int check)
+{
+
+}
+
+void	do_revrotb(t_stack **a, t_stack **b, int check)
+{
+
+}
+
+void	do_rotb_revrota(t_stack *a, t_stack *b, int check)
+{
+
 }
