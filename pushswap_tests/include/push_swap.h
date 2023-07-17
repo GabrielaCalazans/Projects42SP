@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/17 19:40:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:55:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
 void	do_rot_a(t_stack **a, int rot_nbr, int check_rot);
 void	do_rot_b(t_stack **b, int rot_nbr, int check_rot);
 void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int check_rot);
-void	do_single_rot_atob(t_stack **a, t_stack **b, int check);
-void	do_double_revrot_atob(t_stack **a, t_stack **b, int check);
-void	do_revrotb(t_stack **a, t_stack **b, int check);
-void	do_rotb_revrota(t_stack *a, t_stack *b, int check);
+int		do_single_rot_atob(t_stack **a, t_stack **b, int check);
+int		do_double_revrot_atob(t_stack **a, t_stack **b, int check);
+int		do_rota_revrotb(t_stack **a, t_stack **b, int check);
+int		do_rotb_revrota(t_stack **a, t_stack **b, int check);
 
 t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
@@ -96,6 +96,7 @@ int		check_single_rot_atob(t_stack *a, t_stack *b, int check);
 int		check_double_revrot_atob(t_stack *a, t_stack *b, int check);
 int		check_rota_revrotb(t_stack *a, t_stack *b, int check);
 int		check_rotb_revrota(t_stack *a, t_stack *b, int check);
+void	check_and_push_to_b(t_stack **a, t_stack **b);
 
 void	printlist(t_stack *head);
 

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/17 19:44:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:49:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,14 +297,14 @@ void	check_and_push_to_b(t_stack **a, t_stack **b)
 		i = check_op_a_to_b(*a, *b);
 		while (i >= 0)
 		{
-			if (i == check_single_rot_atob(a, b, temp->index))
-				i = check_single_rot_atob(a, b, temp->index);
-			else if (i == check_double_revrot_atob(a, b, temp->index))
-				i = check_double_revrot_atob(a, b, temp->index);
-			else if (i == check_rota_revrotb(a, b, temp->index))
-				i = check_rota_revrotb(a, b, temp->index);
-			else if (i == check_rotb_revrota(a, b, temp->index))
-				i = check_rotb_revrota(a, b, temp->index);
+			if (i == check_single_rot_atob(*a, *b, temp->index))
+				i = do_single_rot_atob(a, b, temp->index);
+			else if (i == check_double_revrot_atob(*a, *b, temp->index))
+				i = do_double_revrot_atob(a, b, temp->index);
+			else if (i == check_rota_revrotb(*a, *b, temp->index))
+				i = do_rota_revrotb(a, b, temp->index);
+			else if (i == check_rotb_revrota(*a, *b, temp->index))
+				i = do_rotb_revrota(a, b, temp->index);
 			else
 				temp = temp->next;
 		}
