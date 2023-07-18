@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:05:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/17 19:57:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:09:54 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int check_rot)
 
 int	do_single_rot_atob(t_stack **a, t_stack **b, int check)
 {
+	
 	return (-1);
 }
 
