@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/18 19:09:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:22:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,13 +298,13 @@ void	check_and_push_to_b(t_stack **a, t_stack **b)
 		while (i >= 0)
 		{
 			if (i == check_single_rot_atob(*a, *b, temp->index))
-				i = do_single_rot_atob(a, b, temp->index);
+				i = do_single_rot_atob(a, b, temp->index, 97);
 			else if (i == check_double_revrot_atob(*a, *b, temp->index))
-				i = do_double_revrot_atob(a, b, temp->index);
+				i = do_double_revrot_atob(a, b, temp->index, 97);
 			else if (i == check_rota_revrotb(*a, *b, temp->index))
-				i = do_rota_revrotb(a, b, temp->index);
+				i = do_rota_revrotb(a, b, temp->index, 97);
 			else if (i == check_rotb_revrota(*a, *b, temp->index))
-				i = do_rotb_revrota(a, b, temp->index);
+				i = do_rotb_revrota(a, b, temp->index, 97);
 			else
 				temp = temp->next;
 		}

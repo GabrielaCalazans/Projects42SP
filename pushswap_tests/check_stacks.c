@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/19 20:25:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:35:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,14 +243,13 @@ int	check_double_revrot_atob(t_stack *a, t_stack *b, int check)
 	return (result);
 }
 
-
 int	check_rota_revrotb(t_stack *a, t_stack *b, int check)
 {
 	int	result;
 
 	result = 0;
 	if (check_pos_b(b, check))
-		result = ft_size(b) - ft_int_pos(b, check);
+		result = ft_size(b) - check_pos_b(b, check);
 	result += ft_int_pos(a, check);
 	return (result);
 }
@@ -262,7 +261,7 @@ int	check_rotb_revrota(t_stack *a, t_stack *b, int check)
 	result = 0;
 	if (ft_int_pos(a, check))
 		result = ft_size(a) - ft_int_pos(a, check);
-	result += ft_int_pos(b, check);
+	result += check_pos_b(b, check);
 	return (result);
 }
 
@@ -297,7 +296,7 @@ int	check_pos_b(t_stack *b, int check)
 		temp = b->next;
 		while (temp)
 		{
-			if (temp->index > check || b->index < check)
+			if (check > b->index || check < temp->index)
 				pos++;
 			else
 				break ;
