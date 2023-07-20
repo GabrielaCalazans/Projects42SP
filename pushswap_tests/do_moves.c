@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:05:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/18 19:09:54 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:37:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,14 @@ void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int check_rot)
 	}
 }
 
-int	do_single_rot_atob(t_stack **a, t_stack **b, int check)
+int	do_single_rot_atob(t_stack **a, t_stack **b, int check, int stack)
 {
-	
+	if (stack == 97)
+	{
+		while (check_pos_b(b, check) > 0)
+			ft_rotate_ab(b, 98);
+		ft_push_b(a, b, 98);
+	}
 	return (-1);
 }
 

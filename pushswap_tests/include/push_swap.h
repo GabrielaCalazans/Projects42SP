@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/18 19:01:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/19 20:32:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_swap_ab(t_stack **head, int check);
 void	ft_swap_ss(t_stack **a_head, t_stack **b_head, int check);
 void	ft_push_a(t_stack **a_head, t_stack **b_head, int check);
 void	ft_push_b(t_stack **a_head, t_stack **b_head, int check);
-void	ft_rotate_ab(t_stack **head, int ch97eck);
+void	ft_rotate_ab(t_stack **head, int check);
 void	ft_rotate_rr(t_stack **a_head, t_stack **b_head, int check);
 void	ft_rev_rotate_ab(t_stack **head, int check);
 void	ft_rev_rotate_r(t_stack **a_head, t_stack **b_head, int check);
@@ -106,6 +106,7 @@ int		ft_min_size(t_stack *head, int size, char check);
 int		ft_max_size(t_stack *head, int size, char check);
 int		ft_sec_min(t_stack *head);
 int		ft_int_pos(t_stack *head, int pos);
+int		ft_int_pos2(t_stack *head, int find);
 void	ft_freearray(char **array);
 void	ft_puterror(void);
 int		ft_atoi_error(const char *nptr);
