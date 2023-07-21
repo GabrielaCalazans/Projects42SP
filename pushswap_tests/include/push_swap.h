@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/19 20:32:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:56:29 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int		ft_min_size(t_stack *head, int size, char check);
 int		ft_max_size(t_stack *head, int size, char check);
 int		ft_sec_min(t_stack *head);
 int		ft_int_pos(t_stack *head, int pos);
+int		ft_int_pos1(t_stack *head, int find);
 int		ft_int_pos2(t_stack *head, int find);
 void	ft_freearray(char **array);
 void	ft_puterror(void);

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/20 20:35:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:29:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ int	check_double_revrot_atob(t_stack *a, t_stack *b, int check)
 	result = 0;
 	if (check_pos_b(b, check))
 		result = ft_size(b) - check_pos_b(b, check);
-	if (result < (ft_size(a) - ft_int_pos(a, check)))
+	if (result < (ft_size(a) - ft_int_pos(a, check)) && ft_int_pos(a, check))
 		result = ft_size(a) - ft_int_pos(a, check);
 	return (result);
 }
