@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/20 18:22:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:53:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,6 +309,41 @@ void	check_and_push_to_b(t_stack **a, t_stack **b)
 				temp = temp->next;
 		}
 	}
+}
+
+void	check_and_push_to_a(t_stack **a, t_stack **b)
+{
+	t_stack	*temp;
+	int		i;
+
+	while (ft_size(*b) > 0)
+	{
+		temp = *b;
+		i = check_op_b_to_a(*a, *b);
+		while (i >= 0)
+		{
+			if (i == check_single_rot_atob(*a, *b, temp->index))
+				i = do_single_rot_atob(a, b, temp->index, 97);
+			else if (i == check_double_revrot_atob(*a, *b, temp->index))
+				i = do_double_revrot_atob(a, b, temp->index, 97);
+			else if (i == check_rota_revrotb(*a, *b, temp->index))
+				i = do_rota_revrotb(a, b, temp->index, 97);
+			else if (i == check_rotb_revrota(*a, *b, temp->index))
+				i = do_rotb_revrota(a, b, temp->index, 97);
+			else
+				temp = temp->next;
+		}
+	}
+}
+
+void	sort_hundred(t_stack **a, t_stack **b)
+{
+	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+		check_and_push_to_b(a, b);
+	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
+		sort_three(a, 97);
+	if (ft_size(*b) > 3)
+		check_and_push_to_a(a, b);
 }
 
 

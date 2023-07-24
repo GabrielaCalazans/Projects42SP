@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/21 18:29:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:53:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,28 @@ int	check_pos_b(t_stack *b, int check)
 }
 
 int	check_op_a_to_b(t_stack *a, t_stack *b)
+{
+	int		i;
+	t_stack	*temp;
+
+	temp = a;
+	i = check_double_revrot_atob(a, b, a->index);
+	while (temp)
+	{
+		if (i > check_single_rot_atob(a, b, temp->index))
+			i = check_single_rot_atob(a, b, temp->index);
+		if (i > check_double_revrot_atob(a, b, temp->index))
+			i = check_double_revrot_atob(a, b, temp->index);
+		if (i > check_rota_revrotb(a, b, temp->index))
+			i = check_rota_revrotb(a, b, temp->index);
+		if (i > check_rotb_revrota(a, b, temp->index))
+			i = check_rotb_revrota(a, b, temp->index);
+		temp = temp->next;
+	}
+	return (i);	
+}
+
+int	check_op_b_to_a(t_stack *a, t_stack *b)
 {
 	int		i;
 	t_stack	*temp;
