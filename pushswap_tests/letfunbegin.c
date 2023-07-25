@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/24 17:53:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:59:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,6 +284,8 @@ void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
 	}
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		check_and_push_to_b(a, b);
+	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
+		sort_three(a, 97);
 }
 
 void	check_and_push_to_b(t_stack **a, t_stack **b)
@@ -326,7 +328,7 @@ void	check_and_push_to_a(t_stack **a, t_stack **b)
 				i = do_single_rot_atob(a, b, temp->index, 97);
 			else if (i == check_double_revrot_atob(*a, *b, temp->index))
 				i = do_double_revrot_atob(a, b, temp->index, 97);
-			else if (i == check_rota_revrotb(*a, *b, temp->index))
+			else if (i == check_rota_revrotb(*a, *                                                                                                                                                                                                                                                                                             b, temp->index))
 				i = do_rota_revrotb(a, b, temp->index, 97);
 			else if (i == check_rotb_revrota(*a, *b, temp->index))
 				i = do_rotb_revrota(a, b, temp->index, 97);
@@ -339,7 +341,7 @@ void	check_and_push_to_a(t_stack **a, t_stack **b)
 void	sort_hundred(t_stack **a, t_stack **b)
 {
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-		check_and_push_to_b(a, b);
+		sort_hundred_a_to_b(a, b);
 	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
 		sort_three(a, 97);
 	if (ft_size(*b) > 3)
