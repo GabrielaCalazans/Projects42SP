@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/21 13:56:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:51:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	do_rot_ab(t_stack **a, t_stack **b, int rot_nbr, int check_rot);
 // int		do_rota_revrotb(t_stack **a, t_stack **b, int check);
 // int		do_rotb_revrota(t_stack **a, t_stack **b, int check);
 
+int		do_single_rot_atob(t_stack **a, t_stack **b, int check, int stack);
+int		do_double_revrot_atob(t_stack **a, t_stack **b, int check, int stack);
+int		do_rota_revrotb(t_stack **a, t_stack **b, int check, int stack);
+int		do_rotb_revrota(t_stack **a, t_stack **b, int check, int stack);
+
 t_stack	*starting(t_stack **a, int argc, char *argv[]);
 void	sorting_it(t_stack **a, t_stack **b, int len);
 // void	sort_uptosix(t_stack **a, t_stack **b, int size);
@@ -76,6 +81,8 @@ void	ft_sort_b(t_stack **b, int size);
 void	ft_sort_a(t_stack **a, int size);
 void	ft_checkandpush(t_stack **a, t_stack **b);
 
+void	sort_hundred(t_stack **a, t_stack **b);
+
 int		check_args(int argc, char *argv[]);
 int		check_error(char *argv[], int i, int j);
 void	check_int(char *argv[]);
@@ -89,14 +96,20 @@ int		check_its_sorted_b_idx(t_stack **b);
 // int		check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b);
 // int		check_rot_a(t_stack **a, int check_a);
 // int		check_rot_b(t_stack **b, int check_b);
-int		check_pos_a(t_stack *a, int check);
+int		track_pos_a(t_stack *a, int check);
 int		check_pos_b(t_stack *b, int check);
 int		check_op_a_to_b(t_stack *a, t_stack *b);
+int		check_op_b_to_a(t_stack *a, t_stack *b);
 int		check_single_rot_atob(t_stack *a, t_stack *b, int check);
 int		check_double_revrot_atob(t_stack *a, t_stack *b, int check);
-int		check_rota_revrotb(t_stack *a, t_stack *b, int check);
-int		check_rotb_revrota(t_stack *a, t_stack *b, int check);
+int		check_rota_revrotb_atob(t_stack *a, t_stack *b, int check);
+int		check_rotb_revrota_atob(t_stack *a, t_stack *b, int check);
 void	check_and_push_to_b(t_stack **a, t_stack **b);
+int		rate_rr_btoa(t_stack *a, t_stack *b, int check);
+int		rate_rrr_btoa(t_stack *a, t_stack *b, int check);
+int		rate_ra_rrb_btoa(t_stack *a, t_stack *b, int check);
+int		rate_rb_rra_btoa(t_stack *a, t_stack *b, int check);
+
 
 void	printlist(t_stack *head);
 

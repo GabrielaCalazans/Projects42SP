@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/25 17:50:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:22:01 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,13 +265,13 @@ int	check_rotb_revrota_atob(t_stack *a, t_stack *b, int check)
 	return (result);
 }
 
-int	rate_rarb_btoa(t_stack *a, t_stack *b, int check)
+int	rate_rr_btoa(t_stack *a, t_stack *b, int check)
 {
 	int	result;
 
 	result = track_pos_a(a, check);
-	if (result < ft_int_pos(a, check))
-		result = ft_int_pos(a, check);
+	if (result < ft_int_pos(b, check))
+		result = ft_int_pos(b, check);
 	return (result);
 }
 
@@ -280,7 +280,7 @@ int	rate_rrr_btoa(t_stack *a, t_stack *b, int check)
 	int	result;
 
 	result = 0;
-	if (track_pos_a(b, check))
+	if (track_pos_a(a, check))
 		result = ft_size(a) - track_pos_a(a, check);
 	if (result < (ft_size(b) - ft_int_pos(b, check)) && ft_int_pos(b, check))
 		result = ft_size(b) - ft_int_pos(b, check);
@@ -309,7 +309,7 @@ int	rate_rb_rra_btoa(t_stack *a, t_stack *b, int check)
 	return (result);
 }
 
-int	track_pos_a(t_stack *a, int check)
+int	check_pos_a(t_stack *a, int check)
 {
 	t_stack	*temp;
 	int		pos;
@@ -351,7 +351,7 @@ int	check_pos_b(t_stack *b, int check)
 	return (pos);
 }
 
-int	check_pos_a(t_stack *a, int check)
+int	track_pos_a(t_stack *a, int check)
 {
 	t_stack	*temp;
 	int		pos;
@@ -391,10 +391,10 @@ int	check_op_a_to_b(t_stack *a, t_stack *b)
 			i = check_single_rot_atob(a, b, temp->index);
 		if (i > check_double_revrot_atob(a, b, temp->index))
 			i = check_double_revrot_atob(a, b, temp->index);
-		if (i > check_rota_revrotb(a, b, temp->index))
-			i = check_rota_revrotb(a, b, temp->index);
-		if (i > check_rotb_revrota(a, b, temp->index))
-			i = check_rotb_revrota(a, b, temp->index);
+		if (i > check_rota_revrotb_atob(a, b, temp->index))
+			i = check_rota_revrotb_atob(a, b, temp->index);
+		if (i > check_rotb_revrota_atob(a, b, temp->index))
+			i = check_rotb_revrota_atob(a, b, temp->index);
 		temp = temp->next;
 	}
 	return (i);	
@@ -406,17 +406,17 @@ int	check_op_b_to_a(t_stack *a, t_stack *b)
 	t_stack	*temp;
 
 	temp = a;
-	i = check_double_revrot_atob(a, b, a->index);
+	i = rate_rrr_btoa(a, b, a->index);
 	while (temp)
 	{
-		if (i > check_single_rot_atob(a, b, temp->index))
-			i = check_single_rot_atob(a, b, temp->index);
-		if (i > check_double_revrot_atob(a, b, temp->index))
-			i = check_double_revrot_atob(a, b, temp->index);
-		if (i > check_rota_revrotb(a, b, temp->index))
-			i = check_rota_revrotb(a, b, temp->index);
-		if (i > check_rotb_revrota(a, b, temp->index))
-			i = check_rotb_revrota(a, b, temp->index);
+		if (i > rate_rr_btoa(a, b, temp->index))
+			i = rate_rr_btoa(a, b, temp->index);
+		if (i > rate_rrr_btoa(a, b, temp->index))
+			i = rate_rrr_btoa(a, b, temp->index);
+		if (i > rate_ra_rrb_btoa(a, b, temp->index))
+			i = rate_ra_rrb_btoa(a, b, temp->index);
+		if (i > rate_rb_rra_btoa(a, b, temp->index))
+			i = rate_rb_rra_btoa(a, b, temp->index);
 		temp = temp->next;
 	}
 	return (i);	

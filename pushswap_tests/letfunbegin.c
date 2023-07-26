@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/25 14:59:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:34:25 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	sorting_it(t_stack **a, t_stack **b, int len)
 		sort_five(a, b, len);
 	// if (len < 11)
 	// 	sort_five2(a, b, len);
-	if (len > 10 && len < 101)
-		sort_hundre_first(a, b, len);
+	if (len > 5)
+		sort_hundred(a, b);
 }
 
 void	sort_three(t_stack **a, int check)
@@ -43,6 +43,7 @@ void	sort_three(t_stack **a, int check)
 	}
 	else
 	{
+		printf("HERE SORT3\n");
 		ft_swap_ab(a, check);
 		sort_three(a, check);
 	}
@@ -95,6 +96,109 @@ void	sort_five(t_stack **a, t_stack **b, int size)
 	}
 	else
 		sort_five(a, b, size);
+}
+
+void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
+{
+	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+		ft_push_b(a, b, 98);
+	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+		ft_push_b(a, b, 98);
+	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+	{
+		ft_push_b(a, b, 98);
+		sort_three_b(b, 98);
+	}
+	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+		check_and_push_to_b(a, b);
+	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
+		sort_three(a, 97);
+}
+
+void	check_and_push_to_b(t_stack **a, t_stack **b)
+{
+	t_stack	*temp;
+	int		i;
+
+	while (ft_size(*a) > 3 && !check_its_sorted_a(a))
+	{
+		temp = *a;
+		i = check_op_a_to_b(*a, *b);
+		while (i >= 0)
+		{
+			if (i == check_single_rot_atob(*a, *b, temp->index))
+				i = do_single_rot_atob(a, b, temp->index, 97);
+			else if (i == check_double_revrot_atob(*a, *b, temp->index))
+				i = do_double_revrot_atob(a, b, temp->index, 97);
+			else if (i == check_rota_revrotb_atob(*a, *b, temp->index))
+				i = do_rota_revrotb(a, b, temp->index, 97);
+			else if (i == check_rotb_revrota_atob(*a, *b, temp->index))
+				i = do_rotb_revrota(a, b, temp->index, 97);
+			else
+				temp = temp->next;
+		}
+	}
+}
+
+void	check_and_push_to_a(t_stack **a, t_stack **b)
+{
+	t_stack	*temp;
+	int		i;
+
+	while (ft_size(*b) > 0)
+	{
+		temp = *b;
+		i = check_op_b_to_a(*a, *b);
+		while (i >= 0)
+		{
+			if (i == rate_rr_btoa(*a, *b, temp->index))
+				i = do_single_rot_atob(a, b, temp->index, 98);
+			else if (i == rate_rrr_btoa(*a, *b, temp->index))
+				i = do_double_revrot_atob(a, b, temp->index, 98);
+			else if (i == rate_ra_rrb_btoa(*a, *                                                                                                                                                                                                                                                                                             b, temp->index))
+				i = do_rota_revrotb(a, b, temp->index, 98);
+			else if (i == rate_rb_rra_btoa(*a, *b, temp->index))
+				i = do_rotb_revrota(a, b, temp->index, 98);
+			else
+				temp = temp->next;
+		}
+	}
+}
+
+void	sort_final(t_stack **a)
+{
+	int	pos_min;
+	int	size;
+	int	pos_final;
+
+	size = ft_size(*a) / 2;
+	pos_min = ft_int_pos(*a, ft_min(*a));
+	pos_final = size - pos_min;
+	if (pos_min < size)
+	{
+		while (pos_min-- > 0)
+			ft_rotate_ab(a, 97);
+	}
+	else if (pos_min > size)
+	{
+		while (pos_final > 0)
+		{
+			ft_rev_rotate_ab(a, 97);
+			pos_final--;
+		}
+	}
+}
+
+void	sort_hundred(t_stack **a, t_stack **b)
+{
+	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+		sort_hundred_a_to_b(a, b);
+	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
+		sort_three(a, 97);
+	if (ft_size(*b) > 3)
+		check_and_push_to_a(a, b);
+	if (!check_its_sorted_a(a))
+		sort_final(a);
 }
 
 void	sort_five_push_count(t_stack **a, t_stack **b, int size_a)
@@ -184,169 +288,92 @@ void	sort_five2(t_stack **a, t_stack **b, int size)
 	}
 }
 
-void	sort_hundre_first(t_stack **a, t_stack **b, int size_init)
-{
-	int	top;
-	int	bottom;
-	int	pos_top;
-	int	pos_bottom;
-	int	size_a;
+// void	sort_hundre_first(t_stack **a, t_stack **b, int size_init)
+// {
+// 	int	top;
+// 	int	bottom;
+// 	int	pos_top;
+// 	int	pos_bottom;
+// 	int	size_a;
 
-	size_a = ft_size(*a);
-	top = ft_min_size(*a, size_a / 2, 't');
-	bottom = ft_min_size(*a, size_a / 2, 'b');
-	pos_top = ft_int_pos(*a, top);
-	pos_bottom = (size_a + 2) - ft_int_pos(*a, bottom);
-	// printf("size_a:%d, top:%d, bottom:%d, pos_top:%d, pos_bottom:%d\n", size_a, top, bottom, pos_top, pos_bottom);
-	if (size_a < 2)
-	{
-		sort_hundred_second(a, b, size_init);
-		return ;
-	}
-	if (pos_top > pos_bottom)
-	{
-		while (pos_bottom-- > 0)
-			ft_rev_rotate_ab(a, 97);
-		ft_push_b(a, b, 98);
-		// if (ft_size(*b) > 5 && !check_its_sorted_b(b))
-		// 	ft_sort_b(b, ft_size(*b));
-		sort_hundre_first(a, b, size_init);
-	}
-	if (pos_top <= pos_bottom)
-	{
-		while (pos_top-- > 0)
-			ft_rotate_ab(a, 97);
-		// if (ft_size(*b) > 5 && !check_its_sorted_b(b))
-		// 	ft_sort_b(b, ft_size(*b));
-		ft_push_b(a, b, 98);
-		sort_hundre_first(a, b, size_init);
-	}
-}
+// 	size_a = ft_size(*a);
+// 	top = ft_min_size(*a, size_a / 2, 't');
+// 	bottom = ft_min_size(*a, size_a / 2, 'b');
+// 	pos_top = ft_int_pos(*a, top);
+// 	pos_bottom = (size_a + 2) - ft_int_pos(*a, bottom);
+// 	// printf("size_a:%d, top:%d, bottom:%d, pos_top:%d, pos_bottom:%d\n", size_a, top, bottom, pos_top, pos_bottom);
+// 	if (size_a < 2)
+// 	{
+// 		sort_hundred_second(a, b, size_init);
+// 		return ;
+// 	}
+// 	if (pos_top > pos_bottom)
+// 	{
+// 		while (pos_bottom-- > 0)
+// 			ft_rev_rotate_ab(a, 97);
+// 		ft_push_b(a, b, 98);
+// 		// if (ft_size(*b) > 5 && !check_its_sorted_b(b))
+// 		// 	ft_sort_b(b, ft_size(*b));
+// 		sort_hundre_first(a, b, size_init);
+// 	}
+// 	if (pos_top <= pos_bottom)
+// 	{
+// 		while (pos_top-- > 0)
+// 			ft_rotate_ab(a, 97);
+// 		// if (ft_size(*b) > 5 && !check_its_sorted_b(b))
+// 		// 	ft_sort_b(b, ft_size(*b));
+// 		ft_push_b(a, b, 98);
+// 		sort_hundre_first(a, b, size_init);
+// 	}
+// }
 
-void	sort_hundred_second(t_stack **a, t_stack **b, int size_init)
-{
-	int	max;
-	int	pos_max;
-	int	size_b;
-	int	count;
+// void	sort_hundred_second(t_stack **a, t_stack **b, int size_init)
+// {
+// 	int	max;
+// 	int	pos_max;
+// 	int	size_b;
+// 	int	count;
 
-	size_b = ft_size(*b);
-	max = ft_max(*b);
-	pos_max = ft_int_pos(*b, max);
-	if (size_b < 2 && (ft_size(*a) + 1) == size_init)
-	{
-		ft_push_a(a, b, 97);
-		if (!check_its_sorted_a(a))
-			ft_sort_a(a, ft_size(*a));
-			// printf("here am i 0.");
-		return ;
-	}
-	if (ft_size(*a) == 3)
-		sort_three(a, 97);
-	if (ft_size(*a) == 5)
-		sort_five_push_count(a, b, ft_size(*a));
-	if (pos_max > size_b / 2 && ft_size(*a) != size_init)
-	{
-		count = (size_b - pos_max) + 1;
-		while (count-- > 0)
-			ft_rev_rotate_ab(b, 98);
-		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
-			ft_sort_a(a, ft_size(*a));
-			// printf("here am i 1.");
-		else if (max == (*b)->index)
-			ft_push_a(a, b, 97);
-		sort_hundred_second(a, b, size_init);
-	}
-	if (pos_max <= size_b / 2 && ft_size(*a) != size_init)
-	{
-		while (pos_max-- > 0)
-			ft_rotate_ab(b, 98);
-		// printf("pos_max:%d size_b:%d size_init:%d, size_a:%d\n", pos_max, size_b, size_init, ft_size(*a));
-		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
-			ft_sort_a(a, ft_size(*a));
-			// printf("here am i 2.");
-		else if (max == (*b)->index)
-			ft_push_a(a, b, 97);
-		sort_hundred_second(a, b, size_init);
-	}
-}
-
-void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
-{
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-		ft_push_b(a, b, 98);
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-		ft_push_b(a, b, 98);
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-	{
-		ft_push_b(a, b, 98);
-		sort_three_b(b, 98);
-	}
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-		check_and_push_to_b(a, b);
-	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
-		sort_three(a, 97);
-}
-
-void	check_and_push_to_b(t_stack **a, t_stack **b)
-{
-	t_stack	*temp;
-	int		i;
-
-	while (ft_size(*a) > 3 && !check_its_sorted_a(a))
-	{
-		temp = *a;
-		i = check_op_a_to_b(*a, *b);
-		while (i >= 0)
-		{
-			if (i == check_single_rot_atob(*a, *b, temp->index))
-				i = do_single_rot_atob(a, b, temp->index, 97);
-			else if (i == check_double_revrot_atob(*a, *b, temp->index))
-				i = do_double_revrot_atob(a, b, temp->index, 97);
-			else if (i == check_rota_revrotb(*a, *b, temp->index))
-				i = do_rota_revrotb(a, b, temp->index, 97);
-			else if (i == check_rotb_revrota(*a, *b, temp->index))
-				i = do_rotb_revrota(a, b, temp->index, 97);
-			else
-				temp = temp->next;
-		}
-	}
-}
-
-void	check_and_push_to_a(t_stack **a, t_stack **b)
-{
-	t_stack	*temp;
-	int		i;
-
-	while (ft_size(*b) > 0)
-	{
-		temp = *b;
-		i = check_op_b_to_a(*a, *b);
-		while (i >= 0)
-		{
-			if (i == check_single_rot_atob(*a, *b, temp->index))
-				i = do_single_rot_atob(a, b, temp->index, 97);
-			else if (i == check_double_revrot_atob(*a, *b, temp->index))
-				i = do_double_revrot_atob(a, b, temp->index, 97);
-			else if (i == check_rota_revrotb(*a, *                                                                                                                                                                                                                                                                                             b, temp->index))
-				i = do_rota_revrotb(a, b, temp->index, 97);
-			else if (i == check_rotb_revrota(*a, *b, temp->index))
-				i = do_rotb_revrota(a, b, temp->index, 97);
-			else
-				temp = temp->next;
-		}
-	}
-}
-
-void	sort_hundred(t_stack **a, t_stack **b)
-{
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-		sort_hundred_a_to_b(a, b);
-	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
-		sort_three(a, 97);
-	if (ft_size(*b) > 3)
-		check_and_push_to_a(a, b);
-}
+// 	size_b = ft_size(*b);
+// 	max = ft_max(*b);
+// 	pos_max = ft_int_pos(*b, max);
+// 	if (size_b < 2 && (ft_size(*a) + 1) == size_init)
+// 	{
+// 		ft_push_a(a, b, 97);
+// 		if (!check_its_sorted_a(a))
+// 			ft_sort_a(a, ft_size(*a));
+// 			// printf("here am i 0.");
+// 		return ;
+// 	}
+// 	if (ft_size(*a) == 3)
+// 		sort_three(a, 97);
+// 	if (ft_size(*a) == 5)
+// 		sort_five_push_count(a, b, ft_size(*a));
+// 	if (pos_max > size_b / 2 && ft_size(*a) != size_init)
+// 	{
+// 		count = (size_b - pos_max) + 1;
+// 		while (count-- > 0)
+// 			ft_rev_rotate_ab(b, 98);
+// 		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
+// 			ft_sort_a(a, ft_size(*a));
+// 			// printf("here am i 1.");
+// 		else if (max == (*b)->index)
+// 			ft_push_a(a, b, 97);
+// 		sort_hundred_second(a, b, size_init);
+// 	}
+// 	if (pos_max <= size_b / 2 && ft_size(*a) != size_init)
+// 	{
+// 		while (pos_max-- > 0)
+// 			ft_rotate_ab(b, 98);
+// 		// printf("pos_max:%d size_b:%d size_init:%d, size_a:%d\n", pos_max, size_b, size_init, ft_size(*a));
+// 		if (ft_size(*a) > 5 && !check_its_sorted_a(a))
+// 			ft_sort_a(a, ft_size(*a));
+// 			// printf("here am i 2.");
+// 		else if (max == (*b)->index)
+// 			ft_push_a(a, b, 97);
+// 		sort_hundred_second(a, b, size_init);
+// 	}
+// }
 
 
 // void	ft_sort_b(t_stack **b)
