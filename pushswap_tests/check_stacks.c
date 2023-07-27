@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/26 21:02:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:43:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,7 +340,7 @@ int	check_pos_b(t_stack *b, int check)
 		temp = b->next;
 		while (temp)
 		{
-			if (check > b->index || check < temp->index)
+			if (check < b->index || check > temp->index)
 				pos++;
 			else
 				break ;
@@ -350,33 +350,6 @@ int	check_pos_b(t_stack *b, int check)
 	}
 	return (pos);
 }
-
-int	track_pos_a(t_stack *a, int check)
-{
-	t_stack	*temp;
-	int		pos;
-
-	pos = 1;
-	if (check < a->index && check > ft_last(a)->index)
-		pos = 0;
-	else if (check > ft_max(a) || check < ft_min(a))
-		pos = ft_int_pos(a, ft_min(a)); //ft_min??
-	else
-	{
-		temp = a->next;
-		while (temp)
-		{
-			if (check < a->index || check > temp->index)
-				pos++;
-			else
-				break ;
-			temp = temp->next;
-			a = a->next;
-		}
-	}
-	return (pos);
-}
-
 
 int	check_op_a_to_b(t_stack *a, t_stack *b)
 {
@@ -398,6 +371,32 @@ int	check_op_a_to_b(t_stack *a, t_stack *b)
 		temp = temp->next;
 	}
 	return (i);	
+}
+
+int	track_pos_a(t_stack *a, int check)
+{
+	t_stack	*temp;
+	int		pos;
+
+	pos = 1;
+	if (check < a->index && check > ft_last(a)->index)
+		pos = 0;
+	else if (check > ft_max(a) || check < ft_min(a))
+		pos = ft_int_pos(a, ft_min(a));
+	else
+	{
+		temp = a->next;
+		while (temp)
+		{
+			if (check > a->index || check < temp->index)
+				pos++;
+			else
+				break ;
+			temp = temp->next;
+			a = a->next;
+		}
+	}
+	return (pos);
 }
 
 int	check_op_b_to_a(t_stack *a, t_stack *b)
