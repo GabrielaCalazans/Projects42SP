@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:05:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/26 18:00:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:46:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	do_single_rot_atob(t_stack **a, t_stack **b, int check, int stack)
 			ft_rotate_ab(a, 97);
 		while (ft_int_pos(*b, check) > 0)
 			ft_rotate_ab(b, 98);
-		ft_push_b(a, b, 98);
+		ft_push_a(a, b, 97);
 	}
 	return (-1);
 }
@@ -134,7 +134,7 @@ int	do_double_revrot_atob(t_stack **a, t_stack **b, int check, int stack)
 			ft_rev_rotate_ab(a, 97);
 		while (ft_int_pos(*b, check) > 0)
 			ft_rev_rotate_ab(b, 98);
-		ft_push_b(a, b, 97);
+		ft_push_a(a, b, 97);
 	}
 	return (-1);
 }
@@ -155,7 +155,7 @@ int	do_rota_revrotb(t_stack **a, t_stack **b, int check, int stack)
 			ft_rotate_ab(a, 97);
 		while (ft_int_pos(*b, check) > 0)
 			ft_rev_rotate_ab(b, 98);
-		ft_push_b(a, b, 97);
+		ft_push_a(a, b, 97);
 	}
 	return (-1);
 }
@@ -176,7 +176,7 @@ int	do_rotb_revrota(t_stack **a, t_stack **b, int check, int stack)
 			ft_rev_rotate_ab(a, 97);
 		while (ft_int_pos(*b, check) > 0)
 			ft_rotate_ab(b, 98);
-		ft_push_b(a, b, 97);
+		ft_push_a(a, b, 97);
 	}
 	return (-1);
 }

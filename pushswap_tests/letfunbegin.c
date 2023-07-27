@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/26 20:34:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:42:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,17 +145,19 @@ void	check_and_push_to_a(t_stack **a, t_stack **b)
 	t_stack	*temp;
 	int		i;
 
-	while (ft_size(*b) > 0)
+	temp = *b;
+	while (temp)
 	{
 		temp = *b;
 		i = check_op_b_to_a(*a, *b);
 		while (i >= 0)
 		{
+			printf("HERE CHECKANDPUSH TO A\n");
 			if (i == rate_rr_btoa(*a, *b, temp->index))
 				i = do_single_rot_atob(a, b, temp->index, 98);
 			else if (i == rate_rrr_btoa(*a, *b, temp->index))
 				i = do_double_revrot_atob(a, b, temp->index, 98);
-			else if (i == rate_ra_rrb_btoa(*a, *                                                                                                                                                                                                                                                                                             b, temp->index))
+			else if (i == rate_ra_rrb_btoa(*a, *b, temp->index))
 				i = do_rota_revrotb(a, b, temp->index, 98);
 			else if (i == rate_rb_rra_btoa(*a, *b, temp->index))
 				i = do_rotb_revrota(a, b, temp->index, 98);

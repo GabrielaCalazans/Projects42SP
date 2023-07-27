@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/26 20:22:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/26 21:02:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,16 +357,16 @@ int	track_pos_a(t_stack *a, int check)
 	int		pos;
 
 	pos = 1;
-	if (check > a->index && check < ft_last(a)->index)
+	if (check < a->index && check > ft_last(a)->index)
 		pos = 0;
 	else if (check > ft_max(a) || check < ft_min(a))
-		pos = ft_int_pos(a, ft_max(a)); //ft_min??
+		pos = ft_int_pos(a, ft_min(a)); //ft_min??
 	else
 	{
 		temp = a->next;
 		while (temp)
 		{
-			if (check > a->index || check < temp->index)
+			if (check < a->index || check > temp->index)
 				pos++;
 			else
 				break ;
@@ -419,5 +419,6 @@ int	check_op_b_to_a(t_stack *a, t_stack *b)
 			i = rate_rb_rra_btoa(a, b, temp->index);
 		temp = temp->next;
 	}
+	printf("i:%i", i);
 	return (i);	
 }
