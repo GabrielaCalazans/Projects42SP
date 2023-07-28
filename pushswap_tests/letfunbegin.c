@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/26 20:42:44 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:47:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	sort_three(t_stack **a, int check)
 	}
 	else
 	{
-		printf("HERE SORT3\n");
 		ft_swap_ab(a, check);
 		sort_three(a, check);
 	}
@@ -71,7 +70,6 @@ void	sort_three_b(t_stack **b, int check)
 	}
 }
 
-
 void	sort_five(t_stack **a, t_stack **b, int size)
 {
 	int	pos;
@@ -97,7 +95,7 @@ void	sort_five(t_stack **a, t_stack **b, int size)
 	else
 		sort_five(a, b, size);
 }
-
+}
 void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
 {
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
@@ -105,10 +103,7 @@ void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		ft_push_b(a, b, 98);
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-	{
 		ft_push_b(a, b, 98);
-		sort_three_b(b, 98);
-	}
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		check_and_push_to_b(a, b);
 	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
@@ -146,13 +141,12 @@ void	check_and_push_to_a(t_stack **a, t_stack **b)
 	int		i;
 
 	temp = *b;
-	while (temp)
+	while (temp && ft_size(*b) > 0)
 	{
 		temp = *b;
 		i = check_op_b_to_a(*a, *b);
 		while (i >= 0)
 		{
-			printf("HERE CHECKANDPUSH TO A\n");
 			if (i == rate_rr_btoa(*a, *b, temp->index))
 				i = do_single_rot_atob(a, b, temp->index, 98);
 			else if (i == rate_rrr_btoa(*a, *b, temp->index))
@@ -199,7 +193,7 @@ void	sort_hundred(t_stack **a, t_stack **b)
 		sort_three(a, 97);
 	if (ft_size(*b) > 3)
 		check_and_push_to_a(a, b);
-	if (!check_its_sorted_a(a))
+	if (!check_its_sorted_a(a) && !b)
 		sort_final(a);
 }
 

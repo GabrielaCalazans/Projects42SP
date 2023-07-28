@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/27 19:43:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:38:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,47 +180,6 @@ void	ft_checkandpush(t_stack **a, t_stack **b)
 	}
 }
 
-// int	check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b)
-// {
-// 	int	size_a;
-// 	int	size_b;
-
-// 	size_a = ft_size(*a);
-// 	size_b = ft_size(*b);
-// 	if (check_a && check_a > size_a / 2 && check_b && check_b > size_b / 2)
-// 		return (1);
-// 	if (check_a && check_a <= size_a / 2 && check_b && check_b <= size_b / 2)
-// 		return (2);
-// 	else
-// 		return (0);
-// }
-
-// int	check_rot_a(t_stack **a, int check_a)
-// {
-// 	int	size_a;
-
-// 	size_a = ft_size(*a);
-// 	if (check_a && check_a > size_a / 2)
-// 		return (1);
-// 	if (check_a && check_a <= size_a / 2)
-// 		return (2);
-// 	else
-// 		return (0);
-// }
-
-// int	check_rot_b(t_stack **b, int check_b)
-// {
-// 	int	size_b;
-
-// 	size_b = ft_size(*b);
-// 	if (check_b && check_b > size_b / 2)
-// 		return (1);
-// 	if (check_b && check_b <= size_b / 2)
-// 		return (2);
-// 	else
-// 		return (0);
-// }
-
 int	check_single_rot_atob(t_stack *a, t_stack *b, int check)
 {
 	int	result;
@@ -309,22 +268,6 @@ int	rate_rb_rra_btoa(t_stack *a, t_stack *b, int check)
 	return (result);
 }
 
-int	check_pos_a(t_stack *a, int check)
-{
-	t_stack	*temp;
-	int		pos;
-    
-	temp = a;
-	pos = 0;
-	while (temp)
-	{
-		if (temp->index < check)
-			pos++;
-		temp = temp->next;
-	}
-	return (pos);
-}
-
 int	check_pos_b(t_stack *b, int check)
 {
 	t_stack	*temp;
@@ -382,7 +325,7 @@ int	track_pos_a(t_stack *a, int check)
 	if (check < a->index && check > ft_last(a)->index)
 		pos = 0;
 	else if (check > ft_max(a) || check < ft_min(a))
-		pos = ft_int_pos(a, ft_min(a));
+		pos = ft_int_pos(a, ft_max(a));
 	else
 	{
 		temp = a->next;
@@ -401,23 +344,81 @@ int	track_pos_a(t_stack *a, int check)
 
 int	check_op_b_to_a(t_stack *a, t_stack *b)
 {
-	int		i;
+	int		opto_a;
 	t_stack	*temp;
 
-	temp = a;
-	i = rate_rrr_btoa(a, b, a->index);
+	temp = b;
+	opto_a = rate_rrr_btoa(a, b, b->index);
+	// printf("opto_a:%i", opto_a);
 	while (temp)
 	{
-		if (i > rate_rr_btoa(a, b, temp->index))
-			i = rate_rr_btoa(a, b, temp->index);
-		if (i > rate_rrr_btoa(a, b, temp->index))
-			i = rate_rrr_btoa(a, b, temp->index);
-		if (i > rate_ra_rrb_btoa(a, b, temp->index))
-			i = rate_ra_rrb_btoa(a, b, temp->index);
-		if (i > rate_rb_rra_btoa(a, b, temp->index))
-			i = rate_rb_rra_btoa(a, b, temp->index);
+		if (opto_a > rate_rr_btoa(a, b, temp->index))
+			opto_a = rate_rr_btoa(a, b, temp->index);
+		if (opto_a > rate_rrr_btoa(a, b, temp->index))
+			opto_a = rate_rrr_btoa(a, b, temp->index);
+		if (opto_a > rate_ra_rrb_btoa(a, b, temp->index))
+			opto_a = rate_ra_rrb_btoa(a, b, temp->index);
+		if (opto_a > rate_rb_rra_btoa(a, b, temp->index))
+			opto_a = rate_rb_rra_btoa(a, b, temp->index);
 		temp = temp->next;
 	}
-	printf("i:%i", i);
-	return (i);	
+	// printf("opto_a:%i", nbr_op);
+	return (opto_a);	
 }
+
+// int	check_pos_a(t_stack *a, int check)
+// {
+// 	t_stack	*temp;
+// 	int		pos;
+    
+// 	temp = a;
+// 	pos = 0;
+// 	while (temp)
+// 	{
+// 		if (temp->index < check)
+// 			pos++;
+// 		temp = temp->next;
+// 	}
+// 	return (pos);
+// }
+
+// int	check_double_rot(t_stack **a, t_stack **b, int check_a, int check_b)
+// {
+// 	int	size_a;
+// 	int	size_b;
+
+// 	size_a = ft_size(*a);
+// 	size_b = ft_size(*b);
+// 	if (check_a && check_a > size_a / 2 && check_b && check_b > size_b / 2)
+// 		return (1);
+// 	if (check_a && check_a <= size_a / 2 && check_b && check_b <= size_b / 2)
+// 		return (2);
+// 	else
+// 		return (0);
+// }
+
+// int	check_rot_a(t_stack **a, int check_a)
+// {
+// 	int	size_a;
+
+// 	size_a = ft_size(*a);
+// 	if (check_a && check_a > size_a / 2)
+// 		return (1);
+// 	if (check_a && check_a <= size_a / 2)
+// 		return (2);
+// 	else
+// 		return (0);
+// }
+
+// int	check_rot_b(t_stack **b, int check_b)
+// {
+// 	int	size_b;
+
+// 	size_b = ft_size(*b);
+// 	if (check_b && check_b > size_b / 2)
+// 		return (1);
+// 	if (check_b && check_b <= size_b / 2)
+// 		return (2);
+// 	else
+// 		return (0);
+// }
