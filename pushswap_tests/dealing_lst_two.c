@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:35:50 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/06/03 19:00:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:59:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	ft_add_back(t_stack **lst, t_stack *new)
 		new->prev = temp;
 	}
 	else
-		*lst = new;
+		if (*lst)
+			*lst = new;
 }
 
 // Func to find the size of the lst

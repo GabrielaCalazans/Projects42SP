@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:05:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 14:18:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:37:54 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int	do_single_rot_atob(t_stack **a, t_stack **b, int check, int stack)
+int	do_rr(t_stack **a, t_stack **b, int check, int stack)
 {
 	if (stack == 97)
 	{
@@ -37,7 +37,7 @@ int	do_single_rot_atob(t_stack **a, t_stack **b, int check, int stack)
 	return (-1);
 }
 
-int	do_double_revrot_atob(t_stack **a, t_stack **b, int check, int stack)
+int	do_rrr(t_stack **a, t_stack **b, int check, int stack)
 {	
 	if (stack == 97)
 	{
@@ -62,7 +62,7 @@ int	do_double_revrot_atob(t_stack **a, t_stack **b, int check, int stack)
 	return (-1);
 }
 
-int	do_rota_revrotb(t_stack **a, t_stack **b, int check, int stack)
+int	do_ra_rrb(t_stack **a, t_stack **b, int check, int stack)
 {
 	if (stack == 97)
 	{
@@ -83,7 +83,7 @@ int	do_rota_revrotb(t_stack **a, t_stack **b, int check, int stack)
 	return (-1);
 }
 
-int	do_rotb_revrota(t_stack **a, t_stack **b, int check, int stack)
+int	do_rb_rra(t_stack **a, t_stack **b, int check, int stack)
 {
 	if (stack == 97)
 	{
