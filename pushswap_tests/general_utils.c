@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:27:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/05/25 18:11:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:16:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ int	ft_atoi_error(const char *nptr)
 	if ((sign * result) > 2147483647 || (sign * result) < -2147483648)
 		ft_puterror();
 	return (result * sign);
+}
+
+void	push_all_b_to_a(t_stack **a, t_stack **b)
+{
+	int	len;
+
+	len = ft_size(*b);
+	while (len > 0)
+	{
+		ft_push_a(a, b, 97);
+		len--;
+	}
 }
 
 // ** Display a usage message on how to run and use push_swap

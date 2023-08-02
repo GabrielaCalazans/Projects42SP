@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_stacks.c                                     :+:      :+:    :+:   */
+/*   check_stacksNOT.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:26:25 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 16:37:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:12:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
-
-// Func checks if the stack is sorted.
-int	check_its_sorted_a(t_stack **head)
-{
-	int		i;
-	t_stack	*temp;
-
-	temp = *head;
-	i = temp->index;
-	while (temp)
-	{
-		if (i > temp->index)
-			return (0);
-		i = temp->index;
-		temp = temp->next;
-	}
-	return (1);
-}
 
 // Func checks if the stack a is sorted.
 int	check_its_sorted_a_len(t_stack **a)
