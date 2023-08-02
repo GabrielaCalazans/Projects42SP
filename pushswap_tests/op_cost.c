@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 16:30:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 18:00:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:56:55 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-int	check_pos_b(t_stack *b, int check)
+int	track_pos_b(t_stack *b, int check)
 {
 	t_stack	*temp;
 	int		pos;
@@ -27,7 +27,7 @@ int	check_pos_b(t_stack *b, int check)
 		temp = b->next;
 		while (temp)
 		{
-			if (check < b->index || check > temp->index)
+			if (check > b->index || check < temp->index)
 				pos++;
 			else
 				break ;
@@ -69,13 +69,13 @@ int	track_pos_a(t_stack *a, int check)
 	if (check < a->index && check > ft_last(a)->index)
 		pos = 0;
 	else if (check > ft_max(a) || check < ft_min(a))
-		pos = ft_int_pos(a, ft_max(a));
+		pos = ft_int_pos(a, ft_min(a));
 	else
 	{
 		temp = a->next;
 		while (temp)
 		{
-			if (check > a->index || check < temp->index)
+			if (check < a->index || check > temp->index)
 				pos++;
 			else
 				break ;

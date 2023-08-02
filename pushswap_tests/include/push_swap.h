@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:49:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 17:54:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:38:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	ft_checkandpush(t_stack **a, t_stack **b);
 void	sort_hundred_a_to_b(t_stack **a, t_stack **b);
 void	check_and_push_to_b(t_stack **a, t_stack **b);
 void	check_and_push_to_a(t_stack **a, t_stack **b);
-void	sort_final(t_stack **a);
-void	sort_hundred(t_stack **a, t_stack **b);
+void	sort_final(t_stack **a, int len);
+void	sort_hundred(t_stack **a, t_stack **b, int len);
 
 int		check_args(int argc, char *argv[]);
 int		check_error(char *argv[], int i, int j);
@@ -101,7 +101,7 @@ int		check_its_sorted_b_idx(t_stack **b);
 // int		check_rot_a(t_stack **a, int check_a);
 // int		check_rot_b(t_stack **b, int check_b);
 int		track_pos_a(t_stack *a, int check);
-int		check_pos_b(t_stack *b, int check);
+int		track_pos_b(t_stack *b, int check);
 int		check_op_a_to_b(t_stack *a, t_stack *b);
 int		check_op_b_to_a(t_stack *a, t_stack *b);
 int		rate_rr_atob(t_stack *a, t_stack *b, int check);

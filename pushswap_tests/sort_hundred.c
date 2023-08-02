@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:22:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 17:42:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:49:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ void	check_and_push_to_a(t_stack **a, t_stack **b)
 	}
 }
 
-void	sort_final(t_stack **a)
+void	sort_final(t_stack **a, int len)
 {
 	int	pos_min;
 	int	size;
 	int	pos_final;
 
-	size = ft_size(*a) / 2;
+	size = len / 2;
 	pos_min = ft_int_pos(*a, ft_min(*a));
-	pos_final = size - pos_min;
+	pos_final = len - pos_min;
 	if (pos_min < size)
 	{
 		while (pos_min-- > 0)
@@ -93,10 +93,7 @@ void	sort_final(t_stack **a)
 	}
 	else if (pos_min > size)
 	{
-		while (pos_final > 0)
-		{
+		while (pos_final-- > 0)
 			ft_rev_rotate_ab(a, 97);
-			pos_final--;
-		}
 	}
 }

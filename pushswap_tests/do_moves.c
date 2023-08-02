@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:05:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 17:37:54 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:24:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	do_rr(t_stack **a, t_stack **b, int check, int stack)
 {
 	if (stack == 97)
 	{
-		while (check_pos_b(*b, check) > 0 && (*a)->index != check)
+		while (track_pos_b(*b, check) > 0 && (*a)->index != check)
 			ft_rotate_rr(a, b, 195);
-		while (check_pos_b(*b, check) > 0)
+		while (track_pos_b(*b, check) > 0)
 			ft_rotate_ab(b, 98);
 		while (ft_int_pos(*a, check) > 0)
 			ft_rotate_ab(a, 97);
@@ -41,9 +41,9 @@ int	do_rrr(t_stack **a, t_stack **b, int check, int stack)
 {	
 	if (stack == 97)
 	{
-		while (check_pos_b(*b, check) > 0 && (*a)->index != check)
+		while (track_pos_b(*b, check) > 0 && (*a)->index != check)
 			ft_rev_rotate_r(a, b, 195);
-		while (check_pos_b(*b, check) > 0)
+		while (track_pos_b(*b, check) > 0)
 			ft_rev_rotate_ab(b, 98);
 		while (ft_int_pos(*a, check) > 0)
 			ft_rev_rotate_ab(a, 97);
@@ -66,7 +66,7 @@ int	do_ra_rrb(t_stack **a, t_stack **b, int check, int stack)
 {
 	if (stack == 97)
 	{
-		while (check_pos_b(*b, check) > 0)
+		while (track_pos_b(*b, check) > 0)
 			ft_rev_rotate_ab(b, 98);
 		while (ft_int_pos(*a, check) > 0)
 			ft_rotate_ab(a, 97);
@@ -87,7 +87,7 @@ int	do_rb_rra(t_stack **a, t_stack **b, int check, int stack)
 {
 	if (stack == 97)
 	{
-		while (check_pos_b(*b, check) > 0)
+		while (track_pos_b(*b, check) > 0)
 			ft_rotate_ab(b, 98);
 		while (ft_int_pos(*a, check) > 0)
 			ft_rev_rotate_ab(a, 97);

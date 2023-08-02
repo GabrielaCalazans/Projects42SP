@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/07/28 17:22:37 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:43:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sorting_it(t_stack **a, t_stack **b, int len)
 	if (len == 5)
 		sort_five(a, b, len);
 	if (len > 5)
-		sort_hundred(a, b);
+		sort_hundred(a, b, len);
 }
 
 void	sort_three(t_stack **a, int check)
@@ -38,6 +38,10 @@ void	sort_three(t_stack **a, int check)
 		ft_rotate_ab(a, check);
 		if (!check_its_sorted_a(a) && check == 97)
 			ft_swap_ab(a, check);
+	}
+	else if (ft_min(*a) == ft_last(*a)->index)
+	{
+		ft_rev_rotate_ab(a, check);
 	}
 	else
 	{
@@ -72,7 +76,7 @@ void	sort_five(t_stack **a, t_stack **b, int size)
 		sort_five(a, b, size);
 }
 
-void	sort_hundred(t_stack **a, t_stack **b)
+void	sort_hundred(t_stack **a, t_stack **b, int len)
 {
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		sort_hundred_a_to_b(a, b);
@@ -80,6 +84,6 @@ void	sort_hundred(t_stack **a, t_stack **b)
 		sort_three(a, 97);
 	if (ft_size(*b) > 3)
 		check_and_push_to_a(a, b);
-	if (!check_its_sorted_a(a) && !b)
-		sort_final(a);
+	if (!check_its_sorted_a(a) && ft_size(*b) < 1)
+		sort_final(a, len);
 }

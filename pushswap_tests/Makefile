@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/08/02 15:09:22 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/08/02 19:27:08 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,9 @@ BONUS =	push_swap_bonus
 # ======= Sources and objs ========
 SRCS = push_swap.c push.c swap.c rotate.c rev_rotate.c 
 SRCS += check_args.c check_args_utils.c start.c general_utils.c
-SRCS += letfunbegin.c
-SRCS += dealing_lst_one.c dealing_lst_two.c
-SRCS += do_moves.c op_cost.c
-SRCS += locate_pos.c sort_hundred.c rate_moves_atob.c rate_moves_btoa.c
+SRCS += letfunbegin.c dealing_lst_one.c dealing_lst_two.c
+SRCS += do_moves.c op_cost.c locate_pos.c
+SRCS += sort_hundred.c rate_moves_atob.c rate_moves_btoa.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -51,7 +50,7 @@ BSRCS_BON	= $(addprefix $(BONUS), $(BSRCS))
 
 # ====== Flags ========
 
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror -O3
 
 # ======================= Messages =====================================
 
