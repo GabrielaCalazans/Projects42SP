@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:22:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/08/02 19:49:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:13:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,16 @@ void	sort_final(t_stack **a, int len)
 	size = len / 2;
 	pos_min = ft_int_pos(*a, ft_min(*a));
 	pos_final = len - pos_min;
+	// printf("size:%d	pos_min:%d	pos_final%d\n", size, pos_min, pos_final);
 	if (pos_min < size)
 	{
+		// printf("HEre post_min\n");
 		while (pos_min-- > 0)
 			ft_rotate_ab(a, 97);
 	}
-	else if (pos_min > size)
+	else if (pos_min >= size)
 	{
+		// printf("HEre post_min\n");
 		while (pos_final-- > 0)
 			ft_rev_rotate_ab(a, 97);
 	}
