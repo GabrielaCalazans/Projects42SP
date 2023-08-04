@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 17:22:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/08/03 14:13:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:25:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	sort_hundred_a_to_b(t_stack **a, t_stack **b)
 		ft_push_b(a, b, 98);
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		ft_push_b(a, b, 98);
-	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
-		ft_push_b(a, b, 98);
+	// if (!check_its_sorted_a(a) && ft_size(*a) > 3)
+	// 	ft_push_b(a, b, 98);
 	if (!check_its_sorted_a(a) && ft_size(*a) > 3)
 		check_and_push_to_b(a, b);
 	if (!check_its_sorted_a(a) && ft_size(*a) == 3)
