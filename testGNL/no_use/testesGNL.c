@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testesGNL.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 02:04:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2022/10/29 03:02:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:33:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int	main(void)
 		if (!str)
 			break ;
 		free (str);
-		i++;
+		// i++;
 	}
 	close(fd);
 
