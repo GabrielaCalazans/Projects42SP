@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 16:05:09 by gacalaza          #+#    #+#              #
-#    Updated: 2023/08/02 19:27:08 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/08/28 16:02:46 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,11 +82,7 @@ $(NAME): $(OBJS)
 
 $(BONUS): $(BOBJS)
 	cc $(FLAGS) $^ $(LIBFT) -o $@
-	@$(BPS_READY)
-
-comp_libft:
-	@$(COMP_LIFT)
-	@make -C $(LIBFT_DIR) --no-print-directory
+	@$(BPS_READY)no-print-directory
 	@$(LIBS)
 
 bonus: comp_libf $(BONUS)
@@ -104,7 +100,65 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+# ======= COLORS ========
+BLACK	=	\033[1;30m
+RED		=	\033[1;31m
+GREEN	=	\033[1;32m
+YELLOW	=	\033[1;33m
+BLUE	=	\033[1;34m
+PURPLE	=	\033[1;35m
+CYAN	=	\033[1;36m
+WHITE	=	\033[1;37m
+END_COL	=	\033[0m
+
+# ==== Name of the program =====
+NAME =	push_swap
+BONUS =	push_swap_bonus
+
+# ======= Sources and objs ========
+SRCS = push_swap.c push.c swap.c rotate.c rev_rotate.c 
+SRCS += check_args.c check_args_utils.c start.c general_utils.c
+SRCS += letfunbegin.c dealing_lst_one.c dealing_lst_two.c
+SRCS += do_moves.c op_cost.c locate_pos.c
+SRCS += sort_hundred.c rate_moves_atob.c rate_moves_btoa.c
+
+OBJS = $(SRCS:.c=.o)
+
+BSRC = 
+BOBJS = $(BSRC:.c=.o)
+
+# ====== Folders and Paths ========
+LIBFT_DIR	= ./libft/
+INCL_DIR	= ./include/
+MANDATORY	= ./mandatory/
+BONUS		= ./bonus/
+LIBFT		= $(addprefix $(LIBFT_DIR), libft.a)
+HEADERM		= $(addprefix $(INCL_DIR), push_swap.h)
+HEADERB		= $(addprefix $(INCL_DIR), push_swap_bonus.h)
+SRCS_MAN	= $(addprefix $(MANDATORY), $(SRCS))
+BSRCS_BON	= $(addprefix $(BONUS), $(BSRCS))
+
+# ====== Flags ========
+
+FLAGS = -Wall -Wextra -Werror -O3
+
+# ======================= Messages =====================================
+
+COMP_LIFT	=	echo "\n🚀 Make: Starting the compilation...\n"
+LIBS		=	echo "\n📂 Libft OK!\n"
+PS_READY	=	echo "\n📚 push_swap ready!\n"
+BPS_READY	=	echo "\n📚 push_swap_bonus ready!\n"
+RECOMP		=	echo "\n🔄 Recompilation done.\n"
+RECOMPB		=	echo "\n🔄 Recompilation bonus done.\n"
+CLEANED		=	echo "\n🧹 Clean: Removed all the \".o\" files \n"
+FCLEANED	=	echo "\n🗑️ Fclean: ﾟ✧Removed the executablesﾟ✧ \n"
+ERROR		=	echo "\n🚫 $(RED)Erro:$(NO_COLOR)File/Header not found ¯\_(ツ)_/¯"\n"
+
+# =================== Rules ==========================
+
+# # Compiling Mandatory or Bonus Objs
+%.o: %.c
+	$(CC) $(FLAGS) -I $(Ifclean
 	@$(FCLEANED)
 
 limpo: all clean
