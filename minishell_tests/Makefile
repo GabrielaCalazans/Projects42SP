@@ -6,13 +6,12 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/08/28 16:17:09 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/08/28 20:26:49 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ==== Name of the program =====
 NAME =	minishell
-BONUS =	
 
 # ======= Sources and objs ========
 SRCS = 
@@ -53,7 +52,7 @@ $(BOBJS): $(HEADERB)
 $(NAME): $(OBJS)
 	cc $(FLAGS) $^ $(LIBFT) -o $@
 
-$(BONUS): $(BOBJS)
+$(NAME): $(BOBJS)
 	cc $(FLAGS) $^ $(LIBFT) -o $@
 	@$(LIBS)
 
