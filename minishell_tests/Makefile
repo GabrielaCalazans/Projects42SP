@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/08/28 20:26:49 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/08/29 18:55:19 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME =	minishell
 
 # ======= Sources and objs ========
-SRCS = 
+SRCS = minishell.c 
 
 
 OBJS = $(SRCS:.c=.o)
@@ -28,8 +28,8 @@ INCL_DIR	= ./include/
 MANDATORY	= ./mandatory/
 BONUS		= ./bonus/
 LIBFT		= $(addprefix $(LIBFT_DIR), libft.a)
-HEADERM		= $(addprefix $(INCL_DIR), push_swap.h)
-HEADERB		= $(addprefix $(INCL_DIR), push_swap_bonus.h)
+HEADERM		= $(addprefix $(INCL_DIR), minishell.h)
+HEADERB		= $(addprefix $(INCL_DIR), minishell_bonus.h)
 SRCS_MAN	= $(addprefix $(MANDATORY), $(SRCS))
 BSRCS_BON	= $(addprefix $(BONUS), $(BSRCS))
 
