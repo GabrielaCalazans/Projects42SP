@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+         #
+#    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/08/29 18:55:19 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/09/15 10:26:47 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME =	minishell
 SRCS = minishell.c 
 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS_MAN:.c=.o)
 
 BSRC = 
 BOBJS = $(BSRC:.c=.o)
@@ -35,7 +35,15 @@ BSRCS_BON	= $(addprefix $(BONUS), $(BSRCS))
 
 # ====== Flags ========
 
-FLAGS = -Wall -Wextra -Werror -O3
+FLAGS = -Wall -Wextra -Werror -g3
+LIBS = -lreadline
+VALGRIND		=	valgrind \
+					--leak-check=full \
+					--show-leak-kinds=all \
+					--quiet \
+					--suppressions=readline.supp \
+					--keep-debuginfo=yes \
+					--trace-children=yes
 
 # =================== Rules ==========================
 
@@ -47,14 +55,21 @@ all: comp_libft $(NAME)
 
 $(OBJS): $(HEADERM)
 
-$(BOBJS): $(HEADERB)
-
 $(NAME): $(OBJS)
-	cc $(FLAGS) $^ $(LIBFT) -o $@
+	cc $(FLAGS) $^ $(LIBFT) $(LIBS) -o $@
 
-$(NAME): $(BOBJS)
-	cc $(FLAGS) $^ $(LIBFT) -o $@
-	@$(LIBS)
+
+comp_libft:
+	@make -C $(LIBFT_DIR) --no-print-directory
+
+run:	all
+		./$(NAME)
+
+valgrind:	all
+			$(VALGRIND) ./$(NAME)
+
+norminette:	all
+			norminette
 
 bonus: comp_libf $(BONUS)
 
@@ -63,7 +78,7 @@ re: fclean all
 rebonus: fclean bonus
 
 clean:
-	@rm -rf $(BOBJS) $(OBJS)
+	@rm -rf $(OBJS)
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
