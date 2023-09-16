@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/09/15 10:26:47 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/09/15 21:29:35 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,3 +83,4 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@make -C $(LIBFT_DIR) fclean
