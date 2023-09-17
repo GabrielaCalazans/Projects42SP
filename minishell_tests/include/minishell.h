@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/12 20:24:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:22:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@
 # include <readline/readline.h>     // readline
 # include <readline/history.h>      // rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 
+typedef struct s_cmds
+{
+	char			*command;
+	char			*cmd_args;
+	char			*heredocs;
+	struct s_pline	*next;
+}			t_cmds;
+
+typedef struct s_init
+{
+	char			*prompt_input;
+	struct s_init	*next;
+
+}				t_init;
 
 
 
