@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/16 16:22:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:25:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ typedef struct s_cmds
 typedef struct s_init
 {
 	char			*prompt_input;
-	struct s_init	*next;
-
 }				t_init;
 
-
-
+void	prompt(void);
 
 #endif
