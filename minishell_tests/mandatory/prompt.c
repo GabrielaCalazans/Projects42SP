@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/18 14:52:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:53:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	prompt(void)
 {
-	t_init	*tmp;
+	t_prompt	*tmp;
 
-	tmp = (t_init *)malloc(sizeof(t_init));
-		if (tmp == NULL)
-		{
-			perror("Memory allocation failure at prompt func.");
-			exit(EXIT_FAILURE);
-		}
+	tmp = (t_prompt *)malloc(sizeof(t_prompt));
+	if (tmp == NULL)
+	{
+		
+		perror("Memory allocation failure at prompt func.");
+		exit(EXIT_FAILURE);
+	}
 	while (1)
 	{
 		

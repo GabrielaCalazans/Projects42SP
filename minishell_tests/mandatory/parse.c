@@ -1,23 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/21 14:58:21 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/09/21 16:25:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int main(int argc, char *argv[], char* envp[])
+void	parse_big_str(char *str)
 {
-	(void)argv;
-	(void)envp;
-	if (argc != 1)
-		return (1);
-	prompt();
+	int	pipe;
+
+	if (n_pipes(str) > 0)
+
+
+}
+
+int	has_pipe(char *str)
+{
+	while (*str)
+	{
+		if (*str == '|')
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+int	n_pipes(char *str)
+{
+	int	pipes;
+
+	pipes = 0;
+	while (*str)
+	{
+		if (*str == '|')
+			pipes++;
+		str++;
+	}
+	return (pipes);
+}
+
+int	main()
+{
+	printf("%d\n", n_pipes("Hhello|o asdam|skdm|ka"));
 	return (0);
 }
