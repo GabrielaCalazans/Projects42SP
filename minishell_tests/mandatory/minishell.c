@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/21 14:58:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:48:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ int main(int argc, char *argv[], char* envp[])
 	(void)envp;
 	if (argc != 1)
 		return (1);
-	prompt();
+	// prompt();
+	find_token("!@#!@$->$&<&* ");
+	find_token("dasda*");
+	find_token("da s da *");
+	find_token("? *");
+	find_token("cat black dog > ");
+	find_token("cat oi, tudo bem? > oi.txt");
+
+	// printf("%d\n", is_redirect('>'));
+	// printf("%d\n", is_redirect('<'));
+	// printf("%d\n", is_redirect('!'));
+
+
 	return (0);
 }

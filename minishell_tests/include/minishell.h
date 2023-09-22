@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/21 16:10:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:29:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ typedef struct s_prompt
 
 void	prompt(void);
 int		is_builtins(char *check);
+//void	call_builtins(t_data *ptr);
+void	find_token(char *str);
+int		is_redirect(char c);
 
 #endif
