@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:03:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/21 19:49:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:39:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	is_builtins(char *check)
 {
-	if (ft_strncmp(check, "echo", 4) == 0)
+	if (ft_strncmp(check, "echo", 5) == 0)
 		return (1);
-	if (ft_strncmp(check, "cd", 2) == 0)
+	if (ft_strncmp(check, "cd", 3) == 0)
 		return (2);
-	if (ft_strncmp(check, "pwd", 3) == 0)
+	if (ft_strncmp(check, "pwd", 4) == 0)
 		return (3);
-	if (ft_strncmp(check, "export", 6) == 0)
+	if (ft_strncmp(check, "export", 7) == 0)
 		return (4);
-	if (ft_strncmp(check, "unset", 5) == 0)
+	if (ft_strncmp(check, "unset", 6) == 0)
 		return (5);
-	if (ft_strncmp(check, "env", 3) == 0)
+	if (ft_strncmp(check, "env", 4) == 0)
 		return (6);
-	if (ft_strncmp(check, "exit", 4) == 0)
+	if (ft_strncmp(check, "exit", 5) == 0)
 		return (7);
 	else
 		return (0);

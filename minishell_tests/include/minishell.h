@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/21 22:29:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:05:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@
 # include <readline/history.h>      // rl_clear_history, rl_on_new_line, rl_replace_line, rl_redisplay, add_history
 # include "../libft/libft.h"
 
+// # define REDIRECT_IN	1
+// # define REDIRECT_OUT	2
+// # define PIPE			3
+// # define FLAG			4
+// # define SLASH			5
+// # define QUESTION		6
+// # define DOLLAR			7
+// # define QUOTE_DOUBLE	8
+// # define QUOTE_SINGLE	9
+// # define SPACE			11
+
+
 typedef struct s_data
 {
 	char			**cmd; // aqui comando e flags
@@ -49,7 +61,7 @@ typedef struct s_rdct
 
 typedef struct s_token
 {
-	char			*name;
+	char			*token;
 	char			*type;
 	struct s_token	*next;
 }				t_token;
@@ -65,5 +77,6 @@ int		is_builtins(char *check);
 //void	call_builtins(t_data *ptr);
 void	find_token(char *str);
 int		is_redirect(char c);
+int		find_type(char c);
 
 #endif
