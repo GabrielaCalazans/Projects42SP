@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/23 21:55:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:16:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@
 // Agora 'input' contém o comando digitado pelo usuário
 void	prompt(void)
 {
-	t_prompt	*tmp;
+	char	*prompt_input;
+	t_token	*tokens;
 
-	tmp = (t_prompt *)malloc(sizeof(t_prompt));
-	if (tmp == NULL)
-	{
-		perror("Memory allocation failure at prompt func.");
-		exit(EXIT_FAILURE);
-	}
 	while (1)
 	{
-		tmp->prompt_input = readline("chora$> ");
-		if (tmp->prompt_input == NULL)
+		prompt_input = readline("chora$> ");
+		if (prompt_input == NULL)
 		{
 			printf("\n");
 			break ;
 		}
-		if (tmp->prompt_input[0] != '\0')
+		if (prompt_input[0] != '\0')
 		{
-			add_history(tmp->prompt_input);
-			printf("That's what he said: %s\n", tmp->prompt_input);
+			add_history(prompt_input);
+			printf("prompt %s\n", prompt_input);
 		}
-		free(tmp->prompt_input);
-		tmp->prompt_input = NULL;
+		// printlist(tokens);
+		// tokens = create_lst(prompt_input, &tokens);
+		find_token(prompt_input, &tokens);
+		// printlist(tokens);
+		free(prompt_input);
+		// ft_clear(&tokens);
+		prompt_input = NULL;
 	}
 	rl_clear_history();
 }

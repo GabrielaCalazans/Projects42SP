@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/09/23 22:06:11 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/09/24 14:08:14 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME =	minishell
 # ======= Sources and objs ========
 SRCS = minishell.c prompt.c execution.c builtins.c parse.c
 SRCS += token.c token_utils_one.c token_utils_two.c
+SRCS += handling_lst.c
 
 OBJS = $(SRCS_MAN:.c=.o)
 

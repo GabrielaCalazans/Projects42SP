@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:12:33 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/23 15:09:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:26:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,15 @@ t_token	*createnode(char *token, char *type)
 
 	newnode = (t_token *)malloc(sizeof(t_token));
 	if (!newnode)
-		ft_puterror();
-	newnode->token = token;
-	newnode->type = type;
+		perror("malloc");
+	newnode->token = ft_strdup(token);
+	newnode->type = ft_strdup(type);
+	if (!newnode->token || !newnode->type)
+	{
+		perror("strdup");
+		free(newnode);
+		return NULL;
+	}
 	newnode->next = NULL;
 	return (newnode);
 }
@@ -40,47 +46,62 @@ t_token	*ft_last(t_token *lst)
 	return (lst);
 }
 
-void	sub_starting(t_token **tokens, char **str, int i)
+// Func to add node at the end of the lst
+void	ft_add_back(t_token **lst, t_token *new)
 {
-	t_token	*newnode;
-	int		index;
-	int		nbr;
-	int		j;
+	t_token	*temp;
 
-	j = i;
-	nbr = ft_atoi_error(str[i]);
-	index = find_index(str, nbr, j);
-	*a = createnode(nbr, index);
-	while (str[++i] != NULL)
+	if (*lst)
 	{
-		nbr = ft_atoi_error(str[i]);
-		index = find_index(str, nbr, j);
-		newnode = createnode(nbr, index);
-		if (!newnode)
-			break ;
-		ft_add_back(a, newnode);
-	}
-}
-
-t_token	*starting(t_token **tokens, int argc, char *argv[])
-{
-	int		i;
-	char	**str;
-
-	if (argc == 2)
-	{
-		i = 0;
-		str = ft_split(argv[1], 32);
+		temp = ft_last(*lst);
+		temp->next = new;
 	}
 	else
+		*lst = new;
+}
+
+// Func to add node at the beging of the lst
+void	ft_add_front(t_token **lst, t_token *new)
+{
+	if (*lst)
 	{
-		i = 1;
-		str = argv;
+		new->next = *lst;
+		*lst = new;
 	}
-	if (!ft_checkdup(str, i))
-		ft_puterror();
-	sub_starting(a, str, i);
-	if (argc == 2)
-		ft_freearray(str);
-	return (*a);
+	else
+		*lst = new;
+}
+
+// Func to find the size of the lst
+int	ft_size(t_token *lst)
+{
+	int	len;
+
+	len = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		len++;
+	}
+	return (len);
+}
+
+// Func to free the the lst
+void	ft_clear(t_token **lst)
+{
+	t_token	*temp;
+	t_token	*next;
+
+	temp = *lst;
+	while (temp != NULL)
+	{
+		free(temp->token);
+		temp->token = NULL;
+		free(temp->type);
+		temp->type = NULL;
+		next = temp->next;
+		free (temp);
+		temp = next;
+	}
+	*lst = NULL;
 }

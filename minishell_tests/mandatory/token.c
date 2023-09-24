@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/23 22:00:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:12:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*define_type(char *str)
 		return (ft_strdup("append"));
 	if (i == 13)
 		return (ft_strdup("heredoc"));
+	return ("error");
 }
 
 int	word_len(char *str)
@@ -58,65 +59,83 @@ int	word_len(char *str)
 	return (len);
 }
 
-t_token	*create_word_token(t_token **tokens, char *str, int len)
+t_token	*create_word_token(char *str, int len)
 {
 	t_token	*newnode;
 	char	*token;
-	int		*type;
+	char	*type;
 	int		i;
 
 	i = 0;
 	token = ft_substr(str, 0, len);
 	type = define_type(&str[i]);
-	*tokens = createnode(token, type);
-	printf("FUNC: create_word_token: %s \tlen: %d\n", str, len);
+	newnode = createnode(token, type);
+	printf("FUNC: create_word_token: %s \t len: %d \t type: %s\n", token, len, type);
 	return (newnode);
 }
 
-t_token	*create_token(t_token **tokens, char *str)
+t_token	*create_token(char *str)
 {
 	t_token	*newnode;
 	char	*token;
-	int		*type;
+	char	*type;
 	int		i;
 	int		len;
 
 	i = 0;
 	len = 1;
-	if (find_type(&str[i]) == 1 || find_type(&str[i]) == 2)
-	{
-		if (str[i] == str[i + 1])
+	if (find_type(&str[i]) == 12 || find_type(&str[i]) == 13)
 			len += 1;
-	}
 	token = ft_substr(str, 0, len);
 	type = define_type(&str[i]);
-	*tokens = createnode(token, type);
-	printf("FUNC: create_word_token: %s \tlen: %d\n", str);
+	newnode = createnode(token, type);
+	printf("FUNC: create_token: %s \t type: %s\n", token, type);
 	return (newnode);
 }
 
-void	find_token(char *str)
+void	find_token(char *str, t_token	**tokens)
 {
 	int		check;
 	int		i;
-	t_token	*tokens;
 	t_token	*newnode;
 
+	if (str == NULL)
+	{
+		printf("NO STR");
+		return ;
+	}
 	i = 0;
 	while (str[i] != '\0')
 	{
 		check = find_type(&str[i]);
 		if (check == 10)
 		{
-			newnode = create_word_token(&tokens, &str[i], word_len(&str[i]));
+			newnode = create_word_token(&str[i], word_len(&str[i]));
+			// printlist(newnode);
+			if (!newnode)
+				break ;
 			ft_add_back(tokens, newnode);
+			// printlist(*tokens);
 			i += word_len(&str[i]);
 		}
 		if (check > 0 && check != 10)
 		{
-			newnode = create_token(&tokens, &str[i]);
+			newnode = create_token(&str[i]);
+			if (!newnode)
+				break ;
 			ft_add_back(tokens, newnode);
 			i++;
 		}
+		if (str[i] == '\0' || str[i])
+			break ;
 	}
+	// return (*tokens);
 }
+
+// t_token	create_lst(char *str, t_token	**tokens)
+// {
+// 	int		check;
+// 	int		i;
+
+	
+// }
