@@ -6,20 +6,17 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/21 16:25:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:51:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	parse_big_str(char *str)
-{
-	int	pipe;
-
-	if (n_pipes(str) > 0)
-
-
-}
+// void	parse_big_str(char *str)
+// {
+// 	int	pipe;
+// 	if (n_pipes(str) > 0)
+// }
 
 int	has_pipe(char *str)
 {
@@ -46,8 +43,8 @@ int	n_pipes(char *str)
 	return (pipes);
 }
 
-int	main()
-{
-	printf("%d\n", n_pipes("Hhello|o asdam|skdm|ka"));
-	return (0);
-}
+// int	main(void)
+// {
+// 	printf("%d\n", n_pipes("Hhello|o asdam|skdm|ka"));
+// 	return (0);
+// }

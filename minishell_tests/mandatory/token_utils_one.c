@@ -1,33 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   token_utils_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/23 21:52:22 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/09/23 21:58:55 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/09/23 21:59:01 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	is_redirect(char c)
 {
-	(void)argv;
-	(void)envp;
-	if (argc != 1)
+	if (c == '<')
 		return (1);
-	// prompt();
-	find_token("!@#  amkpdas!<@$$->  $&<&   * ");
+	if (c == '>')
+		return (2);
+	else
+		return (0);
+}
+
+int	is_pipe(char c)
+{
+	if (c == '|')
+		return (3);
 	return (0);
 }
 
-	// find_token("dasda*");
-	// find_token("da s da *");
-	// find_token("? *");
-	// find_token("cat black dog > ");
-	// find_token("cat oi, tudo bem? > oi.txt");
-	// printf("%d\n", is_redirect('>'));
-	// printf("%d\n", is_redirect('<'));
-	// printf("%d\n", is_redirect('!'));
+int	is_flag(char c)
+{
+	if (c == '-')
+		return (4);
+	return (0);
+}
+
+int	is_slash(char c)
+{
+	if (c == '/')
+		return (5);
+	return (0);
+}
+
+int	is_questionmark(char c)
+{
+	if (c == '?')
+		return (6);
+	return (0);
+}

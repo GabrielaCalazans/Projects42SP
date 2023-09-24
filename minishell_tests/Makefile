@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/09/21 21:57:55 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/09/23 22:06:11 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,10 @@
 NAME =	minishell
 
 # ======= Sources and objs ========
-SRCS = minishell.c prompt.c execution.c builtins.c token.c
-
+SRCS = minishell.c prompt.c execution.c builtins.c parse.c
+SRCS += token.c token_utils_one.c token_utils_two.c
 
 OBJS = $(SRCS_MAN:.c=.o)
-
-BSRC = 
-BOBJS = $(BSRC:.c=.o)
 
 # ====== Folders and Paths ========
 LIBFT_DIR	= ./libft/
@@ -31,7 +28,6 @@ LIBFT		= $(addprefix $(LIBFT_DIR), libft.a)
 HEADERM		= $(addprefix $(INCL_DIR), minishell.h)
 HEADERB		= $(addprefix $(INCL_DIR), minishell_bonus.h)
 SRCS_MAN	= $(addprefix $(MANDATORY), $(SRCS))
-BSRCS_BON	= $(addprefix $(BONUS), $(BSRCS))
 
 # ====== Flags ========
 
