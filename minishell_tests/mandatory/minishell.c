@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/24 18:13:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:27:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,23 @@ void	printlist(t_token *head)
 	printf("\n");
 }
 
+void	set_data(t_data *data)
+{
+	data->tokens = malloc(sizeof(t_token));
+}
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	// t_token	*tokens;
+	t_data *data;
+
+	data = malloc(sizeof(t_data));
 	(void)argv;
 	(void)envp;
 	(void)argc;
-
 	// if (argc != 1)
 	// 	return (1);
-	prompt();
+	set_data(data);
+	prompt(data);
 	// find_token(argv[1], &tokens);
 	// printf("MAIN:");
 	// printlist(tokens);

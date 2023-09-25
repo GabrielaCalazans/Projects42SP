@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/24 18:16:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:46:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,30 @@
 // Adiciona o comando à história se não estiver vazio
 // add_history(tmp->prompt_input);
 // Agora 'input' contém o comando digitado pelo usuário
-void	prompt(void)
+void	prompt(t_data *data)
 {
-	char	*prompt_input;
-	t_token	*tokens;
-
 	while (1)
 	{
-		prompt_input = readline("chora$> ");
-		if (prompt_input == NULL)
+		data->prompt_in = readline(PROMPT);
+		if (data->prompt_in == NULL)
 		{
 			printf("\n");
 			break ;
 		}
-		if (prompt_input[0] != '\0')
+		if (data->prompt_in[0] != '\0')
 		{
-			add_history(prompt_input);
-			printf("prompt %s\n", prompt_input);
+			add_history(data->prompt_in);
+			printf("prompt %s\n", data->prompt_in);
 		}
-		// printlist(tokens);
+		find_token(data);
+		
 		// tokens = create_lst(prompt_input, &tokens);
-		find_token(prompt_input, &tokens);
+
 		// printlist(tokens);
-		free(prompt_input);
+		free(data->prompt_in);
+		ft_clear(&data->tokens);
 		// ft_clear(&tokens);
-		prompt_input = NULL;
+		data->prompt_in = NULL;
 	}
 	rl_clear_history();
 }

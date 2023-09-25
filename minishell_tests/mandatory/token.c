@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/24 18:12:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:40:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_token	*create_word_token(char *str, int len)
 	token = ft_substr(str, 0, len);
 	type = define_type(&str[i]);
 	newnode = createnode(token, type);
-	printf("FUNC: create_word_token: %s \t len: %d \t type: %s\n", token, len, type);
+	// printf("FUNC: create_word_token: %s \t len: %d \t type: %s\n", token, len, type);
 	return (newnode);
 }
 
@@ -89,47 +89,46 @@ t_token	*create_token(char *str)
 	token = ft_substr(str, 0, len);
 	type = define_type(&str[i]);
 	newnode = createnode(token, type);
-	printf("FUNC: create_token: %s \t type: %s\n", token, type);
+	// printf("FUNC: create_token: %s \t type: %s\n", token, type);
 	return (newnode);
 }
 
-void	find_token(char *str, t_token	**tokens)
+void	find_token(t_data *data)
 {
 	int		check;
 	int		i;
 	t_token	*newnode;
 
-	if (str == NULL)
+	if (data->prompt_in == NULL)
 	{
 		printf("NO STR");
 		return ;
 	}
 	i = 0;
-	while (str[i] != '\0')
+	while (data->prompt_in[i] != '\0')
 	{
-		check = find_type(&str[i]);
+		check = find_type(&data->prompt_in[i]);
 		if (check == 10)
 		{
-			newnode = create_word_token(&str[i], word_len(&str[i]));
-			// printlist(newnode);
+			newnode = create_word_token(&data->prompt_in[i], word_len(&data->prompt_in[i]));
 			if (!newnode)
 				break ;
-			ft_add_back(tokens, newnode);
-			// printlist(*tokens);
-			i += word_len(&str[i]);
+			ft_add_back(&data->tokens, newnode);
+			i += word_len(&data->prompt_in[i]);
 		}
 		if (check > 0 && check != 10)
 		{
-			newnode = create_token(&str[i]);
+			newnode = create_token(&data->prompt_in[i]);
 			if (!newnode)
 				break ;
-			ft_add_back(tokens, newnode);
+			ft_add_back(&data->tokens, newnode);
 			i++;
 		}
-		if (str[i] == '\0' || str[i])
-			break ;
+		// if (data->prompt_in[i] == '\0' || data->prompt_in[i])
+		// 	break ;
 	}
-	// return (*tokens);
+	printlist(data->tokens);
+	ft_clear(&data->tokens);
 }
 
 // t_token	create_lst(char *str, t_token	**tokens)

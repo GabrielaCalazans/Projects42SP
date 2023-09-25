@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/24 17:58:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/09/25 19:43:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
+# define PROMPT	"CHORA> "
+
 // # define REDIRECT_IN		1
 // # define REDIRECT_OUT	2
 // # define PIPE			3
@@ -47,13 +49,23 @@
 // **cmd_args; // aqui str
 // **heredoc; // heredoc e seu delimitador/palavra
 // **rdct; // lista redirect e seu arquivo
+
+typedef struct s_token
+{
+	char			*token;
+	char			*type;
+	struct s_token	*next;
+}				t_token;
+
 typedef struct s_data
 {
+	char			*prompt_in;
 	char			**cmd;
 	char			**cmd_args;
 	char			**heredoc;
 	struct s_rdct	**rdct;
 	char			**env;
+	t_token			*tokens;
 	struct s_data	*next;
 }			t_data;
 
@@ -64,24 +76,18 @@ typedef struct s_rdct
 	struct s_rdct	*next;
 }				t_rdct;
 
-typedef struct s_token
-{
-	char			*token;
-	char			*type;
-	struct s_token	*next;
-}				t_token;
 
 typedef struct s_prompt
 {
 	char			*prompt_input;
 }				t_prompt;
 
-void	prompt(void);
+void	prompt(t_data *data);
 int		is_builtins(char *check);
 //void	call_builtins(t_data *ptr);
 
 // TOKENS
-void	find_token(char *str, t_token	**tokens);
+void	find_token(t_data *data);
 int		is_redirect(char c);
 int		is_pipe(char c);
 int		is_flag(char c);
