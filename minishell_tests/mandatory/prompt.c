@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/25 19:46:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:39:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,8 @@ void	prompt(t_data *data)
 			add_history(data->prompt_in);
 			printf("prompt %s\n", data->prompt_in);
 		}
-		find_token(data);
-		
-		// tokens = create_lst(prompt_input, &tokens);
-
-		// printlist(tokens);
+		start_token(data);
 		free(data->prompt_in);
-		ft_clear(&data->tokens);
-		// ft_clear(&tokens);
 		data->prompt_in = NULL;
 	}
 	rl_clear_history();

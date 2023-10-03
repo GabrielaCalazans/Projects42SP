@@ -6,11 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 21:58:55 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/23 21:59:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:15:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	is_redirect(char c)
 {

@@ -6,11 +6,28 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/25 20:40:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:16:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
+
+char	*cont_def_type(int i)
+{
+	if (i == 8)
+		return (ft_strdup("double_quote"));
+	if (i == 9)
+		return (ft_strdup("single_quote"));
+	if (i == 10)
+		return (ft_strdup("word"));
+	if (i == 11)
+		return (ft_strdup("space"));
+	if (i == 12)
+		return (ft_strdup("append"));
+	if (i == 13)
+		return (ft_strdup("heredoc"));
+	return ("error");
+}
 
 char	*define_type(char *str)
 {
@@ -31,18 +48,8 @@ char	*define_type(char *str)
 		return (ft_strdup("question"));
 	if (i == 7)
 		return (ft_strdup("dollar"));
-	if (i == 8)
-		return (ft_strdup("double_quote"));
-	if (i == 9)
-		return (ft_strdup("single_quote"));
-	if (i == 10)
-		return (ft_strdup("word"));
-	if (i == 11)
-		return (ft_strdup("space"));
-	if (i == 12)
-		return (ft_strdup("append"));
-	if (i == 13)
-		return (ft_strdup("heredoc"));
+	if (i > 7 && i < 14)
+		return (cont_def_type(i));
 	return ("error");
 }
 
@@ -70,7 +77,6 @@ t_token	*create_word_token(char *str, int len)
 	token = ft_substr(str, 0, len);
 	type = define_type(&str[i]);
 	newnode = createnode(token, type);
-	// printf("FUNC: create_word_token: %s \t len: %d \t type: %s\n", token, len, type);
 	return (newnode);
 }
 
@@ -85,32 +91,25 @@ t_token	*create_token(char *str)
 	i = 0;
 	len = 1;
 	if (find_type(&str[i]) == 12 || find_type(&str[i]) == 13)
-			len += 1;
+		len += 1;
 	token = ft_substr(str, 0, len);
 	type = define_type(&str[i]);
 	newnode = createnode(token, type);
-	// printf("FUNC: create_token: %s \t type: %s\n", token, type);
 	return (newnode);
 }
 
-void	find_token(t_data *data)
+void	sub_star_tokens(t_data *data, t_token *newnode, int check)
 {
-	int		check;
-	int		i;
-	t_token	*newnode;
+	int	i;
 
-	if (data->prompt_in == NULL)
-	{
-		printf("NO STR");
-		return ;
-	}
 	i = 0;
-	while (data->prompt_in[i] != '\0')
+	while (data->prompt_in[i] != '\0' && data->prompt_in[i])
 	{
 		check = find_type(&data->prompt_in[i]);
 		if (check == 10)
 		{
-			newnode = create_word_token(&data->prompt_in[i], word_len(&data->prompt_in[i]));
+			newnode = create_word_token(&data->prompt_in[i],
+					word_len(&data->prompt_in[i]));
 			if (!newnode)
 				break ;
 			ft_add_back(&data->tokens, newnode);
@@ -124,9 +123,22 @@ void	find_token(t_data *data)
 			ft_add_back(&data->tokens, newnode);
 			i++;
 		}
-		// if (data->prompt_in[i] == '\0' || data->prompt_in[i])
-		// 	break ;
 	}
+}
+
+void	start_token(t_data *data)
+{
+	int		check;
+	t_token	*newnode;
+
+	check = 0;
+	newnode = malloc(sizeof(t_token));
+	if (data->prompt_in == NULL)
+	{
+		printf("NO STR");
+		return ;
+	}
+	sub_star_tokens(data, newnode, check);
 	printlist(data->tokens);
 	ft_clear(&data->tokens);
 }
@@ -135,6 +147,4 @@ void	find_token(t_data *data)
 // {
 // 	int		check;
 // 	int		i;
-
-	
 // }

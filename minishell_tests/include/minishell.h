@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/25 19:43:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:45:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		is_builtins(char *check);
 //void	call_builtins(t_data *ptr);
 
 // TOKENS
-void	find_token(t_data *data);
+void	start_token(t_data *data);
 int		is_redirect(char c);
 int		is_pipe(char c);
 int		is_flag(char c);
