@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/10/03 16:54:32 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/10/03 22:12:01 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,10 @@ NAME =	minishell
 # ======= Sources ========
 SRCS = minishell.c prompt.c execution.c builtins.c parse.c
 
-TOKEN = token.c token_utils_one.c token_utils_two.c
+TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
 TOKEN += token_lst.c token_lst_utils.c
+
+LEXER = lexical.c
 
 # ====== Folders and Paths ========
 LIBFT_DIR	= ./libft/
@@ -27,8 +29,10 @@ HEADERM		= $(addprefix $(INCL_DIR), minishell.h)
 SRCS_MAIN	= $(addprefix ./mandatory/, $(SRCS))
 TOKEN_DIR	= $(addprefix ./token/, $(TOKEN))
 TOKEN_F		= $(addprefix ./mandatory/, $(TOKEN_DIR))
+LEXER_DIR	= $(addprefix ./lexer/, $(LEXER))
+LEXER_F		= $(addprefix ./mandatory/, $(LEXER_DIR))
 
-MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F)
+MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F)
 
 # ========== OBJS ============
 OBJS = $(MANDATORY:.c=.o)
@@ -37,7 +41,6 @@ OBJS = $(MANDATORY:.c=.o)
 # OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 # # Creating objs_dir
 # $(shell mkdir -p $(OBJ_DIR))
-
 # # Compiling Objects and Moving to OBJ_DIR
 # $(OBJ_DIR)%.o: $(MANDATORY)%.c
 # 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@

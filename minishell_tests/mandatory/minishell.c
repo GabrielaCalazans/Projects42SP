@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/03 15:48:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:05:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	printlist(t_token *head)
 
 void	set_data(t_data *data)
 {
-	data->tokens = malloc(sizeof(t_token));
+	data->tokens = NULL;
 }
 
 int	main(int argc, char *argv[], char *envp[])

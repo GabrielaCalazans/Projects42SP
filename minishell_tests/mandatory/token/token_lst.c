@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 16:12:33 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/03 16:15:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:41:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_token	*createnode(char *token, char *type)
 t_token	*ft_last(t_token *lst)
 {
 	if (lst == NULL)
-		return (0);
+		return (NULL);
 	while (lst)
 	{
 		if (lst->next == NULL)

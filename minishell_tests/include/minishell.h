@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/03 15:45:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:11:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int		is_heredoc(char *str, int check);
 int		find_type(char *str);
 int		is_redirect(char c);
 int		find_type(char *str);
+char	*define_type(char *str);
 
 // DEALING LIST
 t_token	*createnode(char *token, char *type);
@@ -107,6 +108,8 @@ void	ft_add_back(t_token **lst, t_token *new);
 int		ft_size(t_token *lst);
 void	ft_clear(t_token **lst);
 
+
+int	lexer(t_data *data);
 
 // PRINT LIST
 void	printlist(t_token *head);
