@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/10/10 13:28:24 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/10/12 18:23:39 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ NAME =	minishell
 SRCS = minishell.c prompt.c execution.c
 
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
-TOKEN += token_lst.c token_lst_utils.c
+TOKEN += token_lst.c token_lst_utils.c token_utils_four.c
+
+REDIRECT = redirect.c
 
 LEXER = lexical.c
 
@@ -39,8 +41,10 @@ PARSE_DIR	= $(addprefix ./parse/, $(PARSE))
 PARSE_F		= $(addprefix ./mandatory/, $(PARSE_DIR))
 BUILTINS_DIR	= $(addprefix ./builtins/, $(BUILTINS))
 BUILTINS_F		= $(addprefix ./mandatory/, $(BUILTINS_DIR))
+REDIRECT_DIR	= $(addprefix ./redirect/, $(REDIRECT))
+REDIRECT_F		= $(addprefix ./mandatory/, $(REDIRECT_DIR))
 
-MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F)
+MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F) $(BUILTINS_F) $(EDIRECT_F)
 
 # ========== OBJS ============
 OBJS = $(MANDATORY:.c=.o)

@@ -1,45 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_lst_utils.c                                  :+:      :+:    :+:   */
+/*   token_utils_four.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:58:59 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 19:23:37 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/10/12 17:05:39 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/10/12 19:28:19 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// Func to find the size of the lst
-int	ft_size(t_token *lst)
+int	is_asterisk(char c)
 {
-	int	len;
-
-	len = 0;
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		len++;
-	}
-	return (len);
+	if (c == '*')
+		return (ASTERISK);
+	return (0);
 }
 
-// Func to free the the lst
-void	ft_clear_token(t_token **lst)
+int	is_ampersand(char c)
 {
-	t_token	*temp;
-	t_token	*next;
+	if (c == '&')
+		return (AMPERSAND);
+	return (0);
+}
 
-	temp = *lst;
-	while (temp != NULL)
-	{
-		free(temp->token);
-		temp->token = NULL;
-		next = temp->next;
-		free (temp);
-		temp = next;
-	}
-	*lst = NULL;
+int	is_r_bracket(char c)
+{
+	if (c == '(')
+		return (R_BRACKET_O);
+	if (c == ')')
+		return (R_BRACKET_C);
+	return (0);
 }

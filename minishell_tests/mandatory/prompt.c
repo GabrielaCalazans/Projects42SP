@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/03 22:07:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:24:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	prompt(t_data *data)
 			start_token(data);
 		free(data->prompt_in);
 		data->prompt_in = NULL;
+		ft_clear_token(&data->tokens);
 	}
 	rl_clear_history();
 }

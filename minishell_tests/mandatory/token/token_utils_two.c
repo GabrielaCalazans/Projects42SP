@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 21:59:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 16:04:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:13:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,6 @@ int	is_space(char c)
 {
 	if (c == ' ')
 		return (SPACE);
-	return (0);
-}
-
-int	is_asterisk(char c)
-{
-	if (c == '*')
-		return (ASTERISK);
-	return (0);
-}
-
-int	is_ampersand(char c)
-{
-	if (c == '&')
-		return (AMPERSAND);
-	return (0);
-}
-
-int	is_r_bracket(char c)
-{
-	if (c == '(')
-		return (R_BRACKET_O);
-	if (c == ')')
-		return (R_BRACKET_C);
 	return (0);
 }
 
@@ -91,6 +68,12 @@ int	find_type(char *str)
 		return (is_quote(*str));
 	if (0 < is_space(*str))
 		return (is_space(*str));
+	if (0 < is_asterisk(*str))
+		return (is_asterisk(*str));
+	if (0 < is_ampersand(*str))
+		return (is_ampersand(*str));
+	if (0 < is_r_bracket(*str))
+		return (is_r_bracket(*str));
 	else
 		return (WORD);
 }

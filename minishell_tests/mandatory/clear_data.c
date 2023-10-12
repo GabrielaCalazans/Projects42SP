@@ -6,13 +6,15 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:16:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/10 14:21:09 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:27:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // Func to free the the lst
+		// free(temp->cmd);
+		// temp->cmd = NULL;
 void	ft_clear_datalst(t_data **lst)
 {
 	t_data	*temp;
@@ -23,8 +25,6 @@ void	ft_clear_datalst(t_data **lst)
 	{
 		free(temp->prompt_in);
 		temp->prompt_in = NULL;
-		// free(temp->cmd);
-		// temp->cmd = NULL;
 		next = temp->next;
 		free (temp);
 		temp = next;

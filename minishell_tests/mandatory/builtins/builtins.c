@@ -6,11 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:03:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/22 21:39:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:40:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int	is_builtins(char *check)
 {
