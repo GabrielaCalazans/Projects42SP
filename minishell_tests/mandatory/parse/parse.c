@@ -1,29 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexical.c                                          :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 17:04:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 16:07:06 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/10/05 16:56:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	lexer(t_data *data)
+// void	parse_big_str(char *str)
+// {
+// 	int	pipe;
+// 	if (n_pipes(str) > 0)
+// }
+
+int	has_pipe(char *str)
 {
-	if (data->tokens->type == 3)
-		printf("heya\n");
-	return (1);
+	while (*str)
+	{
+		if (*str == '|')
+			return (1);
+		str++;
+	}
+	return (0);
 }
 
-// int	is_valid_redirect(t_token tokens, char )
+int	n_pipes(char *str)
+{
+	int	pipes;
+
+	pipes = 0;
+	while (*str)
+	{
+		if (*str == '|')
+			pipes++;
+		str++;
+	}
+	return (pipes);
+}
+
+// int	main(void)
 // {
-// 	while (/* condition */)
-// 	{
-// 		/* code */
-// 	}
-	
+// 	printf("%d\n", n_pipes("Hhello|o asdam|skdm|ka"));
+// 	return (0);
 // }

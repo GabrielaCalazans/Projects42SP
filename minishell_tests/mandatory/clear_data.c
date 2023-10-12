@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_lst_utils.c                                  :+:      :+:    :+:   */
+/*   clear_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:58:59 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 16:06:12 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/10/10 14:16:14 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/10/10 14:21:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
-
-// Func to find the size of the lst
-int	ft_size(t_token *lst)
-{
-	int	len;
-
-	len = 0;
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		len++;
-	}
-	return (len);
-}
+#include "../include/minishell.h"
 
 // Func to free the the lst
-void	ft_clear(t_token **lst)
+void	ft_clear_datalst(t_data **lst)
 {
-	t_token	*temp;
-	t_token	*next;
+	t_data	*temp;
+	t_data	*next;
 
 	temp = *lst;
 	while (temp != NULL)
 	{
-		free(temp->token);
-		temp->token = NULL;
+		free(temp->prompt_in);
+		temp->prompt_in = NULL;
+		// free(temp->cmd);
+		// temp->cmd = NULL;
 		next = temp->next;
 		free (temp);
 		temp = next;
 	}
 	*lst = NULL;
+}
+
+void	ft_clear_data(t_data *data)
+{
+	ft_clear(&data->tokens);
+	data->tokens = NULL;
+	ft_clear_datalst(&data);
 }

@@ -1,50 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/09/23 21:51:39 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/10/12 15:52:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// void	parse_big_str(char *str)
-// {
-// 	int	pipe;
-// 	if (n_pipes(str) > 0)
-// }
-
-int	has_pipe(char *str)
+void	find_file_name(t_token *tokens)
 {
-	while (*str)
+	t_token	*temp;
+
+	temp = tokens;
+	while(temp)
 	{
-		if (*str == '|')
-			return (1);
-		str++;
+		if (temp->type == 11)
+		{
+			while (temp->type == 11)
+				temp = temp->next;
+		}
+		if (is_syntax_error(temp->type) && temp->type != 11)
+			
+		temp = temp->next;
 	}
-	return (0);
 }
 
-int	n_pipes(char *str)
+int	is_syntax_error(int type)
 {
-	int	pipes;
-
-	pipes = 0;
-	while (*str)
-	{
-		if (*str == '|')
-			pipes++;
-		str++;
-	}
-	return (pipes);
+	if (type == 1 || type == 2)
+		return (1);
+	if (type == 3 || type == 5)
+		return (1);
 }
 
-// int	main(void)
-// {
-// 	printf("%d\n", n_pipes("Hhello|o asdam|skdm|ka"));
-// 	return (0);
-// }
+void	redirect_lst(t_token *tokens)
+{
+	
+}

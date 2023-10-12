@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/10/03 22:12:01 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/10/10 13:28:24 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,16 @@
 NAME =	minishell
 
 # ======= Sources ========
-SRCS = minishell.c prompt.c execution.c builtins.c parse.c
+SRCS = minishell.c prompt.c execution.c
 
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
 TOKEN += token_lst.c token_lst_utils.c
 
 LEXER = lexical.c
+
+PARSE = parse.c
+
+BUILTINS = builtins.c
 
 # ====== Folders and Paths ========
 LIBFT_DIR	= ./libft/
@@ -31,6 +35,10 @@ TOKEN_DIR	= $(addprefix ./token/, $(TOKEN))
 TOKEN_F		= $(addprefix ./mandatory/, $(TOKEN_DIR))
 LEXER_DIR	= $(addprefix ./lexer/, $(LEXER))
 LEXER_F		= $(addprefix ./mandatory/, $(LEXER_DIR))
+PARSE_DIR	= $(addprefix ./parse/, $(PARSE))
+PARSE_F		= $(addprefix ./mandatory/, $(PARSE_DIR))
+BUILTINS_DIR	= $(addprefix ./builtins/, $(BUILTINS))
+BUILTINS_F		= $(addprefix ./mandatory/, $(BUILTINS_DIR))
 
 MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F)
 
@@ -83,7 +91,7 @@ valgrind:	all
 norminette:	all
 			norminette
 
-bonus: comp_libf $(BONUS)
+bonus: comp_libf $(BONUS)pu
 
 re: fclean all
 
