@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 20:34:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:19:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@
 # define DOT			19
 # define BACKSLASH		20
 # define TILDE			21
+# define H_TAB			22
+# define M_ERROR		1
 
 
 // **cmd; // aqui comando e flags
