@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/16 19:54:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/16 23:02:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,3 @@ int	asterick_case(t_token *tokens)
 	return (0);
 }
 
-t_token *jump_white_spaces(t_token *tokens)
-{
-	if (tokens->type == M_SPACE || tokens->type == H_TAB)
-	{
-		while (tokens->type == M_SPACE || tokens->type == H_TAB)
-			tokens = tokens->next;
-	}
-	return (tokens);
-}
