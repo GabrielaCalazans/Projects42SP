@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/14 20:23:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/16 19:54:21 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	is_syntax_error(int type)
 	if (type == REDIRECT_IN || type == REDIRECT_OUT)
 		return (M_ERROR);
 	if (type == PIPE || type == APPEND || type == HEREDOC)
-		return (M_ERROR);
-	if (type == R_BRACKET_O || type == R_BRACKET_C || type == SEMICOLON)
 		return (M_ERROR);
 	return (0);
 }

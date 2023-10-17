@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 21:59:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 17:13:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:23:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,6 @@ int	find_type(char *str)
 		return (is_quote(*str));
 	if (0 < is_space(*str))
 		return (is_space(*str));
-	if (0 < is_asterisk(*str))
-		return (is_asterisk(*str));
-	if (0 < is_ampersand(*str))
-		return (is_ampersand(*str));
-	if (0 < is_r_bracket(*str))
-		return (is_r_bracket(*str));
 	else
 		return (WORD);
 }

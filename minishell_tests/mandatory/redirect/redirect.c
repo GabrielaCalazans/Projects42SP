@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/14 15:11:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/16 20:01:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,23 @@
 // {
 // }
 
+t_token *jump_white_spaces(t_token *tokens)
+{
+	if (tokens->type == M_SPACE || tokens->type == H_TAB)
+	{
+		while (tokens->type == M_SPACE || tokens->type == H_TAB)
+			tokens = tokens->next;
+	}
+	return (tokens);
+}
+
 void	find_file_name(t_token *tokens)
 {	
 	t_token	*temp;
 
 	temp = tokens;
+	check_file_name(tokens);
+
 	while (temp)
 	{
 		if (temp->type == M_SPACE || temp->type == H_TAB)
@@ -35,10 +47,8 @@ void	find_file_name(t_token *tokens)
 void	check_file_name(t_token *tokens)
 {
 	t_token	*temp;
-	int		erro;
 
 	temp = tokens;
-	erro = 0;
 	while (temp)
 	{
 		if (temp->type == M_SPACE || temp->type == H_TAB)
@@ -48,10 +58,8 @@ void	check_file_name(t_token *tokens)
 		}
 		if (is_syntax_error(temp->type) && temp->type != 11)
 			ft_error(1);
-		if (is_possible_error(temp->type) && temp->type != 11)
-			erro = check_error(tokens);
-		if (erro > 0)
-			ft_error(2);
+		if (temp->type == WORD)
+			break ;
 		temp = temp->next;
 	}
 }
