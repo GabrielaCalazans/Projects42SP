@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/16 20:01:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/17 21:39:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,13 @@ t_token *jump_white_spaces(t_token *tokens)
 	return (tokens);
 }
 
-void	find_file_name(t_token *tokens)
-{	
-	t_token	*temp;
-
-	temp = tokens;
-	check_file_name(tokens);
-
-	while (temp)
-	{
-		if (temp->type == M_SPACE || temp->type == H_TAB)
-		{
-			while (temp->type == M_SPACE || temp->type == H_TAB)
-				temp = temp->next;
-		}
-		temp = temp->next;
-	}
-}
-
-void	check_file_name(t_token *tokens)
+int	check_file_name(t_token *tokens)
 {
 	t_token	*temp;
+	int		check;
 
 	temp = tokens;
+	check = 0;
 	while (temp)
 	{
 		if (temp->type == M_SPACE || temp->type == H_TAB)
@@ -57,26 +41,61 @@ void	check_file_name(t_token *tokens)
 				temp = temp->next;
 		}
 		if (is_syntax_error(temp->type) && temp->type != 11)
+		{
 			ft_error(1);
+			check = 1;
+		}
 		if (temp->type == WORD)
 			break ;
 		temp = temp->next;
 	}
+	return (check);
 }
 
-void	check_quoted(t_token *tokens, int type)
-{
+void	find_file_name(t_token *tokens)
+{	
 	t_token	*temp;
 
 	temp = tokens;
-	if (!has_another_quote(tokens, type))
-		ft_error(2);
-	else
-		take_quoted(tokens, has_another_quote(tokens, type));
+	if (check_file_name(tokens))
+		return ;
+	while (temp)
+	{
+		if (temp->type == M_SPACE || temp->type == H_TAB)
+		{
+			while (temp->type == M_SPACE || temp->type == H_TAB)
+				temp = temp->next;
+		}
+		if (temp->type == QUOTE_DOUBLE || QUOTE_SINGLE)
+			(take_quoted_name(temp, has_another_quote(temp, temp->type)));
+		if (temp->type == WORD)
+			return (ft_strdup(temp->token));
+		temp = temp->next;
+	}
+	return (NULL);
 }
 
-char	*take_quoted(t_token *tokens, int len)
+char	*take_quoted_name(t_token *tokens, int len)
 {
+	t_token	*temp;
+	char	*name;
+	int		i;
+	int		word_size;
+
+	temp = tokens;
+	i = 0;
+	word_size = 0;
+	if (!has_another_quote(tokens, tokens->type))
+	{
+		ft_error(2);
+		return (NULL);
+	}
+	while (len > i && temp)
+	{
+		word_size += ft_strlen(temp->token);
+		temp->next;
+		i++;
+	}
 }
 
 int	has_another_quote(t_token *tokens, int type)
