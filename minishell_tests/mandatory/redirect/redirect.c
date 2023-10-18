@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/17 21:39:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:12:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*take_quoted_name(t_token *tokens, int len)
 	int		i;
 	int		word_size;
 
-	temp = tokens;
+	temp = tokens->next;
 	i = 0;
 	word_size = 0;
 	if (!has_another_quote(tokens, tokens->type))
@@ -92,10 +92,25 @@ char	*take_quoted_name(t_token *tokens, int len)
 	}
 	while (len > i && temp)
 	{
+		if (temp->type == QUOTE_DOUBLE || temp->type == QUOTE_SINGLE)
+			break ; 
 		word_size += ft_strlen(temp->token);
-		temp->next;
+		temp = temp->next;
 		i++;
 	}
+	if (i > 0)
+		name = ft_strdup(temp->token);
+	temp = temp->next;
+	i = 0;
+	while (len > i && temp)
+	{
+		if (temp->type == QUOTE_DOUBLE || temp->type == QUOTE_SINGLE)
+			break ; 
+		ft_strjoin(name, temp->token);
+		temp = temp->next;
+		i++;
+	}
+	return (name);
 }
 
 int	has_another_quote(t_token *tokens, int type)
