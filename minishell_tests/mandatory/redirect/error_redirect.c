@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/16 23:02:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:11:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_error(int error)
 {
 	if (error == 1)
-		printf("syntax error");
+		printf("syntax error\n");
 	else
-		printf("undefined error");
+		printf("undefined error\n");
 }
 
 int	is_syntax_error(int type)
@@ -63,25 +63,25 @@ int	check_error(t_token *tokens)
 // TODO: VALIDATE THE PATH TO '> ./bla/bla.txt' case
 int	dot_case(t_token *tokens)
 {
-	if (tokens->next == M_SPACE || tokens->next == NULL)
+	if (tokens->next->type == M_SPACE || tokens->next == NULL)
 		return (M_ERROR);
-	if (tokens->next == SLASH)
-		return (validate_path(tokens));
-	if (tokens->next != WORD)
+	// if (tokens->next->type == SLASH)
+	// 	return (validate_path(tokens));
+	if (tokens->next->type != WORD)
 		return (M_ERROR);
 	return (0);
 }
 
 int	tilde_case(t_token *tokens)
 {
-	if (tokens->next != WORD)
+	if (tokens->next->type != WORD)
 		return (M_ERROR);
 	return (0);
 }
 
 int	asterick_case(t_token *tokens)
 {
-	if (tokens->next != WORD)
+	if (tokens->next->type != WORD)
 		return (M_ERROR);
 	return (0);
 }

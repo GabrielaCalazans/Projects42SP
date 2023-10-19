@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:16:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 19:27:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:36:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ void	ft_clear_datalst(t_data **lst)
 
 void	ft_clear_data(t_data *data)
 {
-	ft_clear(&data->tokens);
+	ft_clear_token(&data->tokens);
 	data->tokens = NULL;
-	ft_clear_datalst(&data);
+	ft_clear_rdct(&data->rdct);
+	data->rdct = NULL;
+	free(data->prompt_in);
+	data->prompt_in = NULL;
+	// ft_clear_datalst(&data);
 }

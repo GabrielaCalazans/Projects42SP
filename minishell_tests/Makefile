@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/10/12 18:23:39 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/10/18 19:40:11 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = minishell.c prompt.c execution.c
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
 TOKEN += token_lst.c token_lst_utils.c token_utils_four.c
 
-REDIRECT = redirect.c
+REDIRECT = redirect.c error_redirect.c redirect_utils.c redirect_lst.c
 
 LEXER = lexical.c
 
@@ -27,24 +27,28 @@ PARSE = parse.c
 
 BUILTINS = builtins.c
 
+CLEAR_DATA = clear_data.c
+
 # ====== Folders and Paths ========
-LIBFT_DIR	= ./libft/
-INCL_DIR	= ./include/
-LIBFT		= $(addprefix $(LIBFT_DIR), libft.a)
-HEADERM		= $(addprefix $(INCL_DIR), minishell.h)
-SRCS_MAIN	= $(addprefix ./mandatory/, $(SRCS))
-TOKEN_DIR	= $(addprefix ./token/, $(TOKEN))
-TOKEN_F		= $(addprefix ./mandatory/, $(TOKEN_DIR))
-LEXER_DIR	= $(addprefix ./lexer/, $(LEXER))
-LEXER_F		= $(addprefix ./mandatory/, $(LEXER_DIR))
-PARSE_DIR	= $(addprefix ./parse/, $(PARSE))
-PARSE_F		= $(addprefix ./mandatory/, $(PARSE_DIR))
+LIBFT_DIR		= ./libft/
+INCL_DIR		= ./include/
+LIBFT			= $(addprefix $(LIBFT_DIR), libft.a)
+HEADERM			= $(addprefix $(INCL_DIR), minishell.h)
+SRCS_MAIN		= $(addprefix ./mandatory/, $(SRCS))
+TOKEN_DIR		= $(addprefix ./token/, $(TOKEN))
+TOKEN_F			= $(addprefix ./mandatory/, $(TOKEN_DIR))
+LEXER_DIR		= $(addprefix ./lexer/, $(LEXER))
+LEXER_F			= $(addprefix ./mandatory/, $(LEXER_DIR))
+PARSE_DIR		= $(addprefix ./parse/, $(PARSE))
+PARSE_F			= $(addprefix ./mandatory/, $(PARSE_DIR))
 BUILTINS_DIR	= $(addprefix ./builtins/, $(BUILTINS))
 BUILTINS_F		= $(addprefix ./mandatory/, $(BUILTINS_DIR))
 REDIRECT_DIR	= $(addprefix ./redirect/, $(REDIRECT))
 REDIRECT_F		= $(addprefix ./mandatory/, $(REDIRECT_DIR))
+CLEAR_DATA_F	= $(addprefix ./mandatory/, $(CLEAR_DATA))
 
-MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F) $(BUILTINS_F) $(EDIRECT_F)
+MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F)
+MANDATORY	+= $(BUILTINS_F) $(REDIRECT_F) $(CLEAR_DATA_F)
 
 # ========== OBJS ============
 OBJS = $(MANDATORY:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 19:20:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:24:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,5 @@ void	start_token(t_data *data)
 		return ;
 	}
 	sub_start_tokens(data, newnode, check);
-	lexer(data);
-	printlist(data->tokens);
+	printlist(data->tokens, 1);
 }
-
-// t_token	create_lst(char *str, t_token	**tokens)
-// {
-// 	int		check;
-// 	int		i;
-// }

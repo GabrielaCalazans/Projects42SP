@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/14 19:19:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/18 21:08:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # define M_ERROR		1
 
 
+
 // **cmd; // aqui comando e flags
 // **cmd_args; // aqui str
 // **heredoc; // heredoc e seu delimitador/palavra
@@ -75,7 +76,7 @@ typedef struct s_data
 	char			**cmd;
 	char			**cmd_args;
 	char			**heredoc;
-	struct s_rdct	**rdct;
+	struct s_rdct	*rdct;
 	char			**env;
 	t_token			*tokens;
 	struct s_data	*next;
@@ -83,7 +84,7 @@ typedef struct s_data
 
 typedef struct s_rdct
 {
-	char			*redirect;
+	int				redirect;
 	char			*file;
 	struct s_rdct	*next;
 }				t_rdct;
@@ -107,8 +108,7 @@ int		is_questionmark(char c);
 int		is_dollar(char c);
 int		is_quote(char c);
 int		is_space(char c);
-int		is_asterisk(char c);
-int		is_ampersand(char c);
+int		is_special_char(char c);
 int		is_r_bracket(char c);
 int		is_heredoc(char *str, int check);
 int		find_type(char *str);
@@ -123,11 +123,37 @@ void	ft_add_back(t_token **lst, t_token *new);
 int		ft_size(t_token *lst);
 void	ft_clear_token(t_token **lst);
 
+// REDIRECT
+void	create_redirect_lst(t_data *data, int len);
+t_token	*jump_white_spaces(t_token *tokens);
+int		has_another_quote(t_token *tokens, int type);
+int		has_redirect(t_token *tokens);
+void	ft_error(int error);
+int		is_syntax_error(int type);
+int		is_possible_error(int type);
+int		check_error(t_token *tokens);
+int		dot_case(t_token *tokens);
+int		tilde_case(t_token *tokens);
+int		asterick_case(t_token *tokens);
+int		check_file_name(t_token *tokens);
+char	*take_quoted_name(t_token *tokens, int len);
+char	*find_file_name(t_token *tokens);
+int		first_check(t_token *tokens);
+
+// DEALING REDIRECT LIST
+t_rdct	*createnode_rdct(char *file, int redirect);
+t_rdct	*ft_last_rdct(t_rdct *lst);
+void	ft_add_back_rdct(t_rdct **lst, t_rdct *new);
+void	ft_add_front_rdct(t_rdct **lst, t_rdct *new);
+void	ft_clear_rdct(t_rdct **lst);
+int		ft_size_rdct(t_rdct *lst);
+
+
 // LEXER
 int		lexer(t_data *data);
 
 // PRINT LIST
-void	printlist(t_token *head);
+void	printlist(void *head, int check);
 
 // CLEAR DATA
 void	ft_clear_data(t_data *data);
