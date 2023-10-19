@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/18 21:08:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:34:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define TILDE			21
 # define H_TAB			22
 # define M_ERROR		1
+# define C_SUCCESS		0
 
 
 
@@ -116,6 +117,7 @@ int		is_redirect(char c);
 int		find_type(char *str);
 char	*define_type(char *str);
 int		word_len(char *str);
+int		is_heredoc_case(t_data *data, int i);
 
 // DEALING TOKEN LIST
 t_token	*createnode(char *token, int type);
@@ -124,11 +126,11 @@ int		ft_size(t_token *lst);
 void	ft_clear_token(t_token **lst);
 
 // REDIRECT
-void	create_redirect_lst(t_data *data, int len);
+void	create_redirect_lst(t_data *data);
 t_token	*jump_white_spaces(t_token *tokens);
 int		has_another_quote(t_token *tokens, int type);
 int		has_redirect(t_token *tokens);
-void	ft_error(int error);
+void	ft_error_redirect(int error);
 int		is_syntax_error(int type);
 int		is_possible_error(int type);
 int		check_error(t_token *tokens);
@@ -139,6 +141,8 @@ int		check_file_name(t_token *tokens);
 char	*take_quoted_name(t_token *tokens, int len);
 char	*find_file_name(t_token *tokens);
 int		first_check(t_token *tokens);
+size_t	quoted_word_size(t_token *tokens, int len);
+char	*get_name_quoted(t_token *tokens, char *name, int len);
 
 // DEALING REDIRECT LIST
 t_rdct	*createnode_rdct(char *file, int redirect);

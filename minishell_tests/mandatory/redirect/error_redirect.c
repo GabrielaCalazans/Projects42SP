@@ -6,16 +6,20 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/18 21:11:20 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:48:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_error(int error)
+void	ft_error_redirect(int error)
 {
 	if (error == 1)
 		printf("syntax error\n");
+	if (error == 3)
+		printf("quoted error\n");
+	if (error == 4)
+		printf("redirect file name error\n");
 	else
 		printf("undefined error\n");
 }
@@ -51,7 +55,7 @@ int	check_error(t_token *tokens)
 			temp = jump_white_spaces(temp);
 		if (temp->type == DOT)
 			return (dot_case(temp));
-		if (temp->type == TILDE )
+		if (temp->type == TILDE)
 			return (tilde_case(temp));
 		if (temp->type == ASTERISK)
 			return (asterick_case(temp));
@@ -59,30 +63,3 @@ int	check_error(t_token *tokens)
 	}
 	return (0);
 }
-
-// TODO: VALIDATE THE PATH TO '> ./bla/bla.txt' case
-int	dot_case(t_token *tokens)
-{
-	if (tokens->next->type == M_SPACE || tokens->next == NULL)
-		return (M_ERROR);
-	// if (tokens->next->type == SLASH)
-	// 	return (validate_path(tokens));
-	if (tokens->next->type != WORD)
-		return (M_ERROR);
-	return (0);
-}
-
-int	tilde_case(t_token *tokens)
-{
-	if (tokens->next->type != WORD)
-		return (M_ERROR);
-	return (0);
-}
-
-int	asterick_case(t_token *tokens)
-{
-	if (tokens->next->type != WORD)
-		return (M_ERROR);
-	return (0);
-}
-

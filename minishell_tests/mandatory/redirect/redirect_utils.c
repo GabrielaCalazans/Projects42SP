@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:10:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/18 21:23:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:31:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int	has_another_quote(t_token *tokens, int type)
 	while (temp)
 	{
 		if (temp->type == type)
-		{
-			printf("achei 2ª quote len:%d\n", len);
 			return (len);
-		}
 		len++;
 		temp = temp->next;
 	}

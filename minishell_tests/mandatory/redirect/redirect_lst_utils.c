@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_data.c                                       :+:      :+:    :+:   */
+/*   redirect_lst_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 14:16:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 16:31:55 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/10/19 16:33:10 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/10/19 16:34:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
+
+// Func to find the size of the lst
+int	ft_size_rdct(t_rdct *lst)
+{
+	int	len;
+
+	len = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		len++;
+	}
+	return (len);
+}
 
 // Func to free the the lst
-		// free(temp->cmd);
-		// temp->cmd = NULL;
-	// ft_clear_datalst(&data);
-void	ft_clear_datalst(t_data **lst)
+void	ft_clear_rdct(t_rdct **lst)
 {
-	t_data	*temp;
-	t_data	*next;
+	t_rdct	*temp;
+	t_rdct	*next;
 
 	temp = *lst;
 	while (temp != NULL)
 	{
-		free(temp->prompt_in);
-		temp->prompt_in = NULL;
+		free(temp->file);
+		temp->file = NULL;
 		next = temp->next;
 		free (temp);
 		temp = next;
 	}
 	*lst = NULL;
-}
-
-void	ft_clear_data(t_data *data)
-{
-	ft_clear_token(&data->tokens);
-	data->tokens = NULL;
-	ft_clear_rdct(&data->rdct);
-	data->rdct = NULL;
-	free(data->prompt_in);
-	data->prompt_in = NULL;
 }

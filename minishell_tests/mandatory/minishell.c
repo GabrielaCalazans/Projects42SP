@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/18 21:16:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:31:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	printlist(void *head, int check)
 		temp2 = (t_rdct *) head;
 		while (temp2 != NULL)
 		{
-			printf("NODE - redirect: %i file_name: %s, size str:%zu\n", temp2->redirect, temp2->file, ft_strlen(temp2->file));
+			printf("NODE - redirect: %i file_name: %s, size str:%zu\n",
+				temp2->redirect, temp2->file, ft_strlen(temp2->file));
 			temp2 = temp2->next;
 		}
 	}
@@ -59,7 +60,6 @@ int	main(int argc, char *argv[], char *envp[])
 		return (1);
 	set_data(data);
 	prompt(data);
-	
 	ft_clear_data(data);
 	return (0);
 }

@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_utils_four.c                                 :+:      :+:    :+:   */
+/*   error_redirect_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 17:05:39 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 17:34:34 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/10/19 16:48:47 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/10/19 16:49:25 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	is_special_char(char c)
+// TODO: VALIDATE THE PATH TO '> ./bla/bla.txt' case
+	// if (tokens->next->type == SLASH)
+	// 	return (validate_path(tokens));
+int	dot_case(t_token *tokens)
 {
-	if (c == '*')
-		return (ASTERISK);
-	if (c == '&')
-		return (AMPERSAND);
-	if (c == '~')
-		return (TILDE);
-	if (c == '.')
-		return (DOT);
-	if (c == ';')
-		return (SEMICOLON);
+	if (tokens->next->type == M_SPACE || tokens->next == NULL)
+		return (M_ERROR);
+	if (tokens->next->type != WORD)
+		return (M_ERROR);
 	return (0);
 }
 
-int	is_r_bracket(char c)
+int	tilde_case(t_token *tokens)
 {
-	if (c == '(')
-		return (R_BRACKET_O);
-	if (c == ')')
-		return (R_BRACKET_C);
+	if (tokens->next->type != WORD)
+		return (M_ERROR);
 	return (0);
 }
 
-int	is_heredoc_case(t_data *data, int i)
+int	asterick_case(t_token *tokens)
 {
-	if (find_type(&data->prompt_in[i]) == HEREDOC
-		|| find_type(&data->prompt_in[i]) == APPEND)
-		return (1);
+	if (tokens->next->type != WORD)
+		return (M_ERROR);
 	return (0);
 }
