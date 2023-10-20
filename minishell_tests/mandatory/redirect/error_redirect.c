@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 16:48:59 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:40:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 void	ft_error_redirect(int error)
 {
 	if (error == 1)
-		printf("syntax error\n");
-	if (error == 3)
+		printf("syntax error near unexpected token\n");
+	else if (error == 3)
 		printf("quoted error\n");
-	if (error == 4)
+	else if (error == 4)
 		printf("redirect file name error\n");
 	else
+	{
 		printf("undefined error\n");
+	}
 }
 
 int	is_syntax_error(int type)
@@ -30,7 +32,7 @@ int	is_syntax_error(int type)
 		return (M_ERROR);
 	if (type == PIPE || type == APPEND || type == HEREDOC)
 		return (M_ERROR);
-	return (0);
+	return (C_SUCCESS);
 }
 
 int	is_possible_error(int type)

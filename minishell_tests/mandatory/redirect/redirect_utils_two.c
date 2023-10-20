@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:38:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 16:41:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:35:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	check_file_name(t_token *tokens)
 {
 	t_token	*temp;
-	int		check;
 
 	temp = tokens;
-	check = 0;
 	if (tokens == NULL)
 		return (M_ERROR);
 	while (temp)
@@ -30,14 +28,13 @@ int	check_file_name(t_token *tokens)
 		}
 		if (is_syntax_error(temp->type) && temp->type != 11)
 		{
-			ft_error_redirect(1);
-			check = 1;
+			return (M_ERROR);
 		}
 		if (temp->type == WORD)
 			break ;
 		temp = temp->next;
 	}
-	return (check);
+	return (C_SUCCESS);
 }
 
 int	first_check(t_token *tokens)

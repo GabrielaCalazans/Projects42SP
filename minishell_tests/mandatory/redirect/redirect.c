@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 17:21:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:35:22 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	create_redirect_lst(t_data *data)
 
 	if (first_check(data->tokens))
 	{
-		ft_error_redirect(first_check(data->tokens));
+		ft_error_redirect(M_ERROR);
 		return ;
 	}
 	temp = data->tokens;
