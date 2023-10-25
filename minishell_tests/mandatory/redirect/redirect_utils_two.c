@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:38:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/20 16:35:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:51:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	check_file_name(t_token *tokens)
 
 	temp = tokens;
 	if (tokens == NULL)
-		return (M_ERROR);
+		return (C_ERROR);
 	while (temp)
 	{
-		if (temp->type == M_SPACE || temp->type == H_TAB)
+		if (temp->type == C_SPACE || temp->type == H_TAB)
 		{
-			while (temp->type == M_SPACE || temp->type == H_TAB)
+			while (temp->type == C_SPACE || temp->type == H_TAB)
 				temp = temp->next;
 		}
 		if (is_syntax_error(temp->type) && temp->type != 11)
 		{
-			return (M_ERROR);
+			return (C_ERROR);
 		}
 		if (temp->type == WORD)
 			break ;

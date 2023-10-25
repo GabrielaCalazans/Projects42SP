@@ -6,11 +6,11 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:03:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 17:40:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:25:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 int	is_builtins(char *check)
 {
@@ -30,6 +30,26 @@ int	is_builtins(char *check)
 		return (7);
 	else
 		return (0);
+}
+
+int	exec_builtin(t_data *data)
+{
+	int					index;
+	const t_builtins	builtins[8] = {
+	{"error", NULL},
+	{"echo", ft_echo},
+	{"cd", ft_cd},
+	{"pwd", ft_pwd},
+	{"export", ft_export},
+	{"unset", ft_unset},
+	{"env", ft_env},
+	{"exit", ft_exit}
+	};
+
+	index = is_builtins(data->cmd[0]);
+	if (index != 0)
+		builtins[index].built_in(data);
+	return (index);
 }
 
 // void	call_builtins(t_data *ptr)

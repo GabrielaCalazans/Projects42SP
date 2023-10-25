@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/10/19 16:49:54 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/10/24 17:44:05 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,12 @@ LEXER = lexical.c
 
 PARSE = parse.c
 
-BUILTINS = builtins.c
+BUILTINS = builtins.c ft_pwd.c ft_echo.c ft_env.c ft_export.c
+BUILTINS += ft_cd.c ft_exit.c ft_unset.c
 
 CLEAR_DATA = clear_data.c
+
+UTILS = utils.c env.c
 
 # ====== Folders and Paths ========
 LIBFT_DIR		= ./libft/
@@ -47,8 +50,10 @@ BUILTINS_F		= $(addprefix ./mandatory/, $(BUILTINS_DIR))
 REDIRECT_DIR	= $(addprefix ./redirect/, $(REDIRECT))
 REDIRECT_F		= $(addprefix ./mandatory/, $(REDIRECT_DIR))
 CLEAR_DATA_F	= $(addprefix ./mandatory/, $(CLEAR_DATA))
+UTILS_DIR		= $(addprefix ./utils/, $(UTILS))
+UTILS_F			= $(addprefix ./mandatory/, $(UTILS_DIR))
 
-MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F)
+MANDATORY	:= $(SRCS_MAIN) $(TOKEN_F) $(LEXER_F) $(UTILS_F)
 MANDATORY	+= $(BUILTINS_F) $(REDIRECT_F) $(CLEAR_DATA_F)
 
 # ========== OBJS ============
@@ -63,7 +68,6 @@ OBJS = $(MANDATORY:.c=.o)
 # 	$(CC) $(FLAGS) -I $(INCL_DIR) -c $< -o $@
 
 # ====== Flags ========
-
 FLAGS = -Wall -Wextra -Werror -g3
 LIBS = -lreadline
 VALGRIND		=	valgrind \

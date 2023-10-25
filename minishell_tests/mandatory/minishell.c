@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 16:31:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:52:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	set_data(t_data *data)
 {
 	data->tokens = NULL;
 	data->rdct = NULL;
+	data->env_node = NULL;
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -54,11 +55,11 @@ int	main(int argc, char *argv[], char *envp[])
 
 	data = malloc(sizeof(t_data));
 	(void)argv;
-	(void)envp;
 	(void)argc;
 	if (argc != 1)
 		return (1);
 	set_data(data);
+	create_env(&data, envp);
 	prompt(data);
 	ft_clear_data(data);
 	return (0);

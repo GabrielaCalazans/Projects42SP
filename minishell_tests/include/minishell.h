@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 17:34:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:25:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # include "../libft/libft.h"
 
 # define PROMPT	"CHORA $> "
-
+# define TRUE			1
+# define FALSE			0
 # define REDIRECT_IN	1
 # define REDIRECT_OUT	2
 # define PIPE			3
@@ -42,7 +43,7 @@
 # define QUOTE_DOUBLE	8
 # define QUOTE_SINGLE	9
 # define WORD			10
-# define M_SPACE		11
+# define C_SPACE		11
 # define APPEND			12
 # define HEREDOC		13
 # define AMPERSAND		14
@@ -54,10 +55,9 @@
 # define BACKSLASH		20
 # define TILDE			21
 # define H_TAB			22
-# define M_ERROR		1
+# define C_ERROR		1
 # define C_SUCCESS		0
-
-
+# define TEST_PATH		"/nfs/homes/ckunimur/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/nfs/homes/ckunimur/.local/bin"
 
 // **cmd; // aqui comando e flags
 // **cmd_args; // aqui str
@@ -71,17 +71,12 @@ typedef struct s_token
 	struct s_token	*next;
 }				t_token;
 
-typedef struct s_data
+typedef struct s_env
 {
-	char			*prompt_in;
-	char			**cmd;
-	char			**cmd_args;
-	char			**heredoc;
-	struct s_rdct	*rdct;
-	char			**env;
-	t_token			*tokens;
-	struct s_data	*next;
-}			t_data;
+	char			*var;
+	char			*value;
+	struct s_env	*next;
+}		t_env;
 
 typedef struct s_rdct
 {
@@ -90,14 +85,55 @@ typedef struct s_rdct
 	struct s_rdct	*next;
 }				t_rdct;
 
+typedef struct s_data
+{
+	char			*prompt_in;
+	char			**cmd;
+	char			**cmd_args;
+	char			**heredoc;
+	char			**env;
+	char			*path;
+	t_rdct			*rdct;
+	t_token			*tokens;
+	t_env			*env_node;
+	struct s_data	*next;
+}			t_data;
+
+typedef struct s_builtins {
+	char	*name;
+	void	(*built_in)(t_data *);
+}	t_builtins;
+
 typedef struct s_prompt
 {
 	char			*prompt_input;
 }				t_prompt;
 
 void	prompt(t_data *data);
+void	set_path_command(t_data *data);
 int		is_builtins(char *check);
-//void	call_builtins(t_data *ptr);
+// void	call_builtins(t_data *ptr);
+void	execution(t_data *data);
+
+//utils
+void	ft_clean_lst(char **lst);
+
+//builtins
+int		exec_builtin(t_data *data);
+void	ft_cd(t_data *data);
+void	ft_echo(t_data *data);
+void	ft_env(t_data *data);
+void	ft_exit(t_data *data);
+void	ft_export(t_data *data);
+void	ft_pwd(t_data *data);
+void	ft_unset(t_data *data);
+
+//env
+t_env	*create_list(char *str);
+t_env	*node_last(t_env *list);
+void	linkar(t_env **lista, t_env *current);
+void	link_end(t_env **list, t_env *current);
+void	create_env(t_data **data, char **envp);
 
 // TOKENS
 void	start_token(t_data *data);
@@ -151,7 +187,6 @@ void	ft_add_back_rdct(t_rdct **lst, t_rdct *new);
 void	ft_add_front_rdct(t_rdct **lst, t_rdct *new);
 void	ft_clear_rdct(t_rdct **lst);
 int		ft_size_rdct(t_rdct *lst);
-
 
 // LEXER
 int		lexer(t_data *data);

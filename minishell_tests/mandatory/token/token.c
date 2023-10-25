@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 17:35:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:51:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	sub_creating_token(t_data *data, t_token *newnode, int check, int i)
 		newnode = create_word_token(&data->prompt_in[i],
 				word_len(&data->prompt_in[i]));
 		if (!newnode)
-			return (M_ERROR);
+			return (C_ERROR);
 		ft_add_back(&data->tokens, newnode);
 	}
 	if (check > 0 && check != 10)
 	{
 		newnode = create_token(&data->prompt_in[i]);
 		if (!newnode)
-			return (M_ERROR);
+			return (C_ERROR);
 		ft_add_back(&data->tokens, newnode);
 	}
 	return (C_SUCCESS);

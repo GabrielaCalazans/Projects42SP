@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:48:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 16:49:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:51:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@
 	// 	return (validate_path(tokens));
 int	dot_case(t_token *tokens)
 {
-	if (tokens->next->type == M_SPACE || tokens->next == NULL)
-		return (M_ERROR);
+	if (tokens->next->type == C_SPACE || tokens->next == NULL)
+		return (C_ERROR);
 	if (tokens->next->type != WORD)
-		return (M_ERROR);
+		return (C_ERROR);
 	return (0);
 }
 
 int	tilde_case(t_token *tokens)
 {
 	if (tokens->next->type != WORD)
-		return (M_ERROR);
+		return (C_ERROR);
 	return (0);
 }
 
 int	asterick_case(t_token *tokens)
 {
 	if (tokens->next->type != WORD)
-		return (M_ERROR);
+		return (C_ERROR);
 	return (0);
 }

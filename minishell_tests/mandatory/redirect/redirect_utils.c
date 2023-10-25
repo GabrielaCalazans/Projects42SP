@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:10:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 17:31:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:51:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_token	*jump_white_spaces(t_token *tokens)
 {
-	if (tokens->type == M_SPACE || tokens->type == H_TAB)
+	if (tokens->type == C_SPACE || tokens->type == H_TAB)
 	{
-		while (tokens->type == M_SPACE || tokens->type == H_TAB)
+		while (tokens->type == C_SPACE || tokens->type == H_TAB)
 			tokens = tokens->next;
 	}
 	return (tokens);
