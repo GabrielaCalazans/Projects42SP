@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/24 20:25:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:17:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@
 # define H_TAB			22
 # define C_ERROR		1
 # define C_SUCCESS		0
-# define TEST_PATH		"/nfs/homes/ckunimur/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/nfs/homes/ckunimur/.local/bin"
 
 // **cmd; // aqui comando e flags
 // **cmd_args; // aqui str
@@ -99,21 +98,19 @@ typedef struct s_data
 	struct s_data	*next;
 }			t_data;
 
-typedef struct s_builtins {
-	char	*name;
-	void	(*built_in)(t_data *);
-}	t_builtins;
-
 typedef struct s_prompt
 {
 	char			*prompt_input;
 }				t_prompt;
 
+typedef struct s_builtins {
+	char	*name;
+	void	(*built_in)(t_data *);
+}	t_builtins;
+
 void	prompt(t_data *data);
-void	set_path_command(t_data *data);
 int		is_builtins(char *check);
 // void	call_builtins(t_data *ptr);
-void	execution(t_data *data);
 
 //utils
 void	ft_clean_lst(char **lst);
@@ -135,6 +132,10 @@ void	linkar(t_env **lista, t_env *current);
 void	link_end(t_env **list, t_env *current);
 void	create_env(t_data **data, char **envp);
 
+//EXECUTION
+void	execution(t_data *data);
+void	set_path_command(t_data *data);
+
 // TOKENS
 void	start_token(t_data *data);
 int		is_redirect(char c);
@@ -148,12 +149,12 @@ int		is_space(char c);
 int		is_special_char(char c);
 int		is_r_bracket(char c);
 int		is_heredoc(char *str, int check);
+int		is_heredoc_case(t_data *data, int i);
 int		find_type(char *str);
 int		is_redirect(char c);
 int		find_type(char *str);
 char	*define_type(char *str);
 int		word_len(char *str);
-int		is_heredoc_case(t_data *data, int i);
 
 // DEALING TOKEN LIST
 t_token	*createnode(char *token, int type);
@@ -170,7 +171,7 @@ void	ft_error_redirect(int error);
 int		is_syntax_error(int type);
 int		is_possible_error(int type);
 int		check_error(t_token *tokens);
-int		dot_case(t_token *tokens);
+int		is_path(t_token *tokens);
 int		tilde_case(t_token *tokens);
 int		asterick_case(t_token *tokens);
 int		check_file_name(t_token *tokens);
@@ -179,6 +180,7 @@ char	*find_file_name(t_token *tokens);
 int		first_check(t_token *tokens);
 size_t	quoted_word_size(t_token *tokens, int len);
 char	*get_name_quoted(t_token *tokens, char *name, int len);
+char	*word_case(t_token *tokens);
 
 // DEALING REDIRECT LIST
 t_rdct	*createnode_rdct(char *file, int redirect);

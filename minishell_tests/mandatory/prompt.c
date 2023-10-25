@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/24 20:40:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:14:55 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,38 @@
 // 		ft_clear_data(data);
 // 	}
 // 	rl_clear_history();
+// }
+
+// void	set_path_command(t_data *data)
+// {
+// 	char	**path;
+// 	char	*tmp1;
+// 	char	*tmp2;
+// 	int		i;
+
+// 	i = 0;
+// 	path = ft_split(data->path, ':');
+// 	while (path[i])
+// 	{
+// 		tmp1 = ft_strjoin(path[i], "/");
+// 		tmp2 = ft_strjoin(tmp1, data->cmd[0]);
+// 		if (tmp1)
+// 			free(tmp1);
+// 		if (!access(tmp2, F_OK))
+// 		{
+// 			if (!access(tmp2, X_OK))
+// 			{
+// 				if (data->cmd[0])
+// 					free(data->cmd[0]);
+// 				data->cmd[0] = tmp2;
+// 				ft_clean_lst(path);
+// 				return ;
+// 			}
+// 		}
+// 		if (tmp2)
+// 			free(tmp2);
+// 		i++;
+// 	}
 // }
 
 char	*create_command_path(char *path, char *command)
@@ -75,6 +107,22 @@ void	set_path_command(t_data *data)
 	ft_clean_lst(path);
 }
 
+void	get_path(t_data *data)
+{
+	t_env	*tmp;
+
+	tmp = data->env_node;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->var, "PATH", 5) == 0)
+		{
+			data->path = tmp->value;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+}
+
 // data->cmd = ft_split(data->prompt_in, ' ');
 // data->path = TEST_PATH;
 void	prompt(t_data *data)
@@ -95,6 +143,7 @@ void	prompt(t_data *data)
 		if (has_redirect(data->tokens))
 			create_redirect_lst(data);
 		data->env = environ;
+		get_path(data);
 		if (!exec_builtin(data))
 			execution(data);
 		ft_clear_data(data);

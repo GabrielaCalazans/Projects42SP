@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:10:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/20 16:51:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:15:59 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,43 @@ int	has_redirect(t_token *tokens)
 		temp = temp->next;
 	}
 	return (redirects);
+}
+
+int	is_path(t_token *tokens)
+{
+	t_token	*tmp;
+
+	tmp = tokens;
+	if (tmp->token[0] == '.' && tmp->next->type == SLASH)
+	{
+		tmp = tmp->next;
+		if (tmp->next->type == WORD)
+			return (TRUE);
+	}
+	tmp = tokens;
+	if (tmp->type == WORD && tmp->next->type == SLASH)
+		return (TRUE);
+	return (FALSE);
+}
+
+char	*word_case(t_token *tokens)
+{
+	t_token	*tmp;
+	char	*result;
+
+	tmp = tokens;
+	if (is_path(tokens))
+	{
+		result = ft_strdup(tmp->token);
+		tmp = tmp->next;
+		while (tmp)
+		{
+			if (tmp->type != SLASH && tmp->type != WORD)
+				break ;
+			result = ft_strjoin(result, tmp->token);
+			tmp = tmp->next;
+		}
+		return (result);
+	}
+	return (ft_strdup(tokens->token));
 }
