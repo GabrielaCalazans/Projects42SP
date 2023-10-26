@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/25 18:17:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:07:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,9 @@ void	ft_add_back_rdct(t_rdct **lst, t_rdct *new);
 void	ft_add_front_rdct(t_rdct **lst, t_rdct *new);
 void	ft_clear_rdct(t_rdct **lst);
 int		ft_size_rdct(t_rdct *lst);
+
+// PARSE
+void	parsing_it(t_data *data);
 
 // LEXER
 int		lexer(t_data *data);

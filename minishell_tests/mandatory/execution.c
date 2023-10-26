@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:55:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/24 20:25:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:49:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 
 // 	path = find_path(ptr->cmd);
 // 	cmd_args = find_args(ptr->cmd_args);
+// }
+
+// void	exec_check(t_data *ptr)
+// {
+// 	if (is_builtins(ptr->cmd[0]))
+// 		return (call_builtins(ptr));
+// 	else
+// 		execution(ptr);
 // }
 
 /*
@@ -44,11 +52,3 @@ void	execution(t_data *data)
 	}
 	waitpid(-1, &status, 0);
 }
-
-// void	exec_check(t_data *ptr)
-// {
-// 	if (is_builtins(ptr->cmd[0]))
-// 		return (call_builtins(ptr));
-// 	else
-// 		execution(ptr);
-// }

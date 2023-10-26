@@ -6,45 +6,50 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/05 16:56:31 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:54:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// void	parse_big_str(char *str)
-// {
-// 	int	pipe;
-// 	if (n_pipes(str) > 0)
-// }
-
-int	has_pipe(char *str)
+void	move_token(t_data *data)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	data->tokens = data->tokens->next;
+	data->tokens = jump_white_spaces(data->tokens);
+	if (data->tokens->type == QUOTE_DOUBLE || data->tokens->type == QUOTE_SINGLE)
 	{
-		if (*str == '|')
-			return (1);
-		str++;
+		if (has_another_quote(data->tokens, data->tokens->type))
+		{
+			while (i < has_another_quote(data->tokens, data->tokens->type))
+				data->tokens = data->tokens->next;
+		}
 	}
-	return (0);
+	if (data->tokens->type == WORD)
+	{
+		if (is_path(data->tokens))
+		{
+			while (data->tokens->type == SLASH && data->tokens->type == WORD)
+				data->tokens = data->tokens->next;
+		}
+	}
 }
 
-int	n_pipes(char *str)
+void	parsing_it(t_data *data)
 {
-	int	pipes;
+	t_token	*temp;
 
-	pipes = 0;
-	while (*str)
+	temp = data->tokens;
+	data->cmd = ft_split(data->prompt_in, ' ');
+	return ;
+	while (temp)
 	{
-		if (*str == '|')
-			pipes++;
-		str++;
+		
 	}
-	return (pipes);
 }
 
-// int	main(void)
+// char	*find_cmd(t_data *data)
 // {
-// 	printf("%d\n", n_pipes("Hhello|o asdam|skdm|ka"));
-// 	return (0);
 // }

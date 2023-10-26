@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/25 18:16:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:31:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	create_redirect_lst(t_data *data)
 	temp = data->tokens;
 	while (temp)
 	{
-		if (temp->type == 1 || temp->type == 2)
+		if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
 			sub_create_redirect_lst(data, &*temp);
 		temp = temp->next;
 	}
