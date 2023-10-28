@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:04:43 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/12 19:32:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/28 13:27:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,49 @@ int	lexer(t_data *data)
 	return (1);
 }
 
-// int	is_valid_redirect(t_token tokens, char )
+int	is_a_quote(int type)
+{
+	if (type == QUOTE_DOUBLE)
+		return (QUOTE_DOUBLE);
+	if (type == QUOTE_SINGLE)
+		return (QUOTE_SINGLE);
+	return (FALSE);
+}
+
+int	has_quotes(t_data *data)
+{
+	t_token	*tmp;
+	int		check;
+
+	tmp = data->tokens;
+	check = 0;
+	while (tmp)
+	{
+		if (is_a_quote(tmp->type))
+			check = has_another_quote(tmp, tmp->type);
+		if (check > 0)
+			return (TRUE);
+		tmp = tmp->next;
+	}
+	return (FALSE);
+}
+
+int	has_pipe(t_data *data)
+{
+	t_token	*tmp;
+	int		check;
+
+	tmp = data->tokens;
+	check = 0;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			check++;
+		tmp = tmp->next;
+	}
+	return (check);
+}
+
+// char	*find_cmd(t_data *data)
 // {
-// 	while (/* condition */)
-// 	{
-// 		/* code */
-// 	}
 // }

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/26 13:07:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:28:37 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define BACKSLASH		20
 # define TILDE			21
 # define H_TAB			22
+# define QUOTED_WORD	23
 # define C_ERROR		1
 # define C_SUCCESS		0
 
@@ -67,6 +68,7 @@ typedef struct s_token
 {
 	char			*token;
 	int				type;
+	struct s_token	*prev;
 	struct s_token	*next;
 }				t_token;
 
@@ -79,8 +81,8 @@ typedef struct s_env
 
 typedef struct s_rdct
 {
-	int				redirect;
-	char			*file;
+	int				*redirect;
+	char			**files;
 	struct s_rdct	*next;
 }				t_rdct;
 
@@ -155,6 +157,8 @@ int		is_redirect(char c);
 int		find_type(char *str);
 char	*define_type(char *str);
 int		word_len(char *str);
+int		is_word_q(int check);
+int		qword_len(char *str, int type);
 
 // DEALING TOKEN LIST
 t_token	*createnode(char *token, int type);
@@ -192,6 +196,7 @@ int		ft_size_rdct(t_rdct *lst);
 
 // PARSE
 void	parsing_it(t_data *data);
+void	move_token(t_data *data);
 
 // LEXER
 int		lexer(t_data *data);

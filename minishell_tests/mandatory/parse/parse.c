@@ -6,50 +6,74 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/26 16:54:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:30:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	move_token(t_data *data)
-{
-	int	i;
+// void	move_token_cont(t_data *data, t_token *newlist)
+// {
+// 	t_token	*head;
 
-	i = 0;
-	data->tokens = data->tokens->next;
-	data->tokens = jump_white_spaces(data->tokens);
-	if (data->tokens->type == QUOTE_DOUBLE || data->tokens->type == QUOTE_SINGLE)
-	{
-		if (has_another_quote(data->tokens, data->tokens->type))
-		{
-			while (i < has_another_quote(data->tokens, data->tokens->type))
-				data->tokens = data->tokens->next;
-		}
-	}
-	if (data->tokens->type == WORD)
-	{
-		if (is_path(data->tokens))
-		{
-			while (data->tokens->type == SLASH && data->tokens->type == WORD)
-				data->tokens = data->tokens->next;
-		}
-	}
-}
+// 	head = data->tokens;
+// 	while (head->next != NULL)
+// 	{
+// 		if (head->type != REDIRECT_IN && head->type != REDIRECT_OUT)
+// 			head = head->next;
+// 		else
+// 			break ;
+// 	}
+// 	head->next = newlist;
+// 	data->tokens = head;
+// }
+
+// void	move_token(t_data *data)
+// {
+// 	int	type;
+// 	t_token	*tmp;
+
+// 	tmp = data->tokens->next;
+// 	if (!tmp)
+// 		return ;
+// 	tmp = jump_white_spaces(tmp);
+// 	type = 0;
+// 	if (tmp->type == QUOTE_DOUBLE || tmp->type == QUOTE_SINGLE)
+// 	{
+// 		type = tmp->type;
+// 		if (has_another_quote(tmp, type))
+// 		{
+// 			while (has_another_quote(tmp, type) > 0)
+// 				tmp = tmp->next;
+// 			if (tmp->type == type)
+// 				tmp = tmp->next;
+// 		}
+// 	}
+// 	else if (tmp->type  == WORD || tmp->type == SLASH)
+// 	{
+// 		if (is_path(tmp))
+// 		{
+// 			while (tmp)
+// 			{
+// 				if (tmp->type != SLASH && tmp->type != WORD)
+// 					break ;
+// 				tmp = tmp->next;
+// 			}
+// 		}
+// 	}
+// 	move_token_cont(data, tmp);
+// }
 
 void	parsing_it(t_data *data)
 {
-	t_token	*temp;
+	t_token	*tmp;
 
-	temp = data->tokens;
-	data->cmd = ft_split(data->prompt_in, ' ');
-	return ;
-	while (temp)
+	tmp = data->tokens;
+	if (tmp->type == WORD && tmp->next->type == QUOTED_WORD)
 	{
-		
+		data->cmd = WORD;
+		tmp = tmp->next;
+		data->cmd_args = take_q_name(tmp->token);
+		tmp = tmp->next;
 	}
 }
-
-// char	*find_cmd(t_data *data)
-// {
-// }
