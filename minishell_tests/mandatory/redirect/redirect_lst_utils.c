@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:33:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/19 16:34:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 18:47:19 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	ft_clear_rdct(t_rdct **lst)
 	temp = *lst;
 	while (temp != NULL)
 	{
-		free(temp->file);
-		temp->file = NULL;
+		free(temp->files);
+		temp->files = NULL;
+		free(temp->redirects);
+		temp->redirects = NULL;
 		next = temp->next;
 		free (temp);
 		temp = next;

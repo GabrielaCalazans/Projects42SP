@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 17:41:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:01:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,27 +76,66 @@ char	*find_file_name(t_token *tokens)
 	return (NULL);
 }
 
-void	sub_create_redirect_lst(t_data *data, t_token *token)
+// void	sub_create_redirect_lst(t_data *data, t_token *token)
+// {
+// 	t_rdct	*newnode;
+
+// 	newnode = createnode_rdct(find_file_name(token->next), token->type);
+// 	ft_add_back_rdct(&data->rdct, newnode);
+// }
+
+// void	create_redirect_lst(t_data *data)
+// {
+// 	t_token	*temp;
+
+// 	if (first_check(data->tokens))
+// 	{
+// 		ft_error_redirect(C_ERROR);
+// 		return ;
+// 	}
+// 	temp = data->tokens;
+// 	while (temp)
+// 	{
+// 		if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
+// 			sub_create_redirect_lst(data, &*temp);
+// 		temp = temp->next;
+// 	}
+// 	printlist(data->rdct, 2);
+// }
+
+int	has_redirect_pipe(t_token *tokens)
 {
-	int		*redirects;
-	int		redirect_type;
-	char	**files;
-	char	*file_name;
+	t_token	*temp;
+	int		redirects;
+
+	temp = tokens;
+	redirects = 0;
+	while (temp)
+	{
+		if (temp->type == 1 || temp->type == 2)
+			redirects++;
+		if (temp->type == PIPE)
+			break ;
+		temp = temp->next;
+	}
+	return (redirects);
+}
+
+void	sub_create_redirect_lst(t_data *data, char **files, int *redirects, int len)
+{
 	t_rdct	*newnode;
 
-	redirect_type = token->type;
-	file_name = find_file_name(token->next);
-	redirects = malloc(sizeof(int));
-	files = malloc(sizeof(char *));
-	redirects[0] = redirect_type;
-	files[0] = file_name;
-	newnode = createnode_rdct(find_file_name(token->next), token->type);
+	newnode = createnode_rdct(files, redirects, len);
 	ft_add_back_rdct(&data->rdct, newnode);
 }
 
 void	create_redirect_lst(t_data *data)
 {
 	t_token	*temp;
+	char	**files;
+	int		*redirects;
+	int		inside_pipe;
+	int		len;
 
 	if (first_check(data->tokens))
 	{
@@ -104,86 +143,39 @@ void	create_redirect_lst(t_data *data)
 		return ;
 	}
 	temp = data->tokens;
+	len = 0;
+	inside_pipe = 0;
+	redirects = malloc(sizeof (int) * (has_redirect_pipe(data->tokens) + 1));
+	files = malloc(sizeof (char *) * (has_redirect_pipe(data->tokens) + 1));
 	while (temp)
 	{
-		if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
-			sub_create_redirect_lst(data, &*temp);
+		if (temp->type == PIPE)
+		{
+			// Move the redirects to a new node and add it to the list
+			inside_pipe = 1;
+			files[len] = NULL;
+			len = 0;
+			sub_create_redirect_lst(data, files, redirects, len);
+		}
+		else if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
+		{
+			// Add the redirect to the current pipe's list
+			redirects[len] = temp->type;
+			files[len] = find_file_name(&*temp);
+			len++;
+		}
+		if (inside_pipe)
+		{
+			free(files);
+			free(redirects);
+			if (temp->next)
+			{
+				redirects = malloc(sizeof (int) * (has_redirect_pipe(temp->next) + 1));
+				files = malloc(sizeof (char *) * (has_redirect_pipe(temp->next) + 1));
+			}
+			inside_pipe = 0;
+		}
 		temp = temp->next;
 	}
 	printlist(data->rdct, 2);
 }
-
-// void	sub_create_redirect_lst(t_data *data, t_token *token)
-// {
-// 	int redirect_type = token->type;
-// 	char *file_name = find_file_name(token->next);
-// 	int *redirects = malloc(sizeof(int));
-// 	char **files = malloc(sizeof(char *));
-
-// 	redirects[0] = redirect_type;
-// 	files[0] = file_name;
-	
-// 	t_rdct *newnode = createnode_rdct(redirects, 1, files);
-// 	ft_add_back_rdct(&data->rdct, newnode);
-// }
-
-// void create_redirect_lst(t_data *data)
-// {
-// 	t_token *temp;
-
-// 	if (first_check(data->tokens))
-// 	{
-// 		ft_error_redirect(C_ERROR);
-// 		return;
-// 	}
-// 	temp = data->tokens;
-// 	int inside_pipe = 0;
-// 	int current_pipe_redirects = 0;
-// 	int *redirects = NULL;
-// 	char **files = NULL;
-// 	while (temp)
-// 	{
-// 		if (temp->type == PIPE)
-// 		{
-// 			inside_pipe = 1;
-// 			if (current_pipe_redirects > 0)
-// 			{
-// 				// Move the redirects to a new node and add it to the list
-// 				t_rdct *newnode = createnode_rdct(redirects, current_pipe_redirects, files);
-// 				ft_add_back_rdct(&data->rdct, newnode);
-// 				free(redirects);
-// 				free(files);
-// 				redirects = NULL;
-// 				files = NULL;
-// 				current_pipe_redirects = 0;
-// 			}
-// 		}
-// 		else if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
-// 		{
-// 			if (inside_pipe)
-// 			{
-// 				// Add the redirect to the current pipe's list
-// 				current_pipe_redirects++;
-// 				redirects = realloc(redirects, current_pipe_redirects * sizeof(int));
-// 				files = realloc(files, current_pipe_redirects * sizeof(char *));
-// 				redirects[current_pipe_redirects - 1] = temp->type;
-// 				files[current_pipe_redirects - 1] = find_file_name(temp->next);
-// 			}
-// 			else
-// 			{
-// 				// Add the redirect as a single-node list
-// 				sub_create_redirect_lst(data, &*temp);
-// 			}
-// 		}
-// 		temp = temp->next;
-// 	}
-// 	if (current_pipe_redirects > 0)
-// 	{
-// 		// Add any remaining redirects to the list
-// 		t_rdct *newnode = createnode_rdct(redirects, current_pipe_redirects, files);
-// 		ft_add_back_rdct(&data->rdct, newnode);
-// 		free(redirects);
-// 		free(files);
-// 	}
-// 	printlist(data->rdct, 2);
-// }

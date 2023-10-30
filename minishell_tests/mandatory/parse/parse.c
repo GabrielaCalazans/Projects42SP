@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 16:30:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:06:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	parsing_it(t_data *data)
 	tmp = data->tokens;
 	if (tmp->type == WORD && tmp->next->type == QUOTED_WORD)
 	{
-		data->cmd = WORD;
+		data->cmd = &tmp->token;
 		tmp = tmp->next;
-		data->cmd_args = take_q_name(tmp->token);
+		// data->cmd_args = take_q_name(&*tmp);
 		tmp = tmp->next;
 	}
 }

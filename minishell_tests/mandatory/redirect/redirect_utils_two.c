@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:38:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 16:08:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:31:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	check_file_name(t_token *tokens)
 				temp = temp->next;
 		}
 		if (is_syntax_error(temp->type) && temp->type != 11 && temp->type != 23)
-		{
 			return (C_ERROR);
-		}
 		if (temp->type == WORD || temp->type == QUOTED_WORD)
 			break ;
 		temp = temp->next;
@@ -46,8 +44,11 @@ int	first_check(t_token *tokens)
 	check = 0;
 	while (temp)
 	{
-		if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
+		if ((temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT) && temp->next)
+		{
+			printf("%s", temp->next->token);
 			check += check_file_name(temp->next);
+		}
 		temp = temp->next;
 	}
 	return (check);

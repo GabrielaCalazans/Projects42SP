@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/24 17:52:09 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 18:58:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,19 @@ void	printlist(void *head, int check)
 		temp2 = (t_rdct *) head;
 		while (temp2 != NULL)
 		{
-			printf("NODE - redirect: %i file_name: %s, size str:%zu\n",
-				temp2->redirect, temp2->file, ft_strlen(temp2->file));
+			for (int i = 0; i < temp2->nbr_rdcts; i++)
+			{
+				printf("NODE%i - redirect_type: %i file_name: %s, size str:%zu\n", i,
+					temp2->redirects[i], temp2->files[i], ft_strlen(temp2->files[i]));
+			}
 			temp2 = temp2->next;
 		}
+		// while (temp2 != NULL)
+		// {
+		// 	printf("NODE - redirect: %i file_name: %s, size str:%zu\n",
+		// 		temp2->redirects, temp2->files, ft_strlen(temp2->files));
+		// 	temp2 = temp2->next;
+		// }
 	}
 	printf("\n");
 }

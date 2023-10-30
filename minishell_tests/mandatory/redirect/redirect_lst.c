@@ -6,26 +6,27 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:11:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 17:19:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:02:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // Func to create a new node
-t_rdct	*createnode_rdct(char **file, int *redirects, int rdcts)
+t_rdct	*createnode_rdct(char **files, int *redirects, int nbr_rdcts)
 {
 	t_rdct	*newnode;
 
 	newnode = (t_rdct *)malloc(sizeof(t_rdct));
 	if (!newnode)
 		perror("malloc");
-	newnode->file = ft_strdup(file);
-	newnode->redirect = redirects;
-	if (!newnode->redirect || !newnode->file)
+	newnode->files = files;
+	newnode->redirects = redirects;
+	newnode->nbr_rdcts = nbr_rdcts;
+	if (!newnode->redirects || !newnode->files)
 	{
 		perror("strdup");
-		free(newnode);
+		ft_clear_rdct(&newnode);
 		return (NULL);
 	}
 	newnode->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 17:28:37 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:05:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ typedef struct s_env
 
 typedef struct s_rdct
 {
-	int				*redirect;
+	int				nbr_rdcts;
+	int				*redirects;
 	char			**files;
 	struct s_rdct	*next;
 }				t_rdct;
@@ -153,8 +154,6 @@ int		is_r_bracket(char c);
 int		is_heredoc(char *str, int check);
 int		is_heredoc_case(t_data *data, int i);
 int		find_type(char *str);
-int		is_redirect(char c);
-int		find_type(char *str);
 char	*define_type(char *str);
 int		word_len(char *str);
 int		is_word_q(int check);
@@ -187,12 +186,13 @@ char	*get_name_quoted(t_token *tokens, char *name, int len);
 char	*word_case(t_token *tokens);
 
 // DEALING REDIRECT LIST
-t_rdct	*createnode_rdct(char *file, int redirect);
+t_rdct	*createnode_rdct(char **files, int *redirects, int nbr_rdcts);
 t_rdct	*ft_last_rdct(t_rdct *lst);
 void	ft_add_back_rdct(t_rdct **lst, t_rdct *new);
 void	ft_add_front_rdct(t_rdct **lst, t_rdct *new);
 void	ft_clear_rdct(t_rdct **lst);
 int		ft_size_rdct(t_rdct *lst);
+char	*take_q_name(t_token *tokens);
 
 // PARSE
 void	parsing_it(t_data *data);
