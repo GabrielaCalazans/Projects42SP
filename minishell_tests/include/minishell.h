@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 15:25:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:19:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,14 @@ typedef struct s_builtins {
 	void	(*built_in)(t_data *);
 }	t_builtins;
 
+typedef struct s_rd_params {
+	char	**files;
+	int		*redirects;
+	int		inside_pipe;
+	int		len;
+	int		i;
+}	t_rd_params;
+
 void	prompt(t_data *data);
 int		is_builtins(char *check);
 // void	call_builtins(t_data *ptr);
@@ -166,28 +174,31 @@ int		ft_size(t_token *lst);
 void	ft_clear_token(t_token **lst);
 
 // REDIRECT
-void	create_redirect_lst(t_data *data);
-t_token	*jump_white_spaces(t_token *tokens);
-int		has_another_quote(t_token *tokens, int type);
-int		has_redirect(t_token *tokens);
-void	ft_error_redirect(int error);
-int		is_syntax_error(int type);
-int		is_possible_error(int type);
-int		check_error(t_token *tokens);
-int		is_path(t_token *tokens);
-int		tilde_case(t_token *tokens);
-int		asterick_case(t_token *tokens);
-int		check_file_name(t_token *tokens);
-char	*take_q_name(t_token *tokens);
-char	*find_file_name(t_token *tokens);
-int		first_check(t_token *tokens);
-size_t	quoted_word_size(t_token *tokens, int len);
-char	*get_name_quoted(t_token *tokens, char *name, int len);
-char	*word_case(t_token *tokens);
-char	**freearray(char **array);
-char	**ft_strdup_array(char **array);
-int		*ft_intdup(int *array, int size);
-int		has_redirect_pipe(t_token *tokens);
+void		create_redirect_lst(t_data *data);
+t_token		*jump_white_spaces(t_token *tokens);
+int			has_another_quote(t_token *tokens, int type);
+int			has_redirect(t_token *tokens);
+int			has_redirect_pipe(t_token *tokens);
+int			has_pipe_yet(t_token *tokens);
+int			has_rdct_yet(t_token *tokens);
+void		ft_error_redirect(int error);
+int			is_syntax_error(int type);
+int			is_possible_error(int type);
+int			check_error(t_token *tokens);
+int			is_path(t_token *tokens);
+int			tilde_case(t_token *tokens);
+int			asterick_case(t_token *tokens);
+int			check_file_name(t_token *tokens);
+char		*take_q_name(t_token *tokens);
+char		*find_file_name(t_token *tokens);
+int			first_check(t_token *tokens);
+size_t		quoted_word_size(t_token *tokens, int len);
+char		*get_name_quoted(t_token *tokens, char *name, int len);
+char		*word_case(t_token *tokens);
+char		**freearray(char **array);
+char		**ft_strdup_array(char **array);
+int			*ft_intdup(int *array, int size);
+t_rd_params	*inicialize_rd_params(void);
 
 // DEALING REDIRECT LIST
 t_rdct	*createnode_rdct(char **files, int *redirects, int nbr_rdcts);

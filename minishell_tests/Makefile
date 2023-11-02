@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/11/01 13:59:42 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/11/02 19:17:31 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ TOKEN += token_lst.c token_lst_utils.c token_utils_four.c
 
 REDIRECT = redirect.c redirect_utils_two.c redirect_utils_one.c redirect_lst.c
 REDIRECT += redirect_lst_utils.c error_redirect.c error_redirect_utils.c
-REDIRECT += redirect_utils_three.c
+REDIRECT += redirect_utils_three.c redirect_utils_four.c
 
 LEXER = lexical.c
 

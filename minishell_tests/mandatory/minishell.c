@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 19:35:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:53:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	printlist(void *head, int check)
 	t_token	*temp1;
 	t_rdct	*temp2;
 	int		j;
+	int		i;
 
 	if (!head)
 	{
@@ -26,7 +27,7 @@ void	printlist(void *head, int check)
 	}
 	if (check == 1)
 	{
-		temp1 = (t_token *) head;
+		temp1 = (t_token *)head;
 		while (temp1 != NULL)
 		{
 			printf("NODE - token: %s type: %d\n", temp1->token, temp1->type);
@@ -35,14 +36,17 @@ void	printlist(void *head, int check)
 	}
 	else
 	{
-		temp2 = (t_rdct *) head;
+		temp2 = (t_rdct *)head;
 		j = 0;
 		while (temp2 != NULL)
 		{
-			for (int i = 0; i < temp2->nbr_rdcts; i++)
+			i = 0;
+			while (i < temp2->nbr_rdcts)
 			{
-				printf("NODE%i - redirect_type: %i file_name: %s, size str:%zu\n", j,
-					temp2->redirects[i], temp2->files[i], ft_strlen(temp2->files[i]));
+				printf("NODE %i - rdct: %i file: %s, size str:%zu\n", j,
+					temp2->redirects[i], temp2->files[i],
+					ft_strlen(temp2->files[i]));
+				i++;
 			}
 			j++;
 			temp2 = temp2->next;

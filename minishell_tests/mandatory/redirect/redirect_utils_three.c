@@ -6,33 +6,20 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:00:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 15:26:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:57:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*take_q_name(t_token *tokens)
-{
-	int		type;
-	char	*name;
-
-	type = find_type(tokens->token);
-	name = ft_strdup(tokens->token);
-	if (type == QUOTE_DOUBLE)
-		name = ft_strtrim(name, "\"");
-	if (type == QUOTE_SINGLE)
-		name = ft_strtrim(name, "\'");
-	return (name);
-}
-
 int	*ft_intdup(int *array, int size)
 {
 	int		*array_copy;
-	int		i = 0;
+	int		i;
 
 	if (array == NULL)
 		return (NULL);
+	i = 0;
 	array_copy = (int *)malloc(sizeof(int) * size);
 	if (array_copy == NULL)
 		return (NULL);
