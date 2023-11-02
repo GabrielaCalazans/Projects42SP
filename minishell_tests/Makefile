@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/10/26 13:08:21 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/11/01 13:59:42 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ SRCS = minishell.c prompt.c execution.c
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
 TOKEN += token_lst.c token_lst_utils.c token_utils_four.c
 
-REDIRECT = redirect.c redirect_utils_two.c redirect_utils.c redirect_lst.c
+REDIRECT = redirect.c redirect_utils_two.c redirect_utils_one.c redirect_lst.c
 REDIRECT += redirect_lst_utils.c error_redirect.c error_redirect_utils.c
+REDIRECT += redirect_utils_three.c
 
 LEXER = lexical.c
 

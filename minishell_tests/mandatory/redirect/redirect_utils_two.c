@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:38:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/30 19:31:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:56:57 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ int	first_check(t_token *tokens)
 	check = 0;
 	while (temp)
 	{
-		if ((temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT) && temp->next)
+		if ((temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT))
 		{
-			printf("%s", temp->next->token);
-			check += check_file_name(temp->next);
+			if (temp->next)
+			{
+				temp = temp->next;
+				check += check_file_name(temp);
+			}
 		}
 		temp = temp->next;
 	}

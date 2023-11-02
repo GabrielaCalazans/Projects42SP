@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/30 18:58:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:35:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ void	printlist(void *head, int check)
 {
 	t_token	*temp1;
 	t_rdct	*temp2;
+	int		j;
 
 	if (!head)
-		printf("EMPTY");
+	{
+		printf("EMPTY LIST\n");
+		return ;
+	}
 	if (check == 1)
 	{
 		temp1 = (t_token *) head;
@@ -32,21 +36,17 @@ void	printlist(void *head, int check)
 	else
 	{
 		temp2 = (t_rdct *) head;
+		j = 0;
 		while (temp2 != NULL)
 		{
 			for (int i = 0; i < temp2->nbr_rdcts; i++)
 			{
-				printf("NODE%i - redirect_type: %i file_name: %s, size str:%zu\n", i,
+				printf("NODE%i - redirect_type: %i file_name: %s, size str:%zu\n", j,
 					temp2->redirects[i], temp2->files[i], ft_strlen(temp2->files[i]));
 			}
+			j++;
 			temp2 = temp2->next;
 		}
-		// while (temp2 != NULL)
-		// {
-		// 	printf("NODE - redirect: %i file_name: %s, size str:%zu\n",
-		// 		temp2->redirects, temp2->files, ft_strlen(temp2->files));
-		// 	temp2 = temp2->next;
-		// }
 	}
 	printf("\n");
 }

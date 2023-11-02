@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect_utils.c                                   :+:      :+:    :+:   */
+/*   redirect_utils_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:10:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 14:36:31 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:25:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,20 @@ int	is_path(t_token *tokens)
 	t_token	*tmp;
 
 	tmp = tokens;
-	if (tmp->type == SLASH && tmp->next->type == WORD)
-		return (TRUE);
-	if (tmp->token[0] == '.' && tmp->next->type == SLASH)
+	if (tmp->next)
 	{
-		tmp = tmp->next;
-		if (tmp->next->type == WORD)
+		if (tmp->type == SLASH && tmp->next->type == WORD)
+			return (TRUE);
+		if (tmp->token[0] == '.' && tmp->next->type == SLASH)
+		{
+			tmp = tmp->next;
+			if (tmp->next->type == WORD)
+				return (TRUE);
+		}
+		tmp = tokens;
+		if (tmp->type == WORD && tmp->next->type == SLASH)
 			return (TRUE);
 	}
-	tmp = tokens;
-	if (tmp->type == WORD && tmp->next->type == SLASH)
-		return (TRUE);
 	return (FALSE);
 }
 
@@ -83,7 +86,8 @@ char	*word_case(t_token *tokens)
 	if (is_path(tokens))
 	{
 		result = ft_strdup(tmp->token);
-		tmp = tmp->next;
+		if (tmp->next)
+			tmp = tmp->next;
 		while (tmp)
 		{
 			if (tmp->type != SLASH && tmp->type != WORD)

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/30 19:05:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/01 15:25:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,12 +178,16 @@ int		is_path(t_token *tokens);
 int		tilde_case(t_token *tokens);
 int		asterick_case(t_token *tokens);
 int		check_file_name(t_token *tokens);
-char	*take_quoted_name(t_token *tokens, int len);
+char	*take_q_name(t_token *tokens);
 char	*find_file_name(t_token *tokens);
 int		first_check(t_token *tokens);
 size_t	quoted_word_size(t_token *tokens, int len);
 char	*get_name_quoted(t_token *tokens, char *name, int len);
 char	*word_case(t_token *tokens);
+char	**freearray(char **array);
+char	**ft_strdup_array(char **array);
+int		*ft_intdup(int *array, int size);
+int		has_redirect_pipe(t_token *tokens);
 
 // DEALING REDIRECT LIST
 t_rdct	*createnode_rdct(char **files, int *redirects, int nbr_rdcts);

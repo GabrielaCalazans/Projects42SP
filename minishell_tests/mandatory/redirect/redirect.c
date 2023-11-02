@@ -6,47 +6,28 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/30 19:01:07 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:27:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*take_quoted_name(t_token *tokens, int len)
+int	has_redirect_pipe(t_token *tokens)
 {
-	char	*name;
 	t_token	*temp;
-	size_t	word_size;
+	int		redirects;
 
-	temp = tokens->next;
-	if (!has_another_quote(tokens, tokens->type))
+	temp = tokens;
+	redirects = 0;
+	while (temp)
 	{
-		ft_error_redirect(2);
-		return (NULL);
+		if (temp->type == 1 || temp->type == 2)
+			redirects++;
+		if (temp->type == PIPE)
+			break ;
+		temp = temp->next;
 	}
-	word_size = quoted_word_size(temp, len);
-	name = ft_strdup(temp->token);
-	name = get_name_quoted(temp, name, len);
-	if (ft_strlen(name) != word_size)
-	{
-		ft_error_redirect(3);
-		return (NULL);
-	}
-	return (name);
-}
-
-char	*take_q_name(t_token *tokens)
-{
-	int		type;
-	char	*name;
-
-	type = find_type(tokens->token);
-	name = ft_strdup(tokens->token);
-	if (type == QUOTE_DOUBLE)
-		name  = ft_strtrim(name, "\"");
-	if (type == QUOTE_SINGLE)
-		name  = ft_strtrim(name, "\'");
-	return (name);
+	return (redirects);
 }
 
 char	*find_file_name(t_token *tokens)
@@ -103,30 +84,46 @@ char	*find_file_name(t_token *tokens)
 // 	printlist(data->rdct, 2);
 // }
 
-int	has_redirect_pipe(t_token *tokens)
-{
-	t_token	*temp;
-	int		redirects;
-
-	temp = tokens;
-	redirects = 0;
-	while (temp)
-	{
-		if (temp->type == 1 || temp->type == 2)
-			redirects++;
-		if (temp->type == PIPE)
-			break ;
-		temp = temp->next;
-	}
-	return (redirects);
-}
-
 void	sub_create_redirect_lst(t_data *data, char **files, int *redirects, int len)
 {
 	t_rdct	*newnode;
 
 	newnode = createnode_rdct(files, redirects, len);
 	ft_add_back_rdct(&data->rdct, newnode);
+}
+
+int	has_pipe_yet(t_token *tokens)
+{
+	t_token	*tmp;
+	int		check;
+
+	tmp = tokens;
+	check = 0;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			check++;
+		tmp = tmp->next;
+	}
+	return (check);
+}
+
+int	has_rdct_yet(t_token *tokens)
+{
+	t_token	*tmp;
+	int		check;
+
+	tmp = tokens;
+	check = 0;
+	while (tmp)
+	{
+		if (tmp->type == REDIRECT_IN || tmp->type == REDIRECT_OUT)
+			check++;
+		if (tmp->type == PIPE)
+			break ;
+		tmp = tmp->next;
+	}
+	return (check);
 }
 
 void	create_redirect_lst(t_data *data)
@@ -136,46 +133,65 @@ void	create_redirect_lst(t_data *data)
 	int		*redirects;
 	int		inside_pipe;
 	int		len;
+	int		i;
 
+	i = 0;
+	inside_pipe = 0;
+	redirects = NULL;
+	files = NULL;
 	if (first_check(data->tokens))
 	{
 		ft_error_redirect(C_ERROR);
 		return ;
 	}
 	temp = data->tokens;
-	len = 0;
-	inside_pipe = 0;
-	redirects = malloc(sizeof (int) * (has_redirect_pipe(data->tokens) + 1));
-	files = malloc(sizeof (char *) * (has_redirect_pipe(data->tokens) + 1));
+	len = has_rdct_yet(temp);
 	while (temp)
 	{
-		if (temp->type == PIPE)
+		if ((temp->type == PIPE || !has_pipe_yet(temp)) && !has_rdct_yet(temp))
 		{
-			// Move the redirects to a new node and add it to the list
-			inside_pipe = 1;
-			files[len] = NULL;
-			len = 0;
+			files[i] = NULL;
 			sub_create_redirect_lst(data, files, redirects, len);
+			inside_pipe = 1;
 		}
-		else if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
+		if (inside_pipe == 1)
 		{
-			// Add the redirect to the current pipe's list
-			redirects[len] = temp->type;
-			files[len] = find_file_name(&*temp);
-			len++;
-		}
-		if (inside_pipe)
-		{
-			free(files);
+			if (len > 0)
+				files = freearray(files);
 			free(redirects);
-			if (temp->next)
-			{
-				redirects = malloc(sizeof (int) * (has_redirect_pipe(temp->next) + 1));
-				files = malloc(sizeof (char *) * (has_redirect_pipe(temp->next) + 1));
-			}
+			redirects = NULL;
+			files = NULL;
+			len = has_rdct_yet(temp->next);
+			if (len < 1)
+				break ;
+			i = 0;
 			inside_pipe = 0;
+		}
+		if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT)
+		{
+			if (inside_pipe == 0)
+			{
+				redirects = malloc(sizeof (int) * (len + 1));
+				files = malloc(sizeof (char **) * (len + 1));
+				if (!redirects || !files)
+				{
+					printf("Error malloc: create_redirect_lst 1");
+					return ;
+				}
+				inside_pipe = 3;
+			}
+			if (i < len)
+			{
+				redirects[i] = temp->type;
+				files[i] = find_file_name(temp->next);
+				i++;
+			}
 		}
 		temp = temp->next;
 	}
+	if (redirects)
+		free(redirects);
+	if (files)
+		files = freearray(files);
 	printlist(data->rdct, 2);
 }
