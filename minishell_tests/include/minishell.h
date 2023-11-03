@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/02 19:19:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/02 20:41:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ char	*take_q_name(t_token *tokens);
 
 // PARSE
 void	parsing_it(t_data *data);
-void	move_token(t_data *data);
+void	move_tokens(t_data *data, int type);
 
 // LEXER
 int		lexer(t_data *data);

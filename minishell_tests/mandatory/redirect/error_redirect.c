@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/31 16:33:21 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/02 20:45:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_error_redirect(int error)
 		printf("quoted error\n");
 	else if (error == 4)
 		printf("redirect file name error\n");
+	else if (error == 5)
+		printf("moving TOKENS error\n");
 	else
 	{
 		printf("undefined error\n");

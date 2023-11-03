@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 21:49:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:19:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,76 @@
 // 	data->tokens = head;
 // }
 
-// void	move_token(t_data *data)
+// t_token	*jump_word(t_token *tokens)
 // {
-// 	int	type;
 // 	t_token	*tmp;
 
-// 	tmp = data->tokens->next;
+// 	tmp = tokens;
+// 	if (is_path(tokens))
+// 	{
+// 		if (tmp->next)
+// 			tmp = tmp->next;
+// 		while (tmp)
+// 		{
+// 			if (tmp->type != SLASH && tmp->type != WORD)
+// 				break ;
+// 			tmp = tmp->next;
+// 		}
+// 		return (tmp);
+// 	}
+// 	return (tmp);
+// }
+
+// void	process_rdct_move(t_data *data, t_token *tmp, t_token *prev, int type)
+// {
+// 	t_token	*temp;
+
+// 	temp = data->tokens;
+// 	while (tmp)
+// 	{
+// 		if (tmp->type == C_SPACE || tmp->type == H_TAB)
+// 		{
+// 			while (tmp->type == C_SPACE || temp->type == H_TAB)
+// 				tmp = tmp->next;
+// 		}
+// 		if (tmp->type == QUOTED_WORD)
+// 		{
+// 			tmp = tmp->next;
+// 		}
+// 		if (tmp->type == WORD || tmp->type == SLASH)
+// 		{
+// 			tmp = jump_word(tmp);
+// 		}
+// 	}
+// 	ft_error_redirect(5);
+// }
+
+// void	check_move(t_data *data, t_token *tmp, t_token *prev, int type)
+// {
+// 	if (type == REDIRECT_IN || type == REDIRECT_OUT)
+// 		process_rdct_move(data, tmp, prev, type);
+// }
+
+// void	move_tokens(t_data *data, int type)
+// {
+// 	t_token	*tmp;
+// 	t_token	*prev;
+
+// 	tmp = data->tokens;
+// 	prev = data->tokens;
 // 	if (!tmp)
 // 		return ;
 // 	tmp = jump_white_spaces(tmp);
-// 	type = 0;
-// 	if (tmp->type == QUOTE_DOUBLE || tmp->type == QUOTE_SINGLE)
+// 	while(tmp)
 // 	{
-// 		type = tmp->type;
-// 		if (has_another_quote(tmp, type))
-// 		{
-// 			while (has_another_quote(tmp, type) > 0)
-// 				tmp = tmp->next;
-// 			if (tmp->type == type)
-// 				tmp = tmp->next;
-// 		}
+// 		if (tmp->type == type)
+// 			check_move(data, tmp, prev, type);
+// 		tmp = tmp->next;
+// 		prev = tmp->prev;
 // 	}
-// 	else if (tmp->type  == WORD || tmp->type == SLASH)
-// 	{
-// 		if (is_path(tmp))
-// 		{
-// 			while (tmp)
-// 			{
-// 				if (tmp->type != SLASH && tmp->type != WORD)
-// 					break ;
-// 				tmp = tmp->next;
-// 			}
-// 		}
-// 	}
-// 	move_token_cont(data, tmp);
 // }
 
-		// data->cmd_args = take_q_name(&*tmp);
+// data->cmd_args = take_q_name(&*tmp);
 void	parsing_it(t_data *data)
 {
 	t_token	*tmp;
