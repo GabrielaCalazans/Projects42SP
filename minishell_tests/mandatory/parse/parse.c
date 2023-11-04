@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/02 21:19:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:17:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,80 +30,129 @@
 
 // t_token	*jump_word(t_token *tokens)
 // {
-// 	t_token	*tmp;
-
-// 	tmp = tokens;
+// 	printf("CHEGUEI AQUI3");
+// 	if (tokens == NULL)
+// 		return (NULL);
 // 	if (is_path(tokens))
 // 	{
-// 		if (tmp->next)
-// 			tmp = tmp->next;
-// 		while (tmp)
+// 		if (tokens->next)
+// 			tokens = tokens->next;
+// 		while (tokens)
 // 		{
-// 			if (tmp->type != SLASH && tmp->type != WORD)
+// 			if (tokens->type != SLASH && tokens->type != WORD)
 // 				break ;
-// 			tmp = tmp->next;
+// 			tokens = tokens->next;
 // 		}
-// 		return (tmp);
+// 		return (tokens);
 // 	}
-// 	return (tmp);
+// 	return (tokens);
 // }
 
-// void	process_rdct_move(t_data *data, t_token *tmp, t_token *prev, int type)
+// void	process_rdct_move(t_token *tmp, t_token *prev, t_token *current)
 // {
-// 	t_token	*temp;
-
-// 	temp = data->tokens;
 // 	while (tmp)
 // 	{
 // 		if (tmp->type == C_SPACE || tmp->type == H_TAB)
 // 		{
-// 			while (tmp->type == C_SPACE || temp->type == H_TAB)
+// 			while (tmp->type == C_SPACE || tmp->type == H_TAB)
 // 				tmp = tmp->next;
 // 		}
 // 		if (tmp->type == QUOTED_WORD)
 // 		{
 // 			tmp = tmp->next;
+// 			break ;
 // 		}
 // 		if (tmp->type == WORD || tmp->type == SLASH)
 // 		{
 // 			tmp = jump_word(tmp);
+// 			break ;
+// 		}
+// 		else
+// 			break ;
+// 	}
+// 	if (tmp)
+// 	{
+// 		while (tmp)
+// 		{
+// 			current = tmp;
+// 			ft_add_back(&prev, current);
+// 			prev->next = NULL;
+// 			tmp = tmp->next;
 // 		}
 // 	}
-// 	ft_error_redirect(5);
+// 	// printlist(tmp, 1);
+// 	printf("PREV");
+// 	printlist(prev, 1);
+// 	return ;
 // }
 
-// void	check_move(t_data *data, t_token *tmp, t_token *prev, int type)
+// void	check_move(t_token *tmp, t_token *prev, int type, t_token *current)
 // {
+// 	printf("CHEGUEI AQUI2");
 // 	if (type == REDIRECT_IN || type == REDIRECT_OUT)
-// 		process_rdct_move(data, tmp, prev, type);
+// 		process_rdct_move(tmp, prev, current);
 // }
 
 // void	move_tokens(t_data *data, int type)
 // {
 // 	t_token	*tmp;
 // 	t_token	*prev;
+// 	t_token	*current;
 
 // 	tmp = data->tokens;
-// 	prev = data->tokens;
+// 	printf("cheguei aqui %s\t%i\n", tmp->token, tmp->type);
+// 	prev = NULL;
 // 	if (!tmp)
 // 		return ;
 // 	tmp = jump_white_spaces(tmp);
 // 	while(tmp)
 // 	{
+// 		printf("cheguei aqui %s\t%i", tmp->token, tmp->type);
 // 		if (tmp->type == type)
-// 			check_move(data, tmp, prev, type);
-// 		tmp = tmp->next;
-// 		prev = tmp->prev;
+// 		{
+// 			check_move(tmp, prev, type, current);
+// 		}
+// 		printf("cheguei aqui %s\t%i", tmp->token, tmp->type);
+// 		if (tmp)
+// 		{
+// 			current = tmp;
+// 			ft_add_back(&prev, current);
+// 			prev->next = NULL;
+// 			// printlist(prev, 1);
+// 			tmp = tmp->next;
+// 		}
+// 		printf("cheguei aqui %s\t%i", tmp->token, tmp->type);
+// 		// tmp = tmp->next;
 // 	}
 // }
 
 // data->cmd_args = take_q_name(&*tmp);
+
+char	**get_all_words(t_token *tokens)
+{
+	t_token	*tmp;
+	char	**all_words;
+	int		check;
+	int		pipes;
+
+	check = 0;
+	pipes = has_pipe_yet(tokens);
+	if (has_redirect_pipe(tokens))
+		check = 1;
+	if (has_d_redirec_p(tokens))
+		check += 2;
+	while(tmp)
+	{
+		if ()
+	}
+}
+
 void	parsing_it(t_data *data)
 {
 	t_token	*tmp;
 
 	tmp = data->tokens;
-	if (tmp->type == WORD && tmp->next->type == QUOTED_WORD)
+	if (tmp->type == WORD && tmp->next && tmp->next->type == QUOTED_WORD)
 	{
 		data->cmd = &tmp->token;
 		tmp = tmp->next;
