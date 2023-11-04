@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/03 21:17:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:50:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,24 +128,40 @@
 
 // data->cmd_args = take_q_name(&*tmp);
 
-char	**get_all_words(t_token *tokens)
-{
-	t_token	*tmp;
-	char	**all_words;
-	int		check;
-	int		pipes;
+// char	**case_redirec_only(t_token *tokens, int pipes)
+// {
+// 	t_token	*tmp;
 
-	check = 0;
-	pipes = has_pipe_yet(tokens);
-	if (has_redirect_pipe(tokens))
-		check = 1;
-	if (has_d_redirec_p(tokens))
-		check += 2;
-	while(tmp)
-	{
-		if ()
-	}
-}
+// 	tmp = tokens;
+// 	while (tmp)
+// 	{
+// 		if (tmp->type == PIPE)
+// 			break ;
+// 		if (tmp->token == WORD)
+// 	}
+// }
+
+// char	**get_all_words(t_token *tokens)
+// {
+
+// 	char	**all_words;
+// 	int		check;
+// 	int		pipes;
+
+// 	check = 0;
+// 	pipes = has_pipe_yet(tokens);
+// 	if (has_redirect_pipe(tokens))
+// 		check = 1;
+// 	if (has_d_redirec_p(tokens))
+// 		check += 2;
+// 	if (check == 1)
+// 		all_words = fazafunçaõquepegapalavrasemosredirect;
+// 	if (check == 2)
+// 		all_words = fazafunçaõquepegapalavrasemosdoubleredirect;
+// 	if (check == 3)
+// 		all_words = fazafunçaõquepegapalavrasemosodoistrecos;
+// 	return (all_words);
+// }
 
 void	parsing_it(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/27 18:20:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/04 15:57:57 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	prompt(t_data *data)
 		if (data->prompt_in[0] != '\0')
 		{
 			add_history(data->prompt_in);
-			printf("prompt %s\n", data->prompt_in);
+			printf("PROMPT: %s\n", data->prompt_in);
 		}
 		data->cmd = ft_split(data->prompt_in, ' ');
 		if (data->prompt_in[0] != '\0')

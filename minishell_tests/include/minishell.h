@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/02 20:41:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:39:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ int			has_rdct_yet(t_token *tokens);
 void		ft_error_redirect(int error);
 int			is_syntax_error(int type);
 int			is_possible_error(int type);
+int			is_special_case(int type, int check);
 int			check_error(t_token *tokens);
 int			is_path(t_token *tokens);
 int			tilde_case(t_token *tokens);
