@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_utils_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:10:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/04 19:47:46 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:28:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,18 @@ char	*word_case(t_token *tokens)
 	char	*result;
 
 	tmp = tokens;
-	if (is_path(tokens))
-	{
 		result = ft_strdup(tmp->token);
 		if (tmp->next)
 			tmp = tmp->next;
+		else
+			return (result);
 		while (tmp)
 		{
 			if (tmp->type != SLASH && tmp->type != WORD
-				&& is_special_case(tmp->type, 2))
+				&& is_special_case(tmp->type, 3))
 				break ;
 			result = ft_strjoin(result, tmp->token);
 			tmp = tmp->next;
 		}
 		return (result);
-	}
-	return (ft_strdup(tokens->token));
 }

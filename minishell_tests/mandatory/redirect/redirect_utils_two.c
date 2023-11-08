@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_utils_two.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:38:24 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/04 19:38:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:32:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	check_file_name(t_token *tokens)
 		}
 		if (is_syntax_error(temp->type) && is_special_case(temp->type, 1))
 			return (C_ERROR);
-		if (temp->type == WORD || temp->type == QUOTED_WORD)
+		if (temp->type == WORD || temp->type == QUOTED_WORD
+			|| is_special_case(temp->type, 2))
 			break ;
 		temp = temp->next;
 	}

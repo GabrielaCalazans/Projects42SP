@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:31:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/02 20:45:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:54:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ int	is_possible_error(int type)
 
 int	check_error(t_token *tokens)
 {
-	int		current;
 	t_token	*temp;
 
-	current = tokens->type;
 	temp = tokens->next;
 	while (temp)
 	{

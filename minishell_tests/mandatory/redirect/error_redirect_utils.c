@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_redirect_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:48:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/04 19:49:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:13:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ int	is_special_case(int type, int check)
 	}
 	if (check == 2)
 	{
-		if (type != 6 && type != 4)
+		if (type == QUESTION || type == FLAG)
+			return (TRUE);
+	}
+	if (check == 3)
+	{
+		if (type != QUESTION && type != FLAG)
 			return (TRUE);
 	}
 	return (FALSE);
