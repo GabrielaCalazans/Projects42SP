@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 15:38:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:55:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,19 @@ t_token	*create_word_token(char *str, int len, int check)
 	return (newnode);
 }
 
+	// if (find_type(&str[0]) == 12 || find_type(&str[0]) == 13)
 t_token	*create_token(char *str)
 {
 	t_token	*newnode;
 	char	*token;
 	int		type;
-	int		i;
 	int		len;
 
-	i = 0;
 	len = 1;
-	if (find_type(&str[i]) == 12 || find_type(&str[i]) == 13)
+	if (is_hd_c(str) || is_e_c(str))
 		len += 1;
 	token = ft_substr(str, 0, len);
-	type = find_type(&str[i]);
+	type = find_type(&str[0]);
 	newnode = createnode(token, type);
 	return (newnode);
 }
@@ -101,7 +100,7 @@ void	sub_start_tokens(t_data *data, t_token *newnode, int check, int i)
 		{
 			if (sub_creating_token(data, newnode, check, i))
 				break ;
-			if (is_heredoc_case(data, i))
+			if (is_hd_c(&data->prompt_in[i]) || is_e_c(&data->prompt_in[i]))
 				i += 2;
 			else
 				i++;

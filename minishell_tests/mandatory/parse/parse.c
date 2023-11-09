@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/08 17:39:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:37:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,12 +210,8 @@ char	**get_all_words(t_token *tokens)
 	char	**all_words;
 	int		check;
 	int		pipes;
-	int		i;
-	int		nwords;
 
-	i = 0;
 	check = 0;
-	nwords = 0;
 	pipes = has_pipe_yet(tokens);
 	all_words = NULL;
 	if (has_redirect_pipe(tokens))
@@ -223,10 +219,9 @@ char	**get_all_words(t_token *tokens)
 	if (has_d_redirec_p(tokens))
 		check += 2;
 	if (check == 0)
-	{
-		nwords = nb_words(tokens);
-		all_words = get_words(tokens, nwords);
-	}
+		all_words = get_words(tokens, nb_words(tokens));
+	// if (check == 1)
+	// 	all_words = fazafunçaõquepegapalavracomredirect;
 	// if (check == 2)
 	// 	all_words = fazafunçaõquepegapalavrasemosdoubleredirect;
 	// if (check == 3)
@@ -243,8 +238,8 @@ void	parsing_it(t_data *data)
 
 	i = 0;
 	all_words = get_all_words(data->tokens);
-	data->cmd = ft_strdup_array(all_words);
-	while (data->cmd[i] != NULL)
+	// data->cmd = ft_strdup_array(all_words);
+	while (all_words[i] != NULL)
 	{
 		printf("string[%i]: %s\n", i, all_words[i]);
 		i++;

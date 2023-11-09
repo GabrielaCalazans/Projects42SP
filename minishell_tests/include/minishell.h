@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/04 19:39:44 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:02:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define TILDE			21
 # define H_TAB			22
 # define QUOTED_WORD	23
+# define EXIT_STATUS	24
 # define C_ERROR		1
 # define C_SUCCESS		0
 
@@ -111,71 +112,73 @@ typedef struct s_builtins {
 	void	(*built_in)(t_data *);
 }	t_builtins;
 
-typedef struct s_rd_params {
+typedef struct s_params {
 	char	**files;
 	int		*redirects;
 	int		inside_pipe;
 	int		len;
 	int		i;
-}	t_rd_params;
+}	t_params;
 
-void	prompt(t_data *data);
-int		is_builtins(char *check);
+void		prompt(t_data *data);
+int			is_builtins(char *check);
 // void	call_builtins(t_data *ptr);
 
 //utils
-void	ft_clean_lst(char **lst);
+void		ft_clean_lst(char **lst);
 
 //builtins
-int		exec_builtin(t_data *data);
-void	ft_cd(t_data *data);
-void	ft_echo(t_data *data);
-void	ft_env(t_data *data);
-void	ft_exit(t_data *data);
-void	ft_export(t_data *data);
-void	ft_pwd(t_data *data);
-void	ft_unset(t_data *data);
+int			exec_builtin(t_data *data);
+void		ft_cd(t_data *data);
+void		ft_echo(t_data *data);
+void		ft_env(t_data *data);
+void		ft_exit(t_data *data);
+void		ft_export(t_data *data);
+void		ft_pwd(t_data *data);
+void		ft_unset(t_data *data);
 
 //env
-t_env	*create_list(char *str);
-t_env	*node_last(t_env *list);
-void	linkar(t_env **lista, t_env *current);
-void	link_end(t_env **list, t_env *current);
-void	create_env(t_data **data, char **envp);
+t_env		*create_list(char *str);
+t_env		*node_last(t_env *list);
+void		linkar(t_env **lista, t_env *current);
+void		link_end(t_env **list, t_env *current);
+void		create_env(t_data **data, char **envp);
 
 //EXECUTION
-void	execution(t_data *data);
-void	set_path_command(t_data *data);
+void		execution(t_data *data);
+void		set_path_command(t_data *data);
 
 // TOKENS
-void	start_token(t_data *data);
-int		is_redirect(char c);
-int		is_pipe(char c);
-int		is_flag(char c);
-int		is_slash(char c);
-int		is_questionmark(char c);
-int		is_dollar(char c);
-int		is_quote(char c);
-int		is_space(char c);
-int		is_special_char(char c);
-int		is_r_bracket(char c);
-int		is_heredoc(char *str, int check);
-int		is_heredoc_case(t_data *data, int i);
-int		find_type(char *str);
-char	*define_type(char *str);
-int		word_len(char *str);
-int		is_word_q(int check);
-int		qword_len(char *str, int type);
+void		start_token(t_data *data);
+int			is_redirect(char c);
+int			is_pipe(char c);
+int			is_flag(char c);
+int			is_slash(char c);
+int			is_questionmark(char c);
+int			is_dollar(char *str);
+int			is_quote(char c);
+int			is_space(char c);
+int			is_special_char(char c);
+int			is_r_bracket(char c);
+int			is_heredoc(char *str, int check);
+int			is_hd_c(char *str);
+int			is_e_c(char *str);
+int			find_type(char *str);
+char		*define_type(char *str);
+int			word_len(char *str);
+int			is_word_q(int check);
+int			qword_len(char *str, int type);
 
 // DEALING TOKEN LIST
-t_token	*createnode(char *token, int type);
-void	ft_add_back(t_token **lst, t_token *new);
-int		ft_size(t_token *lst);
-void	ft_clear_token(t_token **lst);
+t_token		*createnode(char *token, int type);
+void		ft_add_back(t_token **lst, t_token *new);
+int			ft_size(t_token *lst);
+void		ft_clear_token(t_token **lst);
 
 // REDIRECT
-void		create_redirect_lst(t_data *data);
+t_params	*inicialize_rd_params(void);
 t_token		*jump_white_spaces(t_token *tokens);
+void		create_redirect_lst(t_data *data);
 int			has_another_quote(t_token *tokens, int type);
 int			has_redirect(t_token *tokens);
 int			has_redirect_pipe(t_token *tokens);
@@ -199,28 +202,28 @@ char		*word_case(t_token *tokens);
 char		**freearray(char **array);
 char		**ft_strdup_array(char **array);
 int			*ft_intdup(int *array, int size);
-t_rd_params	*inicialize_rd_params(void);
+void		*return_error(void);
 
 // DEALING REDIRECT LIST
-t_rdct	*createnode_rdct(char **files, int *redirects, int nbr_rdcts);
-t_rdct	*ft_last_rdct(t_rdct *lst);
-void	ft_add_back_rdct(t_rdct **lst, t_rdct *new);
-void	ft_add_front_rdct(t_rdct **lst, t_rdct *new);
-void	ft_clear_rdct(t_rdct **lst);
-int		ft_size_rdct(t_rdct *lst);
-char	*take_q_name(t_token *tokens);
+t_rdct		*createnode_rdct(char **files, int *redirects, int nbr_rdcts);
+t_rdct		*ft_last_rdct(t_rdct *lst);
+void		ft_add_back_rdct(t_rdct **lst, t_rdct *new);
+void		ft_add_front_rdct(t_rdct **lst, t_rdct *new);
+void		ft_clear_rdct(t_rdct **lst);
+int			ft_size_rdct(t_rdct *lst);
+char		*take_q_name(t_token *tokens);
 
 // PARSE
-void	parsing_it(t_data *data);
-void	move_tokens(t_data *data, int type);
+void		parsing_it(t_data *data);
+void		move_tokens(t_data *data, int type);
 
 // LEXER
-int		lexer(t_data *data);
+int			lexer(t_data *data);
 
 // PRINT LIST
-void	printlist(void *head, int check);
+void		printlist(void *head, int check);
 
 // CLEAR DATA
-void	ft_clear_data(t_data *data);
+void		ft_clear_data(t_data *data);
 
 #endif

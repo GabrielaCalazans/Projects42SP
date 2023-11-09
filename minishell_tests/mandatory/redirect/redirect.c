@@ -6,13 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:08:47 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/03 20:46:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:00:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	finalizepipe(t_data *data, t_rd_params *ptr)
+void	finalizepipe(t_data *data, t_params *ptr)
 {
 	t_rdct	*newnode;
 
@@ -20,7 +20,7 @@ void	finalizepipe(t_data *data, t_rd_params *ptr)
 	ft_add_back_rdct(&data->rdct, newnode);
 }
 
-void	processclean(t_token *temp, t_rd_params *ptr)
+void	processclean(t_token *temp, t_params *ptr)
 {
 	if (ptr->len > 0)
 		ptr->files = freearray(ptr->files);
@@ -32,7 +32,7 @@ void	processclean(t_token *temp, t_rd_params *ptr)
 	ptr->len = has_rdct_yet(temp->next);
 }
 
-void	processredirect(t_token *temp, t_rd_params *ptr)
+void	processredirect(t_token *temp, t_params *ptr)
 {
 	if (ptr->inside_pipe == 0)
 	{
@@ -53,7 +53,7 @@ void	processredirect(t_token *temp, t_rd_params *ptr)
 	}
 }
 
-void	processtoken(t_data *data, t_token *temp, t_rd_params *ptr)
+void	processtoken(t_data *data, t_token *temp, t_params *ptr)
 {
 	ptr->len = has_rdct_yet(temp);
 	while (temp)
@@ -79,7 +79,7 @@ void	processtoken(t_data *data, t_token *temp, t_rd_params *ptr)
 void	create_redirect_lst(t_data *data)
 {
 	t_token		*temp;
-	t_rd_params	*params;
+	t_params	*params;
 
 	if (first_check(data->tokens))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_utils_four.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 19:16:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/07 21:52:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:00:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,12 @@ int	has_redirect_pipe(t_token *tokens)
 }
 
 char	*find_file_name(t_token *tokens)
-{	
+{
 	t_token	*temp;
 
 	temp = tokens;
 	if (check_file_name(tokens))
-	{
-		ft_error_redirect(4);
-		return (NULL);
-	}
+		return_error();
 	while (temp)
 	{
 		if (temp->type == C_SPACE || temp->type == H_TAB)
@@ -49,6 +46,8 @@ char	*find_file_name(t_token *tokens)
 		}
 		if (temp->type == QUOTED_WORD)
 			return (take_q_name(temp));
+		if (temp->type == EXIT_STATUS)
+			return (ft_strdup("0"));
 		if (temp->type == WORD || temp->type == SLASH
 			|| is_special_case(temp->type, 2))
 			return (word_case(temp));
@@ -93,11 +92,11 @@ int	has_rdct_yet(t_token *tokens)
 }
 
 // Handle the error appropriately
-t_rd_params	*inicialize_rd_params(void)
+t_params	*inicialize_rd_params(void)
 {
-	t_rd_params	*params;
+	t_params	*params;
 
-	params = (t_rd_params *)malloc(sizeof(t_rd_params));
+	params = (t_params *)malloc(sizeof(t_params));
 	if (!params)
 	{
 		printf("Error malloc: initialize_rd_params");
