@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 16:37:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 21:39:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // void	move_token_cont(t_data *data, t_token *newlist)
 // {
 // 	t_token	*head;
-
 // 	head = data->tokens;
 // 	while (head->next != NULL)
 // 	{
@@ -27,7 +26,6 @@
 // 	head->next = newlist;
 // 	data->tokens = head;
 // }
-
 // t_token	*jump_word(t_token *tokens)
 // {
 // 	printf("CHEGUEI AQUI3");
@@ -47,7 +45,6 @@
 // 	}
 // 	return (tokens);
 // }
-
 // void	process_rdct_move(t_token *tmp, t_token *prev, t_token *current)
 // {
 // 	while (tmp)
@@ -85,20 +82,17 @@
 // 	printlist(prev, 1);
 // 	return ;
 // }
-
 // void	check_move(t_token *tmp, t_token *prev, int type, t_token *current)
 // {
 // 	printf("CHEGUEI AQUI2");
 // 	if (type == REDIRECT_IN || type == REDIRECT_OUT)
 // 		process_rdct_move(tmp, prev, current);
 // }
-
 // void	move_tokens(t_data *data, int type)
 // {
 // 	t_token	*tmp;
 // 	t_token	*prev;
 // 	t_token	*current;
-
 // 	tmp = data->tokens;
 // 	printf("cheguei aqui %s\t%i\n", tmp->token, tmp->type);
 // 	prev = NULL;
@@ -125,13 +119,10 @@
 // 		// tmp = tmp->next;
 // 	}
 // }
-
 // data->cmd_args = take_q_name(&*tmp);
-
 // char	**case_redirec_only(t_token *tokens, int pipes)
 // {
 // 	t_token	*tmp;
-
 // 	tmp = tokens;
 // 	while (tmp)
 // 	{
@@ -141,72 +132,8 @@
 // 	}
 // }
 
-
-int	has_d_redirec_p(t_token *tokens)
-{
-	t_token	*temp;
-	int		r_rdrcts;
-
-	temp = tokens;
-	r_rdrcts = 0;
-	while (temp)
-	{
-		if (temp->type == HEREDOC || temp->type == APPEND)
-			r_rdrcts++;
-		if (temp->type == PIPE)
-			break ;
-		temp = temp->next;
-	}
-	return (r_rdrcts);
-}
-
-int	nb_words(t_token *tokens)
-{
-	t_token	*temp;
-	int		words;
-
-	temp = tokens;
-	words = 0;
-	while (temp && temp->type != PIPE)
-	{
-		if (temp->type == WORD)
-			words++;
-		temp = temp->next;
-	}
-	return (words);
-}
-
-char	**get_words(t_token *tokens, int len)
-{
-	t_token	*temp;
-	int		i;
-	char	**words;
-
-	i = 0;
-	temp = tokens;
-	words = malloc(sizeof(char **) * (len + 1));
-	if (!words)
-	{
-		printf("erro malloc.\n");
-		return (NULL);
-	}
-	while (temp)
-	{
-		if (temp->type == WORD || is_special_case(temp->type, 2)
-			|| temp->type == QUOTED_WORD)
-		{
-			words[i] = ft_strdup(temp->token);
-			i++;
-		}
-		temp = temp->next;
-	}
-	words[i] = NULL;
-	return (words);
-}
-
 char	**get_all_words(t_token *tokens)
 {
-
 	char	**all_words;
 	int		check;
 	int		pipes;
@@ -220,14 +147,14 @@ char	**get_all_words(t_token *tokens)
 		check += 2;
 	if (check == 0)
 		all_words = get_words(tokens, nb_words(tokens));
-	// if (check == 1)
-	// 	all_words = fazafunçaõquepegapalavracomredirect;
+	if (check == 1)
+		all_words = get_words_r(tokens);
 	// if (check == 2)
 	// 	all_words = fazafunçaõquepegapalavrasemosdoubleredirect;
 	// if (check == 3)
 	// 	all_words = fazafunçaõquepegapalavrasemosodoistrecos;
 	if (!all_words)
-		printf ("DEU RUIM.\n");
+		ft_error_parse(2);
 	return (all_words);
 }
 

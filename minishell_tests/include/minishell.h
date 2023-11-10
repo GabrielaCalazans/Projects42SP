@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 17:02:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:42:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,13 @@ char		*take_q_name(t_token *tokens);
 
 // PARSE
 void		parsing_it(t_data *data);
-void		move_tokens(t_data *data, int type);
+char		**get_words(t_token *tokens, int len);
+int			has_d_redirec_p(t_token *tokens);
+void		*ft_error_parse(int error);
+int			is_word(int type, int check);
+int			is_rd_case(int type);
+int			nb_words(t_token *tokens);
+char		**get_words_r(t_token *tokens);
 
 // LEXER
 int			lexer(t_data *data);
