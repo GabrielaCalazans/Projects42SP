@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 21:59:35 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 14:58:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 21:17:46 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int	is_quote(char c)
 int	is_space(char c)
 {
 	if (c == ' ')
-		return (SPACE);
+		return (C_SPACE);
+	if (c == '\t')
+		return (H_TAB);
 	return (0);
 }
 
