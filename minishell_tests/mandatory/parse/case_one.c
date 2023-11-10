@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_drandwords.c                                 :+:      :+:    :+:   */
+/*   case_one.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 22:05:41 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 22:14:59 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/11/09 17:35:31 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/11/10 20:40:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// fun to jump double redirect's file name
-t_token	*move_drd(t_token *tokens)
+// fun to jump redirect's file name
+t_token	*move_one(t_token *tokens)
 {
 	t_token	*tmp;
 
@@ -38,7 +38,9 @@ t_token	*move_drd(t_token *tokens)
 	return (tmp);
 }
 
-int	nb_words_dr(t_token *tokens)
+		// if (!is_rd_case(tmp->type) && !is_word(tmp->type, 2))
+		// 	tmp = tmp->next;
+int	nb_words_r(t_token *tokens)
 {
 	t_token	*tmp;
 	int		words;
@@ -50,8 +52,8 @@ int	nb_words_dr(t_token *tokens)
 		tmp = jump_white_spaces(tmp);
 		if (is_word(tmp->type, 2))
 			words++;
-		if (is_drd_case(tmp->type))
-			tmp = move_drd(tmp->next);
+		if (is_rd_case(tmp->type))
+			tmp = move_one(tmp->next);
 		else
 		{
 			if (tmp->next)
@@ -63,7 +65,9 @@ int	nb_words_dr(t_token *tokens)
 	return (words);
 }
 
-char	**get_words_dr(t_token *tokens)
+		// if (!is_rd_case(tmp->type) && !is_word(tmp->type, 2))
+		// 	tmp = tmp->next;
+char	**get_words_one(t_token *tokens)
 {
 	t_token	*tmp;
 	int		i;
@@ -71,15 +75,15 @@ char	**get_words_dr(t_token *tokens)
 
 	i = 0;
 	tmp = tokens;
-	words = malloc(sizeof(char **) * (nb_words_dr(tokens) + 1));
+	words = malloc(sizeof(char **) * (nb_words_r(tokens) + 1));
 	if (!words)
 		ft_error_parse(1);
 	while (tmp && tmp->type != PIPE)
 	{
 		if (is_word(tmp->type, 2))
 			words[i++] = ft_strdup(tmp->token);
-		if (is_drd_case(tmp->type))
-			tmp = move_drd(tmp->next);
+		if (is_rd_case(tmp->type))
+			tmp = move_one(tmp->next);
 		else
 		{
 			if (tmp->next)

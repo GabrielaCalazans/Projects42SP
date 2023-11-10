@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 22:10:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:38:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,11 +148,11 @@ char	**get_all_words(t_token *tokens)
 	if (check == 0)
 		all_words = get_words(tokens, nb_words(tokens));
 	if (check == 1)
-		all_words = get_words_r(tokens);
+		all_words = get_words_one(tokens);
 	if (check == 2)
-		all_words = get_words_dr(tokens);
-	// if (check == 3)
-	// 	all_words = fazafunçaõquepegapalavrasemosodoistrecos;
+		all_words = get_words_two(tokens);
+	if (check == 3)
+		all_words = get_words_three(tokens);
 	if (!all_words)
 		ft_error_parse(2);
 	return (all_words);

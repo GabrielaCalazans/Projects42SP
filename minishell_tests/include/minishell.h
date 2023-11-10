@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 22:15:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/10 20:39:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void		set_path_command(t_data *data);
 void		start_token(t_data *data);
 int			is_redirect(char c);
 int			is_pipe(char c);
-int			is_flag(char c);
+int			is_flag(char *str);
 int			is_slash(char c);
 int			is_questionmark(char c);
 int			is_dollar(char *str);
@@ -168,6 +168,9 @@ char		*define_type(char *str);
 int			word_len(char *str);
 int			is_word_q(int check);
 int			qword_len(char *str, int type);
+int			ft_lensize(char *str);
+int			len_flag(char *str);
+int			len_var(char *str);
 
 // DEALING TOKEN LIST
 t_token		*createnode(char *token, int type);
@@ -216,13 +219,16 @@ char		*take_q_name(t_token *tokens);
 // PARSE
 void		parsing_it(t_data *data);
 char		**get_words(t_token *tokens, int len);
-char		**get_words_r(t_token *tokens);
-char		**get_words_dr(t_token *tokens);
+char		**get_words_one(t_token *tokens);
+t_token		*move_one(t_token *tokens);
+char		**get_words_two(t_token *tokens);
+t_token		*move_two(t_token *tokens);
 int			has_d_redirec_p(t_token *tokens);
 void		*ft_error_parse(int error);
 int			is_word(int type, int check);
 int			is_rd_case(int type);
 int			is_drd_case(int type);
+char		**get_words_three(t_token *tokens);
 int			nb_words(t_token *tokens);
 
 // LEXER

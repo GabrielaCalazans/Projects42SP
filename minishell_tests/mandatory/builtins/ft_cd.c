@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:03:28 by ckunimur          #+#    #+#             */
-/*   Updated: 2023/11/07 21:53:17 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:26:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ int	check_cd(t_data *data)
 
 int	check_valid_dir(char *str)
 {
-	// int	i;
-
-	// i = 0;
 	if (!access(str, F_OK))
 	{
 		if (!access(str, X_OK))

@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/11/09 22:13:41 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/11/10 19:55:31 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME =	minishell
 SRCS = minishell.c prompt.c execution.c
 
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
-TOKEN += token_lst.c token_lst_utils.c token_utils_four.c
+TOKEN += token_lst.c token_lst_utils.c token_utils_four.c token_utils_five.c
 
 REDIRECT = redirect.c redirect_utils_two.c redirect_utils_one.c redirect_lst.c
 REDIRECT += redirect_lst_utils.c error_redirect.c error_redirect_utils.c
@@ -25,8 +25,8 @@ REDIRECT += redirect_utils_three.c redirect_utils_four.c
 
 LEXER = lexical.c
 
-PARSE = parse.c parse_only_words.c parse_utils.c parse_randwords.c
-PARSE += parse_drandwords.c
+PARSE = parse.c case_one.c parse_utils.c case_two.c
+PARSE += case_three.c case_zero.c
 
 BUILTINS = builtins.c ft_pwd.c ft_echo.c ft_env.c ft_export.c
 BUILTINS += ft_cd.c ft_exit.c ft_unset.c

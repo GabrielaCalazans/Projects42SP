@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 16:55:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:21:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ t_token	*create_token(char *str)
 	len = 1;
 	if (is_hd_c(str) || is_e_c(str))
 		len += 1;
+	if (is_flag(str))
+		len = len_flag(str);
+	if (is_dollar(str))
+		len = len_var(str);
 	token = ft_substr(str, 0, len);
 	type = find_type(&str[0]);
 	newnode = createnode(token, type);
@@ -100,8 +104,8 @@ void	sub_start_tokens(t_data *data, t_token *newnode, int check, int i)
 		{
 			if (sub_creating_token(data, newnode, check, i))
 				break ;
-			if (is_hd_c(&data->prompt_in[i]) || is_e_c(&data->prompt_in[i]))
-				i += 2;
+			if (ft_lensize(&data->prompt_in[i]))
+				i += ft_lensize(&data->prompt_in[i]);
 			else
 				i++;
 		}
