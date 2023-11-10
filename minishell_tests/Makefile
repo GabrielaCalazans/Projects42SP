@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/11/09 19:41:04 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/11/09 22:13:41 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ REDIRECT += redirect_utils_three.c redirect_utils_four.c
 LEXER = lexical.c
 
 PARSE = parse.c parse_only_words.c parse_utils.c parse_randwords.c
+PARSE += parse_drandwords.c
 
 BUILTINS = builtins.c ft_pwd.c ft_echo.c ft_env.c ft_export.c
 BUILTINS += ft_cd.c ft_exit.c ft_unset.c

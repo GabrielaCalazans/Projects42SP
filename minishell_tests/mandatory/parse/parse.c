@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 21:39:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 22:10:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,8 @@ char	**get_all_words(t_token *tokens)
 		all_words = get_words(tokens, nb_words(tokens));
 	if (check == 1)
 		all_words = get_words_r(tokens);
-	// if (check == 2)
-	// 	all_words = fazafunçaõquepegapalavrasemosdoubleredirect;
+	if (check == 2)
+		all_words = get_words_dr(tokens);
 	// if (check == 3)
 	// 	all_words = fazafunçaõquepegapalavrasemosodoistrecos;
 	if (!all_words)

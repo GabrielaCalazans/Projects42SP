@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 19:32:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 22:09:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ int	is_rd_case(int type)
 	if (type == REDIRECT_IN)
 		return (TRUE);
 	if (type == REDIRECT_OUT)
+		return (TRUE);
+	return (FALSE);
+}
+
+int	is_drd_case(int type)
+{
+	if (type == HEREDOC)
+		return (TRUE);
+	if (type == APPEND)
 		return (TRUE);
 	return (FALSE);
 }
