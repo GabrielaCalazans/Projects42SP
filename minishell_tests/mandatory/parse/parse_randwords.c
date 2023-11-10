@@ -6,14 +6,13 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 21:41:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/09 22:06:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// funçaõ que pega palavra com redirect
-
+// fun to jump redirect's file name
 t_token	*move_rd(t_token *tokens)
 {
 	t_token	*tmp;
