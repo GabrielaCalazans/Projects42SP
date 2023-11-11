@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/11 17:57:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:19:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ int	nb_words_r(t_token *tokens)
 	printf("HERE\tnb: %i\n", words);
 	while (tmp && tmp->type != PIPE)
 	{
-		printf("HERE antes\tnb: %i\n", words);
-		tmp = jump_white_spaces(tmp);
-		if (is_word(tmp->type, 2))
+		if (tmp->next)
+			tmp = jump_white_spaces(tmp);
+		printf("HERE tmp\t %s\n", tmp->token);
+		if (tmp && is_word(tmp->type, 2))
 			words++;
-		if (is_rd_case(tmp->type))
+		if (tmp && is_rd_case(tmp->type))
 			tmp = move_one(tmp->next);
 		else
 		{

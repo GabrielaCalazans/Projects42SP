@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 22:05:41 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/11 17:43:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:16:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	nb_words_dr(t_token *tokens)
 	words = 0;
 	while (tmp && tmp->type != PIPE)
 	{
-		tmp = jump_white_spaces(tmp);
+		if (tmp->next)
+			tmp = jump_white_spaces(tmp);
 		if (is_word(tmp->type, 2))
 			words++;
 		if (is_drd_case(tmp->type))
