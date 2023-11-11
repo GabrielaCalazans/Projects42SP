@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 19:47:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/10 20:41:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:13:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	nb_words_three(t_token *tokens)
 // 	return (words);
 // }
 
-void process_tokens(t_token *tokens, int *i, char **words)
+void	process_tokens(t_token *tokens, int *i, char **words)
 {
 	t_token	*tmp;
 

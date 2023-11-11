@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/10 20:38:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:13:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ char	**get_all_words(t_token *tokens)
 	return (all_words);
 }
 
+	// data->cmd = ft_strdup_array(all_words);
 void	parsing_it(t_data *data)
 {
 	int		i;
@@ -165,7 +166,6 @@ void	parsing_it(t_data *data)
 
 	i = 0;
 	all_words = get_all_words(data->tokens);
-	// data->cmd = ft_strdup_array(all_words);
 	while (all_words[i] != NULL)
 	{
 		printf("string[%i]: %s\n", i, all_words[i]);
