@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/10 21:13:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:30:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ char	**get_all_words(t_token *tokens)
 		check = 1;
 	if (has_d_redirec_p(tokens))
 		check += 2;
+	printf("check:%i\n", check);
 	if (check == 0)
 		all_words = get_words(tokens, nb_words(tokens));
 	if (check == 1)

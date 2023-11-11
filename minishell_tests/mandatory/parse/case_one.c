@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/10 20:40:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:57:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_token	*move_one(t_token *tokens)
 	tmp = jump_white_spaces(tokens);
 	while (tmp && tmp->type != PIPE)
 	{
+		printf("MOVE\ttoken: %s\n", tmp->token);
 		if (tmp->type == QUOTED_WORD)
 		{
 			if (tmp->next)
@@ -47,8 +48,10 @@ int	nb_words_r(t_token *tokens)
 
 	tmp = tokens;
 	words = 0;
+	printf("HERE\tnb: %i\n", words);
 	while (tmp && tmp->type != PIPE)
 	{
+		printf("HERE antes\tnb: %i\n", words);
 		tmp = jump_white_spaces(tmp);
 		if (is_word(tmp->type, 2))
 			words++;
@@ -61,6 +64,7 @@ int	nb_words_r(t_token *tokens)
 			else
 				break ;
 		}
+		printf("HERE depois\tnb: %i\n", words);
 	}
 	return (words);
 }
