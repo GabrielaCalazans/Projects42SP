@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/09 22:09:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 00:14:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	is_rd_case(int type)
 
 int	is_drd_case(int type)
 {
+	
 	if (type == HEREDOC)
 		return (TRUE);
 	if (type == APPEND)
@@ -84,4 +85,40 @@ int	is_word(int type, int check)
 			return (TRUE);
 	}
 	return (FALSE);
+}
+
+void	get_cmd(t_data *data, char **words)
+{
+	int	len;
+	int	check;
+
+	len = ft_array_size(words);
+	check = 0;
+	data->cmd = freearray(data->cmd);
+	data->cmd = NULL;
+	data->cmd_args = freearray(data->cmd_args);
+	data->cmd_args = NULL;
+	if (len > 1)
+	{
+		if (find_type(words[0]) == 10 && find_type(words[1]) == 4)
+		{
+			printf("entrei aqui\n");
+			data->cmd = ft_arraydup_size(words, 2);
+			check = 1;
+		}
+		else
+		{
+			data->cmd = ft_arraydup_size(words, 1);
+		}
+	}
+	if (check == 1 && len > 2)
+	{
+		data->cmd_args = ft_arraydup(&words[2]);
+	}
+	if (len > 1 && check == 0)
+	{
+		data->cmd_args = ft_arraydup(&words[1]);
+	}
+	if (len < 2)
+		data->cmd = ft_arraydup_size(words, 1);
 }

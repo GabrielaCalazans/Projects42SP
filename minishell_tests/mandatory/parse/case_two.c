@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   case_two.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 22:05:41 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/11 18:16:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 00:22:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_token	*move_two(t_token *tokens)
 	tmp = jump_white_spaces(tokens);
 	while (tmp && tmp->type != PIPE)
 	{
-		if (tmp->type == QUOTED_WORD)
+		if (tmp && tmp->type == QUOTED_WORD)
 		{
 			if (tmp->next)
 				tmp = tmp->next;
@@ -47,11 +47,12 @@ int	nb_words_dr(t_token *tokens)
 	words = 0;
 	while (tmp && tmp->type != PIPE)
 	{
-		if (tmp->next)
-			tmp = jump_white_spaces(tmp);
-		if (is_word(tmp->type, 2))
+		tmp = jump_white_spaces(tmp);
+		if (tmp == NULL)
+			break ;
+		if (tmp && is_word(tmp->type, 2))
 			words++;
-		if (is_drd_case(tmp->type))
+		if (tmp->next && is_drd_case(tmp->type))
 			tmp = move_two(tmp->next);
 		else
 		{

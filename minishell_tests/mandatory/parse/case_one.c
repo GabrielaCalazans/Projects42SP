@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   case_one.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:35:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/11 18:19:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 00:21:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_token	*move_one(t_token *tokens)
 	tmp = jump_white_spaces(tokens);
 	while (tmp && tmp->type != PIPE)
 	{
-		printf("MOVE\ttoken: %s\n", tmp->token);
 		if (tmp->type == QUOTED_WORD)
 		{
 			if (tmp->next)
@@ -48,15 +47,14 @@ int	nb_words_r(t_token *tokens)
 
 	tmp = tokens;
 	words = 0;
-	printf("HERE\tnb: %i\n", words);
 	while (tmp && tmp->type != PIPE)
 	{
-		if (tmp->next)
-			tmp = jump_white_spaces(tmp);
-		printf("HERE tmp\t %s\n", tmp->token);
+		tmp = jump_white_spaces(tmp);
+		if (tmp == NULL)
+			break ;
 		if (tmp && is_word(tmp->type, 2))
 			words++;
-		if (tmp && is_rd_case(tmp->type))
+		if (tmp->next && is_rd_case(tmp->type))
 			tmp = move_one(tmp->next);
 		else
 		{
@@ -65,8 +63,8 @@ int	nb_words_r(t_token *tokens)
 			else
 				break ;
 		}
-		printf("HERE depois\tnb: %i\n", words);
 	}
+	printf("leaving one\n");
 	return (words);
 }
 

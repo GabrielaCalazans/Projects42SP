@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   array.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:38:49 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 14:42:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:03:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_array_size(char **array)
 	return (length);
 }
 
-// char	**ft_strdup_array(char **array)
+// char	**ft_arraydup(char **array)
 // {
 // 	int		length;
 // 	int		i;
@@ -131,7 +131,7 @@ char	**ft_copy_array(char **array, int length)
 	return (array_copy);
 }
 
-char	**ft_strdup_array(char **array)
+char	**ft_arraydup(char **array)
 {
 	int		length;
 
@@ -147,7 +147,7 @@ int	main(void)
 	char	**copy_array;
 	int		i;
 
-	copy_array = ft_strdup_array(original_array);
+	copy_array = ft_arraydup(original_array);
 	if (copy_array)
 	{
 		i = 0;

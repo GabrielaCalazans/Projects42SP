@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   case_three.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 19:47:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/10 21:13:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:55:45 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	nb_words_three(t_token *tokens)
 	while (tmp && tmp->type != PIPE)
 	{
 		tmp = jump_white_spaces(tmp);
-		if (is_word(tmp->type, 2))
+		if (tmp == NULL)
+			break ;
+		if (tmp && is_word(tmp->type, 2))
 			words++;
-		if (is_drd_case(tmp->type))
+		if (tmp->next && is_drd_case(tmp->type))
 			tmp = move_two(tmp->next);
-		if (is_rd_case(tmp->type))
+		if (tmp->next && is_rd_case(tmp->type))
 			tmp = move_one(tmp->next);
 		else
 		{
@@ -79,9 +81,9 @@ void	process_tokens(t_token *tokens, int *i, char **words)
 	{
 		if (is_word(tmp->type, 2))
 			words[(*i)++] = ft_strdup(tmp->token);
-		if (is_drd_case(tmp->type))
+		if (tmp && is_drd_case(tmp->type))
 			tmp = move_two(tmp->next);
-		if (is_rd_case(tmp->type))
+		if (tmp && is_rd_case(tmp->type))
 			tmp = move_one(tmp->next);
 		else
 		{

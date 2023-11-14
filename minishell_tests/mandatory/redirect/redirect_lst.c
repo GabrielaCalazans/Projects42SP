@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_lst.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:11:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 15:27:14 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:03:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_rdct	*createnode_rdct(char **files, int *redirects, int nbr_rdcts)
 	newnode = (t_rdct *)malloc(sizeof(t_rdct));
 	if (!newnode)
 		perror("malloc");
-	newnode->files = ft_strdup_array(files);
+	newnode->files = ft_arraydup(files);
 	newnode->redirects = ft_intdup(redirects, nbr_rdcts);
 	newnode->nbr_rdcts = nbr_rdcts;
 	if (!newnode->redirects || !newnode->files)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_utils_three.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:00:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/01 21:57:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:54:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	**freearray(char **array)
 	size_t	i;
 	size_t	sizearray;
 
+	if (!array)
+		return (NULL);
 	sizearray = 0;
 	while (array[sizearray] != NULL)
 	{
@@ -51,9 +53,8 @@ char	**freearray(char **array)
 			i++;
 		}
 	}
-	if (!array)
-		return (NULL);
-	return (array);
+	free(array);
+	return (NULL);
 }
 
 int	ft_array_size(char **array)
@@ -82,7 +83,7 @@ char	**ft_copy_array(char **array, int length)
 			array_copy[i] = ft_strdup(array[i]);
 			if (array_copy[i] == NULL)
 			{
-				freearray(array_copy);
+				array_copy = freearray(array_copy);
 				return (NULL);
 			}
 		}
@@ -93,7 +94,7 @@ char	**ft_copy_array(char **array, int length)
 	return (array_copy);
 }
 
-char	**ft_strdup_array(char **array)
+char	**ft_arraydup(char **array)
 {
 	int		length;
 
@@ -101,4 +102,11 @@ char	**ft_strdup_array(char **array)
 		return (NULL);
 	length = ft_array_size(array);
 	return (ft_copy_array(array, length));
+}
+
+char	**ft_arraydup_size(char **array, int size)
+{
+	if (array == NULL)
+		return (NULL);
+	return (ft_copy_array(array, size));
 }

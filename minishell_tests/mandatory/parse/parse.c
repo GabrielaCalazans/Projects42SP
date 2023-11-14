@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/11 17:30:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 00:14:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,16 +136,15 @@ char	**get_all_words(t_token *tokens)
 {
 	char	**all_words;
 	int		check;
-	int		pipes;
+	// int		pipes;
 
 	check = 0;
-	pipes = has_pipe_yet(tokens);
+	// pipes = has_pipe_yet(tokens);
 	all_words = NULL;
 	if (has_redirect_pipe(tokens))
 		check = 1;
 	if (has_d_redirec_p(tokens))
 		check += 2;
-	printf("check:%i\n", check);
 	if (check == 0)
 		all_words = get_words(tokens, nb_words(tokens));
 	if (check == 1)
@@ -159,17 +158,28 @@ char	**get_all_words(t_token *tokens)
 	return (all_words);
 }
 
-	// data->cmd = ft_strdup_array(all_words);
-void	parsing_it(t_data *data)
+void	print_array(char **array, char *type)
 {
-	int		i;
-	char	**all_words;
+	int	i;
 
 	i = 0;
-	all_words = get_all_words(data->tokens);
-	while (all_words[i] != NULL)
+	if (!array)
+		return ;
+	while (array[i] != NULL)
 	{
-		printf("string[%i]: %s\n", i, all_words[i]);
+		printf("%s[%i]: %s\n", type, i, array[i]);
 		i++;
 	}
+	printf("\n");
+}
+
+	// data->cmd = ft_arraydup(all_words);
+void	parsing_it(t_data *data)
+{
+	char	**all_words;
+
+	all_words = get_all_words(data->tokens);
+	get_cmd(data, all_words);
+	print_array(data->cmd, "cmd");
+	print_array(data->cmd_args, "cmd_args");
 }

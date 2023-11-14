@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/10 20:39:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/13 22:12:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,9 @@ size_t		quoted_word_size(t_token *tokens, int len);
 char		*get_name_quoted(t_token *tokens, char *name, int len);
 char		*word_case(t_token *tokens);
 char		**freearray(char **array);
-char		**ft_strdup_array(char **array);
+char		**ft_arraydup(char **array);
+char		**ft_arraydup_size(char **array, int size);
+int			ft_array_size(char **array);
 int			*ft_intdup(int *array, int size);
 void		*return_error(void);
 
@@ -218,6 +220,7 @@ char		*take_q_name(t_token *tokens);
 
 // PARSE
 void		parsing_it(t_data *data);
+void		get_cmd(t_data *data, char **words);
 char		**get_words(t_token *tokens, int len);
 char		**get_words_one(t_token *tokens);
 t_token		*move_one(t_token *tokens);
