@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:05:44 by ckunimur          #+#    #+#             */
-/*   Updated: 2023/11/11 16:58:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:24:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	ft_export(t_data *data)
+{
+	t_env	*env_node;
+
+	env_node = data->env_node;
+	if (!data->cmd[1])
+	{
+		while (env_node != NULL)
+		{
+			if (env_node->value)
+				ft_printf("declare -x %s=%s\n", env_node->var, env_node->value);
+			else
+				ft_printf("declare -x %s\n", env_node->var);
+			env_node = env_node->next;
+		}
+		return ;
+	}
+	if (is_valid_var(data))
+	{
+		printf("invalid var\n");
+		return ;
+	}
+	env_node = have_var(data);
+	if (env_node == NULL)
+		link_end(&data->env_node, linkar(data));
+	else
+		change_value(env_node, data);
+}
 
 int	is_valid_var(t_data	*data)
 {
@@ -48,11 +77,6 @@ t_env	*have_var(t_data *data)
 	return (NULL);
 }
 
-// void	create_var(t_data *data)
-// {
-// 	// link_end(&data->env_node, linkar(data));
-// }
-
 void	change_value(t_env *env_node, t_data *data)
 {
 	char	**split;
@@ -65,33 +89,4 @@ void	change_value(t_env *env_node, t_data *data)
 		env_node->value = NULL;
 	free(split[0]);
 	free(split);
-}
-
-void	ft_export(t_data *data)
-{
-	t_env	*env_node;
-
-	env_node = data->env_node;
-	if (!data->cmd[1])
-	{
-		while (env_node != NULL)
-		{
-			if (env_node->value)
-				ft_printf("declare -x %s=%s\n", env_node->var, env_node->value);
-			else
-				ft_printf("declare -x %s\n", env_node->var);
-			env_node = env_node->next;
-		}
-		return ;
-	}
-	if (is_valid_var(data))
-	{
-		printf("invalid var\n");
-		return ;
-	}
-	env_node = have_var(data);
-	if (env_node == NULL)
-		link_end(&data->env_node, env_node);
-	else
-		change_value(env_node, data);
 }

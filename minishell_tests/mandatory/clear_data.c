@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:16:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/27 16:18:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:23:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,19 @@ void	ft_clear_data(t_data *data)
 	data->rdct = NULL;
 	free(data->prompt_in);
 	data->prompt_in = NULL;
+}
+
+void	ft_clear_env(t_env *env_node)
+{
+	t_env	*temp;	
+
+	temp = NULL;
+	while (env_node->next != NULL)
+	{
+		temp = env_node->next;
+		free(env_node->var);
+		free(env_node->value);
+		free(env_node);
+		env_node = temp;
+	}
 }

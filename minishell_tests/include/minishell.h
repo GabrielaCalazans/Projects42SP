@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/13 22:12:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:31:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,15 +138,20 @@ void		ft_pwd(t_data *data);
 void		ft_unset(t_data *data);
 
 //env
-t_env		*create_list(char *str);
-t_env		*node_last(t_env *list);
-void		linkar(t_env **lista, t_env *current);
-void		link_end(t_env **list, t_env *current);
-void		create_env(t_data **data, char **envp);
+t_env	*create_list(char *str);
+t_env	*node_last(t_env *list);
+t_env	*linkar(t_data *data);
+void	link_end(t_env **list, t_env *current);
+void	create_env(t_data **data, char **envp);
+
+//EXPORT
+int		is_valid_var(t_data	*data);
+t_env	*have_var(t_data *data);
+void	change_value(t_env *env_node, t_data *data);
 
 //EXECUTION
-void		execution(t_data *data);
-void		set_path_command(t_data *data);
+void	execution(t_data *data);
+void	set_path_command(t_data *data);
 
 // TOKENS
 void		start_token(t_data *data);
@@ -242,5 +247,6 @@ void		printlist(void *head, int check);
 
 // CLEAR DATA
 void		ft_clear_data(t_data *data);
+void		ft_clear_env(t_env *env_node);
 
 #endif

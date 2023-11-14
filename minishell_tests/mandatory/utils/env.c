@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:39:53 by ckunimur          #+#    #+#             */
-/*   Updated: 2023/10/20 19:15:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:22:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	create_env(t_data **data, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		link_end(&(*data)->env_node, create_list(envp[i]));
+		i++;
+	}
+}
 
 t_env	*create_list(char *str)
 {
@@ -36,17 +48,21 @@ t_env	*node_last(t_env *list)
 	return (last);
 }
 
-void	linkar(t_env **list, t_env *current)
+t_env	*linkar(t_data *data)
 {
-	if (list == NULL)
-		return ;
-	if (*list == NULL)
-	{
-		*list = current;
-		return ;
-	}
-	current->next = *list;
-	*list = current;
+	t_env	*new_node;
+	char	**split;
+
+	new_node = ft_calloc(sizeof(t_env), 1);
+	split = ft_split(data->cmd[1], '=');
+	new_node->var = split[0];
+	if (split[1])
+		new_node->value = split[1];
+	else
+		new_node->value = NULL;
+	free(split);
+	new_node->next = NULL;
+	return (new_node);
 }
 
 void	link_end(t_env **list, t_env *current)

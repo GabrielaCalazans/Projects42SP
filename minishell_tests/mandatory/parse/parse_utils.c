@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/14 00:14:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:25:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,41 @@ int	is_word(int type, int check)
 	return (FALSE);
 }
 
+void	ft_clear_cmd(t_data *data)
+{
+	data->cmd = freearray(data->cmd);
+	data->cmd = NULL;
+	data->cmd_args = freearray(data->cmd_args);
+	data->cmd_args = NULL;
+}
+
+char	*trim_process(char *word, int type)
+{
+	char	*name;
+
+	name = ft_strdup(word);
+	if (type == QUOTE_DOUBLE)
+		name = ft_strtrim(name, "\"");
+	if (type == QUOTE_SINGLE)
+		name = ft_strtrim(name, "\'");
+	return (name);
+}
+
+char	**trim_quote(char **words)
+{
+	int	i;
+
+	i = 0;
+	while (words[i])
+	{
+		if (find_type(words[i]) == 8
+			|| find_type(words[i]) == 9)
+			words[i] = trim_process(words[i], find_type(words[i]));
+		i++;
+	}
+	return (words);
+}
+
 void	get_cmd(t_data *data, char **words)
 {
 	int	len;
@@ -94,31 +129,21 @@ void	get_cmd(t_data *data, char **words)
 
 	len = ft_array_size(words);
 	check = 0;
-	data->cmd = freearray(data->cmd);
-	data->cmd = NULL;
-	data->cmd_args = freearray(data->cmd_args);
-	data->cmd_args = NULL;
+	ft_clear_cmd(data);
 	if (len > 1)
 	{
 		if (find_type(words[0]) == 10 && find_type(words[1]) == 4)
 		{
-			printf("entrei aqui\n");
 			data->cmd = ft_arraydup_size(words, 2);
 			check = 1;
 		}
 		else
-		{
 			data->cmd = ft_arraydup_size(words, 1);
-		}
 	}
 	if (check == 1 && len > 2)
-	{
-		data->cmd_args = ft_arraydup(&words[2]);
-	}
+		data->cmd_args = ft_arraydup(trim_quote(&words[2]));
 	if (len > 1 && check == 0)
-	{
-		data->cmd_args = ft_arraydup(&words[1]);
-	}
+		data->cmd_args = ft_arraydup(trim_quote(&words[1]));
 	if (len < 2)
 		data->cmd = ft_arraydup_size(words, 1);
 }
