@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/14 15:31:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:28:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,6 @@ void		ft_add_back_rdct(t_rdct **lst, t_rdct *new);
 void		ft_add_front_rdct(t_rdct **lst, t_rdct *new);
 void		ft_clear_rdct(t_rdct **lst);
 int			ft_size_rdct(t_rdct *lst);
-char		*take_q_name(t_token *tokens);
 
 // PARSE
 void		parsing_it(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/13 22:21:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/16 02:08:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,26 @@ void	get_path(t_data *data)
 		}
 		tmp = tmp->next;
 	}
+}
+
+void	prompt_new(t_data *data)
+{
+	run_signals(1);
+	data->prompt_in = readline(PROMPT);
+	if (data->prompt_in && *data->prompt_in)
+	{
+		add_history(data->prompt_in);
+		printf("PROMPT: %s\n", data->prompt_in);
+	}
+}
+
+void	mini_start(t_data *data)
+{
+	if (ft_strlen(data->prompt_in) != 0)
+		start_token(data);
+	if (has_redirect(data->tokens))
+		create_redirect_lst(data);
+	parsing_it(data);
 }
 
 // data->cmd = ft_split(data->prompt_in, ' ');
