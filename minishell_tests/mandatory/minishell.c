@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/13 22:38:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:51:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ void	printlist(void *head, int check)
 	printf("\n");
 }
 
-void	set_data(t_data *data)
+void	set_data(t_data *data, char *envp[])
 {
 	data->tokens = NULL;
 	data->rdct = NULL;
 	data->env_node = NULL;
+	create_env(&data, envp);
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -67,12 +68,13 @@ int	main(int argc, char *argv[], char *envp[])
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
+	set_data(data, envp);
 	(void)argv;
 	(void)argc;
 	if (argc != 1)
 		return (1);
-	set_data(data);
-	create_env(&data, envp);
+	data->out_fd = STDOUT_FILENO;
+	data->in_fd = STDIN_FILENO;
 	prompt(data);
 	ft_clear_data(data);
 	return (0);

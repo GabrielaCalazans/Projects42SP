@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 01:41:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/16 01:47:27 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/11/16 02:32:53 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/11/17 00:32:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	run_signals(int sig)
 
 void	restore_prompt(int sig)
 {
-	g_ret_nbr = 130;
+	g_ret = 130;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -43,14 +43,14 @@ void	restore_prompt(int sig)
 
 void	ctrl_c(int sig)
 {
-	g_ret_nbr = 130;
+	g_ret = 130;
 	write(1, "\n", 1);
 	(void)sig;
 }
 
 void	back_slash(int sig)
 {
-	g_ret_nbr = 131;
+	g_ret = 131;
 	printf("Quit (core dumped)\n");
 	(void)sig;
 }

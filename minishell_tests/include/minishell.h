@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/14 18:28:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:49:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef struct s_data
 	char			**heredoc;
 	char			**env;
 	char			*path;
+	int				out_fd;
+	int				in_fd;
 	t_rdct			*rdct;
 	t_token			*tokens;
 	t_env			*env_node;
