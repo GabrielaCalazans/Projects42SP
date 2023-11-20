@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/16 02:08:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:59:19 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,17 @@ void	prompt_new(t_data *data)
 
 void	mini_start(t_data *data)
 {
+	extern char	**environ;
+
+	data->env = environ;
+	get_path(data);
 	if (ft_strlen(data->prompt_in) != 0)
 		start_token(data);
 	if (has_redirect(data->tokens))
 		create_redirect_lst(data);
 	parsing_it(data);
+	if (!exec_builtin(data))
+		execution(data);
 }
 
 // data->cmd = ft_split(data->prompt_in, ' ');
@@ -158,7 +164,7 @@ void	prompt(t_data *data)
 			add_history(data->prompt_in);
 			printf("PROMPT: %s\n", data->prompt_in);
 		}
-		// data->cmd = ft_split(data->prompt_in, ' ');
+		data->cmd = ft_split(data->prompt_in, ' ');
 		if (data->prompt_in[0] != '\0')
 			start_token(data);
 		if (has_redirect(data->tokens))
@@ -171,5 +177,5 @@ void	prompt(t_data *data)
 			execution(data);
 		ft_clear_data(data);
 	}
-	rl_clear_history();
+
 }

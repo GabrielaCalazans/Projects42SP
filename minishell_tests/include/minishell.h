@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/17 00:49:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/20 20:40:25 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,15 @@ typedef struct s_params {
 }	t_params;
 
 void		prompt(t_data *data);
-int			is_builtins(char *check);
 // void	call_builtins(t_data *ptr);
+void		mini_start(t_data *data);
+void		prompt_new(t_data *data);
 
 //utils
 void		ft_clean_lst(char **lst);
 
 //builtins
+int			is_builtins(char *check);
 int			exec_builtin(t_data *data);
 void		ft_cd(t_data *data);
 void		ft_echo(t_data *data);
@@ -246,8 +248,17 @@ int			lexer(t_data *data);
 // PRINT LIST
 void		printlist(void *head, int check);
 
+//HEREDOC
+void	heredoc(t_data *data);
+
+//PIPE
+void	dup_pipe(int *fd, int ord, int len_pipe);
+
 // CLEAR DATA
 void		ft_clear_data(t_data *data);
 void		ft_clear_env(t_env *env_node);
+
+// SIGNAL
+void	run_signals(int sig);
 
 #endif

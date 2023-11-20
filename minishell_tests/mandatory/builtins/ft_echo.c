@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:04:33 by ckunimur          #+#    #+#             */
-/*   Updated: 2023/11/14 15:33:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:04:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_echo(t_data *data)
 	int		i;
 	t_data	*temp;
 
-	i = 1;
+	i = 0;
 	temp = data;
 	printf("%s", temp->cmd_args[i]);
 	i++;

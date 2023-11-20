@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/11/15 13:24:00 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/11/20 18:18:29 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME =	minishell
 
 # ======= Sources ========
-SRCS = minishell.c prompt.c execution.c
+SRCS = minishell.c prompt.c execution.c signal.c
 
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
 TOKEN += token_lst.c token_lst_utils.c token_utils_four.c token_utils_five.c
@@ -30,6 +30,8 @@ PARSE += case_three.c case_zero.c
 
 BUILTINS = builtins.c ft_pwd.c ft_echo.c ft_env.c ft_export.c
 BUILTINS += ft_cd.c ft_exit.c ft_unset.c
+
+HEREDOC = heredoc.c
 
 CLEAR_DATA = clear_data.c
 
