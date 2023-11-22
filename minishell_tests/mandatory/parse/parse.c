@@ -3,134 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/21 20:15:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:51:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// void	move_token_cont(t_data *data, t_token *newlist)
-// {
-// 	t_token	*head;
-// 	head = data->tokens;
-// 	while (head->next != NULL)
-// 	{
-// 		if (head->type != REDIRECT_IN && head->type != REDIRECT_OUT)
-// 			head = head->next;
-// 		else
-// 			break ;
-// 	}
-// 	head->next = newlist;
-// 	data->tokens = head;
-// }
-// t_token	*jump_word(t_token *tokens)
-// {
-// 	printf("CHEGUEI AQUI3");
-// 	if (tokens == NULL)
-// 		return (NULL);
-// 	if (is_path(tokens))
-// 	{
-// 		if (tokens->next)
-// 			tokens = tokens->next;
-// 		while (tokens)
-// 		{
-// 			if (tokens->type != SLASH && tokens->type != WORD)
-// 				break ;
-// 			tokens = tokens->next;
-// 		}
-// 		return (tokens);
-// 	}
-// 	return (tokens);
-// }
-// void	process_rdct_move(t_token *tmp, t_token *prev, t_token *current)
-// {
-// 	while (tmp)
-// 	{
-// 		if (tmp->type == C_SPACE || tmp->type == H_TAB)
-// 		{
-// 			while (tmp->type == C_SPACE || tmp->type == H_TAB)
-// 				tmp = tmp->next;
-// 		}
-// 		if (tmp->type == QUOTED_WORD)
-// 		{
-// 			tmp = tmp->next;
-// 			break ;
-// 		}
-// 		if (tmp->type == WORD || tmp->type == SLASH)
-// 		{
-// 			tmp = jump_word(tmp);
-// 			break ;
-// 		}
-// 		else
-// 			break ;
-// 	}
-// 	if (tmp)
-// 	{
-// 		while (tmp)
-// 		{
-// 			current = tmp;
-// 			ft_add_back(&prev, current);
-// 			prev->next = NULL;
-// 			tmp = tmp->next;
-// 		}
-// 	}
-// 	// printlist(tmp, 1);
-// 	printf("PREV");
-// 	printlist(prev, 1);
-// 	return ;
-// }
-// void	check_move(t_token *tmp, t_token *prev, int type, t_token *current)
-// {
-// 	printf("CHEGUEI AQUI2");
-// 	if (type == REDIRECT_IN || type == REDIRECT_OUT)
-// 		process_rdct_move(tmp, prev, current);
-// }
-// void	move_tokens(t_data *data, int type)
-// {
-// 	t_token	*tmp;
-// 	t_token	*prev;
-// 	t_token	*current;
-// 	tmp = data->tokens;
-// 	printf("cheguei aqui %s\t%i\n", tmp->token, tmp->type);
-// 	prev = NULL;
-// 	if (!tmp)
-// 		return ;
-// 	tmp = jump_white_spaces(tmp);
-// 	while(tmp)
-// 	{
-// 		printf("cheguei aqui %s\t%i", tmp->token, tmp->type);
-// 		if (tmp->type == type)
-// 		{
-// 			check_move(tmp, prev, type, current);
-// 		}
-// 		printf("cheguei aqui %s\t%i", tmp->token, tmp->type);
-// 		if (tmp)
-// 		{
-// 			current = tmp;
-// 			ft_add_back(&prev, current);
-// 			prev->next = NULL;
-// 			// printlist(prev, 1);
-// 			tmp = tmp->next;
-// 		}
-// 		printf("cheguei aqui %s\t%i", tmp->token, tmp->type);
-// 		// tmp = tmp->next;
-// 	}
-// }
-// data->cmd_args = take_q_name(&*tmp);
-// char	**case_redirec_only(t_token *tokens, int pipes)
-// {
-// 	t_token	*tmp;
-// 	tmp = tokens;
-// 	while (tmp)
-// 	{
-// 		if (tmp->type == PIPE)
-// 			break ;
-// 		if (tmp->token == WORD)
-// 	}
-// }
+void	finalizepipe_cmd(t_data *data, char	**all_words)
+{
+	t_cmd	*newnode;
+	char	**cmd_args;
+	char	**cmd;
+	int		len;
+	int		check;
+
+	if (!all_words)
+	{
+		ft_error_parse(5);
+		return ;
+	}
+	check = 0;
+	len = ft_array_size(all_words);
+	cmd = get_cmd(all_words, len);
+	if (ft_array_size(cmd) > 1)
+		check = 1;
+	if (len > 1 && check == 0)
+		cmd_args = get_cmd_args(all_words, check, len);
+	else
+		cmd_args = NULL;
+	newnode = createnode_cmd(cmd, cmd_args);
+	ft_add_back_cmd(&data->pcmd, newnode);
+}
+
+char	**fixwords(t_token *tokens, char **words)
+{
+	if (words)
+		freearray(words);
+	words = get_all_words(tokens);
+	if (!words)
+		words = ft_error_parse(5);
+	return (words);
+}
+
+void	cmd_pipe(t_data *data)
+{
+	t_token	*tmp;
+	char	**all_words;
+
+	tmp = data->tokens;
+	all_words = get_all_words(data->tokens);
+	while (tmp)
+	{
+		if (tmp->type == PIPE || tmp->next == NULL)
+		{
+			finalizepipe_cmd(data, all_words);
+			if (tmp->next != NULL)
+				all_words = fixwords(tmp->next, all_words);
+		}
+		tmp = tmp->next;
+	}
+}
 
 char	**get_all_words(t_token *tokens)
 {
@@ -158,32 +93,24 @@ char	**get_all_words(t_token *tokens)
 	return (all_words);
 }
 
-void	print_array(char **array, char *type)
-{
-	int	i;
-
-	i = 0;
-	if (!array)
-		return ;
-	while (array[i] != NULL)
-	{
-		printf("%s[%i]: %s\n", type, i, array[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 	// data->cmd = ft_arraydup(all_words);
 void	parsing_it(t_data *data)
 {
 	char	**all_words;
 
-	all_words = get_all_words(data->tokens);
-	get_cmd(data, all_words);
-	print_array(data->cmd, "cmd");
-	print_array(data->cmd_args, "cmd_args");
-}
+	if (has_pipe(data) > 0)
+		cmd_pipe(data);
+	else
+	{
+		all_words = get_all_words(data->tokens);
+		finalizepipe_cmd(data, all_words);
+	}
 
+	printlist(data->pcmd, 3);
+}
 // idea = ter uma struct pra colocar os comandos e argumentos
 // deveria incluir um type?
 // cada nó seria um pipe
+
+// pensar sobre quando não há argumentos
+// lém disso ajustar o printlist para array de tamanho variado no mesmo nó

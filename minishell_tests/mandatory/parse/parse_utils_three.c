@@ -1,47 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_lst_utils.c                                    :+:      :+:    :+:   */
+/*   parse_utils_three.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 16:33:10 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 15:55:13 by gacalaza         ###   ########.fr       */
+/*   Created: 2023/11/22 19:32:37 by gacalaza          #+#    #+#             */
+/*   Updated: 2023/11/22 19:32:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// Func to find the size of the lst
-int	ft_size_cmd(t_cmd *lst)
+char	*trim_process(char *word, int type)
 {
-	int	len;
+	char	*name;
 
-	len = 0;
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		len++;
-	}
-	return (len);
+	name = ft_strdup(word);
+	if (type == QUOTE_DOUBLE)
+		name = ft_strtrim(name, "\"");
+	if (type == QUOTE_SINGLE)
+		name = ft_strtrim(name, "\'");
+	return (name);
 }
 
-// Func to free the the lst
-void	ft_clear_cmd_lst(t_cmd **lst)
+char	**trim_quote(char **words)
 {
-	t_cmd	*temp;
-	t_cmd	*next;
+	int	i;
 
-	temp = *lst;
-	while (temp != NULL)
+	i = 0;
+	while (words[i])
 	{
-		freearray(temp->cmd);
-		temp->cmd = NULL;
-		freearray(temp->cmd_args);
-		temp->cmd_args = NULL;
-		next = temp->next;
-		free (temp);
-		temp = next;
+		if (find_type(words[i]) == 8
+			|| find_type(words[i]) == 9)
+			words[i] = trim_process(words[i], find_type(words[i]));
+		i++;
 	}
-	*lst = NULL;
+	return (words);
 }

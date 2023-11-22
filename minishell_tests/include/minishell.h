@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/21 21:56:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:53:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,8 @@ int			ft_size_rdct(t_rdct *lst);
 
 // PARSE
 void		parsing_it(t_data *data);
-void		get_cmd(t_data *data, char **words);
+char		**get_cmd_args(char **words, int check, int len);
+char		**get_cmd(char **words, int len);
 char		**get_words(t_token *tokens, int len);
 char		**get_words_one(t_token *tokens);
 t_token		*move_one(t_token *tokens);
@@ -247,11 +248,26 @@ void		*ft_error_parse(int error);
 int			is_word(int type, int check);
 int			is_rd_case(int type);
 int			is_drd_case(int type);
+char		**get_all_words(t_token *tokens);
 char		**get_words_three(t_token *tokens);
 int			nb_words(t_token *tokens);
+char		*trim_process(char *word, int type);
+char		**trim_quote(char **words);
+void		finalizepipe_cmd(t_data *data, char	**all_words);
+char		**fixwords(t_token *tokens, char **words);
+void		cmd_pipe(t_data *data);
+
+// PARSE LIST
+t_cmd	*createnode_cmd(char **cmd, char **cmd_args);
+t_cmd	*ft_last_cmd(t_cmd *lst);
+int		ft_size_cmd(t_cmd *lst);
+void	ft_clear_cmd_lst(t_cmd **lst);
+void	ft_add_back_cmd(t_cmd **lst, t_cmd *new);
+void	ft_add_front_cmd(t_cmd **lst, t_cmd *new);
 
 // LEXER
 int			lexer(t_data *data);
+int	has_pipe(t_data *data);
 
 // PRINT LIST
 void		printlist(void *head, int check);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/11/20 18:18:29 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/11/22 19:36:19 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME =	minishell
 
 # ======= Sources ========
-SRCS = minishell.c prompt.c execution.c signal.c
+SRCS = minishell.c prompt.c execution.c signal.c printlist.c
 
 TOKEN = token.c token_utils_one.c token_utils_two.c token_utils_three.c
 TOKEN += token_lst.c token_lst_utils.c token_utils_four.c token_utils_five.c
@@ -25,8 +25,9 @@ REDIRECT += redirect_utils_three.c redirect_utils_four.c
 
 LEXER = lexical.c
 
-PARSE = parse.c case_one.c parse_utils.c case_two.c
-PARSE += case_three.c case_zero.c
+PARSE = parse.c parse_utils.c parse_utils_two.c parse_utils_three.c
+PARSE += case_zero.c case_one.c case_two.c case_three.c
+PARSE += cmd_lst.c cmd_lst_utils.c
 
 BUILTINS = builtins.c ft_pwd.c ft_echo.c ft_env.c ft_export.c
 BUILTINS += ft_cd.c ft_exit.c ft_unset.c

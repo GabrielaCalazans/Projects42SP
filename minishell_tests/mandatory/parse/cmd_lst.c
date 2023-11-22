@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:11:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 00:13:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:55:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // Func to create a new node
-t_cmd	*createnode_rdct(char **cmd, char **cmd_args)
+t_cmd	*createnode_cmd(char **cmd, char **cmd_args)
 {
 	t_cmd	*newnode;
 
@@ -22,10 +22,10 @@ t_cmd	*createnode_rdct(char **cmd, char **cmd_args)
 		perror("malloc");
 	newnode->cmd = ft_arraydup(cmd);
 	newnode->cmd_args = ft_arraydup(cmd_args);
-	if (!newnode->cmd || !newnode->cmd_args)
+	if (!newnode->cmd)
 	{
 		perror("ft_strdup-cmd");
-		ft_clear_cmd(&newnode);
+		ft_clear_cmd_lst(&newnode);
 		return (NULL);
 	}
 	newnode->next = NULL;

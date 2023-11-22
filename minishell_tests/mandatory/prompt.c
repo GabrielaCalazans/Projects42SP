@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/20 16:59:19 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:36:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	get_path(t_data *data)
 
 void	prompt_new(t_data *data)
 {
-	run_signals(1);
+	// run_signals(1);
 	data->prompt_in = readline(PROMPT);
 	if (data->prompt_in && *data->prompt_in)
 	{
