@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/20 17:15:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 00:52:01 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	printlist(void *head, int check)
 {
 	t_token	*temp1;
 	t_rdct	*temp2;
+	t_cmd	*temp3;
 	int		j;
 	int		i;
 
@@ -33,6 +34,26 @@ void	printlist(void *head, int check)
 			printf("NODE - token: %s type: %d\n", temp1->token, temp1->type);
 			temp1 = temp1->next;
 		}
+	}
+	if (check == 2)
+	{
+		temp3 = (t_cmd *)head;
+		j = 0;
+		while (temp3 != NULL)
+		{
+			i = 0;
+			while (temp3->cmd)
+			{
+				
+				printf("NODE %i - cmd: %i cmd_args: %s\n", j,
+					temp3->cmd[i], temp3->cmd_args[i]);
+				i++;
+			}
+			j++;
+			temp3 = temp3->next;
+		}
+	}
+	printf("\n");
 	}
 	else
 	{
@@ -61,6 +82,7 @@ void	set_data(t_data *data, char *envp[], char *argv[])
 	data->tokens = NULL;
 	data->rdct = NULL;
 	data->env_node = NULL;
+	data->pcmd = NULL;
 	create_env(&data, envp);
 }
 

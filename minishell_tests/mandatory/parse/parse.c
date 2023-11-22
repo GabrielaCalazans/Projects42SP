@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/14 00:14:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/21 20:15:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,3 +183,7 @@ void	parsing_it(t_data *data)
 	print_array(data->cmd, "cmd");
 	print_array(data->cmd_args, "cmd_args");
 }
+
+// idea = ter uma struct pra colocar os comandos e argumentos
+// deveria incluir um type?
+// cada nó seria um pipe

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/20 20:40:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:56:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,13 @@ typedef struct s_rdct
 	struct s_rdct	*next;
 }				t_rdct;
 
+typedef struct s_cmd
+{
+	char			**cmd;
+	char			**cmd_args;
+	struct s_cmd	*next;
+}				t_cmd;
+
 typedef struct s_data
 {
 	char			*prompt_in;
@@ -98,6 +105,7 @@ typedef struct s_data
 	char			*path;
 	int				out_fd;
 	int				in_fd;
+	t_cmd			*pcmd;
 	t_rdct			*rdct;
 	t_token			*tokens;
 	t_env			*env_node;

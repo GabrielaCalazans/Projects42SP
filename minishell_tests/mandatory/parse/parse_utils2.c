@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/21 23:19:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 00:16:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	has_d_redirec_p(t_token *tokens)
 void	*ft_error_parse(int error)
 {
 	if (error == 1)
-		printf("erro malloc\n");
+		printf("error malloc\n");
 	else if (error == 2)
 		printf("DEU RUIM.\n");
 	else if (error == 3)
 		printf("ELSE\n");
 	else if (error == 4)
 		printf("ELSE\n");
+	else if (error == 5)
+		printf("ERROR all_words\n");
 	else
 	{
 		printf("undefined error\n");
@@ -87,14 +89,6 @@ int	is_word(int type, int check)
 	return (FALSE);
 }
 
-void	ft_clear_cmd(t_data *data)
-{
-	data->cmd = freearray(data->cmd);
-	data->cmd = NULL;
-	data->cmd_args = freearray(data->cmd_args);
-	data->cmd_args = NULL;
-}
-
 char	*trim_process(char *word, int type)
 {
 	char	*name;
@@ -122,14 +116,26 @@ char	**trim_quote(char **words)
 	return (words);
 }
 
-void	get_cmd(t_data *data, char **words)
+int	n_get_cmd(char **words, int len)
 {
-	int	len;
-	int	check;
+	int		len;
+	char	**cmd;
 
 	len = ft_array_size(words);
-	check = 0;
-	ft_clear_cmd(data);
+	if (len > 1)
+	{
+		if (find_type(words[0]) == 10 && find_type(words[1]) == 4)
+		{
+			cmd = ft_arraydup_size(words, 2);
+		}
+		else
+			cmd = ft_arraydup_size(words, 1);
+	}
+	return (cmd);
+}
+
+void	get_cmd_args(char **words, int check, int len)
+{
 	if (len > 1)
 	{
 		if (find_type(words[0]) == 10 && find_type(words[1]) == 4)
