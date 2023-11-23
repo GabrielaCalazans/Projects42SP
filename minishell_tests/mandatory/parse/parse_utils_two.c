@@ -6,39 +6,27 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 19:32:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:49:36 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	**get_cmd(char **words, int len)
+char	*get_cmd(char **words)
 {
-	char	**cmd;
+	char	*cmd;
 
 	cmd = NULL;
-	if (len > 1)
-	{
-		if (find_type(words[0]) == 10 && find_type(words[1]) == 4)
-		{
-			cmd = ft_arraydup_size(words, 2);
-		}
-		else
-			cmd = ft_arraydup_size(words, 1);
-	}
-	if (len < 2)
-		cmd = ft_arraydup_size(words, 1);
+	cmd = ft_strdup(words[0]);
 	return (cmd);
 }
 
-char	**get_cmd_args(char **words, int check, int len)
+char	**get_cmd_args(char **words, int len)
 {
 	char	**cmd_args;
 
 	cmd_args = NULL;
-	if (check == 1 && len > 2)
-		cmd_args = ft_arraydup(trim_quote(&words[2]));
-	if (len > 1 && check == 0)
+	if (len > 1)
 		cmd_args = ft_arraydup(trim_quote(&words[1]));
 	return (cmd_args);
 }

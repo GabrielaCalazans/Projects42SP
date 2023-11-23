@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 19:53:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:51:52 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_rdct
 
 typedef struct s_cmd
 {
-	char			**cmd;
+	char			*cmd;
 	char			**cmd_args;
 	struct s_cmd	*next;
 }				t_cmd;
@@ -236,8 +236,8 @@ int			ft_size_rdct(t_rdct *lst);
 
 // PARSE
 void		parsing_it(t_data *data);
-char		**get_cmd_args(char **words, int check, int len);
-char		**get_cmd(char **words, int len);
+char		**get_cmd_args(char **words, int len);
+char		*get_cmd(char **words);
 char		**get_words(t_token *tokens, int len);
 char		**get_words_one(t_token *tokens);
 t_token		*move_one(t_token *tokens);
@@ -258,7 +258,7 @@ char		**fixwords(t_token *tokens, char **words);
 void		cmd_pipe(t_data *data);
 
 // PARSE LIST
-t_cmd	*createnode_cmd(char **cmd, char **cmd_args);
+t_cmd	*createnode_cmd(char *cmd, char **cmd_args);
 t_cmd	*ft_last_cmd(t_cmd *lst);
 int		ft_size_cmd(t_cmd *lst);
 void	ft_clear_cmd_lst(t_cmd **lst);
@@ -269,8 +269,9 @@ void	ft_add_front_cmd(t_cmd **lst, t_cmd *new);
 int			lexer(t_data *data);
 int	has_pipe(t_data *data);
 
-// PRINT LIST
+// PRINT TESTES
 void		printlist(void *head, int check);
+void		print_array(char **array, char *type);
 
 //HEREDOC
 void	heredoc(t_data *data);

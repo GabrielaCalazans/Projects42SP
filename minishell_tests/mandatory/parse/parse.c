@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 19:51:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:41:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	finalizepipe_cmd(t_data *data, char	**all_words)
 {
 	t_cmd	*newnode;
 	char	**cmd_args;
-	char	**cmd;
+	char	*cmd;
 	int		len;
 	int		check;
 
@@ -27,13 +27,10 @@ void	finalizepipe_cmd(t_data *data, char	**all_words)
 	}
 	check = 0;
 	len = ft_array_size(all_words);
-	cmd = get_cmd(all_words, len);
-	if (ft_array_size(cmd) > 1)
-		check = 1;
-	if (len > 1 && check == 0)
-		cmd_args = get_cmd_args(all_words, check, len);
-	else
-		cmd_args = NULL;
+	cmd = get_cmd(all_words);
+	cmd_args = NULL;
+	if (len > 1)
+		cmd_args = get_cmd_args(all_words, len);
 	newnode = createnode_cmd(cmd, cmd_args);
 	ft_add_back_cmd(&data->pcmd, newnode);
 }
@@ -103,6 +100,7 @@ void	parsing_it(t_data *data)
 	else
 	{
 		all_words = get_all_words(data->tokens);
+		// print_array(all_words, "all_words");
 		finalizepipe_cmd(data, all_words);
 	}
 

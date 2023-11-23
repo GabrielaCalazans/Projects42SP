@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:51:16 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 19:46:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:51:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,22 @@ void	printlst_cmd(t_cmd *head)
 	t_cmd	*temp;
 	int		j;
 	int		i;
-	int		len_args;
-	int		len_cmd;
-	int		len_max;
 	
 	temp = head;
 	j = 0;
-	len_args = ft_array_size(temp->cmd_args);
-	len_cmd = ft_array_size(temp->cmd);
-	len_max = maxlen(len_args, len_cmd);
 	while (temp != NULL)
 	{
 		i = 0;
-		while (i < len_max)
+		printf("NODE[%i]-CMD: %s", j, temp->cmd);
+		if (temp->cmd_args[i] != NULL)
 		{
-			
-			if (i < len_cmd)
-				printf("NODE[%i]-CMD: %s - %i", j, temp->cmd[i], i);
-			if (i < len_args)
-				printf(" ARGS: %s - %i", temp->cmd_args[i], i);
-			printf("\n");
-			i++;
+			while (temp->cmd_args[i] != NULL)
+			{
+				printf(" ARGS: %s", temp->cmd_args[i]);
+				i++;
+			}
 		}
+		printf("\n");
 		j++;
 		temp = temp->next;
 	}

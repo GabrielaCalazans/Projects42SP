@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:55:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/20 18:19:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:33:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	execution(t_data *data)
 	if (pid == 0)
 	{
 		set_path_command(data);
-		execve(data->cmd[0], data->cmd, data->env);
+		execve(data->cmd[0], data->cmd_args, data->env);
 		printf("Error!\n");
 		exit(1);
 	}
