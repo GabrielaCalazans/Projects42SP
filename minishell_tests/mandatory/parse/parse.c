@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:41:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:46:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	finalizepipe_cmd(t_data *data, char	**all_words)
 	if (len > 1)
 		cmd_args = get_cmd_args(all_words, len);
 	newnode = createnode_cmd(cmd, cmd_args);
-	ft_add_back_cmd(&data->pcmd, newnode);
+	ft_add_back_cmd(&data->cmd, newnode);
 }
 
 char	**fixwords(t_token *tokens, char **words)
@@ -103,8 +103,7 @@ void	parsing_it(t_data *data)
 		// print_array(all_words, "all_words");
 		finalizepipe_cmd(data, all_words);
 	}
-
-	printlist(data->pcmd, 3);
+	printlist(data->cmd, 3);
 }
 // idea = ter uma struct pra colocar os comandos e argumentos
 // deveria incluir um type?

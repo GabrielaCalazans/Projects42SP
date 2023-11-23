@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:37:52 by carolinekun       #+#    #+#             */
-/*   Updated: 2023/11/20 18:20:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:00:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	heredoc(t_data *data)
 		fd = open("/tmp/.heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		bkpfd = dup(1);
 		str = readline("> ");
-		while ((str != NULL) && ft_strncmp(data->cmd[1], str, (ft_strlen(data->cmd[1]) +1)) != 0)
+		while ((str != NULL) && ft_strncmp(data->cmd->cmd_args[1], str, (ft_strlen(data->cmd[1]) +1)) != 0)
 		{
 			
 			dup2(fd, 1);

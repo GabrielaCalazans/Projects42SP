@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 20:51:52 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:51:29 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,12 @@ typedef struct s_cmd
 typedef struct s_data
 {
 	char			*prompt_in;
-	char			**cmd;
-	char			**cmd_args;
 	char			**heredoc;
 	char			**env;
 	char			*path;
 	int				out_fd;
 	int				in_fd;
-	t_cmd			*pcmd;
+	t_cmd			*cmd;
 	t_rdct			*rdct;
 	t_token			*tokens;
 	t_env			*env_node;
@@ -133,7 +131,7 @@ typedef struct s_params {
 void		prompt(t_data *data);
 // void	call_builtins(t_data *ptr);
 void		mini_start(t_data *data);
-void		prompt_new(t_data *data);
+void		prompt(t_data *data);
 
 //utils
 void		ft_clean_lst(char **lst);

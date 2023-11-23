@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 17:03:30 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/26 12:00:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:52:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	exec_builtin(t_data *data)
 	{"exit", ft_exit}
 	};
 
-	index = is_builtins(data->cmd[0]);
+	index = is_builtins(data->cmd->cmd);
 	if (index != 0)
 		builtins[index].built_in(data);
 	return (index);

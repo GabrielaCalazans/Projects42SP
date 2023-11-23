@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 17:58:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:51:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	set_data(t_data *data, char *envp[], char *argv[])
 	data->tokens = NULL;
 	data->rdct = NULL;
 	data->env_node = NULL;
-	data->pcmd = NULL;
+	data->cmd = NULL;
 	create_env(&data, envp);
 }
 
@@ -105,7 +105,7 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		// data->out_fd = STDOUT_FILENO;
 		// data->in_fd = STDIN_FILENO;
-		prompt_new(data);
+		prompt(data);
 		mini_start(data);
 		ft_clear_data(data);
 	}
