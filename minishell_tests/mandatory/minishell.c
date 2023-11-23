@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:51:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 // 	{
 // 		temp3 = (t_cmd *)head;
 // 		j = 0;
-// 		len_args = ft_array_size(temp3->cmd_args);
+// 		len_args = ft_array_size(temp3->args);
 // 		len_cmd = ft_array_size(temp3->cmd);
 // 		len_max = maxlen(len_args, len_cmd);
 // 		while (temp3 != NULL)
@@ -54,7 +54,7 @@
 // 				if (i < len_cmd)
 // 					printf("NODE[%i]-CMD: %s", j, temp3->cmd[i]);
 // 				if (i < len_args)
-// 					printf(" ARGS: %s", temp3->cmd_args[i]);
+// 					printf(" ARGS: %s", temp3->args[i]);
 // 				printf("\n");
 // 				i++;
 // 			}

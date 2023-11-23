@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:46:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	finalizepipe_cmd(t_data *data, char	**all_words)
 {
 	t_cmd	*newnode;
-	char	**cmd_args;
+	char	**args;
 	char	*cmd;
 	int		len;
 	int		check;
@@ -28,10 +28,10 @@ void	finalizepipe_cmd(t_data *data, char	**all_words)
 	check = 0;
 	len = ft_array_size(all_words);
 	cmd = get_cmd(all_words);
-	cmd_args = NULL;
+	args = NULL;
 	if (len > 1)
-		cmd_args = get_cmd_args(all_words, len);
-	newnode = createnode_cmd(cmd, cmd_args);
+		args = get_args(all_words, len);
+	newnode = createnode_cmd(cmd, args);
 	ft_add_back_cmd(&data->cmd, newnode);
 }
 

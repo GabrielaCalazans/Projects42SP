@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 20:49:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ char	*get_cmd(char **words)
 	return (cmd);
 }
 
-char	**get_cmd_args(char **words, int len)
+char	**get_args(char **words, int len)
 {
-	char	**cmd_args;
+	char	**args;
 
-	cmd_args = NULL;
+	args = NULL;
 	if (len > 1)
-		cmd_args = ft_arraydup(trim_quote(&words[1]));
-	return (cmd_args);
+		args = ft_arraydup(trim_quote(&words[1]));
+	return (args);
 }
 
 int	has_d_redirec_p(t_token *tokens)

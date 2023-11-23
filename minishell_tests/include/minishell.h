@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:51:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@
 # define C_SUCCESS		0
 
 // **cmd; // aqui comando e flags
-// **cmd_args; // aqui str
+// **args; // aqui str
 // **heredoc; // heredoc e seu delimitador/palavra
 // **rdct; // lista redirect e seu arquivo
 
@@ -91,7 +91,7 @@ typedef struct s_rdct
 typedef struct s_cmd
 {
 	char			*cmd;
-	char			**cmd_args;
+	char			**args;
 	struct s_cmd	*next;
 }				t_cmd;
 
@@ -234,7 +234,7 @@ int			ft_size_rdct(t_rdct *lst);
 
 // PARSE
 void		parsing_it(t_data *data);
-char		**get_cmd_args(char **words, int len);
+char		**get_args(char **words, int len);
 char		*get_cmd(char **words);
 char		**get_words(t_token *tokens, int len);
 char		**get_words_one(t_token *tokens);
@@ -256,7 +256,7 @@ char		**fixwords(t_token *tokens, char **words);
 void		cmd_pipe(t_data *data);
 
 // PARSE LIST
-t_cmd	*createnode_cmd(char *cmd, char **cmd_args);
+t_cmd	*createnode_cmd(char *cmd, char **args);
 t_cmd	*ft_last_cmd(t_cmd *lst);
 int		ft_size_cmd(t_cmd *lst);
 void	ft_clear_cmd_lst(t_cmd **lst);

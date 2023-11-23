@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:55:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:49:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 // void	exec_cmd(t_data *ptr)
 // {
 // 	char	*path;
-// 	char	**cmd_args;
+// 	char	**args;
 // 	char	*env_var;
 // 	pid_t	child_pid;
 
 // 	path = find_path(ptr->cmd);
-// 	cmd_args = find_args(ptr->cmd_args);
+// 	args = find_args(ptr->args);
 // }
 
 // void	exec_check(t_data *ptr)
@@ -46,7 +46,7 @@ void	execution(t_data *data)
 	if (pid == 0)
 	{
 		set_path_command(data);
-		execve(data->cmd->cmd, data->cmd->cmd_args, data->env);
+		execve(data->cmd->cmd, data->cmd->args, data->env);
 		printf("Error!\n");
 		exit(1);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:39:53 by ckunimur          #+#    #+#             */
-/*   Updated: 2023/11/14 15:22:43 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:22:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_env	*linkar(t_data *data)
 	char	**split;
 
 	new_node = ft_calloc(sizeof(t_env), 1);
-	split = ft_split(data->cmd[1], '=');
+	split = ft_split(data->cmd->args[0], '=');
 	new_node->var = split[0];
 	if (split[1])
 		new_node->value = split[1];

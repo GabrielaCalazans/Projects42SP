@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:51:16 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 20:51:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	printlst_cmd(t_cmd *head)
 	{
 		i = 0;
 		printf("NODE[%i]-CMD: %s", j, temp->cmd);
-		if (temp->cmd_args[i] != NULL)
+		if (temp->args[i] != NULL)
 		{
-			while (temp->cmd_args[i] != NULL)
+			while (temp->args[i] != NULL)
 			{
-				printf(" ARGS: %s", temp->cmd_args[i]);
+				printf(" ARGS: %s", temp->args[i]);
 				i++;
 			}
 		}

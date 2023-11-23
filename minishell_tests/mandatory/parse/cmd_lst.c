@@ -6,14 +6,14 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:11:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:38:22 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // Func to create a new node
-t_cmd	*createnode_cmd(char *cmd, char **cmd_args)
+t_cmd	*createnode_cmd(char *cmd, char **args)
 {
 	t_cmd	*newnode;
 
@@ -30,10 +30,10 @@ t_cmd	*createnode_cmd(char *cmd, char **cmd_args)
 		ft_clear_cmd_lst(&newnode);
 		return (NULL);
 	}
-	if (cmd_args != NULL)
-		newnode->cmd_args = ft_arraydup(cmd_args);
+	if (args != NULL)
+		newnode->args = ft_arraydup(args);
 	else
-		newnode->cmd_args = &(char *){NULL};
+		newnode->args = &(char *){NULL};
 	newnode->next = NULL;
 	return (newnode);
 }

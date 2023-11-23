@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 19:32:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:24:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ int	is_word(int type, int check)
 
 void	ft_clear_cmd(t_data *data)
 {
-	data->cmd = freearray(data->cmd);
-	data->cmd = NULL;
-	data->cmd_args = freearray(data->cmd_args);
-	data->cmd_args = NULL;
+	free(data->cmd->cmd);
+	data->cmd->args = freearray(data->cmd->args);
+	data->cmd->args = NULL;
 }
 
 void	print_array(char **array, char *type)
