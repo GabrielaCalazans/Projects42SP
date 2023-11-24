@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 19:55:33 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 14:29:19 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:30:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,70 @@
 #include <unistd.h>
 #include "../include/minishell.h"
 
+size_t	ft_strlen(const char *str)
+{
+	int	count;
+
+	count = 0;
+	if (!str)
+		return (0);
+	while (str[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
+}
+
+int	is_quote(char c)
+{
+	if (c == '\"')
+		return (QUOTE_DOUBLE);
+	if (c == '\'')
+		return (QUOTE_SINGLE);
+	return (0);
+}
+
+int	has_asquote_str(char *str, int type)
+{
+	int	i;
+
+	i = 0;
+	while (str[++i] != '\0')
+	{
+		printf(" str[%i]:%c ", i, str[i]);
+		if (type == is_quote(str[i]))
+		{
+			printf("len%i\n", i);
+			return (i);
+		}
+	}
+	return (0);
+}
+
+
+int	ft_strrchr_len(char *str, int type)
+{
+	int	size;
+
+	size = ft_strlen(str);
+	printf("size%i\n", size);
+	while (str[--size] && size >= 0)
+	{
+		printf("str[%i]:%c\n", size, str[size]);
+		if (is_quote(str[size]) == type)
+		{
+			return (size);
+		}
+	}
+	return (FALSE);
+}
+
 
 int	main(void)
 {
 	char	*str = "oi \"sei \"o que lá";
-	printf ("%d\n", qword_len(str, 8));
+	int		len = ft_strlen(str);
+	printf ("%d\tlen:%i\n", ft_strrchr_len(&str[4], QUOTE_DOUBLE), len);
 	// int		pipe_fd[2];
 	// pid_t	child_pid;
 

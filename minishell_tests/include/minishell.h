@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:41:35 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,13 @@ typedef struct s_params {
 	int		inside_pipe;
 	int		len;
 	int		i;
-}	t_params;
+}			t_params;
+
+typedef struct s_tokenp {
+	int		check;
+	int 	type;
+	int		i;
+}			t_tokenp;
 
 void		prompt(t_data *data);
 // void	call_builtins(t_data *ptr);
@@ -180,7 +186,8 @@ int			is_hd_c(char *str);
 int			is_e_c(char *str);
 int			find_type(char *str);
 char		*define_type(char *str);
-int			word_len(char *str);
+// int			word_len(char *str);
+int			word_len(char *str, int back);
 int			is_word_q(int check);
 int			qword_len(char *str, int type);
 int			ft_lensize(char *str);
@@ -255,13 +262,16 @@ void		finalizepipe_cmd(t_data *data, char	**all_words);
 char		**fixwords(t_token *tokens, char **words);
 void		cmd_pipe(t_data *data);
 
+
+int			ft_strrchr_len(char *str, int type);
+
 // PARSE LIST
-t_cmd	*createnode_cmd(char *cmd, char **args);
-t_cmd	*ft_last_cmd(t_cmd *lst);
-int		ft_size_cmd(t_cmd *lst);
-void	ft_clear_cmd_lst(t_cmd **lst);
-void	ft_add_back_cmd(t_cmd **lst, t_cmd *new);
-void	ft_add_front_cmd(t_cmd **lst, t_cmd *new);
+t_cmd		*createnode_cmd(char *cmd, char **args);
+t_cmd		*ft_last_cmd(t_cmd *lst);
+int			ft_size_cmd(t_cmd *lst);
+void		ft_clear_cmd_lst(t_cmd **lst);
+void		ft_add_back_cmd(t_cmd **lst, t_cmd *new);
+void		ft_add_front_cmd(t_cmd **lst, t_cmd *new);
 
 // LEXER
 int			lexer(t_data *data);
@@ -272,14 +282,15 @@ void		printlist(void *head, int check);
 void		print_array(char **array, char *type);
 
 //HEREDOC
-void	heredoc(t_data *data);
+void		heredoc(t_data *data);
 
 //PIPE
-void	dup_pipe(int *fd, int ord, int len_pipe);
+void		dup_pipe(int *fd, int ord, int len_pipe);
 
 // CLEAR DATA
 void		ft_clear_data(t_data *data);
 void		ft_clear_env(t_env *env_node);
+
 
 // SIGNAL
 void	run_signals(int sig);

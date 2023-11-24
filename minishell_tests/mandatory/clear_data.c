@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:16:14 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 22:26:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:21:37 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_clear_data(t_data *data)
 	data->tokens = NULL;
 	ft_clear_rdct(&data->rdct);
 	data->rdct = NULL;
-	ft_clear_cmd(&data->rdct);
+	ft_clear_cmd_lst(&data->cmd);
 	data->cmd = NULL;
 	free(data->prompt_in);
 	data->prompt_in = NULL;

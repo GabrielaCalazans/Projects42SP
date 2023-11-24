@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:11:09 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/10/28 15:14:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:57:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,93 @@ char	*define_type(char *str)
 	return ("error");
 }
 
-int	word_len(char *str)
+int	has_asquote_str(char *str, int type)
+{
+	int	i;
+
+	i = 0;
+	while (str[++i] != '\0')
+	{
+		if (type == is_quote(str[i]))
+		{
+			printf("len%i\n", i);
+			return (i);
+		}
+	}
+	return (0);
+}
+
+int	is_thiscase(int type, char c)
+{
+	if(type == WORD || type == is_quote(c)
+		|| type == BACKSLASH)
+		return (TRUE);
+	return (FALSE);
+}
+
+int	word_len(char *str, int back)
 {
 	int	len;
+	int	type;
 
 	len = 0;
-	while (*str && find_type(str) == 10)
+	if (back == 1)
+		type = 10;
+	else
+		type = find_type(str);
+	while (str[len] != '\0' && is_thiscase(type, str[len]))
 	{
-		len++;
-		str++;
+		if (type == BACKSLASH)
+			len++;
+		if (type == is_quote(str[len]))
+		{
+			if (has_asquote_str(&str[len], type))
+				len += has_asquote_str(&str[len], type) + 1;
+			else
+			{
+				ft_error_redirect(3);
+				exit (1);
+			}
+		}
+		else
+			len++;
+		type = find_type(&str[len]);
 	}
 	return (len);
 }
+
+// int word_len(char *str)
+// {
+// 	int	len;
+
+// 	len = 0;
+// 	while (*str && (find_type(str) == 10
+// 		|| find_type(str) == is_quote(*str)))
+// 	{
+// 		if (find_type(str) == is_quote(*str))
+// 		{
+// 			if (has_asquote_str(str))
+// 			{
+// 				len += has_asquote_str(str);
+// 				str += has_asquote_str(str);
+// 			}
+// 			else
+// 			{
+// 				ft_error_redirect(3);
+// 				return (0);
+// 			}
+// 		}
+// 		else
+// 		{
+// 			len++;
+// 			str++;
+// 		}
+// 	}
+
+// 	return (len);
+// }
+
+
 
 int	is_word_q(int check)
 {
@@ -92,6 +167,20 @@ int	qword_len(char *str, int type)
 			return (len);
 		}
 		str++;
+	}
+	return (FALSE);
+}
+
+
+int	ft_strrchr_len(char *str, int type)
+{
+	int	size;
+
+	size = ft_strlen(str);
+	while (str[--size] && size >= 0)
+	{
+		if (is_quote(str[size]) == type)
+			return (size);
 	}
 	return (FALSE);
 }

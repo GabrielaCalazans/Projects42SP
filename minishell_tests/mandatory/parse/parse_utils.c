@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 22:24:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:22:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ int	is_word(int type, int check)
 	return (FALSE);
 }
 
-void	ft_clear_cmd(t_data *data)
-{
-	free(data->cmd->cmd);
-	data->cmd->args = freearray(data->cmd->args);
-	data->cmd->args = NULL;
-}
+// void	ft_clear_cmd(t_data *data)
+// {
+// 	free(data->cmd->cmd);
+// 	data->cmd->args = freearray(data->cmd->args);
+// 	data->cmd->args = NULL;
+// }
 
 void	print_array(char **array, char *type)
 {
