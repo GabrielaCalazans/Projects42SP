@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:03:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*get_cmd(char **words)
 {
 	char	*cmd;
 
-	cmd = NULL;
 	cmd = ft_strdup(words[0]);
 	return (cmd);
 }
@@ -56,8 +55,8 @@ void	*ft_error_parse(int error)
 	else if (error == 2)
 		printf("DEU RUIM.\n");
 	else if (error == 3)
-		printf("ELSE\n");
-	else if (error == 4)
+		printf("ERROR! Missing quote\n");
+	else if(error == 5)
 		printf("ELSE\n");
 	else
 	{

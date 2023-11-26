@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/23 21:41:35 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:48:54 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ char		*define_type(char *str);
 // int			word_len(char *str);
 int			word_len(char *str, int back);
 int			is_word_q(int check);
-int			qword_len(char *str, int type);
+int			qword_len(char *str, int type, int back);
 int			ft_lensize(char *str);
 int			len_flag(char *str);
 int			len_var(char *str);
@@ -261,6 +261,8 @@ char		**trim_quote(char **words);
 void		finalizepipe_cmd(t_data *data, char	**all_words);
 char		**fixwords(t_token *tokens, char **words);
 void		cmd_pipe(t_data *data);
+
+int	flag_case(t_token *tokens);
 
 
 int			ft_strrchr_len(char *str, int type);

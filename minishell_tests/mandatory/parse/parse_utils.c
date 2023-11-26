@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/23 13:22:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:26:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,41 @@ int	is_drd_case(int type)
 	return (FALSE);
 }
 
+// int	is_word(int type, int check)
+// {
+// 	if (check == 1)
+// 	{
+// 		if (type == WORD)
+// 			return (TRUE);
+// 		if (type == QUOTED_WORD)
+// 			return (TRUE);
+// 	}
+// 	if (check == 2)
+// 	{
+// 		if (type == WORD)
+// 			return (TRUE);
+// 		if (type == QUOTED_WORD)
+// 			return (TRUE);
+// 		if (!is_special_case(type, 3))
+// 			return (TRUE);
+// 	}
+// 	return (FALSE);
+// }
+
 int	is_word(int type, int check)
 {
 	if (check == 1)
 	{
 		if (type == WORD)
 			return (TRUE);
-		if (type == QUOTED_WORD)
+		if (type == EXIT_STATUS)
 			return (TRUE);
 	}
 	if (check == 2)
 	{
-		if (type == WORD)
-			return (TRUE);
-		if (type == QUOTED_WORD)
-			return (TRUE);
-		if (!is_special_case(type, 3))
+		if (type != REDIRECT_IN && type != REDIRECT_OUT
+			&& type != HEREDOC && type != APPEND
+			&& type != C_SPACE && type != FLAG)
 			return (TRUE);
 	}
 	return (FALSE);

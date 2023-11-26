@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:12:20 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/23 21:42:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:22:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_token	*create_word_token(char *str, int len, int check)
 	i = 0;
 	if (len < 1 && check == 2)
 	{
-		printf("ERROR! Missing quote\n");
-		return (NULL);
+		ft_error_parse(3);
+		exit (1);
 	}
 	token = ft_substr(str, 0, len);
 	if (check == 1)
@@ -68,7 +68,7 @@ int	sub_creating_token(t_data *data, t_token *newnode, int check, int i, int bac
 	if (check == QUOTE_DOUBLE || check == QUOTE_SINGLE)
 	{
 		newnode = create_word_token(&data->prompt_in[i],
-				qword_len(&data->prompt_in[i], check), 2);
+				qword_len(&data->prompt_in[i], check, back), 2);
 		if (!newnode)
 			return (C_ERROR);
 		ft_add_back(&data->tokens, newnode);
@@ -93,7 +93,6 @@ void	sub_start_tokens(t_data *data, t_token *newnode, int check, int i)
 		check = find_type(&data->prompt_in[i]);
 		if (check == BACKSLASH)
 		{
-			i++;
 			back = 1;
 			check = WORD;
 		}
@@ -106,9 +105,10 @@ void	sub_start_tokens(t_data *data, t_token *newnode, int check, int i)
 		}
 		if (check == QUOTE_DOUBLE || check == QUOTE_SINGLE)
 		{
+			check = find_type(&data->prompt_in[i]);
 			if (sub_creating_token(data, newnode, check, i, back))
 				break ;
-			i += qword_len(&data->prompt_in[i], check);
+			i += qword_len(&data->prompt_in[i], check, back);
 		}
 		if (check > 0 && !is_word_q(check))
 		{

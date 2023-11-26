@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/23 20:20:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:08:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	finalizepipe_cmd(t_data *data, char	**all_words)
 	}
 	check = 0;
 	len = ft_array_size(all_words);
-	cmd = get_cmd(all_words);
+	cmd = ft_strdup(all_words[0]);
+	printf("cmd:%s all_words:%s\n", cmd, all_words[1]);
 	args = NULL;
 	if (len > 1)
 		args = get_args(all_words, len);
@@ -90,29 +91,45 @@ char	**get_all_words(t_token *tokens)
 	return (all_words);
 }
 
-int	word_has_quotes(char *str)
-{
-	int	i;
-	int	check;
-	int	type;
+// int	word_has_quotes(char *str)
+// {
+// 	int	i;
+// 	int	check;
+// 	int	type;
 
-	i = 0;
-	type = 0;
-	check = 0;
-	while(str[i] != '\0' || is_space(str[i]))
+// 	i = 0;
+// 	type = 0;
+// 	check = 0;
+// 	while(str[i] != '\0' || is_space(str[i]))
+// 	{
+// 		if (check == 0 && is_quote(str[i]))
+// 		{
+// 			type = is_quote(str[i]);
+// 			check++;
+// 		}
+// 		if (check == 1 && is_quote(str[i]) == type)
+// 			check++;
+// 		if (check == 2)
+// 			return (type);
+// 		i++;
+// 	}
+// 	return (FALSE);
+// }
+
+	// data->cmd = ft_arraydup(all_words);
+void	parsing_it(t_data *data)
+{
+	char	**all_words;
+
+	if (has_pipe(data) > 0)
+		cmd_pipe(data);
+	else
 	{
-		if (check == 0 && is_quote(str[i]))
-		{
-			type = is_quote(str[i]);
-			check++;
-		}
-		if (check == 1 && is_quote(str[i]) == type)
-			check++;
-		if (check == 2)
-			return (type);
-		i++;
+		all_words = get_all_words(data->tokens);
+		// print_array(all_words, "all_words");
+		finalizepipe_cmd(data, all_words);
 	}
-	return (FALSE);
+	printlist(data->cmd, 3);
 }
 
 // char	*remove_quote(char *str, int type)
@@ -138,25 +155,3 @@ int	word_has_quotes(char *str)
 // 			all_words[i] = remove_quote(all_words[i], word_has_quotes(all_words[i]));
 // 	}
 // }
-
-	// data->cmd = ft_arraydup(all_words);
-void	parsing_it(t_data *data)
-{
-	char	**all_words;
-
-	if (has_pipe(data) > 0)
-		cmd_pipe(data);
-	else
-	{
-		all_words = get_all_words(data->tokens);
-		// print_array(all_words, "all_words");
-		finalizepipe_cmd(data, all_words);
-	}
-	printlist(data->cmd, 3);
-}
-// idea = ter uma struct pra colocar os comandos e argumentos
-// deveria incluir um type?
-// cada nó seria um pipe
-
-// pensar sobre quando não há argumentos
-// lém disso ajustar o printlist para array de tamanho variado no mesmo nó
