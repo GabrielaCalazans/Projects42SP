@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/25 19:48:54 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:56:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ t_token		*jump_white_spaces(t_token *tokens);
 void		create_redirect_lst(t_data *data);
 int			has_another_quote(t_token *tokens, int type);
 int			has_redirect(t_token *tokens);
+int			has_dredirect(t_token *tokens);
 int			has_redirect_pipe(t_token *tokens);
 int			has_pipe_yet(t_token *tokens);
 int			has_rdct_yet(t_token *tokens);
@@ -230,6 +231,7 @@ char		**ft_arraydup_size(char **array, int size);
 int			ft_array_size(char **array);
 int			*ft_intdup(int *array, int size);
 void		*return_error(void);
+int			is_redrt_case(int type);
 
 // DEALING REDIRECT LIST
 t_rdct		*createnode_rdct(char **files, int *redirects, int nbr_rdcts);

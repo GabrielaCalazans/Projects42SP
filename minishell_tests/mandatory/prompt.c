@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 21:51:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:55:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	mini_start(t_data *data)
 	get_path(data);
 	if (ft_strlen(data->prompt_in) != 0)
 		start_token(data);
-	if (has_redirect(data->tokens))
+	if (has_redirect(data->tokens) || has_dredirect(data->tokens))
 		create_redirect_lst(data);
 	parsing_it(data);
 	if (!exec_builtin(data))

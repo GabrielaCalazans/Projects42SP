@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 15:10:45 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 17:05:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:55:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ int	has_redirect(t_token *tokens)
 	}
 	return (redirects);
 }
+
+int	has_dredirect(t_token *tokens)
+{
+	t_token	*temp;
+	int		redirects;
+
+	temp = tokens;
+	redirects = 0;
+	while (temp)
+	{
+		if (temp->type == HEREDOC || temp->type == APPEND)
+			redirects++;
+		temp = temp->next;
+	}
+	return (redirects);
+}
+
 
 int	is_path(t_token *tokens)
 {
