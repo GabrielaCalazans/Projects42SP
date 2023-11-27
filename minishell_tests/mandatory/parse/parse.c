@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/25 21:08:42 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/26 21:57:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,16 @@ void	finalizepipe_cmd(t_data *data, char	**all_words)
 	char	**args;
 	char	*cmd;
 	int		len;
-	int		check;
 
 	if (!all_words)
 	{
 		ft_error_parse(5);
 		return ;
 	}
-	check = 0;
 	len = ft_array_size(all_words);
 	cmd = ft_strdup(all_words[0]);
-	printf("cmd:%s all_words:%s\n", cmd, all_words[1]);
 	args = NULL;
-	if (len > 1)
-		args = get_args(all_words, len);
+	args = get_args(all_words, len);
 	newnode = createnode_cmd(cmd, args);
 	ft_add_back_cmd(&data->cmd, newnode);
 }
@@ -116,6 +112,71 @@ char	**get_all_words(t_token *tokens)
 // 	return (FALSE);
 // }
 
+char	*process_backs(char *str)
+{
+	int		i;
+	int		j;
+	int		backs;
+	int		len;
+	char	*new_str;
+
+	i = 0;
+	j = 0;
+	backs = 0;
+	len = ft_strlen(str);
+	while(i < len)
+	{
+		if (i + 1 == len)
+			break ;
+		if (str[i] == '\\' && str[i + 1] != '\\')
+			backs++;
+		i++;
+	}
+	if (backs > 0)
+	{
+		new_str = malloc(sizeof (char) * (len - backs) + 1);
+		if (!new_str)
+		{
+			perror("malloc");
+			exit (1);
+		}
+		i = 0;
+		while (j < (len - backs))
+		{
+			if (str[i] == '\\')
+			{
+				i++;
+				new_str[j] = str[i];
+				j++;
+			}
+			else
+			{
+				new_str[j] = str[i];
+				j++;
+			}
+			i++;
+		}
+		new_str[j] = '\0';
+	}
+	return (new_str);
+}
+
+char	**treat_backs(char **words)
+{
+	int	i;
+	// int	len;
+
+	i = 0;
+	// len = 0;
+	while (words[i] != NULL)
+	{
+		if (ft_strchr(words[i], '\\') != NULL)
+			words[i] = process_backs(words[i]);
+		i++;
+	}
+	return (words);
+}
+
 	// data->cmd = ft_arraydup(all_words);
 void	parsing_it(t_data *data)
 {
@@ -126,7 +187,8 @@ void	parsing_it(t_data *data)
 	else
 	{
 		all_words = get_all_words(data->tokens);
-		// print_array(all_words, "all_words");
+		all_words = treat_backs(all_words);
+		print_array(all_words, "all_words");
 		finalizepipe_cmd(data, all_words);
 	}
 	printlist(data->cmd, 3);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:14:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/25 21:03:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/26 22:04:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**get_args(char **words, int len)
 
 	args = NULL;
 	if (len > 1)
-		args = ft_arraydup(trim_quote(&words[1]));
+		return (ft_arraydup((&words[1])));
 	return (args);
 }
 
@@ -58,6 +58,8 @@ void	*ft_error_parse(int error)
 		printf("ERROR! Missing quote\n");
 	else if(error == 5)
 		printf("ELSE\n");
+	else if (error == 6)
+		printf("ERROR! Missing backslash key\n");
 	else
 	{
 		printf("undefined error\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_three.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:32:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/25 19:07:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/26 22:12:09 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*trim_process(char *word, int type)
 	char	*name;
 
 	name = ft_strdup(word);
+	printf("type:%d\n", type);
 	if (type == QUOTE_DOUBLE)
 		name = ft_triming(name, "\"");
 	if (type == QUOTE_SINGLE)
@@ -44,6 +45,8 @@ char	**trim_quote(char **words)
 	int	i;
 	int	type;
 
+	if (!words)
+		return (NULL);
 	i = 0;
 	while (words[i])
 	{

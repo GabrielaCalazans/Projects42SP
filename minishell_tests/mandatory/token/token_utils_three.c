@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils_three.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:11:09 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/25 19:23:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/26 21:23:10 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,37 @@ int	is_thiscase(int type, char c)
 // 	return (FALSE);
 // }
 
+int	is_backs(char *str, int len, int type)
+{
+	if (type == BACKSLASH && str[len] != '\0')
+		return (len + 1);
+	if (type == BACKSLASH && str[len] == '\0')
+	{
+		ft_error_parse(6);
+		exit(1);
+	}
+	return (0);
+}
+
+	// if (back == 1)
+	// 	return (1);
 int	word_len(char *str, int back)
 {
 	int	len;
 	int	type;
 
 	len = 0;
-	// if (back == 1)
-	// 	return (1);
 	type = find_type(str);
 	while (str[len] != '\0' && is_thiscase(type, str[len]))
 	{
-		if (type == BACKSLASH && str[len + 1] != '\0')
-		{
-			len += 2;
-		}
+		if (type == BACKSLASH && str[len] != '\0')
+			len = is_backs(str, len, type);
+		// 	len++;
+		// if (type == BACKSLASH && str[len] == '\0')
+		// {
+		// 	ft_error_parse(6);
+		// 	exit(1);
+		// }
 		if (type == is_quote(str[len]) && back == 0)
 		{
 			if (has_asquote_str(&str[len], type))

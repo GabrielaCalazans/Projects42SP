@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:55:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/26 19:36:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void	dup_pipe(int *fd, int ord, int len_pipe)
 	{
 		dup2(0, fd[0]);
 		dup2(1, fd[1]);
-	}
+	}  
 }
