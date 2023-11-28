@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils_three.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:11:09 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/26 21:23:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:26:04 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,4 +209,47 @@ int	ft_strrchr_len(char *str, int type)
 // 	}
 
 // 	return (len);
+// }
+
+// int	word_len(char *str)
+// {
+// 	int	len;
+
+// 	len = 0;
+// 	while (*str && find_type(str) == 10)
+// 	{
+// 		len++;
+// 		str++;
+// 	}
+// 	return (len);
+// }
+
+// int	is_word_q(int check)
+// {
+// 	if (check == WORD)
+// 		return (TRUE);
+// 	if (check == QUOTE_DOUBLE)
+// 		return (TRUE);
+// 	if (check == QUOTE_SINGLE)
+// 		return (TRUE);
+// 	return (FALSE);
+// }
+
+// int	qword_len(char *str, int type)
+// {
+// 	int	len;
+
+// 	len = 0;
+// 	str++;
+// 	while (*str)
+// 	{
+// 		len++;
+// 		if (type == find_type(str))
+// 		{
+// 			len++;
+// 			return (len);
+// 		}
+// 		str++;
+// 	}
+// 	return (FALSE);
 // }

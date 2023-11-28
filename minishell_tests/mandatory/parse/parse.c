@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:42:19 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/27 19:28:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:55:35 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,24 @@ char	**get_all_words(t_token *tokens)
 // 	return (FALSE);
 // }
 
+int	count_backs(int len, char *str)
+{
+	int	i;
+	int	backs;
+
+	i = 0;
+	backs = 0;
+	while(i < len)
+	{
+		if (i + 1 == len)
+			break ;
+		if (str[i] == '\\' && str[i + 1] != '\\')
+			backs++;
+		i++;
+	}
+	return (backs);
+}
+
 char	*process_backs(char *str)
 {
 	int		i;
@@ -122,17 +140,9 @@ char	*process_backs(char *str)
 
 	i = 0;
 	j = 0;
-	backs = 0;
 	new_str = NULL;
 	len = ft_strlen(str);
-	while(i < len)
-	{
-		if (i + 1 == len)
-			break ;
-		if (str[i] == '\\' && str[i + 1] != '\\')
-			backs++;
-		i++;
-	}
+	backs = count_backs(len, str);
 	if (backs > 0)
 	{
 		new_str = malloc(sizeof (char) * (len - backs) + 1);

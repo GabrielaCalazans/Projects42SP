@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/27 19:56:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:49:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,10 @@ typedef struct s_cmd
 typedef struct s_data
 {
 	char			*prompt_in;
-	char			**heredoc;
 	char			**env;
 	char			*path;
-	int				out_fd;
-	int				in_fd;
+	int				*fd;
+	int				n_cmd;
 	t_cmd			*cmd;
 	t_rdct			*rdct;
 	t_token			*tokens;
@@ -137,7 +136,6 @@ typedef struct s_tokenp {
 void		prompt(t_data *data);
 // void	call_builtins(t_data *ptr);
 void		mini_start(t_data *data);
-void		prompt(t_data *data);
 
 //utils
 void		ft_clean_lst(char **lst);
@@ -279,7 +277,7 @@ void		ft_add_front_cmd(t_cmd **lst, t_cmd *new);
 
 // LEXER
 int			lexer(t_data *data);
-int	has_pipe(t_data *data);
+int			has_pipe(t_data *data);
 
 // PRINT TESTES
 void		printlist(void *head, int check);
@@ -289,7 +287,7 @@ void		print_array(char **array, char *type);
 void		heredoc(t_data *data);
 
 //PIPE
-void		dup_pipe(int *fd, int ord, int len_pipe);
+void	dup_pipe(int ord, t_data *data);
 
 // CLEAR DATA
 void		ft_clear_data(t_data *data);

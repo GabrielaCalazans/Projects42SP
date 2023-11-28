@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:55:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/26 19:36:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:48:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@
 // 		execution(ptr);
 // }
 
+
+void	close_fd(t_data *data, int n_fd)
+{
+	int	i;
+
+	i = 0;
+	while (i <= n_fd)
+		close(data->fd[i++]);
+}
+
 /*
 [] pipe
 [] exit code
@@ -53,15 +63,23 @@ void	execution(t_data *data)
 	waitpid(-1, &status, 0);
 }
 
-void	dup_pipe(int *fd, int ord, int len_pipe)
+void	dup_pipe(int ord, t_data *data)
 {
 	if (ord == 0)
-		dup2(0, fd[0]);
-	else if (ord == len_pipe)
-		dup2(1, fd[1]);
+	{
+		dup2(data->fd[1], 1);
+		close_fd(data, data->n_cmd * 2);
+	}
+	else if (ord == data->n_cmd - 1)
+	{
+		dup2(data->fd[2], 0);
+		close_fd(data, data->n_cmd * 2);
+	}
 	else
 	{
-		dup2(0, fd[0]);
-		dup2(1, fd[1]);
-	}  
+		dup2(data->fd[0], 0);
+		dup2(data->fd[3], 1);
+		close_fd(data, data->n_cmd * 2);
+	}
 }
+
