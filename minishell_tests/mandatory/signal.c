@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 02:32:53 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/20 20:40:48 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:39:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ void	run_signals(int sig)
 		signal(SIGINT, restore_prompt);
 		signal(SIGQUIT, SIG_IGN);
 	}
-	if (sig == 2)
-	{
-		signal(SIGINT, ctrl_c);
-		signal(SIGQUIT, back_slash);
-		// signal(SIGEOF, ctrl_d);
-	}
+	// if (sig == 2)
+	// {
+	// 	signal(SIGINT, ctrl_c);
+	// 	signal(SIGQUIT, back_slash);
+	// }
 	if (sig == 3)
 	{
 		printf("exit\n");

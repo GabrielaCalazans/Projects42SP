@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:55:06 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/04 17:39:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/02 21:27:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,57 @@
 // add_history(tmp->prompt_input);
 // Agora 'input' contém o comando digitado pelo usuário
 // VERIFICAR LEAK DE MEMORIA??
+// void	prompt(t_data *data)
+// {
+// 	while (1)
+// 	{
+// 		data->prompt_in = readline(PROMPT);
+// 		if (data->prompt_in[0] != '\0')
+// 		{
+// 			add_history(data->prompt_in);
+// 			printf("prompt %s\n", data->prompt_in);
+// 		}
+// 		if (data->prompt_in[0] != '\0')
+// 			start_token(data);
+// 		if (has_redirect(data->tokens))
+// 			create_redirect_lst(data);
+// 		ft_clear_data(data);
+// 	}
+// 	rl_clear_history();
+// }
+
+// void	set_path_command(t_data *data)
+// {
+// 	char	**path;
+// 	char	*tmp1;
+// 	char	*tmp2;
+// 	int		i;
+
+// 	i = 0;
+// 	path = ft_split(data->path, ':');
+// 	while (path[i])
+// 	{
+// 		tmp1 = ft_strjoin(path[i], "/");
+// 		tmp2 = ft_strjoin(tmp1, data->cmd[0]);
+// 		if (tmp1)
+// 			free(tmp1);
+// 		if (!access(tmp2, F_OK))
+// 		{
+// 			if (!access(tmp2, X_OK))
+// 			{
+// 				if (data->cmd[0])
+// 					free(data->cmd[0]);
+// 				data->cmd[0] = tmp2;
+// 				ft_clean_lst(path);
+// 				return ;
+// 			}
+// 		}
+// 		if (tmp2)
+// 			free(tmp2);
+// 		i++;
+// 	}
+// }
+
 char	*create_command_path(char *path, char *command)
 {
 	char	*tmp1;
@@ -73,6 +124,17 @@ void	get_path(t_data *data)
 	}
 }
 
+void	prompt(t_data *data)
+{
+	// run_signals(1);
+	data->prompt_in = readline(PROMPT);
+	if (data->prompt_in && *data->prompt_in)
+	{
+		add_history(data->prompt_in);
+		printf("PROMPT: %s\n", data->prompt_in);
+	}
+}
+
 int	command_count(t_data *data)
 {
 	int		command;
@@ -103,27 +165,6 @@ void	mini_start(t_data *data)
 	printf("comands: %i\n", data->n_cmd);
 	if (!exec_builtin(data))
 		execution(data);
-}
-
-void	prompt(t_data *data)
-{
-	run_signals(1);
-	data->prompt_in = readline(PROMPT);
-	printf("token: '%s'", data->prompt_in);
-	if (data->prompt_in == NULL)
-	{
-		printf("Error reading input.\n");
-		ft_clear_data(data);
-		ft_clear_env(data->env_node);
-		rl_clear_history();
-		free(data);
-		exit(1);
-	}
-	if (data->prompt_in && *data->prompt_in)
-	{
-		add_history(data->prompt_in);
-		printf("PROMPT: %s\n", data->prompt_in);
-	}
 }
 
 // data->cmd = ft_split(data->prompt_in, ' ');

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:36:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/11/22 22:18:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:39:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,10 @@ int	main(int argc, char *argv[], char *envp[])
 	set_data(data, envp, argv);
 	while (1)
 	{
-		// data->out_fd = STDOUT_FILENO;
-		// data->in_fd = STDIN_FILENO;
 		prompt(data);
 		mini_start(data);
 		ft_clear_data(data);
 	}
-	rl_clear_history();
 	return (0);
 }
 
