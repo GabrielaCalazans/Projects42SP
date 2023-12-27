@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:36:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/21 17:42:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:52:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,47 @@ void	yourturn()
 	}
 }
 
+int	x = 2;
+int	mails = 0;
+
+void	*routine()
+{
+	// printf(("Test from threads\n"));
+	// sleep(3);
+	// printf("Ending thread\n");
+	for (int i = 0; i < 1000000; i++)
+	{
+		mails++;
+	}
+
+	return (NULL);
+}
+
+void	*routine1()
+{
+	// printf("Process id %d\n", getpid());
+	x += 5;
+	sleep(2);
+	printf("Value of x: %d\n", x);
+	return (NULL);
+}
+
+void	*routine2()
+{
+	sleep(2);
+	printf("Value of x: %d\n", x);
+	return (NULL);
+}
+
+long long	ft_get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+
 int	main (void)
 {
 	// pthread_t	t1;
@@ -122,9 +163,49 @@ int	main (void)
 
 // ********** TEST 3 ************************
 
-	pthread_t	thread0;
-	pthread_create(&thread0, NULL, myturn, NULL);
-	yourturn();
+	// pthread_t	thread0;
+	// pthread_create(&thread0, NULL, myturn, NULL);
+	// yourturn();
+
+// ************* TEST 4 CODE VALT **********************
+
+	// pthread_t	t1, t2;
+
+	// if (pthread_create(&t1, NULL, &routine, NULL) != 0)
+	// 	return (1);
+	// if (pthread_create(&t2, NULL, &routine, NULL) != 0)
+	// 	return (2);
+	// if (pthread_join(t1, NULL) != 0)
+	// 	return (3);
+	// if (pthread_join(t2, NULL) != 0)
+	// 	return (4);
+
+// ************* TEST 4 CODE VALT **********************
+
+	// pthread_t	t1, t2;
+
+	// if (pthread_create(&t1, NULL, &routine, NULL) != 0)
+	// 	return (1);
+	// if (pthread_create(&t2, NULL, &routine, NULL) != 0)
+	// 	return (2);
+	// if (pthread_join(t1, NULL) != 0)
+	// 	return (3);
+	// if (pthread_join(t2, NULL) != 0)
+	// 	return (4);
+	// printf("NUmber of mails: %d\n", mails);
+
+// ************* TEST 5 gettimeofday **********************
+	struct timeval	current_time;
+	long 			seconds;
+	long 			microseconds;
+
+	gettimeofday(&current_time, NULL);
+	seconds = current_time.tv_sec * 1000;
+	microseconds = current_time.tv_usec / 1000;
+	printf(" seconds: %ld\n microsecond: %ld\n sum: %ld\n", seconds, microseconds, seconds + microseconds);
+	printf(" GET: %lld\n", ft_get_time());
+
+
 
 	return (0);
 }

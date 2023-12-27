@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/12/21 12:34:35 by gacalaza         ###   ########.fr        #
+#    Updated: 2023/12/27 16:46:24 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 NAME =	philo
 
 # ======= Sources ========
-SRCS = philo.c
+SRCS = philo.c ft_atoi.c ft_init.c
+SRCS += philo_rotine.c ft_clean.c
 
 # ====== Folders and Paths ========
 INCL_DIR		= ./include/
