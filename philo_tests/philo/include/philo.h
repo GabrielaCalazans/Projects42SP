@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/27 18:45:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:22:32 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_rout
 	int				eat_time;
 	int				sleep_time;
 	int				t_eat;
+	pthread_mutex_t	print;
 }			t_rout;
 
 void		*routine(void *arg);
@@ -52,11 +53,12 @@ void		pick_up_forks(t_philo *philosopher);
 void		put_down_forks(t_philo *philosopher);
 long long	ft_get_time(void);
 int			ft_set_values(t_rout *table, int argc, char *argv[]);
-void		ft_init_philo(t_rout *table);
+int			ft_init_philo(t_rout *table);
 void		cleanup_table(t_rout *table);
 void		ft_clean(t_rout *table);
 int			ft_atoi(const char *nptr);
+int			ft_isdigit(int argument);
 void		ft_putendl_fd(char *s, int fd);
-void		print_message(int check, int philo_id);
+void		print_message(int check, t_philo *philosopher);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 14:59:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/27 17:51:11 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:23:25 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	cleanup_table(t_rout *table)
 		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&table->print);
 }
 
 void	ft_clean(t_rout *table)

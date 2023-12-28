@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/27 18:09:01 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:26:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,13 @@ int	ft_set_values(t_rout *table, int argc, char *argv[])
 	table->forks = (pthread_mutex_t *)malloc(table->t_philos * sizeof(pthread_mutex_t));
 	if (!table->philos || !table->forks)
 	{
-		printf("MALLOC ERROR set");
+		ft_putendl_fd("ERROR MALLOC set", 2);
 		return (1);
 	}
-	printf("PHILOS: %i DIE: %i EAT: %i SLEEP: %i N EATS: %i\n", table->t_philos, table->death_time, table->eat_time, table->sleep_time, table->t_eat);
 	return (0);
 }
 
-void	ft_init_philo(t_rout *table)
+void	init_locks(t_rout *table)
 {
 	int	i;
 
@@ -45,12 +44,20 @@ void	ft_init_philo(t_rout *table)
 	while (i < table->t_philos)
 		pthread_mutex_init(&table->forks[i++], NULL);
 	i = 0;
-	while (i < table->t_philos)
+	while (i++ < table->t_philos)
 	{
 		pthread_mutex_init(&table->forks[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&table->print, NULL);
+}
+
+int	ft_init_philo(t_rout *table)
+{
+	int	i;
+
 	i = 0;
+	init_locks(table);
 	while (i < table->t_philos)
 	{
 		printf("loop %i\n", i);
@@ -60,7 +67,24 @@ void	ft_init_philo(t_rout *table)
 		table->philos[i].times_to_eat = table->t_eat;
 		if (pthread_create(&table->philos[i].thread, NULL,
 				routine, &table->philos[i]))
-			exit(1);
+			return (1);
 		i++;
 	}
+	return (0);
+}
+
+void	print_message(int check, t_philo *philosopher)
+{
+	// pthread_mutex_lock(&philosopher->table->print);
+	if (check == 0)
+		printf("%lld %d is thinking\n", ft_get_time(), philosopher->id);
+	if (check == 1)
+		printf("%lld %d is eating\n", ft_get_time(), philosopher->id);
+	if (check == 3)
+		printf("%lld %d has taken a fork\n", ft_get_time(), philosopher->id);
+	if (check == 4)
+		printf("%lld %d is sleeping\n", ft_get_time(), philosopher->id);
+	if (check == 5)
+		printf("%lld %d died\n", ft_get_time(), philosopher->id);
+	// pthread_mutex_unlock(&philosopher->table->print);
 }

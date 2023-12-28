@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 16:43:42 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/27 18:44:50 by gacalaza         ###   ########.fr       */
+/*   Updated: 2023/12/27 21:14:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	pick_up_forks(t_philo *philosopher)
 {
 	pthread_mutex_lock(philosopher->l_fork);
-	print_message(3, philosopher->id);
+	print_message(3, philosopher);
 	pthread_mutex_lock(philosopher->r_fork);
-	print_message(3, philosopher->id);
+	print_message(3, philosopher);
 }
 
 void	put_down_forks(t_philo *philosopher)
@@ -25,7 +25,7 @@ void	put_down_forks(t_philo *philosopher)
 	pthread_mutex_unlock(philosopher->l_fork);
 	pthread_mutex_unlock(philosopher->r_fork);
 	// Sleeping
-	print_message(4, philosopher->id);
+	print_message(4, philosopher);
 	usleep(philosopher->table->sleep_time * 1000);
 }
 
