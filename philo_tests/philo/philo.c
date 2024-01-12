@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 16:09:23 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:21:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,18 @@ int	check_args(int argc, char *argv[])
 
 int	main(int argc, char *argv[])
 {
-	t_table	table;
+	t_table	*table;
 
+	table = malloc(sizeof(t_table));
 	if (check_args(argc, argv))
 		return (1);
-	if (ft_set_values(&table, argc, argv))
+	if (ft_set_values(table, argc, argv))
 		return (1);
-	if (ft_init_philo(&table))
+	if (ft_init_philo(table))
 		return (1);
-	cleanup_table(&table);
-	free(table.philos);
-	free(table.forks);
+	cleanup_table(table);
+	free(table->philos);
+	free(table->forks);
+	free(table);
 	return (0);
 }

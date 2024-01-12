@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 14:53:32 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:23:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,17 @@ int	ft_init_thread(t_table *table)
 	int	i;
 
 	i = 0;
-	while (i < table->n_philos)
+	while (i++ < table->n_philos)
 	{
-		if (pthread_create(&table->threads[i], NULL,
+		if (pthread_create(&table->philos[i].thread, NULL,
 			&routine, &table->philos[i]))
 			return (ft_error(TH_ERR, table));
 		ft_usleep(1);
-		i++;
 	}
 	i = 0;
 	while (i++ < table->n_philos)
 	{
-		if (pthread_join(table->threads[i], NULL))
+		if (pthread_join(table->philos[i].thread, NULL))
 			return (ft_error(JOIN_ERR, table));
 	}
 	return (0);
@@ -93,6 +92,7 @@ int	ft_init_philo(t_table *table)
 		table->philos[i].l_fork = &table->forks[i];
 		table->philos[i].r_fork = &table->forks[(i + 1) % philos];
 		table->philos[i].times_to_eat = table->t_eat;
+		table->philos[i].table = table;
 		// if (pthread_create(&table->threads[i], NULL,
 		// 		&routine, &table->philos[i]))
 		// 	return (ft_error(TH_ERR, table));
