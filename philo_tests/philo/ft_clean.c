@@ -6,26 +6,30 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 14:59:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2023/12/27 21:23:25 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:47:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/philo.h"
 
-void	cleanup_table(t_rout *table)
+void	cleanup_table(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	while (i < table->t_philos)
+	while (i < table->n_philos)
 	{
 		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(table->philos->l_fork);
+	pthread_mutex_destroy(table->philos->r_fork);
 	pthread_mutex_destroy(&table->print);
+	pthread_mutex_destroy(&table->lock);
+	pthread_mutex_destroy(&table->philos->lock);
 }
 
-void	ft_clean(t_rout *table)
+void	ft_clean(t_table *table)
 {
 	if (table->forks)
 		cleanup_table(table);
@@ -33,4 +37,6 @@ void	ft_clean(t_rout *table)
 		free(table->philos);
 	if (table->forks)
 		free(table->forks);
+	if (table->threads)
+		free(table->threads);
 }

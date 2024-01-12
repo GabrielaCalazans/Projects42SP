@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2023/12/27 20:59:28 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/01/10 18:15:33 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =	philo
 
 # ======= Sources ========
 SRCS = philo.c ft_atoi.c ft_init.c ft_putendl_fd.c
-SRCS += philo_rotine.c ft_clean.c
+SRCS += philo_rotine.c ft_clean.c utils.c
 
 # ====== Folders and Paths ========
 INCL_DIR		= ./include/
@@ -35,9 +35,7 @@ VALGRIND		=	valgrind \
 					--leak-check=full \
 					--show-leak-kinds=all \
 					--quiet \
-					--suppressions=readline.supp \
-					--keep-debuginfo=yes \
-					--trace-children=yes
+					--tool=helgrind
 
 # =================== Rules ==========================
 
