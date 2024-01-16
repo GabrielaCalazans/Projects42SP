@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/15 17:46:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:36:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_set_values(t_table *table, int argc, char *argv[])
 		table->t_eat = ft_atoi(argv[5]);
 	else
 		table->t_eat = -1;
-	if (table->n_philos <= 0 || table->n_philos > 200 || table->death_time < 0
-		|| table->eat_time < 0 || table->sleep_time < 0 || table->t_eat == 0)
+	if (table->n_philos <= 0 || table->n_philos > 200 || table->death_time < 60
+		|| table->eat_time < 60 || table->sleep_time < 60 || table->t_eat == 0)
 		return (ft_error(ERR_IN_2, table));
 	table->philos = (t_philo *)malloc(table->n_philos * sizeof(t_philo));
 	table->threads = (pthread_t *)malloc(table->n_philos * sizeof(pthread_t));
@@ -35,7 +35,7 @@ int	ft_set_values(t_table *table, int argc, char *argv[])
 	return (0);
 }
 
-int	init_locks(t_table *table)
+int	ft_init_locks(t_table *table)
 {
 	int	i;
 
@@ -93,7 +93,7 @@ int	ft_init_philo(t_table *table)
 	int	i;
 	int	philos;
 
-	if (init_locks(table))
+	if (ft_init_locks(table))
 		return (1);
 	philos = table->n_philos;
 	i = 0;

@@ -6,17 +6,23 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 16:43:42 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/15 17:49:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:44:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/philo.h"
 
+void	ft_spleep(t_philo *philosopher)
+{
+	print_message(4, philosopher);
+	usleep(philosopher->table->sleep_time * 1000);
+}
+
 void	ft_eat(t_philo *philosopher)
 {
 	pick_up_forks(philosopher);
 	print_message(1, philosopher);
-	usleep(philosopher->table->eat_time);
+	usleep(philosopher->table->eat_time * 1000);
 	put_down_forks(philosopher);
 }
 

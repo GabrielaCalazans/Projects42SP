@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:08:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/15 17:47:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:40:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,4 @@ void	ft_usleep(int time)
 	start = ft_get_time();
 	while ((ft_get_time() - start) < time)
 		usleep(time / 10);
-}
-
-void	ft_spleep(t_philo *philosopher)
-{
-	print_message(4, philosopher);
-	usleep(philosopher->table->sleep_time * 1000);
 }
