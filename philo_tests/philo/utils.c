@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:08:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 14:52:34 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:47:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ long long	ft_time(t_table *table)
 	long long	start;
 
 	now = ft_get_time();
-	printf("time: %lli", table->start_time);
 	start = table->start_time;
 	return (now - start);
 }

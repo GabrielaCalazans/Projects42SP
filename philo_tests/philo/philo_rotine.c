@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 16:43:42 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 17:41:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:49:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	put_down_forks(t_philo *philosopher)
 {
 	pthread_mutex_unlock(philosopher->l_fork);
 	pthread_mutex_unlock(philosopher->r_fork);
-	// ft_spleep(philosopher);
-	usleep(philosopher->table->sleep_time * 1000);
 }
 
 void	*routine(void *arg)
@@ -44,15 +42,13 @@ void	*routine(void *arg)
 	while (1)
 	{
 		ft_eat(philosopher);
-		// Thinking
+		ft_spleep(philosopher);
 		print_message(0, philosopher);
-		// usleep(philosopher->times_to_eat * 1000);
-		// Check if philosopher needs to eat a specific number of times
 		if (philosopher->times_to_eat > 0)
 		{
 			philosopher->times_to_eat--;
 			if (philosopher->times_to_eat == 0)
-				break ; // Philosopher has eaten enough times, exit the loop
+				break ;
 		}
 	}
 	return (NULL);

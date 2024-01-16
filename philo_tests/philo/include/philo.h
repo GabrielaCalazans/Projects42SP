@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 14:53:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:22:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ void		put_down_forks(t_philo *philosopher);
 long long	ft_get_time(void);
 long long	ft_time(t_table *table);
 void		ft_usleep(int time);
+void		ft_spleep(t_philo *philosopher);
 int			ft_set_values(t_table *table, int argc, char *argv[]);
 int			ft_init_philo(t_table *table);
+int			ft_init_thread(t_table *table);
 void		cleanup_table(t_table *table);
 void		ft_clean(t_table *table);
 int			ft_atoi(const char *nptr);

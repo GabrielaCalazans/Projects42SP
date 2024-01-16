@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 18:23:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:46:34 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_set_values(t_table *table, int argc, char *argv[])
 		return (ft_error(ERR_IN_2, table));
 	table->philos = (t_philo *)malloc(table->n_philos * sizeof(t_philo));
 	table->threads = (pthread_t *)malloc(table->n_philos * sizeof(pthread_t));
-	table->forks = (pthread_mutex_t *)malloc(table->n_philos * sizeof(pthread_mutex_t));
+	table->forks = malloc(table->n_philos * sizeof(pthread_mutex_t));
 	if (!table->philos || !table->forks || !table->threads)
 		return (ft_error(A_ERR_0, table));
 	table->start_time = ft_get_time();
@@ -45,6 +45,16 @@ int	init_locks(t_table *table)
 		if (pthread_mutex_init(&table->forks[i++], NULL))
 			return (ft_error(M_ERR_0, table));
 	}
+	i = 0;
+	while (i < table->n_philos)
+	{
+		table->philos[i].l_fork = &table->forks[i];
+		if (i == 0)
+			table->philos[i].r_fork = &table->forks[table->n_philos - 1];
+		else
+			table->philos[i].r_fork = &table->forks[i - 1];
+		i++;
+	}
 	if (pthread_mutex_init(&table->print, NULL))
 		return (ft_error(M_ERR_0, table));
 	if (pthread_mutex_init(&table->lock, NULL))
@@ -59,18 +69,21 @@ int	ft_init_thread(t_table *table)
 	int	i;
 
 	i = 0;
-	while (i++ < table->n_philos)
+	table->start_time = ft_get_time();
+	while (i < table->n_philos)
 	{
 		if (pthread_create(&table->philos[i].thread, NULL,
-			&routine, &table->philos[i]))
+				&routine, &table->philos[i]))
 			return (ft_error(TH_ERR, table));
 		ft_usleep(1);
+		i++;
 	}
 	i = 0;
-	while (i++ < table->n_philos)
+	while (i < table->n_philos)
 	{
 		if (pthread_join(table->philos[i].thread, NULL))
 			return (ft_error(JOIN_ERR, table));
+		i++;
 	}
 	return (0);
 }
@@ -84,21 +97,12 @@ int	ft_init_philo(t_table *table)
 		return (1);
 	philos = table->n_philos;
 	i = 0;
-	table->start_time = ft_get_time();
 	while (i < philos)
 	{
-		printf("loop %i\n", i);
-		table->philos[i].id = i + 1;
-		table->philos[i].l_fork = &table->forks[i];
-		table->philos[i].r_fork = &table->forks[(i + 1) % philos];
-		table->philos[i].times_to_eat = table->t_eat;
 		table->philos[i].table = table;
-		// if (pthread_create(&table->threads[i], NULL,
-		// 		&routine, &table->philos[i]))
-		// 	return (ft_error(TH_ERR, table));
+		table->philos[i].id = i + 1;
+		table->philos[i].times_to_eat = table->t_eat;
 		i++;
 	}
-	if (ft_init_thread(table))
-		return (1);
 	return (0);
 }

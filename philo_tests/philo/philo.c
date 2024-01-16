@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/12 18:21:00 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:47:07 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,21 @@
 
 void	print_message(int check, t_philo *philosopher)
 {
-	// long long	time;
-	// long long	now;
-	// long long	start;
+	long long	time;
 
-	// // pthread_mutex_lock(&philosopher->table->print);
-	// now = ft_get_time();
-	// start = philosopher->table->start_time;
-	// time = now - start;
+	pthread_mutex_lock(&philosopher->table->print);
+	time = ft_get_time();
 	if (check == 0)
-		printf("%lld %d is thinking\n", ft_get_time(), philosopher->id);
+		printf("%lld %d is thinking\n", time, philosopher->id);
 	if (check == 1)
-		printf("%lld %d is eating\n", ft_get_time(), philosopher->id);
+		printf("%lld %d is eating\n", time, philosopher->id);
 	if (check == 3)
-		printf("%lld %d has taken a fork\n", ft_get_time(), philosopher->id);
+		printf("%lld %d has taken a fork\n", time, philosopher->id);
 	if (check == 4)
-		printf("%lld %d is sleeping\n", ft_get_time(), philosopher->id);
+		printf("%lld %d is sleeping\n", time, philosopher->id);
 	if (check == 5)
-		printf("%lld %d died\n", ft_get_time(), philosopher->id);
-	// pthread_mutex_unlock(&philosopher->table->print);
+		printf("%lld %d died\n", time, philosopher->id);
+	pthread_mutex_unlock(&philosopher->table->print);
 }
 
 int	ft_philo_usage(int check)
@@ -86,6 +82,8 @@ int	main(int argc, char *argv[])
 	if (ft_set_values(table, argc, argv))
 		return (1);
 	if (ft_init_philo(table))
+		return (1);
+	if (ft_init_thread(table))
 		return (1);
 	cleanup_table(table);
 	free(table->philos);
