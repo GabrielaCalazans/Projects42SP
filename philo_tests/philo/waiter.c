@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:57:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/17 19:50:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:57:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	spread_gossip(t_table *table)
 
 }
 
-void	*tend(void *arg)
+void	*thanatos(void *arg)
 {
 	t_philo	*waiter;
 
