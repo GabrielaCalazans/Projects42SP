@@ -6,33 +6,37 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/15 21:36:38 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:51:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/philo.h"
 
-	// Initialize philosophers and forks
+int	ft_allocation(t_table *table)
+{
+	table->philos = (t_philo *)malloc(table->n_philos * sizeof(t_philo));
+	if (!table->philos)
+		return (ft_error(A_ERR_0, table));
+	table->forks = malloc(table->n_philos * sizeof(pthread_mutex_t));
+	if (!table->forks)
+		return (ft_error(A_ERR_0, table));
+	return (S_SUCESS);
+}
+
 int	ft_set_values(t_table *table, int argc, char *argv[])
 {
 	table->n_philos = ft_atoi(argv[1]);
 	table->death_time = ft_atoi(argv[2]);
 	table->eat_time = ft_atoi(argv[3]);
 	table->sleep_time = ft_atoi(argv[4]);
+	table->n_eat = -1;
 	if (argc == 6)
-		table->t_eat = ft_atoi(argv[5]);
-	else
-		table->t_eat = -1;
+		table->n_eat = ft_atoi(argv[5]);
 	if (table->n_philos <= 0 || table->n_philos > 200 || table->death_time < 60
-		|| table->eat_time < 60 || table->sleep_time < 60 || table->t_eat == 0)
+		|| table->eat_time < 60 || table->sleep_time < 60 || table->n_eat == 0)
 		return (ft_error(ERR_IN_2, table));
-	table->philos = (t_philo *)malloc(table->n_philos * sizeof(t_philo));
-	table->threads = (pthread_t *)malloc(table->n_philos * sizeof(pthread_t));
-	table->forks = malloc(table->n_philos * sizeof(pthread_mutex_t));
-	if (!table->philos || !table->forks || !table->threads)
-		return (ft_error(A_ERR_0, table));
-	table->start_time = ft_get_time();
-	return (0);
+	ft_allocation(table);
+	return (S_SUCESS);
 }
 
 int	ft_init_locks(t_table *table)
@@ -57,11 +61,11 @@ int	ft_init_locks(t_table *table)
 	}
 	if (pthread_mutex_init(&table->print, NULL))
 		return (ft_error(M_ERR_0, table));
-	if (pthread_mutex_init(&table->lock, NULL))
+	if (pthread_mutex_init(&table->philos->mut_status, NULL))
 		return (ft_error(M_ERR_0, table));
-	if (pthread_mutex_init(&table->philos->lock, NULL))
+	if (pthread_mutex_init(&table->philos->mut_meal, NULL))
 		return (ft_error(M_ERR_0, table));
-	return (0);
+	return (S_SUCESS);
 }
 
 int	ft_init_thread(t_table *table)
@@ -79,30 +83,38 @@ int	ft_init_thread(t_table *table)
 		i++;
 	}
 	i = 0;
+	if (pthread_create(&table->waiter.thread, NULL,
+			&tend, &table->waiter))
+		return (ft_error(TH_ERR, table));
 	while (i < table->n_philos)
 	{
 		if (pthread_join(table->philos[i].thread, NULL))
 			return (ft_error(JOIN_ERR, table));
 		i++;
 	}
-	return (0);
+	if (pthread_join(table->waiter.thread, NULL))
+		return (ft_error(JOIN_ERR, table));
+	return (S_SUCESS);
 }
 
+	// Initialize philosophers
 int	ft_init_philo(t_table *table)
 {
 	int	i;
 	int	philos;
 
 	if (ft_init_locks(table))
-		return (1);
+		return (EERROR);
 	philos = table->n_philos;
 	i = 0;
 	while (i < philos)
 	{
 		table->philos[i].table = table;
 		table->philos[i].id = i + 1;
-		table->philos[i].times_to_eat = table->t_eat;
+		table->philos[i].times_to_eat = table->n_eat;
+		table->philos[i].last_meal = 0;
 		i++;
 	}
-	return (0);
+	table->waiter.table = table;
+	return (S_SUCESS);
 }

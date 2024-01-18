@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean.c                                         :+:      :+:    :+:   */
+/*   waiter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/22 14:59:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/16 18:03:29 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/01/17 17:57:08 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/01/17 19:50:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/philo.h"
 
-void	cleanup_table(t_table *table)
+void	did_philo_died(t_philo *philosopher)
 {
-	int	i;
-
-	i = 0;
-	while (i < table->n_philos)
-	{
-		pthread_mutex_destroy(&table->forks[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&table->print);
-	pthread_mutex_destroy(&table->mut);
-	pthread_mutex_destroy(&table->philos->lock);
+	
 }
 
-void	ft_clean(t_table *table)
+void	spread_gossip(t_table *table)
 {
-	if (table->forks)
-		cleanup_table(table);
-	if (table->philos)
-		free(table->philos);
-	if (table->forks)
-		free(table->forks);
-	free(table);
+
+}
+
+void	*tend(void *arg)
+{
+	t_philo	*waiter;
+
+	waiter = (t_philo *)arg;
+	while (ft_getstatus(waiter) != DIED)
+	{
+
+	}
+	if (ft_getstatus(waiter) == DIED)
+		spread_gossip(waiter->table);
+	return (NULL);
 }

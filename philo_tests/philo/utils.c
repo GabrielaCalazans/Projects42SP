@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:08:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/15 21:40:31 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:16:06 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,28 @@ void	ft_usleep(int time)
 	start = ft_get_time();
 	while ((ft_get_time() - start) < time)
 		usleep(time / 10);
+}
+
+void	ft_upstatus(t_philo *philosopher, int status)
+{
+	pthread_mutex_lock(&philosopher->mut_status);
+	philosopher->table->status = status;
+	pthread_mutex_unlock(&philosopher->mut_status);
+}
+
+void	ft_upmeal(t_philo *philosopher)
+{
+	pthread_mutex_lock(&philosopher->mut_meal);
+	philosopher->last_meal = ft_get_time();
+	pthread_mutex_unlock(&philosopher->mut_meal);
+}
+
+int	ft_getstatus(t_philo *philosopher)
+{
+	int	status;
+
+	pthread_mutex_lock(&philosopher->mut_status);
+	status = philosopher->table->status;
+	pthread_mutex_unlock(&philosopher->mut_status);
+	return (status);
 }

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/15 17:47:07 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:06:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_message(int check, t_philo *philosopher)
 	long long	time;
 
 	pthread_mutex_lock(&philosopher->table->print);
-	time = ft_get_time();
+	time = ft_time(philosopher->table);
 	if (check == 0)
 		printf("%lld %d is thinking\n", time, philosopher->id);
 	if (check == 1)
@@ -40,14 +40,14 @@ int	ft_philo_usage(int check)
 		printf("2º death_time\n");
 		printf("3º eat_time\n");
 		printf("4º sleep_time\n");
-		printf("5º[number_of_times_each_philosopher_must_eat]\n");
+		printf("5º[number_of_times_each_philosopher_musn_eat]\n");
 		printf("Usage: ./philo <number_of_philosophers> \
 				<death_time> <eat_time> <sleep_time> \
-					[<number_of_times_each_philosopher_must_eat>]\n");
+					[<number_of_times_each_philosopher_musn_eat>]\n");
 	}
 	else
 		printf("The program only accepts arguments in numerical digits.\n");
-	return (1);
+	return (EERROR);
 }
 
 int	check_args(int argc, char *argv[])
@@ -69,7 +69,7 @@ int	check_args(int argc, char *argv[])
 		}
 		i++;
 	}
-	return (0);
+	return (S_SUCESS);
 }
 
 int	main(int argc, char *argv[])
@@ -78,16 +78,13 @@ int	main(int argc, char *argv[])
 
 	table = malloc(sizeof(t_table));
 	if (check_args(argc, argv))
-		return (1);
+		return (EERROR);
 	if (ft_set_values(table, argc, argv))
-		return (1);
+		return (EERROR);
 	if (ft_init_philo(table))
-		return (1);
+		return (EERROR);
 	if (ft_init_thread(table))
-		return (1);
-	cleanup_table(table);
-	free(table->philos);
-	free(table->forks);
-	free(table);
-	return (0);
+		return (EERROR);
+	ft_clean(table);
+	return (S_SUCESS);
 }
