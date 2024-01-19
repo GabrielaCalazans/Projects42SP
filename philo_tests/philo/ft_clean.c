@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 14:59:51 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/16 18:03:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:42:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	cleanup_table(t_table *table)
 		i++;
 	}
 	pthread_mutex_destroy(&table->print);
-	pthread_mutex_destroy(&table->mut);
-	pthread_mutex_destroy(&table->philos->lock);
+	pthread_mutex_destroy(&table->philos->mut_status);
+	pthread_mutex_destroy(&table->philos->mut_meal);
 }
 
 void	ft_clean(t_table *table)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:08:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/17 19:16:06 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 22:22:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	ft_usleep(int time)
 void	ft_upstatus(t_philo *philosopher, int status)
 {
 	pthread_mutex_lock(&philosopher->mut_status);
-	philosopher->table->status = status;
+	if (philosopher->table->status != DEAD)
+		philosopher->table->status = status;
 	pthread_mutex_unlock(&philosopher->mut_status);
 }
 
@@ -69,4 +70,14 @@ int	ft_getstatus(t_philo *philosopher)
 	status = philosopher->table->status;
 	pthread_mutex_unlock(&philosopher->mut_status);
 	return (status);
+}
+
+int	ft_should_i(t_table	*table)
+{
+	int	should_i;
+
+	pthread_mutex_lock(&table->mut_should_i);
+	should_i = table->status;
+	pthread_mutex_unlock(&table->mut_should_i);
+	return (should_i);
 }

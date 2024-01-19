@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/16 18:06:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:50:39 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,15 @@ int	ft_philo_usage(int check)
 		printf("2º death_time\n");
 		printf("3º eat_time\n");
 		printf("4º sleep_time\n");
-		printf("5º[number_of_times_each_philosopher_musn_eat]\n");
-		printf("Usage: ./philo <number_of_philosophers> \
-				<death_time> <eat_time> <sleep_time> \
-					[<number_of_times_each_philosopher_musn_eat>]\n");
+		printf("5º OPTIONAL: number_of_times_each_philosopher_must_eat\n");
+		printf("Example:\n");
+		printf("./philo 4 800 200 200 5\n\n");
+		printf("number of philosopherss: 1-200\n");
+		printf("death_time: 60+\n");
+		printf("eat_time: 60+\n");
+		printf("sleep_time: 60+\n");
+		printf("number_of_times_each_philosopher_must_eat: ");
+		printf("> 0\n");
 	}
 	else
 		printf("The program only accepts arguments in numerical digits.\n");

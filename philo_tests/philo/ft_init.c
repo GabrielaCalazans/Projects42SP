@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/17 18:51:56 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:45:08 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	ft_init_locks(t_table *table)
 	}
 	if (pthread_mutex_init(&table->print, NULL))
 		return (ft_error(M_ERR_0, table));
+	if (pthread_mutex_init(&table->mut_should_i, NULL))
+		return (ft_error(M_ERR_0, table));
 	if (pthread_mutex_init(&table->philos->mut_status, NULL))
 		return (ft_error(M_ERR_0, table));
 	if (pthread_mutex_init(&table->philos->mut_meal, NULL))
@@ -83,17 +85,17 @@ int	ft_init_thread(t_table *table)
 		i++;
 	}
 	i = 0;
-	if (pthread_create(&table->waiter.thread, NULL,
-			&tend, &table->waiter))
-		return (ft_error(TH_ERR, table));
+	// if (pthread_create(&table->waiter.thread, NULL,
+	// 		&tend, &table->waiter))
+	// 	return (ft_error(TH_ERR, table));
 	while (i < table->n_philos)
 	{
 		if (pthread_join(table->philos[i].thread, NULL))
 			return (ft_error(JOIN_ERR, table));
 		i++;
 	}
-	if (pthread_join(table->waiter.thread, NULL))
-		return (ft_error(JOIN_ERR, table));
+	// if (pthread_join(table->waiter.thread, NULL))
+	// 	return (ft_error(JOIN_ERR, table));
 	return (S_SUCESS);
 }
 

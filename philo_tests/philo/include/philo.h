@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/17 18:53:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 22:26:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@
 # define THINKING	0
 # define SLEEPING	4
 # define EATING		1
-# define DIED		5
+# define DEAD		5
 # define S_SUCESS	0
 # define EERROR		1
+# define STAY		1
+# define GO			0
 
 //	alloc_err
 # define A_ERR_0	"ERROR WHILE ALLOCATING PHILOS, FORKS and THREADS"
@@ -65,21 +67,25 @@ typedef struct s_table
 	int				eat_time;
 	int				sleep_time;
 	int				status;
+	int				should_i;
 	long long		start_time;
 	int				n_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
+	pthread_mutex_t	mut_should_i;
 }				t_table;
 
 void		*routine(void *arg);
-void		*tend(void *arg);
+void		*thanatos(void *arg);
 void		pick_up_forks(t_philo *philosopher);
 void		put_down_forks(t_philo *philosopher);
 void		ft_upstatus(t_philo *philosopher, int status);
+int			ft_getstatus(t_philo *philosopher);
 long long	ft_get_time(void);
 long long	ft_time(t_table *table);
 void		ft_usleep(int time);
-void		ft_spleep(t_philo *philosopher);
+int			ft_spleep(t_philo *philosopher);
+void		ft_upmeal(t_philo *philosopher);
 int			ft_set_values(t_table *table, int argc, char *argv[]);
 int			ft_init_philo(t_table *table);
 int			ft_init_thread(t_table *table);
