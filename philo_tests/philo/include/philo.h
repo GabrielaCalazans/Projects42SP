@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 22:26:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 23:46:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_philo
 typedef struct s_table
 {
 	t_philo			*philos;
-	t_philo			waiter;
+	pthread_t		waiter;
 	int				n_philos;
 	int				death_time;
 	int				eat_time;

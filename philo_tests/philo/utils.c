@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:08:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 22:22:13 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 23:55:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,11 @@ int	ft_should_i(t_table	*table)
 	should_i = table->status;
 	pthread_mutex_unlock(&table->mut_should_i);
 	return (should_i);
+}
+
+void	ft_set_should_i(t_table	*table, int stay_or_go)
+{
+	pthread_mutex_lock(&table->mut_should_i);
+	table->should_i = stay_or_go;
+	pthread_mutex_unlock(&table->mut_should_i);
 }

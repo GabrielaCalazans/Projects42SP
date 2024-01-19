@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 21:45:08 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/18 23:47:50 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	ft_init_thread(t_table *table)
 		i++;
 	}
 	i = 0;
-	// if (pthread_create(&table->waiter.thread, NULL,
-	// 		&tend, &table->waiter))
+	// if (pthread_create(&table->waiter, NULL,
+	// 		&thanatos, table))
 	// 	return (ft_error(TH_ERR, table));
 	while (i < table->n_philos)
 	{
