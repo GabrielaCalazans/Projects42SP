@@ -6,31 +6,40 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/19 21:05:02 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:45:53 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/philo.h"
 
-void	print_message(int check, t_philo *philosopher)
+int	ft_error(char *error, t_table *table)
 {
-	long long	time;
+	printf("%s", error);
+	ft_clean(table);
+	return (1);
+}
 
-	pthread_mutex_lock(&philosopher->table->print);
-	time = ft_time(philosopher->table);
+void	print_message(int check, t_philo *philo, long long time)
+{
+	long long	time_ms;
+
+	if (ft_getstatus(philo) == DEAD && check != DEAD)
+		return ;
+	pthread_mutex_lock(&philo->table->print);
+	time_ms = ft_time(philo->table, time);
 	if (check == 0)
-		printf("%lld %d is thinking\n", time, philosopher->id);
+		printf("%lld %d is thinking\n", time_ms, philo->id);
 	if (check == 1)
-		printf("%lld %d is eating\n", time, philosopher->id);
+		printf("%lld %d is eating\n", time_ms, philo->id);
 	if (check == 3)
-		printf("%lld %d has taken a fork\n", time, philosopher->id);
+		printf("%lld %d has taken a fork\n", time_ms, philo->id);
 	if (check == 4)
-		printf("%lld %d is sleeping\n", time, philosopher->id);
+		printf("%lld %d is sleeping\n", time_ms, philo->id);
 	if (check == 5)
-		printf("%lld %d died\n", time, philosopher->id);
+		printf("%lld %d died\n", time_ms, philo->id);
 	if (check == 6)
-		printf("%d VAAAI\n\n",ft_getstatus(philosopher));
-	pthread_mutex_unlock(&philosopher->table->print);
+		printf("\n\nTEST START:%lld NOW:%lld MS:%lld PHILO %d\n\n", philo->table->start_time, time, time - philo->table->start_time, philo->id);
+	pthread_mutex_unlock(&philo->table->print);
 }
 
 int	ft_philo_usage(int check)

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/19 20:29:49 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:42:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ typedef struct s_philo
 {
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	mut_status;
-	pthread_mutex_t	mut_meal;
 	struct s_table	*table;
 	int				status;
 	pthread_t		thread;
@@ -71,6 +69,8 @@ typedef struct s_table
 	int				should_i;
 	long long		start_time;
 	int				n_eat;
+	pthread_mutex_t	mut_status;
+	pthread_mutex_t	mut_meal;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	mut_time;
@@ -84,7 +84,7 @@ void		put_down_forks(t_philo *philosopher);
 void		ft_upstatus(t_philo *philosopher, int status);
 int			ft_getstatus(t_philo *philosopher);
 long long	ft_get_time(void);
-long long	ft_time(t_table *table);
+long long	ft_time(t_table *table, long long now);
 void		ft_usleep(int time);
 int			ft_spleep(t_philo *philosopher);
 long long	ft_getsleep(t_table *table, int type);
@@ -97,7 +97,7 @@ void		ft_clean(t_table *table);
 int			ft_atoi(const char *nptr);
 int			ft_isdigit(int argument);
 void		ft_putendl_fd(char *s, int fd);
-void		print_message(int check, t_philo *philosopher);
+void		print_message(int check, t_philo *philosopher, long long time);
 int			ft_error(char *error, t_table *table);
 
 void		ft_upshould_i(t_table	*table, int stay_or_go);

@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/19 21:11:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:32:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	ft_init_locks(t_table *table)
 	i = 0;
 	while (i < table->n_philos)
 	{
-		if (pthread_mutex_init(&table->forks[i++], NULL))
+		if (pthread_mutex_init(&table->forks[i], NULL))
 			return (ft_error(M_ERR_0, table));
+		i++;
 	}
 	i = 0;
 	while (i < table->n_philos)
@@ -59,6 +60,7 @@ int	ft_set_values(t_table *table, int argc, char *argv[])
 	table->eat_time = ft_atoi(argv[3]);
 	table->sleep_time = ft_atoi(argv[4]);
 	table->n_eat = -1;
+	table->should_i = STAY;
 	if (argc == 6)
 		table->n_eat = ft_atoi(argv[5]);
 	if (table->n_philos <= 0 || table->n_philos > 200 || table->death_time < 60
@@ -108,17 +110,18 @@ int	ft_init_philo(t_table *table)
 
 	philos = table->n_philos;
 	i = 0;
+	if (pthread_mutex_init(&table->mut_status, NULL))
+		return (ft_error(M_ERR_0, table));
+	if (pthread_mutex_init(&table->mut_meal, NULL))
+		return (ft_error(M_ERR_0, table));
 	while (i < philos)
 	{
 		table->philos[i].table = table;
 		table->philos[i].id = i + 1;
 		table->philos[i].times_to_eat = table->n_eat;
-		table->philos[i].last_meal = 0;
+		// table->philos[i].last_meal = 0;
+		ft_uplastmeal(&table->philos[i]);
 		table->philos[i].status = DEFAULT;
-		if (pthread_mutex_init(&table->philos[i].mut_status, NULL))
-			return (ft_error(M_ERR_0, table));
-		if (pthread_mutex_init(&table->philos[i].mut_meal, NULL))
-			return (ft_error(M_ERR_0, table));
 		i++;
 	}
 	return (S_SUCESS);
