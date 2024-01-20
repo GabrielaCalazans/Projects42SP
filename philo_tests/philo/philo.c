@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 16:50:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/19 21:05:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	print_message(int check, t_philo *philosopher)
 		printf("%lld %d is sleeping\n", time, philosopher->id);
 	if (check == 5)
 		printf("%lld %d died\n", time, philosopher->id);
+	if (check == 6)
+		printf("%d VAAAI\n\n",ft_getstatus(philosopher));
 	pthread_mutex_unlock(&philosopher->table->print);
 }
 
@@ -79,17 +81,17 @@ int	check_args(int argc, char *argv[])
 
 int	main(int argc, char *argv[])
 {
-	t_table	*table;
+	t_table	table;
 
-	table = malloc(sizeof(t_table));
+	// table = malloc(sizeof(t_table));
 	if (check_args(argc, argv))
 		return (EERROR);
-	if (ft_set_values(table, argc, argv))
+	if (ft_set_values(&table, argc, argv))
 		return (EERROR);
-	if (ft_init_philo(table))
+	if (ft_init_philo(&table))
 		return (EERROR);
-	if (ft_init_thread(table))
+	if (ft_init_thread(&table))
 		return (EERROR);
-	ft_clean(table);
+	ft_clean(&table);
 	return (S_SUCESS);
 }

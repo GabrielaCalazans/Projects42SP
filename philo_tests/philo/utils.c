@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 15:08:38 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 23:55:58 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:46:44 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,26 @@ void	ft_usleep(int time)
 		usleep(time / 10);
 }
 
+long long	ft_getsleep(t_table *table, int type)
+{
+	long long	time;
+
+	pthread_mutex_lock(&table->mut_time);
+	if (type == DEAD)
+		time = table->death_time;
+	if (type == EATING)
+		time = table->eat_time;
+	if (type == SLEEPING)
+		time = table->sleep_time;
+	pthread_mutex_unlock(&table->mut_time);
+	return(time);
+}
+
 void	ft_upstatus(t_philo *philosopher, int status)
 {
 	pthread_mutex_lock(&philosopher->mut_status);
-	if (philosopher->table->status != DEAD)
-		philosopher->table->status = status;
+	philosopher->status = status;
 	pthread_mutex_unlock(&philosopher->mut_status);
-}
-
-void	ft_upmeal(t_philo *philosopher)
-{
-	pthread_mutex_lock(&philosopher->mut_meal);
-	philosopher->last_meal = ft_get_time();
-	pthread_mutex_unlock(&philosopher->mut_meal);
 }
 
 int	ft_getstatus(t_philo *philosopher)
@@ -67,9 +74,26 @@ int	ft_getstatus(t_philo *philosopher)
 	int	status;
 
 	pthread_mutex_lock(&philosopher->mut_status);
-	status = philosopher->table->status;
+	status = philosopher->status;
 	pthread_mutex_unlock(&philosopher->mut_status);
 	return (status);
+}
+
+void	ft_uplastmeal(t_philo *philosopher)
+{
+	pthread_mutex_lock(&philosopher->mut_meal);
+	philosopher->last_meal = ft_get_time();
+	pthread_mutex_unlock(&philosopher->mut_meal);
+}
+
+long long	ft_getlastmeal(t_philo *philosopher)
+{
+	long long	last;
+	
+	pthread_mutex_lock(&philosopher->mut_meal);
+	last = philosopher->last_meal;
+	pthread_mutex_unlock(&philosopher->mut_meal);
+	return (last);
 }
 
 int	ft_should_i(t_table	*table)
@@ -77,12 +101,12 @@ int	ft_should_i(t_table	*table)
 	int	should_i;
 
 	pthread_mutex_lock(&table->mut_should_i);
-	should_i = table->status;
+	should_i = table->philos->status;
 	pthread_mutex_unlock(&table->mut_should_i);
 	return (should_i);
 }
 
-void	ft_set_should_i(t_table	*table, int stay_or_go)
+void	ft_upshould_i(t_table	*table, int stay_or_go)
 {
 	pthread_mutex_lock(&table->mut_should_i);
 	table->should_i = stay_or_go;

@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2024/01/17 18:30:48 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/01/19 21:14:23 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ re: fclean all
 rebonus: fclean bonus
 
 clean:
-	@rm -rf $(OBJS)
+	rm -rf $(OBJS)
 
 fclean: clean
-	@rm -rf $(NAME)
+	rm -rf $(NAME)

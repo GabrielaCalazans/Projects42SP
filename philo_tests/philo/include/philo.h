@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 23:46:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:29:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define SLEEPING	4
 # define EATING		1
 # define DEAD		5
+# define DEFAULT	7
 # define S_SUCESS	0
 # define EERROR		1
 # define STAY		1
@@ -52,6 +53,7 @@ typedef struct s_philo
 	pthread_mutex_t	mut_status;
 	pthread_mutex_t	mut_meal;
 	struct s_table	*table;
+	int				status;
 	pthread_t		thread;
 	long long		last_meal;
 	int				id;
@@ -66,12 +68,12 @@ typedef struct s_table
 	int				death_time;
 	int				eat_time;
 	int				sleep_time;
-	int				status;
 	int				should_i;
 	long long		start_time;
 	int				n_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
+	pthread_mutex_t	mut_time;
 	pthread_mutex_t	mut_should_i;
 }				t_table;
 
@@ -85,7 +87,8 @@ long long	ft_get_time(void);
 long long	ft_time(t_table *table);
 void		ft_usleep(int time);
 int			ft_spleep(t_philo *philosopher);
-void		ft_upmeal(t_philo *philosopher);
+long long	ft_getsleep(t_table *table, int type);
+void		ft_uplastmeal(t_philo *philosopher);
 int			ft_set_values(t_table *table, int argc, char *argv[]);
 int			ft_init_philo(t_table *table);
 int			ft_init_thread(t_table *table);
@@ -96,5 +99,9 @@ int			ft_isdigit(int argument);
 void		ft_putendl_fd(char *s, int fd);
 void		print_message(int check, t_philo *philosopher);
 int			ft_error(char *error, t_table *table);
+
+void		ft_upshould_i(t_table	*table, int stay_or_go);
+int			ft_should_i(t_table	*table);
+long long	ft_getlastmeal(t_philo *philosopher);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_rotine.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 16:43:42 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/18 21:32:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:16:00 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_spleep(t_philo *philosopher)
 		return (1);
 	ft_upstatus(philosopher, SLEEPING);
 	print_message(4, philosopher);
-	ft_usleep(philosopher->table->sleep_time);
+	ft_usleep(ft_getsleep(philosopher->table, SLEEPING));
 	return (0);
 }
 
@@ -28,10 +28,10 @@ int	ft_eat(t_philo *philosopher)
 		return (1);
 	ft_upstatus(philosopher, EATING);
 	pick_up_forks(philosopher);
-	ft_upmeal(philosopher);
 	print_message(1, philosopher);
-	ft_usleep(philosopher->table->eat_time);
+	ft_usleep(ft_getsleep(philosopher->table, EATING));
 	put_down_forks(philosopher);
+	ft_uplastmeal(philosopher);
 	return (0);
 }
 
@@ -58,27 +58,31 @@ void	put_down_forks(t_philo *philosopher)
 	pthread_mutex_unlock(philosopher->r_fork);
 }
 
+		// ft_usleep(philo->table->eat_time - 10);
 void	*routine(void *arg)
 {
-	t_philo	*philosopher;
+	t_philo	*philo;
 
-	philosopher = (t_philo *)arg;
-	if (philosopher->id % 2 == 0)
-		ft_usleep(philosopher->table->eat_time / 10);
-	while (ft_getstatus(philosopher) != DEAD)
+	philo = (t_philo *)arg;
+	philo->last_meal = ft_get_time();
+	if (philo->id % 2 == 0)
+		usleep(1000);
+	while (ft_getstatus(philo) != DEAD)
 	{
-		if (ft_eat(philosopher))
+		if (ft_eat(philo))
 			break ;
-		if (ft_getstatus(philosopher) == DEAD)
+		if (ft_getstatus(philo) == DEAD)
 			break ;
-		if (ft_spleep(philosopher))
+		if (ft_spleep(philo))
 			break ;
-		if (ft_think(philosopher))
+		if (ft_getstatus(philo) == DEAD)
 			break ;
-		if (philosopher->times_to_eat > 0)
+		if (ft_think(philo))
+			break ;
+		if (philo->times_to_eat > 0)
 		{
-			philosopher->times_to_eat--;
-			if (philosopher->times_to_eat == 0)
+			philo->times_to_eat--;
+			if (philo->times_to_eat == 0)
 				break ;
 		}
 	}
