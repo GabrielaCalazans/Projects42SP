@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:57:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 17:21:30 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:43:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	did_philo_died(t_philo *philo)
 {
-	int			meal_time;
+	int	meal_time;
 
 	meal_time = ft_getsleep(philo->table, DEAD);
-	if (ft_get_time()- ft_getlastmeal(philo) > meal_time)
+	if (ft_get_time() - ft_getlastmeal(philo) > meal_time)
 	{
 		ft_upstatus(philo, DEAD);
 		return (DEAD);
 	}
 	if (philo->table->n_philos < 2
-		&& ft_get_time()- ft_getlastmeal(philo) > meal_time)
+		&& ft_get_time() - ft_getlastmeal(philo) > meal_time)
 	{
 		ft_upstatus(philo, DEAD);
 		return (DEAD);
@@ -56,7 +56,7 @@ void	*thanatos(void *arg)
 	philos = table->philos;
 	len = table->n_philos;
 	i = -1;
-	while (++i < len && table->should_i)
+	while (++i < len && table->should_i && philos[i].times_to_eat != 0)
 	{
 		if (did_philo_died(&philos[i]))
 		{

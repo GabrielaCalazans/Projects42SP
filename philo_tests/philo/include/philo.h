@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 17:42:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 22:05:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int			ft_isdigit(int argument);
 void		ft_putendl_fd(char *s, int fd);
 void		print_message(int check, t_philo *philosopher, long long time);
 int			ft_error(char *error, t_table *table);
+int			ft_eat(t_philo *philosopher);
+int			ft_think(t_philo *philosopher);
 
 void		ft_upshould_i(t_table	*table, int stay_or_go);
 int			ft_should_i(t_table	*table);

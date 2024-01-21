@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 18:32:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:31:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ int	ft_init_philo(t_table *table)
 		table->philos[i].table = table;
 		table->philos[i].id = i + 1;
 		table->philos[i].times_to_eat = table->n_eat;
-		// table->philos[i].last_meal = 0;
 		ft_uplastmeal(&table->philos[i]);
 		table->philos[i].status = DEFAULT;
 		i++;

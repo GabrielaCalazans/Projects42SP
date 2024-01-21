@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 18:45:53 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:31:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	print_message(int check, t_philo *philo, long long time)
 		printf("%lld %d is sleeping\n", time_ms, philo->id);
 	if (check == 5)
 		printf("%lld %d died\n", time_ms, philo->id);
-	if (check == 6)
-		printf("\n\nTEST START:%lld NOW:%lld MS:%lld PHILO %d\n\n", philo->table->start_time, time, time - philo->table->start_time, philo->id);
 	pthread_mutex_unlock(&philo->table->print);
 }
 
@@ -92,7 +90,6 @@ int	main(int argc, char *argv[])
 {
 	t_table	table;
 
-	// table = malloc(sizeof(t_table));
 	if (check_args(argc, argv))
 		return (EERROR);
 	if (ft_set_values(&table, argc, argv))

@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 16:01:26 by gacalaza          #+#    #+#              #
-#    Updated: 2024/01/19 21:14:23 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/01/20 19:30:26 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME =	philo
 # ======= Sources ========
 SRCS = philo.c ft_atoi.c ft_init.c ft_putendl_fd.c
 SRCS += philo_rotine.c ft_clean.c utils.c waiter.c
+SRCS += mutex_access.c actions.c
 
 # ====== Folders and Paths ========
 INCL_DIR		= ./include/
