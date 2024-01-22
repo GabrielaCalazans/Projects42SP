@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:20:01 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 22:05:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:29:03 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_table
 	int				n_eat;
 	pthread_mutex_t	mut_status;
 	pthread_mutex_t	mut_meal;
+	pthread_mutex_t	mut_tteat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
 	pthread_mutex_t	mut_time;
@@ -84,6 +85,7 @@ void		put_down_forks(t_philo *philosopher);
 void		ft_upstatus(t_philo *philosopher, int status);
 int			ft_getstatus(t_philo *philosopher);
 long long	ft_get_time(void);
+int			ft_gettteat(t_philo *philo);
 long long	ft_time(t_table *table, long long now);
 void		ft_usleep(int time);
 int			ft_spleep(t_philo *philosopher);

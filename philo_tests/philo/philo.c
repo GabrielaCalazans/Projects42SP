@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:19:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 19:31:03 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:14:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_philo_usage(int check)
 		printf("> 0\n");
 	}
 	else
-		printf("The program only accepts arguments in numerical digits.\n");
+		printf("This program only accepts numbers above zero.\n");
 	return (EERROR);
 }
 

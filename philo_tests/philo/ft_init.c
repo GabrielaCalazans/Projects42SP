@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:15:13 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 19:31:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:03:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	ft_init_locks(t_table *table)
 	if (pthread_mutex_init(&table->print, NULL))
 		return (ft_error(M_ERR_0, table));
 	if (pthread_mutex_init(&table->mut_should_i, NULL))
-		return (ft_error(M_ERR_0, table));
-	if (pthread_mutex_init(&table->mut_time, NULL))
 		return (ft_error(M_ERR_0, table));
 	return (S_SUCESS);
 }
@@ -113,6 +111,10 @@ int	ft_init_philo(t_table *table)
 	if (pthread_mutex_init(&table->mut_status, NULL))
 		return (ft_error(M_ERR_0, table));
 	if (pthread_mutex_init(&table->mut_meal, NULL))
+		return (ft_error(M_ERR_0, table));
+	if (pthread_mutex_init(&table->mut_tteat, NULL))
+		return (ft_error(M_ERR_0, table));
+	if (pthread_mutex_init(&table->mut_time, NULL))
 		return (ft_error(M_ERR_0, table));
 	while (i < philos)
 	{

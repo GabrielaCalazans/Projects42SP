@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:57:08 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/20 21:43:27 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:43:16 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*thanatos(void *arg)
 	philos = table->philos;
 	len = table->n_philos;
 	i = -1;
-	while (++i < len && table->should_i && philos[i].times_to_eat != 0)
+	while (++i < len && table->should_i && ft_gettteat(&philos[i]) != 0)
 	{
 		if (did_philo_died(&philos[i]))
 		{
