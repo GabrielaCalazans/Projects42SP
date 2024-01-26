@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:49:26 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/01/25 19:46:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:20:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,8 @@ static void	ft_puthex(unsigned int nbr, int *len)
 	char	*hex;
 
 	hex = "0123456789abcdef";
-	if (nbr < 0)
-	{
-		ft_putstr("-", len);
-		nbr *= -1;
-	}
 	if (nbr >= 16)
-	{
 		ft_puthex(nbr / 16, len);
-	}
 	ft_putchar(hex[nbr % 16], len);
 }
 
@@ -85,6 +78,8 @@ int	ft_printf(const char *format, ...)
 	int		i = 0;
 	va_list	arg;
 
+	if (!format)
+		return (-1);
 	va_start(arg, format);
 	while (format[i] != '\0')
 	{
@@ -114,12 +109,12 @@ int	main(void)
 
 	// ft_putstr("GABI\n");
 	// ft_putstr("-");
-	len_original = printf("ORIGITAL: %d MIN: %s %x\n", INT_MAX, "Gabriela", nbr);
 	// ft_putnbr(-42341);
 	// ft_putchar('\n');
 	// ft_putchar('\n');
 	// ft_puthex(nbr);
 
+	len_original = printf("ORIGITAL: %d MIN: %s %x\n", INT_MAX, "Gabriela", nbr);
 	len_fake = ft_printf("ORIGITAL: %d MIN: %s %x\n", INT_MAX, "Gabriela", nbr);
 
 	printf("fake: %d ORIGINAL: %d", len_fake, len_original);

@@ -12,7 +12,6 @@ char	*get_next_line(int fd)
 	static char	buffer[BUFFER_SIZE]; // Static buffer to store data read from the file descriptor
 	static int	index = 0; // Current position in the buffer
 	static int	size = 0; // Size of data in the buffer
-
 	char		*line = NULL; // String to store the accumulated characters of the current line
 	int			line_size = 0; // Current size of the line string
 	int			line_capacity = 0; // Capacity of the line string
