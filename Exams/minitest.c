@@ -1,66 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   microshell.c                                       :+:      :+:    :+:   */
+/*   minitest.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 15:02:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/03/27 15:39:05 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/03/27 15:51:11 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/03/27 20:20:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "microshell.h"
 
-int err(char *str) 
+int	ft_puterr(char *err)
 {
-	while (*str)
-		write(2, str++, 1);
-	return 1;
+	int	i = 0;
+	while (err[i] != '\0')
+	{
+		write(1, &err[i], 1);
+		i++;
+	}
+	return (1);
 }
 
-int cd(char **argv, int i) 
+int	cd(char *argv[], int i)
 {
 	if (i != 2)
-		return err("error: cd: bad arguments\n");
-	else if (chdir(argv[1]) == -1)
-		return err("error: cd: cannot change directory to "), err(argv[1]), err("\n");
-	return 0;
+		return (ft_puterr("error: cd: bad arguments\n"));
+	if (chdir(argv[1]) == -1)
+		return (ft_puterr("error: cd: cannot change directory to "), ft_puterr(argv[1]), ft_puterr("\n"));
+	return (0);
 }
 
-int exec(char **argv, char **envp, int i) 
+int	ft_exec(char *argv[], char *env[], int i)
 {
 	int	fd[2];
-	int	status;
-	int	has_pipe = argv[i] && !strcmp(argv[i], "|");
+	int	status = 0;
+	int	has_pipe = argv[i] &&  !strcmp(argv[i], "|");
 
 	if (has_pipe && pipe(fd) == -1)
-		return err("error: fatal\n");
-
-	int pid = fork();
-	if (!pid) 
+		return (ft_puterr("error: fatal\n"));
+	int	pid = fork();
+	if (!pid)
 	{
 		argv[i] = 0;
 		if (has_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
-			return err("error: fatal\n");
-		execve(*argv, argv, envp);
-		return err("error: cannot execute "), err(*argv), err("\n");
+			return (ft_puterr("error: fatal\n"));
+		execve(*argv, argv, env);
+		return (ft_puterr("error: cannot execute "), ft_puterr(*argv), ft_puterr("\n"));
 	}
-
 	waitpid(pid, &status, 0);
 	if (has_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
-		return err("error: fatal\n");
-	return WIFEXITED(status) && WEXITSTATUS(status);
+		return (ft_puterr("error: fatal\n"));
+	return (WIFEXITED(status) && WEXITSTATUS(status));
 }
 
-int main(int argc, char **argv, char **envp) 
+int	main(int argc, char *argv[], char *env[])
 {
 	int	i = 0;
 	int	status = 0;
 
-	if (argc > 1) 
+	if (argc > 1)
 	{
-		while (argv[i] && argv[++i]) 
+		while (argv[i] && argv[++i])
 		{
 			argv += i;
 			i = 0;
@@ -69,7 +71,7 @@ int main(int argc, char **argv, char **envp)
 			if (!strcmp(*argv, "cd"))
 				status = cd(argv, i);
 			else if (i)
-				status = exec(argv, envp, i);
+				status = ft_exec(argv, env, i);
 		}
 	}
 	return (status);
