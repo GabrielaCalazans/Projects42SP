@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 19:21:11 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/03/27 20:44:04 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:17:13 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 // And b ← array(3, 4, 5)
 // When c ← a + b
 // Then c = array(1, 2, 3, 3, 4, 5)
-
 
 // Scenario: A tuple with w=1.0 is a point
 // Given a ← tuple(4.3, -4.2, 3.1, 1.0)
