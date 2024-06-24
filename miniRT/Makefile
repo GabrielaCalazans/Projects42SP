@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/16 18:53:57 by gacalaza          #+#    #+#              #
-#    Updated: 2024/03/16 19:09:02 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/03/30 14:22:17 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJS = $(MANDATORY:.c=.o)
 
 # ====== Flags ========
 FLAGS = -Wall -Wextra -Werror -g3
+FLAGS_MLX = -lmlx -lX11 -Imlx -lXext
 LIBS = -lm
 VALGRIND		=	valgrind \
 					--leak-check=full \
@@ -62,7 +63,7 @@ valgrind:	all
 norminette:	all
 			norminette
 
-bonus: comp_libf $(BONUS)pu
+bonus: comp_libf $(BONUS)
 
 re: fclean all
 
@@ -75,3 +76,5 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 	@make -C $(LIBFT_DIR) fclean
+
+.PHONY: all clean fclean re libft bonus rebonus

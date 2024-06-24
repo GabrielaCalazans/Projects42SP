@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 15:02:03 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/05/29 18:41:10 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:37:26 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,26 @@ int cd(char **argv, int i)
 // 	return WIFEXITED(status) && WEXITSTATUS(status);
 // }
 
-int	exec(char **argv, char **envp, int argc) 
+int	exec(char **argv, char **envp, int i) 
 {
 	int fd[2];
 	int status;
-	int has_pipe = (argv[argc] && !strcmp(argv[argc], "|"));
+	int has_pipe = (argv[i] && !strcmp(argv[i], "|"));
 
 	if (has_pipe && pipe(fd) == -1)
 		return err("error: fatal\n");
 
 	int pid = fork();
-	if (pid == 0) // Child process
+	if (pid == 0)
 	{
-		argv[argc] = 0; // Terminate the current command arguments
-		if (has_pipe)
-		{
-			dup2(fd[1], 1); // Redirect stdout to the write end of the pipe
-			close(fd[0]);   // Close unused read end
-			close(fd[1]);   // Close write end after redirect
-		}
+		argv[i] = 0; // Terminate the current command arguments
+		if (has_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+			return err("error: fatal\n");
+		// {
+		// 	dup2(fd[1], 1); // Redirect stdout to the write end of the pipe
+		// 	close(fd[0]);   // Close unused read end
+		// 	close(fd[1]);   // Close write end after redirect
+		// }
 		execve(argv[0], argv, envp);
 		return err("error: cannot execute "), err(argv[0]), err("\n");
 	}
@@ -80,17 +81,16 @@ int	exec(char **argv, char **envp, int argc)
 	{
 		return err("error: fatal\n");
 	}
-	else // Parent process
-	{
-		waitpid(pid, &status, 0);
-		if (has_pipe)
-		{
-			dup2(fd[0], 0); // Redirect stdin to the read end of the pipe
-			close(fd[0]);   // Close read end after redirect
-			close(fd[1]);   // Close unused write end
-		}
-		return WIFEXITED(status) && WEXITSTATUS(status);
-	}
+
+	waitpid(pid, &status, 0);
+	if (has_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+		return err("error: fatal\n");
+	// {
+	// 	dup2(fd[0], 0); // Redirect stdin to the read end of the pipe
+	// 	close(fd[0]);   // Close read end after redirect
+	// 	close(fd[1]);   // Close unused write end
+	// }
+	return WIFEXITED(status) && WEXITSTATUS(status);
 }
 
 
