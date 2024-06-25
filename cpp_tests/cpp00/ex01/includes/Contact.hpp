@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 17:41:34 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/06/25 17:52:12 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/06/25 19:13:16 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/06/25 19:13:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef CONTACT_H
+# define CONTACT_H
 
-class PhoneBook {
-
+class Contact
+{
 private:
 	/* data */
 public:
-	PhoneBook(/* args */);
-	~PhoneBook();
+	Contact(/* args */);
+	~Contact();
 };
 
+Contact::Contact(/* args */)
+{
+}
 
+Contact::~Contact()
+{
+}
+
+
+#endif

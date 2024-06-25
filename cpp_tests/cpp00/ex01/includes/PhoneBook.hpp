@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 17:31:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/06/25 18:10:26 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/06/25 17:41:34 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/06/25 19:21:24 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include "PhoneBook.hpp"
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
-PhoneBook::PhoneBook(/* args */) {
-	std::cout << "COnstructor called" << std::endl;
-	return ;
-}
+class PhoneBook {
 
-PhoneBook::~PhoneBook() {
-	std::cout << "Destructor called" << std::endl;
-	return ;
-}
+private:
+	 contacts;
 
+	
+public:
+	PhoneBook(/* args */);
+	~PhoneBook();
+};
 
-int	main() {
-	PhoneBook	Instance;
-
-	return (0);
-}
+#endif
