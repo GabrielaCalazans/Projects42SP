@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:31:27 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/06/25 18:27:24 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:16:19 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 
 // Função para converter uma string ASCII para maiúsculas
-std::string	to_uppercase(const std::string& str) {
+static std::string	to_uppercase(const std::string& str) {
 	std::string result;
 	char	ch;
 
@@ -25,7 +25,7 @@ std::string	to_uppercase(const std::string& str) {
 	return result;
 }
 
-void	print_upper(const std::string& toup, int check) {
+static void	print_upper(const std::string& toup, int check) {
 	std::string upperStr = to_uppercase(toup);
 	std::cout << upperStr;
 	if (check == 1)
