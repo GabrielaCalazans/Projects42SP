@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 18:32:42 by gacalaza          #+#    #+#              #
-#    Updated: 2024/06/25 19:17:31 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/07/03 19:04:57 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DIR_SOURCE	=	source/
 
 # =============== SOURCES FILES ===============
 
-SRC		=	phonebook.cpp
+SRC		=	phonebook.cpp main.cpp
 
 SOURCES =	$(SRC)
 

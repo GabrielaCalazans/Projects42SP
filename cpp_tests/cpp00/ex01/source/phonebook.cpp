@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:31:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/06/27 20:31:26 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:05:58 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,37 +49,3 @@ void	PhoneBook::testfunc(std::string name) const {
 	return;
 }
 
-
-int	PhoneBook::_nbrContacts = 0;
-
-
-int	main() {
-
-	std::cout << "Number of instances: " << PhoneBook::getNbInst() << std::endl;
-
-	PhoneBook	firstCall("firstCall");
-	PhoneBook	*secondCallptr = &firstCall;
-
-
-	int			PhoneBook::*p = NULL;
-	void		(PhoneBook::*f)(std::string name) const;
-	std::cout << "Number of instances: " << PhoneBook::getNbInst() << std::endl;
-
-
-	p = &PhoneBook::test;
-
-	std::cout << "Value of member test: " << firstCall.test << std::endl;
-	firstCall.*p = 21;
-	std::cout << "Value of member test: " << firstCall.test << std::endl;
-	secondCallptr->*p = 42;
-	std::cout << "Value of member test: " << firstCall.test << std::endl;
-
-	f = &PhoneBook::testfunc;
-
-	(firstCall.*f)("Hello, I'm the first");
-	(secondCallptr->*f)("Hello, I'm the second");
-
-	std::cout << "The Name set is: " << firstCall.getName() << std::endl;
-
-	return (0);
-}
