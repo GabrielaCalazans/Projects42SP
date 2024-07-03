@@ -4,15 +4,14 @@
 
 int	err(char *str)
 {
-	int	i;
+	int	i = 0;
 
-	i = 0;
 	while (str[i] != '\0')
 	{
 		write(2, &str[i], 1);
 		i++;
 	}
-	return (1);
+	return 1;
 }
 
 
@@ -26,36 +25,35 @@ int	cd(char *argv[], int i)
 }
 
 
-int	exec(char *argv[], int i, char *envp[])
+int	exec(char *argv[], char *envp[], int i)
 {
-	int	fd[2];
 	int	status;
+	int	fd[2];
 	int	has_pipe = argv[i] && !strcmp(argv[i], "|");
 
 	if (!has_pipe && !strcmp(*argv, "cd"))
 		return cd(argv, i);
 	if (has_pipe && pipe(fd) == -1)
 		return err("error: fatal\n");
-	
+
 	int	pid = fork();
 	if (!pid)
 	{
 		argv[i] = 0;
 		if (has_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
 			return err("error: fatal\n");
+		
 		if (!strcmp(*argv, "cd"))
 			return cd(argv, i);
-		
 		execve(*argv, argv, envp);
 		return err("error: cannot execute "), err(*argv), err("\n");
 	}
-
 	waitpid(pid, &status, 0);
 	if (has_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
 		return err("error: fatal\n");
-
 	return WIFEXITED(status) && WEXITSTATUS(status);
 }
+
 
 
 int	main(int argc, char *argv[], char *envp[])
@@ -72,9 +70,8 @@ int	main(int argc, char *argv[], char *envp[])
 			while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
 				i++;
 			if (i)
-				status = exec(argv, i, envp);
+				status = exec(argv, envp, i);
 		}
 	}
 	return status;
 }
-
