@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 14:05:54 by gacalaza          #+#    #+#              #
-#    Updated: 2024/06/24 15:22:13 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/07/10 20:00:58 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,13 @@ INCLUDES_F = $(addprefix -I, $(INCLUDES))
 
 SOURCES =	$(SOURCES)
 
+# =============== VALGRIND ===============
 
+VALGRIND		=	valgrind \
+					--leak-check=full \
+					--show-leak-kinds=all \
+					--quiet \
+					--tool=helgrind
 
 
 # =============== RECIPES ===============
@@ -52,8 +58,14 @@ all : $(NAME)
 $(NAME) : $(LIBS) $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@
 
-%.o : %.c
+%.o : %.cpp
 	$(CC) $(FLAGS) $(INCLUDES_F) -MMD -c $< -o $@
+
+run:	all
+		./$(NAME)
+
+valgrind:	all
+			$(VALGRIND) ./$(NAME)
 
 clean :
 	$(RM) $(OBJECTS)
