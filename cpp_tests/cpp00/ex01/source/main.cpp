@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:04:09 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/03 19:48:18 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/06 19:51:27 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 
 
 static void	showMenu() {
-	
+	std::cout << "****  PhoneBook  ****" << std::endl;
+	std::cout << "Type ADD to save a new contact" << std::endl;
+	std::cout << "Type SEARCH to save a new contact" << std::endl;
+	std::cout << "Type EXIT to quit the rpogram" << std::endl;
 }
 
 
@@ -49,6 +52,8 @@ int	main() {
 	(secondCallptr->*f)("Hello, I'm the second");
 
 	std::cout << "The Name set is: " << firstCall.getName() << std::endl;
+	std::cout << "The Second Name is: " << secondCallptr->getName() << std::endl;
+
 
 	return (0);
 }
