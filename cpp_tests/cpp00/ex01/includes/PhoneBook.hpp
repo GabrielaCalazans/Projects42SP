@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:41:34 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/03 19:09:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:33:05 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ public:
 	PhoneBook(std::string name);
 	~PhoneBook();
 
-	static int	getNbInst(void);
-	void		testfunc(std::string name) const;
-	int			test;
+	static int	getNbrContacts(void);
 
 	void		setNameT(std::string name);
 	std::string	getName(void);

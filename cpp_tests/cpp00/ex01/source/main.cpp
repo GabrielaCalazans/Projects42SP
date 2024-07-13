@@ -6,56 +6,41 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:04:09 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/10 19:48:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:06:18 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "PhoneBook.hpp"
 
 
 static void	showMenu() {
-	std::cout << "****  PhoneBook  ****" << std::endl;
-	std::cout << "Type ADD to save a new contact" << std::endl;
+	
+	std::string text = "  PhoneBook  ";
+	int width = 40;
+	int text_length = text.length();
+	int fill_length = (width - text_length) / 2;
+
+	std::cout << "\n" << std::setfill('*') << std::setw(fill_length + text_length) << text;
+	std::cout << std::setfill('*') << std::setw(fill_length) << "" << std::endl;
+
+
+	std::cout << "\nType ADD to save a new contact" << std::endl;
 	std::cout << "Type SEARCH to save a new contact" << std::endl;
-	std::cout << "Type EXIT to quit the program" << std::endl;
+	std::cout << "Type EXIT to quit the program\n" << std::endl;
 }
 
 
-int	PhoneBook::_nbrContacts = 0;
-
 int	main() {
-
-	std::cout << "Number of instances: " << PhoneBook::getNbInst() << std::endl;
-
 	PhoneBook	firstCall("firstCall");
-	PhoneBook	*secondCallptr = &firstCall;
-
-
-	int			PhoneBook::*p = NULL;
-	void		(PhoneBook::*f)(std::string name) const;
-	std::cout << "Number of instances: " << PhoneBook::getNbInst() << std::endl;
-
-
-	p = &PhoneBook::test;
-
-	std::cout << "Value of member test: " << firstCall.test << std::endl;
-	firstCall.*p = 21;
-	std::cout << "Value of member test: " << firstCall.test << std::endl;
-	secondCallptr->*p = 42;
-	std::cout << "Value of member test: " << firstCall.test << std::endl;
-
-	f = &PhoneBook::testfunc;
-
-	(firstCall.*f)("Hello, I'm the first");
-	(secondCallptr->*f)("Hello, I'm the second");
-
-	std::cout << "The Name set is: " << firstCall.getName() << std::endl;
-	std::cout << "The Second Name is: " << secondCallptr->getName() << std::endl;
 
 	showMenu();
-	
+
+	std::cout << "Number of contacts: " << PhoneBook::getNbrContacts() << std::endl;
+
+
 	return (0);
 }
 

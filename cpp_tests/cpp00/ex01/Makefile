@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 18:32:42 by gacalaza          #+#    #+#              #
-#    Updated: 2024/07/10 20:13:28 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/07/11 20:32:29 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	$(CPP) $(FLAGS) $(OBJECTS) -o $@
-	mv $(OBJECTS) $(DIR_OBJECTS)
-
+#	mv $(OBJECTS) $(DIR_OBJECTS)
 
 $(OBJECTS) : $(DIR_OBJECTS)
 
