@@ -6,31 +6,29 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:41:34 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/11 20:33:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:14:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_H
 # define PHONEBOOK_H
 
-//# include "Contact.hpp"
+# include "Contact.hpp"
 
 class PhoneBook {
 
 private:
-//	Contact		contacts[8];
+	Contact		contacts[8];
 	static int	_nbrContacts;
-	std::string	_nameT;
 
 	
 public:
-	PhoneBook(std::string name);
+	PhoneBook(void);
 	~PhoneBook();
 
-	static int	getNbrContacts(void);
-
-	void		setNameT(std::string name);
-	std::string	getName(void);
+	int		getNbrContacts(void) const;
+	void	setContact(const PhoneBook& phonebook);
+	void	getContact(const PhoneBook& phonebook);
 };
 
 #endif

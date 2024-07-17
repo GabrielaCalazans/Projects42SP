@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:13:16 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/06/27 16:24:15 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:21:11 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,15 @@
 class Contact
 {
 private:
-	/* data */
+	std::string	fistName;
+	std::string	lastName;
+	std::string	nickname;
+	std::string	darkestSecret;
+	int			phoneNbr;
+
 public:
-	Contact(/* args */);
-	~Contact();
+	Contact(void);
+	~Contact(void);
 };
-
-Contact::Contact(/* args */)
-{
-}
-
-Contact::~Contact()
-{
-}
 
 #endif

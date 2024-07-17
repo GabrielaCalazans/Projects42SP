@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:31:22 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/11 20:07:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:02:33 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 #include <string>
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(std::string name) {
+PhoneBook::PhoneBook() {
 	std::cout << "PhoneBook Constructor called" << std::endl;
-	std::cout << "ObjectName: " << name << std::endl;
-	PhoneBook::setNameT(name);
 	PhoneBook::_nbrContacts = 0;
 	return;
 }
@@ -29,16 +27,21 @@ PhoneBook::~PhoneBook(void) {
 }
 
 
-int	PhoneBook::getNbrContacts(void) {
+int	PhoneBook::getNbrContacts(void) const {
 	return PhoneBook::_nbrContacts;
 }
 
 
-void	PhoneBook::setNameT(std::string name) {
-	PhoneBook::_nameT = name;
+void	PhoneBook::setContact(const PhoneBook& phonebook) {
+	Contact newContact;
+
+	std::cout << "Set Contact" << std::endl;
+	std::cout << phonebook.getNbrContacts() << std::endl;;
+
 }
 
-std::string	PhoneBook::getName(void) {
-	return PhoneBook::_nameT;
-}
 
+void	PhoneBook::getContact(const PhoneBook& phonebook) {
+	std::cout << "Get Contact" << std::endl;
+	std::cout << phonebook.getNbrContacts() << std::endl;;
+}
