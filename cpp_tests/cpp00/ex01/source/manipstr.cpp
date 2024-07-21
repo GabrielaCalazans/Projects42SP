@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*   manipstr.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 19:40:04 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/20 18:37:29 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/07/20 18:15:44 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/07/20 21:48:57 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 #include <string>
 #include "Contact.hpp"
 
-Contact::Contact() {
-	std::cout << "Contact Constructor called" << std::endl;
+bool	isValidPhoneNumber(const std::string& phoneNumber) {
+	std::string allowedChars = "0123456789()-+";
 
-	return;
+	bool result = phoneNumber.find_first_not_of(allowedChars) == std::string::npos;
+	if (!result) {
+		size_t pos = phoneNumber.find_first_not_of(allowedChars);
+		std::cout << "Invalid character \'" << phoneNumber[pos];
+	}
+	return result;
 }
 
-
-Contact::~Contact() {
-	std::cout << "Contact Destructor called" << std::endl;
-
-	return;
+bool	containsForbiddenCharacter(const std::string& str) {
+	return str.find(' ') != std::string::npos;
 }
-

@@ -6,7 +6,7 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 18:32:42 by gacalaza          #+#    #+#              #
-#    Updated: 2024/07/11 20:32:29 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/07/20 18:38:47 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ DIR_OBJECTS	=	source/objs/
 
 # =============== SOURCES FILES ===============
 
-SRC	=	PhoneBook.cpp Contact.cpp main.cpp
+SRC	=	PhoneBook.cpp Contact.cpp manipstr.cpp main.cpp
+SRC	+=	setContact.cpp getContact.cpp
 
 SOURCES =	$(SRC)
 
@@ -40,6 +41,7 @@ SOURCES_F			= $(addprefix $(DIR_SOURCE), $(SOURCES))
 
 # =============== OBJECTS ===============
 OBJECTS = $(SOURCES_F:.cpp=.o)
+# OBJECTS	=	$(patsubst %.cpp, $(OBJECTS_PATH)%.o, $(SOURCES))
 
 
 # =============== INCLUDES FILES + ITS DIRECTORIES ===============

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*   getContact.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 19:40:04 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/20 18:37:29 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/07/20 18:36:57 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/07/20 18:37:12 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,27 @@
 #include <string>
 #include "Contact.hpp"
 
-Contact::Contact() {
-	std::cout << "Contact Constructor called" << std::endl;
-
-	return;
-}
+std::string Contact::getFirstName() const {
+	return this->_firstName;
+};
 
 
-Contact::~Contact() {
-	std::cout << "Contact Destructor called" << std::endl;
+std::string Contact::getLastName() const {
+	return this->_lastName;
+};
 
-	return;
-}
+
+std::string Contact::getNickname() const {
+	return this->_nickname;
+};
+
+
+std::string Contact::getPhoneNbr() const {
+	return this->_phoneNbr;
+};
+
+
+std::string Contact::getDarkestSecret() const {
+	return this->_darkestSecret;
+};
 
