@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:36:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/20 18:37:12 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:32:56 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,25 @@
 #include <string>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+
+
+void	PhoneBook::searchContact(PhoneBook& phonebook) {
+	int	index;
+
+	phonebook.displayContacts();
+		std::cout << "Type a contact index to see all the details" << std::endl;
+		std::cin >> index;
+		while (true)
+		{
+			if (index > 8 || index < 1) {
+				std::cout << "Invalid index. Try Again!" << std::endl;
+			} else {
+				phonebook.getContact(phonebook, index - 1);
+				break;
+			}
+		}
+}
+
 
 int	PhoneBook::getNbrContacts(void) const {
 	return this->_nbrContacts;
