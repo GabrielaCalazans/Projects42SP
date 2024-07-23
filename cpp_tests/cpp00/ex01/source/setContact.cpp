@@ -14,6 +14,25 @@
 #include <string>
 #include <limits>
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
+
+void	PhoneBook::setContact(void) {
+	Contact newContact;
+
+	std::cout << "Set Contact" << std::endl;
+	newContact.setFirstName();
+	newContact.setLastName();
+	newContact.setNickname();
+	newContact.setPhoneNbr();
+	newContact.setDarkestSecret();
+	
+	if (PhoneBook::getNbrContacts() > 7)
+		PhoneBook::_nbrContacts = 0;
+
+	PhoneBook::contacts[PhoneBook::getNbrContacts()] = newContact;
+	PhoneBook::_nbrContacts++;
+}
+
 
 void	Contact::setFirstName(void) {
 	std::string	result;

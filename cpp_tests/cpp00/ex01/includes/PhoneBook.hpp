@@ -29,6 +29,7 @@ public:
 	int		getNbrContacts(void) const;
 	void	setContact(void);
 	void	getContact(const PhoneBook& phonebook, int pos);
+	void	displayContacts() const;
 };
 
 

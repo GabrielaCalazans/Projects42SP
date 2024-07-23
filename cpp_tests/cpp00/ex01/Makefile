@@ -23,7 +23,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98
 # ++++++++++ SOURCES DIRECTORIES ++++++++++
 
 DIR_SOURCE	=	source/
-DIR_OBJECTS	=	source/objs/
+# DIR_OBJECTS	=	source/objs/
 
 # =============== SOURCES FILES ===============
 
@@ -58,8 +58,8 @@ $(NAME) : $(OBJECTS)
 
 $(OBJECTS) : $(DIR_OBJECTS)
 
-$(DIR_OBJECTS):
-	mkdir -p $(DIR_OBJECTS)
+# $(DIR_OBJECTS):
+# 	mkdir -p $(DIR_OBJECTS)
 
 %.o: %.cpp | $(DIR_OBJECTS)
 	$(CPP) $(FLAGS) $(INCLUDES_F) -c $< -o $@
