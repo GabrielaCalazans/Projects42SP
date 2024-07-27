@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:37:31 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/20 21:49:35 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:07:51 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	Contact::setPhoneNbr(void) {
 			return ;
 		}
 		else
-			std::cout << "\'. Please try again\n" << str << std::endl;
+			std::cout << "Please try again\n" << str << std::endl;
 	}
 }
 
