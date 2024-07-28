@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:15:44 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/26 18:10:33 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/27 21:51:17 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	PhoneBook::displayContacts() const {
 			<< centerText("Last Name", width) << "|"
 			<< centerText("Nickname", width) << "|" << std::endl;
 	
-	for (int i = 0; i < getNbrContacts(); ++i) {
-		const Contact& contact = contacts[i];
+	for (int i = 0; i <= getNbrContacts(); ++i) {
+		const Contact& contact = _contacts[i];
+		if (getNbrContacts() != 7 && getNbrContacts() == i)
+			break;
 		std::cout << std::setfill(' ') << std::setw(width) << i + 1 << "|"
 				<< std::setfill(' ') << std::setw(width) << (contact.getFirstName().length() > 9 ? contact.getFirstName().substr(0, 9) + "." : contact.getFirstName()) << "|"
 				<< std::setfill(' ') << std::setw(width) << (contact.getLastName().length() > 9 ? contact.getLastName().substr(0, 9) + "." : contact.getLastName()) << "|"

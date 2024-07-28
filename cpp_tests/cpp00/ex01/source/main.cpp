@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:04:09 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/07/23 18:29:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/07/27 21:31:23 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,9 @@ static void	showMenu() {
 	std::cout << "Type EXIT to quit the program\n" << std::endl;
 }
 
-void	tests(PhoneBook& phonebook, int pos) {
-	phonebook.getContact(phonebook, pos);
-}
-
-
-
 
 int	PhoneBook::_nbrContacts = 0;
+int	PhoneBook::_index = 0;
 
 int	main() {
 	PhoneBook	phonebook;
@@ -51,8 +46,8 @@ int	main() {
 		showMenu();
 		std::cin >> prompt;
 		if (!prompt.compare("ADD")) {
-			phonebook.setContact();
-			tests(phonebook, phonebook.getNbrContacts()-1);
+			phonebook.setContact(phonebook);
+			// phonebook.getContact(phonebook, phonebook.getIndex());
 		}
 		else if (!prompt.compare("SEARCH"))
 			phonebook.searchContact(phonebook);
