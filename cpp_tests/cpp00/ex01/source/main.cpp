@@ -33,9 +33,6 @@ static void	showMenu() {
 }
 
 
-int	PhoneBook::_nbrContacts = 0;
-int	PhoneBook::_index = 0;
-
 int	main() {
 	PhoneBook	phonebook;
 	std::string	prompt = "";
@@ -45,10 +42,8 @@ int	main() {
 	{
 		showMenu();
 		std::cin >> prompt;
-		if (!prompt.compare("ADD")) {
+		if (!prompt.compare("ADD"))
 			phonebook.setContact(phonebook);
-			// phonebook.getContact(phonebook, phonebook.getIndex());
-		}
 		else if (!prompt.compare("SEARCH"))
 			phonebook.searchContact(phonebook);
 		else if (!prompt.compare("EXIT"))

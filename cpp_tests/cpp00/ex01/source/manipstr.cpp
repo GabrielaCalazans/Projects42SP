@@ -23,8 +23,21 @@ bool	isValidPhoneNumber(const std::string& phoneNumber) {
 	if (!result) {
 		size_t pos = phoneNumber.find_first_not_of(allowedChars);
 		std::cout << "Invalid character \'" << phoneNumber[pos] << "\'. ";
+		return false;
 	}
-	return result;
+	int digitCount = 0;
+	for (size_t i = 0; i < phoneNumber.length(); ++i) {
+		if (std::isdigit(phoneNumber[i])) {
+			digitCount++;
+		}
+	}
+
+	if (digitCount < 6) {
+		std::cout << "The phone number must have at least 6 digits. ";
+		return false;
+	}
+
+	return true;
 }
 
 
@@ -41,12 +54,20 @@ std::string	centerText(const std::string& text, size_t width) {
 }
 
 
+std::string rightAlignText(const std::string& text, size_t width, int check) {
+	if (text.length() >= width && check == 1) {
+		return text.substr(0, width - 1) + ".";
+	}
+	size_t padding = width - text.length();
+	return std::string(padding, ' ') + text;
+}
+
 void	PhoneBook::displayContacts() const {
 	size_t width = 10;
-	std::cout << centerText("Index", width) << "|"
-			<< centerText("First Name", width) << "|"
-			<< centerText("Last Name", width) << "|"
-			<< centerText("Nickname", width) << "|" << std::endl;
+	std::cout << rightAlignText("Index", width, 0) << "|"
+			<< rightAlignText("First Name", width, 0) << "|"
+			<< rightAlignText("Last Name", width, 0) << "|"
+			<< rightAlignText("Nickname", width, 0) << "|" << std::endl;
 	
 	for (int i = 0; i <= getNbrContacts(); ++i) {
 		const Contact& contact = _contacts[i];

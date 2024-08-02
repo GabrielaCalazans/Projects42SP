@@ -14,15 +14,15 @@
 #include <string>
 #include "PhoneBook.hpp"
 
+int	PhoneBook::_nbrContacts = 0;
+int	PhoneBook::_index = 0;
+
 PhoneBook::PhoneBook(void) {
-	std::cout << "PhoneBook Constructor called" << std::endl;
-	PhoneBook::_nbrContacts = 0;
 	return;
 }
 
 
 PhoneBook::~PhoneBook(void) {
-	std::cout << "PhoneBook Destructor called" << std::endl;
 	return;
 }
 

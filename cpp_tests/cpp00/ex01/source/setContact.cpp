@@ -19,7 +19,6 @@
 void	PhoneBook::setContact(PhoneBook& phonebook) {
 	Contact newContact;
 
-	std::cout << "Set Contact" << std::endl;
 	newContact.setFirstName();
 	newContact.setLastName();
 	newContact.setNickname();
@@ -107,13 +106,12 @@ void	Contact::setDarkestSecret(void) {
 	}
 }
 
-
 void	Contact::setPhoneNbr(void) {
 	std::string	newPhoneNbr;
 	std::string str = "Type a Phone Number (Only numbers allowed): ";
 	
+	std::cout << str << std::endl;
 	while (true) {
-		std::cout << str << std::endl;
 		std::cin >> newPhoneNbr;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		if ((!newPhoneNbr.empty() && isValidPhoneNumber(newPhoneNbr))) {
