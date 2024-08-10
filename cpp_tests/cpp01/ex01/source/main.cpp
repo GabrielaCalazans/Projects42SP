@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:51:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/09 21:51:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/10 13:40:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,36 @@ int	main()
 		myZombieHorde[i].announce();
 	}
 
-	delete myZombieHorde;
+	delete[] myZombieHorde;
 
 	std::cout << "\n" << std::endl;
 	std::cout << "******* NEW TEST *******" << std::endl;
 
 	hordeSize = 6;
-	myZombieHorde = zombieHorde(hordeSize, "CrazyZombie");
+	Zombie* myZombieHorde2 = zombieHorde(hordeSize, "CrazyZombie");
 
-	for (int i = 0; i < hordeSize; ++i)
+	for (int i = 0; i < hordeSize; i++)
 	{
 		std::cout << "Zombie " << i + 1 << ":\t";
-		myZombieHorde[i].announce();
+		myZombieHorde2[i].announce();
 	}
 
-	delete myZombieHorde;
+	delete[] myZombieHorde2;
+
+
+	std::cout << "\n" << std::endl;
+	std::cout << "******* NEW TEST *******" << std::endl;
+
+	hordeSize = 9;
+	myZombieHorde2 = zombieHorde(hordeSize, "GabsZombieHorde");
+
+	for (int i = 0; i < hordeSize; i++)
+	{
+		std::cout << "Zombie " << i + 1 << ":\t";
+		myZombieHorde2[i].announce();
+	}
+
+	delete[] myZombieHorde2;
 
 	return 0;
 }

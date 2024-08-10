@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:56:59 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/09 22:56:59 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/10 13:34:30 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Zombie*	zombieHorde(int N, std::string name)
 
 	Zombie* horde = new Zombie[N];
 
-	for (int i = 0; i < N; ++i) {
+	for (int i = 0; i < N; i++) {
 		horde[i].setName(name);
 	}
 
