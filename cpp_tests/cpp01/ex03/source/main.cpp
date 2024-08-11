@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 21:39:16 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/10 14:04:07 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/08/09 21:51:05 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/08/10 18:12:47 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
 #include <string>
-#include "Zombie.hpp"
-
-Zombie::Zombie(/* args */)
-{
-	return;
-}
 
 
-Zombie::~Zombie()
-{
-	std::cout << this->getName() << " is destroyed." << std::endl;
-	return;
-}
+int	main() {
 
 
-void	Zombie::announce(void)
-{
-	std::cout << this->getName() << ": "
-	<< "BraiiiiiiinnnzzzZ..." << std::endl;
+	return 0;
 }
