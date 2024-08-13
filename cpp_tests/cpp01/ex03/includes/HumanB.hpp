@@ -20,7 +20,7 @@ class HumanB
 {
 private:
 	std::string	_name;
-	std::string	_weapon;
+	Weapon		_weapon;
 
 public:
 	HumanB(/* args */);

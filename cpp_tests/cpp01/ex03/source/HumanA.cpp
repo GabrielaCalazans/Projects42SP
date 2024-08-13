@@ -13,10 +13,12 @@
 #include <iostream>
 #include <string>
 #include "HumanA.hpp"
+#include "Weapon.hpp"
 
 
-HumanA::HumanA(/* args */)
+HumanA::HumanA(std::string	type)
 {
+	this->_weapon.setType(type);
 	return;
 }
 
