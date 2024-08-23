@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:38:04 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/10 18:26:29 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:30:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,13 @@ private:
 	Weapon		_weapon;
 
 public:
-	HumanA(/* args */);
+	HumanA(std::string type, Weapon weapon);
 	~HumanA();
-	void	attack(void);
-
+	void		attack(void);
+	std::string	getName(void) const;
+	void		setName(std::string name);
 
 };
 
 
 #endif
-
-Now, create two classes: HumanA and HumanB. They both have a Weapon and a
-name. They also have a member function attack() that displays (of course, without the
-angle brackets):
-<name> attacks with their <weapon type>
-HumanA and HumanB are almost the same except for these two tiny details:
-• While HumanA takes the Weapon in its constructor, HumanB doesn’t.
-• HumanB may not always have a Weapon, whereas HumanA will always be arm
