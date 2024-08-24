@@ -6,13 +6,13 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 18:32:42 by gacalaza          #+#    #+#              #
-#    Updated: 2024/08/10 17:33:47 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/08/23 20:08:19 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # =============== VARIABLES ===============
 
-NAME = zombieHorde
+NAME = fightTime
 
 CPP = c++
 
@@ -46,6 +46,7 @@ OBJECTS	=	$(SOURCES_F:.cpp=.o)
 # =============== INCLUDES FILES + ITS DIRECTORIES ===============
 INCLUDES_F = $(addprefix -I, $(INCLUDES))
 
+INCLUDES_A = $(wildcard ./includes/*)
 
 # =============== RECIPES ===============
 
@@ -61,7 +62,7 @@ $(NAME) : $(OBJECTS)
 # 	mkdir -p $(DIR_OBJECTS)
 
 # %.o: %.cpp | $(DIR_OBJECTS)
-%.o: %.cpp
+%.o: %.cpp $(INCLUDES_A)
 	$(CPP) $(FLAGS) $(INCLUDES_F) -c $< -o $@
 
 run:	all

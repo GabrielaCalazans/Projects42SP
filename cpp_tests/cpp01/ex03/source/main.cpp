@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:51:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/10 18:12:47 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:35:41 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 #include "Weapon.hpp"
 #include <string>
 
-// In which case do you think it would be best to use a pointer to
-// Weapon? And a reference to Weapon? Why? Think about it before
-// starting this exercise
+
 int main()
 {
 	{

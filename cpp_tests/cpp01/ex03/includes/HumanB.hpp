@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:38:04 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/21 20:30:16 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:24:31 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class HumanB
 {
 private:
 	std::string	_name;
-	Weapon		_weapon;
+	Weapon		*_weapon;
 
 public:
 	HumanB(std::string name);
@@ -29,6 +29,7 @@ public:
 	void	attack(void);
 	std::string	getName(void) const;
 	void		setName(std::string name);
+	void		setWeapon(Weapon &weapon);
 };
 
 

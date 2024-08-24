@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 17:36:41 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/21 20:23:51 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:01:14 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Weapon.hpp"
 
 Weapon::Weapon(std::string name) {
+	this->setType(name);
 	return;
 }
 
