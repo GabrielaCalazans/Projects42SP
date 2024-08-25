@@ -18,6 +18,7 @@ Harl::Harl(void) {
 	this->_levels[1] = std::make_pair("INFO", &Harl::info);
 	this->_levels[2] = std::make_pair("WARNING", &Harl::warning);
 	this->_levels[3] = std::make_pair("ERROR", &Harl::error);
+	return ;
 }
 
 
