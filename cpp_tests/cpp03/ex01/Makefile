@@ -6,13 +6,13 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 18:32:42 by gacalaza          #+#    #+#              #
-#    Updated: 2024/08/28 19:55:30 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/08/28 19:55:17 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # =============== VARIABLES ===============
 
-NAME = clapTrap
+NAME = scavpTrap
 
 CPP = c++
 
@@ -20,7 +20,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98
 
 # =============== SOURCES FILES ===============
 
-SRC	=	ClapTrap.cpp main.cpp
+SRC	=	ClapTrap.cpp ScavTrap.cpp main.cpp
 
 # =============== OBJECTS ===============
 OBJECTS	=	$(SRC:.cpp=.o)
