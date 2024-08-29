@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ReplaceInFile.cpp                                  :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:39:16 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/23 22:59:39 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:28:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,19 @@ std::ostream&	operator<<(std::ostream& lhs, const Fixed& fixed) {
 
 
 // Arithmetic operator
-Fixed	Fixed::operator+(const Fixed &other) {
+Fixed	Fixed::operator+(const Fixed &other) const {
 	return this->toFloat() + other.toFloat();
 }
 
-Fixed	Fixed::operator-(const Fixed &other) {
+Fixed	Fixed::operator-(const Fixed &other) const {
 	return this->toFloat() - other.toFloat();
 }
 
-Fixed	Fixed::operator*(const Fixed &other) {
+Fixed	Fixed::operator*(const Fixed &other) const {
 	return this->toFloat() * other.toFloat();
 }
 
-Fixed	Fixed::operator/(const Fixed &other) {
+Fixed	Fixed::operator/(const Fixed &other) const {
 	return this->toFloat() / other.toFloat();
 }
 

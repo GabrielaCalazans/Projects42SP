@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ReplaceInFile.hpp                                  :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:38:04 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/23 22:12:05 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:27:40 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ public:
 	Fixed&	operator--(void);
 	Fixed	operator--(int);
 
-	Fixed	operator+(const Fixed& other);
-	Fixed	operator-(const Fixed& other);
-	Fixed	operator*(const Fixed& other);
-	Fixed	operator/(const Fixed& other);
+	Fixed	operator+(const Fixed& other) const;
+	Fixed	operator-(const Fixed& other) const;
+	Fixed	operator*(const Fixed& other) const;
+	Fixed	operator/(const Fixed& other) const;
 
 	bool	operator>(const Fixed &other) const;
 	bool	operator<(const Fixed &other) const;
