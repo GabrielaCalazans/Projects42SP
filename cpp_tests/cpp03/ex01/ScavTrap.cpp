@@ -16,6 +16,7 @@
 ScavTrap::ScavTrap(void) : ClapTrap() {
 	std::cout << "ScavTrap default constructor called." << std::endl;
 	this->_name = "Who am I?";
+	this->_type = "ScavTrap";
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
@@ -25,6 +26,7 @@ ScavTrap::ScavTrap(void) : ClapTrap() {
 //  Parameterized Constructor
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 	std::cout << "ScavTrap parameterized constructor called. Name: " << this->_name << std::endl;
+	this->_type = "ScavTrap";
 	this->_hitPoints = 100;
 	this->_energyPoints = 50;
 	this->_attackDamage = 20;
@@ -41,6 +43,7 @@ ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj.getName()) {
 ScavTrap& ScavTrap::operator=(const ScavTrap &obj) {
 	if (this != &obj) {
 		this->_name = obj.getName();
+		this->_type = obj.getType();
 		this->_hitPoints = obj.getHitPoints();
 		this->_energyPoints = obj.getEnergyPoints();
 		this->_attackDamage = obj.getAttackDamage();
@@ -50,7 +53,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &obj) {
 }
 
 ScavTrap::~ScavTrap(void) {
-	std::cout << "ScavTrap destructed called." << std::endl;
+	std::cout << "ScavTrap destructed called. Name: " << this->_name << std::endl;
 	return ;
 }
 

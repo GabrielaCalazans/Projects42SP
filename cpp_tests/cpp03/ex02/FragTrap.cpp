@@ -16,6 +16,7 @@
 FragTrap::FragTrap(void) : ClapTrap() {
 	std::cout << "FragTrap default constructor called." << std::endl;
 	this->_name = "Who am I?";
+	this->_type = "FragTrap";
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
@@ -25,6 +26,7 @@ FragTrap::FragTrap(void) : ClapTrap() {
 //  Parameterized Constructor
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	std::cout << "FragTrap parameterized constructor called. Name: " << this->_name << std::endl;
+	this->_type = "FragTrap";
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
@@ -41,6 +43,7 @@ FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj.getName()) {
 FragTrap& FragTrap::operator=(const FragTrap &obj) {
 	if (this != &obj) {
 		this->_name = obj.getName();
+		this->_type = obj.getType();
 		this->_hitPoints = obj.getHitPoints();
 		this->_energyPoints = obj.getEnergyPoints();
 		this->_attackDamage = obj.getAttackDamage();

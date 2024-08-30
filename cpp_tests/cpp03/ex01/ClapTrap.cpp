@@ -15,6 +15,7 @@
 //  Default Constructor
 ClapTrap::ClapTrap(void) {
 	this->_name = "Who am I?";
+	this->_type = "ClapTrap";
 	this->_hitPoints = 10;
 	this->_energyPoints = 10;
 	this->_attackDamage = 0;
@@ -25,7 +26,8 @@ ClapTrap::ClapTrap(void) {
 
 //  Parameterized Constructor
 ClapTrap::ClapTrap(const std::string& name) {
-		this->_name = name;
+	this->_name = name;
+	this->_type = "ClapTrap";
 	this->_hitPoints = 10;
 	this->_energyPoints = 10;
 	this->_attackDamage = 0;
@@ -47,6 +49,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &obj) {
 		this->_hitPoints = obj.getHitPoints();
 		this->_energyPoints = obj.getEnergyPoints();
 		this->_attackDamage = obj.getAttackDamage();
+		this->_type = obj.getType();
 	}
 	std::cout << "ClapTrap assignment operator called. Name: " << _name << std::endl;
 	return *this;
@@ -60,6 +63,11 @@ ClapTrap::~ClapTrap(void) {
 
 std::string		ClapTrap::getName(void) const {
 	return(this->_name);
+}
+
+
+std::string		ClapTrap::getType(void) const {
+	return(this->_type);
 }
 
 unsigned int	ClapTrap::getHitPoints(void) const {
@@ -123,7 +131,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 
 void	ClapTrap::getStatus(void)
 {
-	std::cout << "ClapTrap " << this->getName() << " status:" << std::endl
+	std::cout << this->getType() << " " << this->getName() << " status:" << std::endl
 		<< "Hit points: " << this->getHitPoints() << std::endl
 		<< "Energy points: " << this->getEnergyPoints() << std::endl
 		<< "Attack damage: " << this->getAttackDamage() << std::endl << std::endl;
