@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:38:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 17:38:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/31 15:27:38 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ Brain::~Brain()
 std::string	Brain::getIdea(int index) const
 {
 	if (index < 0 || index >= 100)
-		return (NULL);
+		return "";
 	return (this->_ideas[index]);
 }
 

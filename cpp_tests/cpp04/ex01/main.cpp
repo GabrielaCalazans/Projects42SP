@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:51:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 19:55:31 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:00:52 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(void)
 	const Animal* i = new Cat();
 	delete j; // Should call Dog destructor, then Animal destructor
 	delete i; // Should call Cat destructor, then Animal destructor
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 	// Test array of objects and polymorphism
 	std::cout << "**** Polymorphism with Animal Array ****" << std::endl;
@@ -40,10 +40,11 @@ int	main(void)
 		meta[i]->makeSound();
 	}
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 3; i >= 0; i--) {
 		delete meta[i]; // Should call the appropriate destructor for each object type
 	}
-	std::cout << "-----------------------------------------" << std::endl;
+
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 	// Test manipulation of Brain ideas for Cat
 	std::cout << "**** Brain Manipulation Tests for Cat ****" << std::endl;
@@ -51,125 +52,55 @@ int	main(void)
 	cat.setBrainIdea(0, "I want Whiskas!");
 	cat.setBrainIdea(1, "I want to sleep!");
 
-	std::cout << "Cat's Brain Ideas:" << std::endl;
+	std::cout << "** Cat's Brain Ideas **" << std::endl;
 	std::cout << "Idea 0: " << cat.getBrainIdea(0) << std::endl;
 	std::cout << "Idea 1: " << cat.getBrainIdea(1) << std::endl;
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
-	// Test copy constructor and assignment operator
+	// Test deep copy with assignment operator
 	std::cout << "**** Copy and Assignment Tests for Cat ****" << std::endl;
 	Cat tom;
 	tom = cat; // Test assignment operator
 
-	std::cout << "Tom's Brain Ideas after assignment:" << std::endl;
+	std::cout << std::endl << "** Tom's Brain Ideas after assignment **" << std::endl;
 	std::cout << "Idea 0: " << tom.getBrainIdea(0) << std::endl;
 	std::cout << "Idea 1: " << tom.getBrainIdea(1) << std::endl;
 
 	tom.setBrainIdea(0, "I don't want Whiskas anymore!");
-	std::cout << "Tom's Brain Ideas after changing the idea:" << std::endl;
+	std::cout << "** Tom's Brain Ideas after changing the idea **" << std::endl;
 	std::cout << "Idea 0: " << tom.getBrainIdea(0) << std::endl;
 	std::cout << "Idea 1: " << tom.getBrainIdea(1) << std::endl;
 	
-	std::cout << "Cat's Brain Ideas (Should not be changed):" << std::endl;
+	std::cout << "** Cat's Brain Ideas (Should not be changed) **" << std::endl;
 	std::cout << "Idea 0: " << cat.getBrainIdea(0) << std::endl;
 	std::cout << "Idea 1: " << cat.getBrainIdea(1) << std::endl;
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
-	// Test copy constructor
+	// Test deep copy with copy constructor
 	std::cout << "**** Copy Constructor Test for Cat ****" << std::endl;
-	Cat mandaChuva(tom);
-	std::cout << "MandaChuva's Brain Ideas after copy construction:" << std::endl;
-	std::cout << "Idea 0: " << mandaChuva.getBrainIdea(0) << std::endl;
-	std::cout << "Idea 1: " << mandaChuva.getBrainIdea(1) << std::endl;
+	Cat Penelope(tom);
+	std::cout << "Penelope's Brain Ideas after copy construction:" << std::endl;
+	std::cout << "Idea 0: " << Penelope.getBrainIdea(0) << std::endl;
+	std::cout << "Idea 1: " << Penelope.getBrainIdea(1) << std::endl;
+
+	Penelope.setBrainIdea(0, "I prefer chasing mice now!");
+	std::cout << std::endl << "Penelope's Brain Ideas after change:" << std::endl;
+	std::cout << "Idea 0: " << Penelope.getBrainIdea(0) << std::endl;
+	std::cout << "Idea 1: " << Penelope.getBrainIdea(1) << std::endl;
+
+	std::cout << std::endl << "Tom's Brain Ideas (Should not be changed):" << std::endl;
+	std::cout << "Idea 0: " << tom.getBrainIdea(0) << std::endl;
+	std::cout << "Idea 1: " << tom.getBrainIdea(1) << std::endl;
+
+	// Test deep copy for Dog
+	std::cout << std::endl << "**** Deep Copy Test for Dog ****" << std::endl;
+	Dog basic;
+	{
+		Dog tmp = basic;
+	} // tmp is destroyed here; should not affect basic's Brain
+
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 
 	return (0);
 }
-
-
-
-
-// int	main(void)
-// {
-// 	std::cout << std::endl << "**** Object Construction Tests ****" << std::endl;
-// 	const Animal* dog = new Dog();
-// 	const Animal* cat = new Cat();
-
-// 	std::cout << std::endl << "**** Object Destruction Tests ****" << std::endl;
-// 	delete dog;  // Deve chamar ~Dog() e então ~Animal()
-// 	delete cat;  // Deve chamar ~Cat() e então ~Animal()
-
-// 	std::cout << "---------" << std::endl;
-
-// 	std::cout << std::endl << "**** Array of Animals Construction and Sound Tests ****" << std::endl;
-// 	const Animal* animals[10];
-// 	for (int i = 0; i < 10; i++) {
-// 		if (i < 5)
-// 			animals[i] = new Dog();
-// 		else
-// 			animals[i] = new Cat();
-// 	}
-
-// 	std::cout << std::endl << "**** Animal Sounds in Array ****" << std::endl;
-// 	for (int i = 0; i < 10; i++) {
-// 		animals[i]->makeSound();
-// 	}
-
-// 	std::cout << std::endl << "**** Array of Animals Destruction ****" << std::endl;
-// 	for (int i = 0; i < 10; i++) {
-// 		delete animals[i];  // Deve chamar destrutores na ordem reversa de construção
-// 	}
-
-// 	std::cout << "---------" << std::endl;
-
-// 	std::cout << std::endl << "**** Deep Copy and Brain Tests ****" << std::endl;
-// 	Cat originalCat;
-// 	for (int i = 0; i < 100; i++) {
-// 		originalCat.setBrainIdea(i, "I want Whiskas!");
-// 	}
-
-// 	std::cout << "Original Cat's Brain Ideas:" << std::endl;
-// 	for (int i = 0; i < 100; i++) {
-// 		std::cout << originalCat.getBrainIdea(i) << std::endl;
-// 	}
-
-// 	std::cout << "---------" << std::endl;
-
-// 	std::cout << std::endl << "**** Assignment Operator Test ****" << std::endl;
-// 	Cat copyCat;
-// 	copyCat = originalCat;
-
-// 	std::cout << "Copy Cat's Brain Ideas after assignment:" << std::endl;
-// 	for (int i = 0; i < 100; i++) {
-// 		std::cout << copyCat.getBrainIdea(i) << std::endl;
-// 	}
-
-// 	std::cout << std::endl << "**** Modifying Copy Cat's Brain Ideas ****" << std::endl;
-// 	for (int i = 0; i < 100; i++) {
-// 		copyCat.setBrainIdea(i, "I don't want Whiskas anymore!");
-// 	}
-
-// 	std::cout << "Copy Cat's Brain Ideas after modification:" << std::endl;
-// 	for (int i = 0; i < 100; i++) {
-// 		std::cout << copyCat.getBrainIdea(i) << std::endl;
-// 	}
-
-// 	std::cout << "Original Cat's Brain Ideas after modifying Copy Cat:" << std::endl;
-// 	for (int i = 0; i < 100; i++) {
-// 		std::cout << originalCat.getBrainIdea(i) << std::endl;
-// 	}
-
-// 	std::cout << "---------" << std::endl;
-
-// 	std::cout << std::endl << "**** Copy Constructor Test ****" << std::endl;
-// 	Cat anotherCat(originalCat);
-
-// 	std::cout << "Another Cat's Brain Ideas after copy construction:" << std::endl;
-// 	for (int i = 0; i < 100; i++) {
-// 		std::cout << anotherCat.getBrainIdea(i) << std::endl;
-// 	}
-
-
-
-// 	return (0);
-// }

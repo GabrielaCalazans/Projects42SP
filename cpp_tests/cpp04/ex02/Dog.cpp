@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:26:53 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 21:38:41 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:06:43 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,32 @@
 Dog::Dog(void) : AAnimal() {
 	std::cout << "Dog default constructor called" << std::endl;
 	this->_type = "Dog";
+	this->_brain = new Brain();
 	return ;
 }
 
 //  Copy Constructor
-Dog::Dog(const Dog &obj) : _brain(new Brain(*obj.getBrain())) {
+Dog::Dog(const Dog &obj) : _brain(new Brain(*obj.getBrain()))
+{
 	std::cout << "Dog copy constructor called" << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
-
 // Assignment Operator
-Dog&	Dog::operator=(const Dog &obj) {
+Dog&	Dog::operator=(const Dog &obj)
+{
 	std::cout << "Dog copy assignment operator called" << std::endl;
-	if (this != &obj)
+	if (this != &obj) {
 		this->_type = obj.getType();
+		*this->_brain = *obj.getBrain();
+	}
 	return (*this);
 }
 
 Dog::~Dog() {
 	std::cout << "Dog destructor called" << std::endl;
+	delete (this->_brain);
 	return ;
 }
 
@@ -46,20 +51,17 @@ void	Dog::makeSound(void) const {
 }
 
 
-Brain*	Dog::getBrain(void) const
-{
+Brain*	Dog::getBrain(void) const {
 	return (this->_brain);
 }
 
-std::string	Dog::getBrainIdea(int index) const
-{
+std::string	Dog::getBrainIdea(int index) const {
 	if (index < 0 || index >= 100)
-		return (NULL);
-	return (this->getBrain()->getIdea(index));
+		return "";
+	return this->_brain->getIdea(index);
 }
 
-void	Dog::setBrainIdea(int index, std::string idea)
-{
+void	Dog::setBrainIdea(int index, std::string idea) {
 	if (index < 0 || index >= 100)
 	{
 		std::cout << "Index is out of range" << std::endl;

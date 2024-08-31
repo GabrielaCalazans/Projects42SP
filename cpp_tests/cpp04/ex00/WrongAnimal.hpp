@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:39:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 17:32:28 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:41:48 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ class	WrongAnimal {
 		WrongAnimal(void);
 		WrongAnimal(const WrongAnimal &obj);
 		WrongAnimal& operator=(const WrongAnimal &obj);
-		virtual ~WrongAnimal(void);
+		~WrongAnimal(void);
 
 		std::string			getType(void) const;
-		virtual void		makeSound(void) const;
+		void		makeSound(void) const;
 };
 
 #endif

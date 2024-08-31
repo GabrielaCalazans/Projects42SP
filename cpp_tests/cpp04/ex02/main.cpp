@@ -6,7 +6,7 @@
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 21:51:05 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 21:50:45 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:22:20 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,13 @@
 
 int	main(void)
 {
-	// const AAnimal	aanimal("Coisa");
-
-
 	// Test object construction and destruction
 	std::cout << std::endl << "**** Object Construction and Destruction Tests ****" << std::endl;
 	const AAnimal* j = new Dog();
 	const AAnimal* i = new Cat();
 	delete j; // Should call Dog destructor, then Animal destructor
 	delete i; // Should call Cat destructor, then Animal destructor
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 	// Test array of objects and polymorphism
 	std::cout << "**** Polymorphism with Animal Array ****" << std::endl;
@@ -46,7 +43,7 @@ int	main(void)
 	for (int i = 0; i < 4; i++) {
 		delete meta[i]; // Should call the appropriate destructor for each object type
 	}
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 	// Test manipulation of Brain ideas for Cat
 	std::cout << "**** Brain Manipulation Tests for Cat ****" << std::endl;
@@ -57,7 +54,7 @@ int	main(void)
 	std::cout << "Cat's Brain Ideas:" << std::endl;
 	std::cout << "Idea 0: " << cat.getBrainIdea(0) << std::endl;
 	std::cout << "Idea 1: " << cat.getBrainIdea(1) << std::endl;
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 	// Test copy constructor and assignment operator
 	std::cout << "**** Copy and Assignment Tests for Cat ****" << std::endl;
@@ -76,14 +73,14 @@ int	main(void)
 	std::cout << "Cat's Brain Ideas (Should not be changed):" << std::endl;
 	std::cout << "Idea 0: " << cat.getBrainIdea(0) << std::endl;
 	std::cout << "Idea 1: " << cat.getBrainIdea(1) << std::endl;
-	std::cout << "-----------------------------------------" << std::endl;
+	std::cout << std::endl << "-----------------------------------------" << std::endl << std::endl;
 
 	// Test copy constructor
 	std::cout << "**** Copy Constructor Test for Cat ****" << std::endl;
-	Cat mandaChuva(tom);
-	std::cout << "MandaChuva's Brain Ideas after copy construction:" << std::endl;
-	std::cout << "Idea 0: " << mandaChuva.getBrainIdea(0) << std::endl;
-	std::cout << "Idea 1: " << mandaChuva.getBrainIdea(1) << std::endl;
+	Cat Penelope(tom);
+	std::cout << "Penelope's Brain Ideas after copy construction:" << std::endl;
+	std::cout << "Idea 0: " << Penelope.getBrainIdea(0) << std::endl;
+	std::cout << "Idea 1: " << Penelope.getBrainIdea(1) << std::endl;
 
 
 	return (0);
