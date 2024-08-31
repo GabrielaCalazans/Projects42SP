@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 23:40:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 16:46:17 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/08/09 21:38:04 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/08/30 21:41:15 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef WRONGCAT_HPP
-# define WRONGCAT_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
 # include <iostream>
-# include <string>
-# include "WrongAnimal.hpp"
 
-class WrongCat : public WrongAnimal {
-	public:
-		WrongCat(void);
-		WrongCat(const WrongCat &obj);
-		WrongCat& operator=(const WrongCat &obj);
-		~WrongCat(void);
+class AAnimal {
+protected:
+	std::string	_type;
 
-		void	makeSound(void) const;
+public:
+	AAnimal(void);
+	AAnimal(const AAnimal &obj);
+	AAnimal& operator=(const AAnimal &obj);
+	virtual ~AAnimal(void);
+
+	std::string		getType(void) const;
+	virtual void	makeSound(void) const = 0;
 };
+
+
 
 #endif

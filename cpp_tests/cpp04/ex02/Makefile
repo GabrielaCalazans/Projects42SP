@@ -6,13 +6,13 @@
 #    By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 18:32:42 by gacalaza          #+#    #+#              #
-#    Updated: 2024/08/30 17:33:40 by gacalaza         ###   ########.fr        #
+#    Updated: 2024/08/30 21:29:21 by gacalaza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # =============== VARIABLES ===============
 
-NAME = animal
+NAME = brain
 
 CPP = c++
 
@@ -20,7 +20,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98
 
 # =============== SOURCES FILES ===============
 
-SRC	=	Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp main.cpp
+SRC	=	AAnimal.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
 
 # =============== OBJECTS ===============
 OBJECTS	=	$(SRC:.cpp=.o)
@@ -34,6 +34,9 @@ $(NAME) : $(OBJECTS)
 
 %.o: %.cpp
 	$(CPP) $(FLAGS) -c $< -o $@
+
+run:	all
+		./$(NAME)
 
 clean:
 	$(RM) -rf $(OBJECTS)

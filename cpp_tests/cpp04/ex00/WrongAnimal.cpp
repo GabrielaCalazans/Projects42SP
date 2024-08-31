@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:39:36 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/29 23:39:36 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:50:02 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 WrongAnimal::WrongAnimal(void) {
 	std::cout << "Wrong Animal default constructor called" << std::endl;
-	this->_type = "";
+	this->_type = "Wrong Animal";
 	return ;
 }
 

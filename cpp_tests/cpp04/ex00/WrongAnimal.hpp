@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:39:40 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/29 23:39:40 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:32:28 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONG_ANIMAL_HPP
-# define WRONG_ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 #include <iostream>
 #include <string>
 
-class	WrongAnimal
-{
+class	WrongAnimal {
 	protected:
 		std::string	_type;
 
@@ -25,10 +24,10 @@ class	WrongAnimal
 		WrongAnimal(void);
 		WrongAnimal(const WrongAnimal &obj);
 		WrongAnimal& operator=(const WrongAnimal &obj);
-		~WrongAnimal(void);
+		virtual ~WrongAnimal(void);
 
-		std::string	getType(void) const;
-		void		makeSound(void) const;
+		std::string			getType(void) const;
+		virtual void		makeSound(void) const;
 };
 
 #endif

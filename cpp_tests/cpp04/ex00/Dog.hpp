@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gacalaza <gacalaza@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 23:26:57 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/29 23:26:57 by gacalaza         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:25:49 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include <string>
 #include "Animal.hpp"
 
-class Dog : public Animal
-{
+class Dog : public Animal {
 	public:
 		Dog(void);
 		Dog(const Dog &obj);

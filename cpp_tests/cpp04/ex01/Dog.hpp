@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacalaza <gacalaza@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 23:40:37 by gacalaza          #+#    #+#             */
-/*   Updated: 2024/08/30 16:46:17 by gacalaza         ###   ########.fr       */
+/*   Created: 2024/08/29 23:26:57 by gacalaza          #+#    #+#             */
+/*   Updated: 2024/08/30 17:43:42 by gacalaza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef WRONGCAT_HPP
-# define WRONGCAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
 # include <iostream>
 # include <string>
-# include "WrongAnimal.hpp"
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-class WrongCat : public WrongAnimal {
+class Dog : public Animal {
+	private:
+		Brain	*_brain;
+
 	public:
-		WrongCat(void);
-		WrongCat(const WrongCat &obj);
-		WrongCat& operator=(const WrongCat &obj);
-		~WrongCat(void);
+		Dog(void);
+		Dog(const Dog &obj);
+		Dog& operator=(const Dog &obj);
+		~Dog(void);
 
-		void	makeSound(void) const;
+		void		makeSound(void) const;
+		Brain*		getBrain(void) const;
+		std::string	getBrainIdea(int index) const;
+		void		setBrainIdea(int index, std::string idea);
 };
 
 #endif
